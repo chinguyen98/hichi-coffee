@@ -64,6 +64,9 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row mb-0">
+                            <a href="/login/facebook" class="btn btn-primary">Login to facebook</a>
+                        </div>
                     </form>
                 </div>
             </div>

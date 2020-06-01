@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified')->name('home');
+Route::get('login/facebook', 'Auth\SocialAuthController@loginToFacebook');
+Route::get('login/facebook/callback', 'Auth\SocialAuthController@callbackFacebook');
