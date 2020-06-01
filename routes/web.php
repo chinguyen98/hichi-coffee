@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* User Routes */
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,5 +23,12 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified')->name('home');
+
+/* Admin Routes */
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/register', 'Admin\AuthForAdmin\RegisterController@showRegisterForm')->name('admins.register.show');
+});
+
+/* User Routes */
 Route::get('login/facebook', 'Auth\SocialAuthController@loginToFacebook');
 Route::get('login/facebook/callback', 'Auth\SocialAuthController@callbackFacebook');
