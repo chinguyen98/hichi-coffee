@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin\AuthForAdmin;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -12,7 +15,9 @@ class RegisterController extends Controller
     protected $redirectTo = '/admins/home';
 
     public function __construct()
-    { }
+    {
+        $this->middleware('isSuperAdmin');
+    }
 
     protected function validator(array $data)
     {
@@ -29,6 +34,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_role' => 2
         ]);
     }
 

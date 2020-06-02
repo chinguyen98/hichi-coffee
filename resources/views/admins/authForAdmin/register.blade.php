@@ -6,33 +6,50 @@
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
     <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
         <div class="text-center custom-login text-danger">
-            <h3>Đăng kí tài khoản quản trị viên</h3>
-            <p>Mỗi ngày đi làm là một niềm đau. </p>
+            <h3 style="text-transform: uppercase;">Đăng kí tài khoản quản trị viên</h3>
+            <i><p style="text-transform: capitalize;">Mỗi ngày đi làm là một niềm <span style="text-decoration: line-through;">đau</span> vui. </p></i>
         </div>
         <div class="hpanel">
             <div class="panel-body">
-                <form action="#" id="loginForm">
+                <form action="/admins/register" method="POST" id="loginForm">
+                    @csrf
+
                     <div class="row">
                         <div class="form-group col-lg-12">
-                            <label>Tên nhân viên:</label>
-                            <input class="form-control">
+                            <label style="text-transform: uppercase;">Tên nhân viên</label>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-12">
-                            <label>Địa chỉ</label>
-                            <input class="form-control">
+                            <label style="text-transform: uppercase;">Email:</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-12">
-                            <label>Mật khẩu</label>
-                            <input type="password" class="form-control">
+                            <label style="text-transform: uppercase;">Mật khẩu</label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-12">
-                            <label>Xác nhận mật khẩu</label>
-                            <input type="password" class="form-control">
+                            <label style="text-transform: uppercase;">Xác nhận mật khẩu</label>
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
                     <div class="text-center">
-                        <input type="submit" class="btn btn-success loginbtn" value="Tạo mới">
-                        <input type="reset" class="btn btn-default" value="Nhập lại" />
+                        <input type="submit" class="btn btn-success loginbtn" value="TẠO TÀI KHOẢN">
+                        <input type="reset" class="btn btn-default" value="NHẬP LẠI" />
                     </div>
                 </form>
             </div>

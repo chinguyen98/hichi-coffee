@@ -26,7 +26,11 @@ Route::get('/home', 'HomeController@index')->middleware('verified')->name('home'
 
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {
+    Route::get('/home', 'Admin\HomeController@index')->name('admins.home');
     Route::get('/register', 'Admin\AuthForAdmin\RegisterController@showRegisterForm')->name('admins.register.show');
+    Route::get('login', 'Admin\AuthForAdmin\LoginController@showLoginForm')->name('admins.login.show');
+    Route::post('/register', 'Admin\AuthForAdmin\RegisterController@register')->name('admins.register.submit');
+    Route::post('login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
 });
 
 /* User Routes */
