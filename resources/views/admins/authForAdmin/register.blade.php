@@ -7,7 +7,9 @@
     <div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
         <div class="text-center custom-login text-danger">
             <h3 style="text-transform: uppercase;">Đăng kí tài khoản quản trị viên</h3>
-            <i><p style="text-transform: capitalize;">Mỗi ngày đi làm là một niềm <span style="text-decoration: line-through;">đau</span> vui. </p></i>
+            <i>
+                <p style="text-transform: capitalize;">Mỗi ngày đi làm là một niềm <span style="text-decoration: line-through;">đau</span> vui. </p>
+            </i>
         </div>
         <div class="hpanel">
             <div class="panel-body">
@@ -46,6 +48,14 @@
                             <label style="text-transform: uppercase;">Xác nhận mật khẩu</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
+                        <div class="form-group col-lg-12">
+                            <select name="city" class="custom-select custom-select-lg mb-3">
+                                <option value="-1" selected>Chọn thành phố</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="text-center">
                         <input type="submit" class="btn btn-success loginbtn" value="TẠO TÀI KHOẢN">
@@ -57,5 +67,6 @@
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
 </div>
+<script src="/apps/js/loadAddressInfo.js"></script>
 
 @endsection
