@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('cities', 'Api\CityController');
 Route::apiResource('districts', 'Api\DistrictController');
+Route::apiResource('wards', 'Api\WardController');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

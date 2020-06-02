@@ -56,6 +56,10 @@
                                 <option value="-1" selected>Chọn quận/huyện</option>
                                 <!-- Districts -->
                             </select>
+                            <select name="ward" class="custom-select custom-select-lg mb-3">
+                                <option value="-1" selected>Chọn phường/xã</option>
+                                <!-- Districts -->
+                            </select>
                         </div>
                     </div>
                     <div class="text-center">
