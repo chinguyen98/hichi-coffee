@@ -50,10 +50,11 @@
                         </div>
                         <div class="form-group col-lg-12">
                             <select name="city" class="custom-select custom-select-lg mb-3">
-                                <option value="-1" selected>Chọn thành phố</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <!-- Cities -->
+                            </select>
+                            <select name="district" class="custom-select custom-select-lg mb-3">
+                                <option value="-1" selected>Chọn quận/huyện</option>
+                                <!-- Districts -->
                             </select>
                         </div>
                     </div>

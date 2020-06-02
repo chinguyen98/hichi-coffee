@@ -1,14 +1,27 @@
 const citySelection = document.querySelector('select[name="city"]');
+const districtSelection = document.querySelector('select[name="district"]');
+
+const exportListOption = (lists) => {
+    return lists.map(item => {
+        return `
+            <option value="${item.ID}">${item.Title}</option>
+        `;
+    });
+}
 
 const loadCities = async () => {
     const data = await fetch('/api/cities').then(res => res.json());
-    let exportHtml = '<option value="-1" selected>Chọn thành phố</option>';
-    exportHtml += data.map(city => {
-        return `
-            <option value="${city.ID}">${city.Title}</option>
-        `;
-    })
+    let exportHtml = '<option value="" disabled selected>Chọn thành phố</option>';
+    exportHtml += exportListOption(data);
     citySelection.innerHTML = exportHtml;
 }
 
+const loadDistricts = async (id) => {
+    const data = await fetch(`http://127.0.0.1:8000/api/districts/${id}`).then(res => res.json());
+    let exportHtml = '<option value="" disabled selected>Chọn quận huyện</option>';
+    exportHtml += exportListOption(data);
+    districtSelection.innerHTML = exportHtml;
+}
+
+citySelection.addEventListener('change', (e) => { loadDistricts(e.target.value) })
 window.addEventListener('load', loadCities);
