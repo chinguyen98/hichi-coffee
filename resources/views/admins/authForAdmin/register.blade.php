@@ -49,17 +49,37 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <div class="form-group col-lg-12">
-                            <select name="city" class="custom-select custom-select-lg mb-3">
+                            <select name="city" class="form-control custom-select custom-select-lg mb-3">
                                 <!-- Cities -->
                             </select>
-                            <select name="district" class="custom-select custom-select-lg mb-3">
+                            <br>
+                            <select name="district" class="form-control custom-select custom-select-lg mb-3">
                                 <option value="-1" selected>Chọn quận/huyện</option>
                                 <!-- Districts -->
                             </select>
-                            <select name="ward" class="custom-select custom-select-lg mb-3">
+                            <br>
+                            <select name="ward" class="form-control custom-select custom-select-lg mb-3">
                                 <option value="-1" selected>Chọn phường/xã</option>
                                 <!-- Districts -->
                             </select>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label for="address" style="text-transform: uppercase;">Địa chỉ:</label>
+                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                            @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label for="phone_number" style="text-transform: uppercase;">Số điện thoại:</label>
+                            <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+                            @error('phone_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="text-center">

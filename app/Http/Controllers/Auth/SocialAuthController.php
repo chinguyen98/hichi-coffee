@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Customer;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -19,7 +19,7 @@ class SocialAuthController extends Controller
     public function callbackFacebook()
     {
         $user = Socialite::driver('facebook')->stateless()->user();
-        $user = User::firstOrCreate([
+        $user = Customer::firstOrCreate([
             'email' => $user->email
         ], [
             'name' => $user->name,
