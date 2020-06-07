@@ -15,7 +15,7 @@ class CreateShippingAddressesTable extends Migration
     {
         Schema::create('shipping_addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('address');
+            $table->string('id_address');
             $table->integer('price');
             $table->timestamps();
         });

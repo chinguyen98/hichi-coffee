@@ -19,6 +19,7 @@ class CreateValuationsTable extends Migration
             $table->integer('discount')->nullable();
             $table->integer('bonus')->nullable();
             $table->boolean('status');
+            $table->dateTime('expired');
             $table->integer('id_coffee')->unsigned();
             $table->integer('id_unit')->unsigned();
             $table->integer('id_quantity')->unsigned();

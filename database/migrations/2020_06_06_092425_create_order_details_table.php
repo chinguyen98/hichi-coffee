@@ -20,7 +20,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('total_sub_price');
             $table->integer('id_coffee')->unsigned();
             $table->integer('id_order')->unsigned();
-            $table->integer('id_valuation')->unsigned();
+            $table->integer('id_valuation')->unsigned()->nullable();
             $table->foreign('id_coffee')->references('id')->on('coffees')->onDelete('RESTRICT');
             $table->foreign('id_order')->references('id')->on('orders')->onDelete('RESTRICT');
             $table->foreign('id_valuation')->references('id')->on('valuations')->onDelete('RESTRICT');
