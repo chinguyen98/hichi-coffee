@@ -55,7 +55,8 @@
     <link rel="stylesheet" href="/admins/css/calendar/fullcalendar.min.css">
     <link rel="stylesheet" href="/admins/css/calendar/fullcalendar.print.min.css">
     <!-- style CSS
-		============================================ -->
+    ============================================ -->
+    <link rel="stylesheet" href="/admins/css/alerts.css">
     <link rel="stylesheet" href="/admins/css/style.css">
     <!-- responsive CSS
 		============================================ -->

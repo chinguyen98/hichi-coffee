@@ -28,6 +28,24 @@ class AdminCoffeeManagementController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required|integer',
+            'info' => 'required|max:3000',
+            'expired' => 'required|integer',
+            'image' => 'required',
+        ], [
+            'required' => ':attribute Không được để trống',
+            'max' => ':attribute Không được lớn hơn :max',
+            'integer' => ':attribute Chỉ được nhập số',
+        ], [
+            'name'=>'Tên cà phê',
+            'price'=>'Giá cà phê',
+            'info'=>'Thông tin cà phê',
+            'expired'=>'Hạn sử dụng',
+            'image'=>'Hình ảnh',
+        ]);
+
         $coffee_update = $request->all();
 
         if ($request->hasFile("image")) {

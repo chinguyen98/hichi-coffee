@@ -18,12 +18,20 @@
                                             <div class="review-content-section">
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                    <input name="name" type="text" class="form-control" placeholder="Tên sản phẩm">
+                                                    <input name="name" type="text" class="form-control" placeholder="Tên sản phẩm" value="{{ old('name') }}">
                                                 </div>
+                                                @error('name')
+                                                @include('inc.admins.errorNotification')
+                                                @enderror
+
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="fa fa-hourglass-end" aria-hidden="true"></i></span>
-                                                    <input name="expired" type="text" class="form-control" placeholder="Hạn dùng">
+                                                    <input name="expired" type="text" class="form-control" placeholder="Hạn dùng" value="{{ old('expired') }}">
                                                 </div>
+                                                @error('expired')
+                                                @include('inc.admins.errorNotification')
+                                                @enderror
+
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="fa fa-coffee" aria-hidden="true"></i></span>
                                                     <select name="id_brand" class="form-control pro-edt-select form-control-primary">
@@ -40,8 +48,12 @@
                                             <div class="review-content-section">
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                    <input name="price" type="text" class="form-control" placeholder="Giá">
+                                                    <input name="price" type="text" class="form-control" placeholder="Giá" value="{{ old('price') }}">
                                                 </div>
+                                                @error('price')
+                                                @include('inc.admins.errorNotification')
+                                                @enderror
+
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <select name="status" class="form-control pro-edt-select form-control-primary">
@@ -67,12 +79,19 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <textarea class="ckeditor" name="info">
+                                                {{ old('name') }}
                                                 </textarea>
                                             </div>
+                                            @error('info')
+                                            @include('inc.admins.errorNotification')
+                                            @enderror
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section text-center">
                                                 <img id="previewImg" src="admins/img/temp.jpg" alt="Chưa tải hình lên">
+                                                @error('image')
+                                                @include('inc.admins.errorNotification')
+                                                @enderror
                                                 <input name="image" type="file" class="custom-file-input" id="inputGroupFile01" accept=".gif,.jpg,.jpeg,.png">
                                             </div>
                                         </div>

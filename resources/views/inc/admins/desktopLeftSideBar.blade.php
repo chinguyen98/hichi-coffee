@@ -23,10 +23,10 @@
                     <li>
                         <a class="has-arrow" href="index.html">
                             <i class="icon nalika-home icon-wrap"></i>
-                            <span class="mini-click-non">Trang chủ</span>
+                            <span class="mini-click-non">Tổng quan</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Dashboard v.1" href="index.html"><span class="mini-sub-pro">Dashboard v.1</span></a></li>
+                            <li><a title="Dashboard v.1" href="/admins/home"><span class="mini-sub-pro">Trang chủ</span></a></li>
                         </ul>
                     </li>
                     <li>

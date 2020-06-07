@@ -10,8 +10,8 @@
                                     <i class="icon nalika-home"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2>Dashboard One</h2>
-                                    <p>Welcome to Nalika <span class="bread-ntd">Admin Template</span></p>
+                                    <h2>Xin chào {{Auth::user()->name}}</h2>
+                                    <p>Đây là trang {{$title}}</p>
                                 </div>
                             </div>
                         </div>
