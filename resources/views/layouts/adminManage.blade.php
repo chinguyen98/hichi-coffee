@@ -63,6 +63,8 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="admins/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <link rel="stylesheet" href="/admins/css/owner.css">
 </head>
 
 <body>
@@ -182,6 +184,8 @@
     <!-- main JS
 		============================================ -->
     <script src="admins/js/main.js"></script>
+
+    <script src="ckeditor/ckeditor.js"></script>
 </body>
 
 </html>

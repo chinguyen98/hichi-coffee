@@ -18,7 +18,6 @@ class CreateCoffeesTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->string('image');
-            $table->integer('capacity');
             $table->string('info', 3000);
             $table->integer('expired');
             $table->integer('quantity');
