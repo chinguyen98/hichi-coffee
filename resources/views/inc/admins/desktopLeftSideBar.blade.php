@@ -26,12 +26,12 @@
                             <span class="mini-click-non">Tổng quan</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Dashboard v.1" href="/admins/home"><span class="mini-sub-pro">Trang chủ</span></a></li>
+                            <li><a title="Trang chủ" href="/admins/home"><span class="mini-sub-pro">Trang chủ</span></a></li>
                         </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="index.html">
-                            <i class="icon nalika-home icon-wrap"></i>
+                            <i class="fa fa-coffee icon-wrap"></i>
                             <span class="mini-click-non">Sản phẩm</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">

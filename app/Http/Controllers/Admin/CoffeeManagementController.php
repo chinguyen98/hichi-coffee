@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Coffee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 
-class AdminCoffeeManagementController extends Controller
+class CoffeeManagementController extends Controller
 {
     public function __construct()
     {
@@ -16,7 +16,8 @@ class AdminCoffeeManagementController extends Controller
 
     public function index()
     {
-        return view('admins/coffeeManagement/index')->with(['title' => 'Sản phẩm']);;
+        $coffees = Coffee::all();
+        return view('admins/coffeeManagement/index')->with(['title' => 'Sản phẩm', 'coffees' => $coffees]);;
     }
 
     public function create()
@@ -39,11 +40,11 @@ class AdminCoffeeManagementController extends Controller
             'max' => ':attribute Không được lớn hơn :max',
             'integer' => ':attribute Chỉ được nhập số',
         ], [
-            'name'=>'Tên cà phê',
-            'price'=>'Giá cà phê',
-            'info'=>'Thông tin cà phê',
-            'expired'=>'Hạn sử dụng',
-            'image'=>'Hình ảnh',
+            'name' => 'Tên cà phê',
+            'price' => 'Giá cà phê',
+            'info' => 'Thông tin cà phê',
+            'expired' => 'Hạn sử dụng',
+            'image' => 'Hình ảnh',
         ]);
 
         $coffee_update = $request->all();

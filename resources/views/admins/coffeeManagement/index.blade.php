@@ -7,111 +7,44 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h4>Products List</h4>
+                    <h4>Danh sách sản phẩm</h4>
                     <div class="add-product">
-                        <a href="product-edit.html">Add Product</a>
+                        <a href="{{route('admins.manage.coffee.create')}}">Thêm sản phẩm</a>
                     </div>
                     <table>
                         <tr>
-                            <th>Image</th>
-                            <th>Product Title</th>
-                            <th>Status</th>
-                            <th>Purchases</th>
-                            <th>Product sales</th>
-                            <th>Stock</th>
-                            <th>Price</th>
-                            <th>Setting</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Trạng thái</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Nhãn hiệu</th>
+                            <th>Loại</th>
+                            <th>Tùy chọn</th>
                         </tr>
+                        @foreach($coffees as $coffee)
+
                         <tr>
-                            <td><img src="/admins/img/new-product/5-small.jpg" alt="" /></td>
-                            <td>Product Title 1</td>
+                            <td><img src="/apps/images/coffees/{{$coffee->image}}" alt="" /></td>
+                            <td>{{$coffee->name}}</td>
                             <td>
-                                <button class="pd-setting">Active</button>
+                                @if($coffee->status==1)
+                                <button class="ps-setting">Hiển thị</button>
+                                @else
+                                <button class="ds-setting">Ẩn</button>
+                                @endif
                             </td>
-                            <td>50</td>
-                            <td>$750</td>
-                            <td>Out Of Stock</td>
-                            <td>$15</td>
+                            <td>{{$coffee->price}} VNĐ</td>
+                            <td>{{$coffee->quantity}}</td>
+                            <td>{{$coffee->brand->name}}</td>
+                            <td>{{$coffee->coffee_type->name}}</td>
                             <td>
-                                <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/admins/img/new-product/6-small.jpg" alt="" /></td>
-                            <td>Product Title 2</td>
-                            <td>
-                                <button class="ps-setting">Paused</button>
-                            </td>
-                            <td>60</td>
-                            <td>$1020</td>
-                            <td>In Stock</td>
-                            <td>$17</td>
-                            <td>
-                                <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button data-toggle="tooltip" title="Sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                <button data-toggle="tooltip" title="Xóa" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><img src="/admins/img/new-product/7-small.jpg" alt="" /></td>
-                            <td>Product Title 3</td>
-                            <td>
-                                <button class="ds-setting">Disabled</button>
-                            </td>
-                            <td>70</td>
-                            <td>$1050</td>
-                            <td>Low Stock</td>
-                            <td>$15</td>
-                            <td>
-                                <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/admins/img/new-product/5-small.jpg" alt="" /></td>
-                            <td>Product Title 4</td>
-                            <td>
-                                <button class="pd-setting">Active</button>
-                            </td>
-                            <td>120</td>
-                            <td>$1440</td>
-                            <td>In Stock</td>
-                            <td>$12</td>
-                            <td>
-                                <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/admins/img/new-product/6-small.jpg" alt="" /></td>
-                            <td>Product Title 5</td>
-                            <td>
-                                <button class="pd-setting">Active</button>
-                            </td>
-                            <td>30</td>
-                            <td>$540</td>
-                            <td>Out Of Stock</td>
-                            <td>$18</td>
-                            <td>
-                                <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/admins/img/new-product/7-small.jpg" alt="" /></td>
-                            <td>Product Title 6</td>
-                            <td>
-                                <button class="ps-setting">Paused</button>
-                            </td>
-                            <td>400</td>
-                            <td>$4000</td>
-                            <td>In Stock</td>
-                            <td>$10</td>
-                            <td>
-                                <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
+
+                        @endforeach
                     </table>
                     <div class="custom-pagination">
                         <ul class="pagination">
