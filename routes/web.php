@@ -36,7 +36,9 @@ Route::group(['prefix' => 'admins'], function () {
         Route::group(['prefix' => 'coffees'], function () {
             Route::get('/', 'Admin\CoffeeManagementController@index')->name('admins.manage.coffee.index');
             Route::get('/create', 'Admin\CoffeeManagementController@create')->name('admins.manage.coffee.create');
+            Route::get('/{id}', 'Admin\CoffeeManagementController@renderUpdatePage')->name('admins.manage.coffee.renderUpdatePage');
             Route::post('/', 'Admin\CoffeeManagementController@store')->name('admins.manage.coffee.store');
+            Route::put('/{id}', 'Admin\CoffeeManagementController@update')->name('admins.manage.coffee.update');
         });
     });
 });
