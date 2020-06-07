@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <base href="{{asset('')}}">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dashboard V.1 | Nalika - Material Admin Template</title>
+    <title>{{$title}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -109,7 +109,7 @@
                                     </div>
 
                                     @include('inc.admins.headerHelper')
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -124,11 +124,10 @@
 
             @include('inc.admins.dashBoardIntro')
 
-
+            @yield('content')
+            
         </div>
     </div>
-
-    @yield('content')
 
     <!-- jquery
 		============================================ -->

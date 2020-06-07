@@ -16,6 +16,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('admins/home');
+        return view('admins/home')->with(['title' => 'Trang chủ']);
     }
 }
