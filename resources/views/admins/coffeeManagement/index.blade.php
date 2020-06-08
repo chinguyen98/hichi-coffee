@@ -39,7 +39,7 @@
                             <td>{{$coffee->brand->name}}</td>
                             <td>{{$coffee->coffee_type->name}}</td>
                             <td>
-                                <a href="{{route('admins.manage.coffee.renderUpdatePage', ['id'=>$coffee->id])}}" data-toggle="tooltip" title="Sửa" class="btn pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="{{route('admins.manage.coffee.renderUpdateCoffeePage', ['id'=>$coffee->id])}}" data-toggle="tooltip" title="Sửa" class="btn pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                 <a data-toggle="tooltip" title="Xóa" class="btn pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>

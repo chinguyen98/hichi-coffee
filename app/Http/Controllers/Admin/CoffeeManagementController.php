@@ -80,7 +80,7 @@ class CoffeeManagementController extends Controller
         return redirect()->route('admins.manage.coffee.create');
     }
 
-    public function renderUpdatePage($id)
+    public function renderUpdateCoffeePage($id)
     {
         $coffee = DB::table('coffees')->where('id', $id)->first();
         $brands = DB::table('brands')->get(['id', 'name']);
@@ -139,6 +139,6 @@ class CoffeeManagementController extends Controller
 
         //$request->session()->flash('flash_message', 'Cập nhật sản phẩm thành công!');
 
-        return redirect()->route('admins.manage.coffee.renderUpdatePage', ['id' => $id]);
+        return redirect()->route('admins.manage.coffee.renderUpdateCoffeePage', ['id' => $id]);
     }
 }

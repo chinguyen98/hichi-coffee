@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +17,10 @@ class WareHouseManagementController extends Controller
 
     public function index()
     {
+        $inputs = Input::all();
         return view('admins.warehouseManagement.index')->with([
-            'title' => 'Quản lý kho'
+            'title' => 'Quản lý kho',
+            'inputs' => $inputs
         ]);
     }
 
@@ -58,5 +61,15 @@ class WareHouseManagementController extends Controller
 
         //$request->session()->flash('flash_message', 'Thêm sản phẩm thành công!');
         return redirect()->route('admins.manage.warehouse.create');
+    }
+
+    public function renderInputDetailPage($id)
+    {
+        $input = Input::where('id', $id)->first();
+
+        return view('admins.warehouseManagement.detail')->with([
+            'title' => 'Chi tiết phiếu nhập',
+            'input' => $input
+        ]);
     }
 }
