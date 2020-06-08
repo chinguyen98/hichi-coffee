@@ -20,6 +20,11 @@ const handlingSearchCoffee = async (searchText) => {
 }
 
 const handlingDeleteCoffee = (coffeeId) => {
+    const data = JSON.parse(dataInput.value);
+    console.log(data);
+    const index = data.findIndex(item => item.coffeeId == coffeeId);
+    data.splice(index, 1);
+    dataInput.value = JSON.stringify(data);
     document.querySelector(`[data-container="${coffeeId}"]`).parentNode.innerHTML = '';
 }
 
@@ -100,6 +105,15 @@ const debouce = (func, wait = 500) => {
             func(...args);
         }, wait);
     }
+}
+
+function checkEmptyInput() {
+    const data = JSON.parse(dataInput.value);
+    if (data.length === 0) {
+        alert('Vui lòng nhập thông tin phiếu nhập!');
+        return false;
+    }
+    return true;
 }
 
 searchCoffeeInput.addEventListener('input', debouce(e => {

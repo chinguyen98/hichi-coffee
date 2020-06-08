@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form method="POST" id="formInput" action="{{route('admins.manage.warehouse.store')}}">
+                                <form method="POST" onsubmit="return checkEmptyInput()" id="formInput" action="{{route('admins.manage.warehouse.store')}}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
