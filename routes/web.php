@@ -40,6 +40,12 @@ Route::group(['prefix' => 'admins'], function () {
             Route::post('/', 'Admin\CoffeeManagementController@store')->name('admins.manage.coffee.store');
             Route::put('/{id}', 'Admin\CoffeeManagementController@update')->name('admins.manage.coffee.update');
         });
+
+        Route::group(['prefix' => 'warehouse'], function () {
+            Route::get('/', 'Admin\WareHouseManagementController@index')->name('admins.manage.warehouse.index');
+            Route::get('/create', 'Admin\WareHouseManagementController@create')->name('admins.manage.warehouse.create');
+            Route::post('/', 'Admin\WareHouseManagementController@store')->name('admins.manage.warehouse.store');
+        });
     });
 });
 

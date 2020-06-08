@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::apiResource('coffees','Api\CoffeeController');
 Route::apiResource('cities', 'Api\CityController');
 Route::apiResource('districts', 'Api\DistrictController');
 Route::apiResource('wards', 'Api\WardController');
