@@ -15,7 +15,6 @@ class CreateInputsTable extends Migration
     {
         Schema::create('inputs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('total_price');
             $table->integer('id_supplier')->unsigned();
             $table->integer('id_admin')->unsigned();
             $table->foreign('id_supplier')->references('id')->on('suppliers')->onDelete('RESTRICT');

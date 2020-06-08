@@ -24,8 +24,10 @@ class CreateCoffeesTable extends Migration
             $table->boolean('status');
             $table->integer('id_brand')->unsigned();
             $table->integer('id_coffee_type')->unsigned();
+            $table->integer('id_unit')->unsigned();
             $table->foreign('id_brand')->references('id')->on('brands')->onDelete('RESTRICT');
             $table->foreign('id_coffee_type')->references('id')->on('coffee_types')->onDelete('RESTRICT');
+            $table->foreign('id_unit')->references('id')->on('units')->onDelete('RESTRICT');
             $table->timestamps();
         });
     }

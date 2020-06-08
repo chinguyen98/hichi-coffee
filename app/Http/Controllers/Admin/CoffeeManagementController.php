@@ -25,7 +25,14 @@ class CoffeeManagementController extends Controller
     {
         $brands = DB::table('brands')->get(['id', 'name']);
         $coffee_types = DB::table('coffee_types')->get(['id', 'name']);
-        return view('admins/coffeeManagement/create')->with(['title' => 'Thêm sản phẩm', 'brands' => $brands, 'coffee_types' => $coffee_types]);;
+        $units = DB::table('units')->get(['id', 'name', 'dram']);
+
+        return view('admins/coffeeManagement/create')->with([
+            'title' => 'Thêm sản phẩm',
+            'brands' => $brands,
+            'coffee_types' => $coffee_types,
+            'units' => $units
+        ]);;
     }
 
     public function store(Request $request)
@@ -62,6 +69,7 @@ class CoffeeManagementController extends Controller
                 'status' => $coffee_update["status"],
                 'id_brand' => $coffee_update["id_brand"],
                 'id_coffee_type' => $coffee_update["id_coffee_type"],
+                'id_unit' => $coffee_update["id_unit"],
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
@@ -77,8 +85,15 @@ class CoffeeManagementController extends Controller
         $coffee = DB::table('coffees')->where('id', $id)->first();
         $brands = DB::table('brands')->get(['id', 'name']);
         $coffee_types = DB::table('coffee_types')->get(['id', 'name']);
+        $units = DB::table('units')->get(['id', 'name', 'dram']);
 
-        return view('admins/coffeeManagement/update')->with(['title' => 'Sửa sản phẩm', 'coffee' => $coffee, 'brands' => $brands, 'coffee_types' => $coffee_types]);;
+        return view('admins/coffeeManagement/update')->with([
+            'title' => 'Sửa sản phẩm',
+            'coffee' => $coffee,
+            'brands' => $brands,
+            'coffee_types' => $coffee_types,
+            'units' => $units
+        ]);;
     }
 
     public function update(Request $request, $id)
@@ -108,6 +123,7 @@ class CoffeeManagementController extends Controller
             'status' => $coffee_update["status"],
             'id_brand' => $coffee_update["id_brand"],
             'id_coffee_type' => $coffee_update["id_coffee_type"],
+            'id_unit' => $coffee_update["id_unit"],
             'updated_at' => now()
         ]);
 

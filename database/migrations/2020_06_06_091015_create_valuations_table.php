@@ -21,10 +21,8 @@ class CreateValuationsTable extends Migration
             $table->boolean('status');
             $table->dateTime('expired');
             $table->integer('id_coffee')->unsigned();
-            $table->integer('id_unit')->unsigned();
             $table->integer('id_quantity')->unsigned();
             $table->foreign('id_coffee')->references('id')->on('coffees')->onDelete('RESTRICT');
-            $table->foreign('id_unit')->references('id')->on('units')->onDelete('RESTRICT');
             $table->foreign('id_quantity')->references('id')->on('quantities')->onDelete('RESTRICT');
             $table->timestamps();
         });

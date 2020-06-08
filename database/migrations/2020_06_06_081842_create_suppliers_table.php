@@ -20,6 +20,7 @@ class CreateSuppliersTable extends Migration
             $table->string('phone_number', 50);
             $table->string('email');
             $table->string('info', 3000);
+            $table->string('website');
             $table->timestamps();
         });
     }

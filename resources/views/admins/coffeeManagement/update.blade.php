@@ -51,6 +51,25 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+
+                                                <div class="input-group mg-b-pro-edt">
+                                                    <span class="input-group-addon"><i class="fa fa-coffee" aria-hidden="true"></i></span>
+                                                    <select name="id_unit" class="form-control pro-edt-select form-control-primary">
+                                                        @foreach($units as $unit)
+
+                                                        @if($unit->id==$coffee->id_unit)
+
+                                                        <option value="{{$unit->id}}" selected>{{$unit->name}} ({{$unit->dram}})</option>
+
+                                                        @else
+
+                                                        <option value="{{$unit->id}}">{{$unit->name}} ({{$unit->dram}})</option>
+
+                                                        @endif
+
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

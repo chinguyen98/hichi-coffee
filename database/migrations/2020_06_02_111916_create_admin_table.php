@@ -18,9 +18,9 @@ class CreateAdminTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('city');
-            $table->string('district');
-            $table->string('ward');
+            $table->string('id_city');
+            $table->string('id_district');
+            $table->string('id_ward');
             $table->string('address');
             $table->string('phone_number', 50);
             $table->integer('id_role')->unsigned();
