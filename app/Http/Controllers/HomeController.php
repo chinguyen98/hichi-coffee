@@ -6,23 +6,22 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('customers.home');
+        return view('customers.home')->with([
+            'title' => 'Hichi Coffee',
+            'homeActive' => 'active'
+        ]);
+    }
+
+    public function renderIntroPage(){
+        return view('customers.intro')->with([
+            'title'=>'Giới thiệu',
+            'introActive'=>'active'
+        ]);
     }
 }

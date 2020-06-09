@@ -7775,7 +7775,7 @@ h1, h2, h3, h4, h5,
     padding: 30px; }
     @media (min-width: 1200px) {
       .ftco-intro .wrap .info {
-        width: calc(100% - 35%);
+        width: 100%;
         padding: 2% 5% 2% 12%; } }
     @media (max-width: 767.98px) {
       .ftco-intro .wrap .info {
