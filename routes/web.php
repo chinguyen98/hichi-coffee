@@ -33,8 +33,8 @@ Route::group(['prefix' => 'admins'], function () {
     Route::post('login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
 
     Route::group(['prefix' => 'manage'], function () {
-        Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->name('admins.renderAdminManagementPage');
-        Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->name('admins.renderAdminDetailPage');
+        Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
+        Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
 
         Route::group(['prefix' => 'coffees'], function () {
             Route::get('/', 'Admin\CoffeeManagementController@index')->name('admins.manage.coffee.index');
