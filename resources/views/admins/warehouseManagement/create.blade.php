@@ -93,6 +93,6 @@
     </div>
 </div>
 
-<script src="/admins/js/renderCoffeesInWareHouseSearching.js"></script>
+<script src="/admins/js/handlingCoffeesInWareHouseSearching.js"></script>
 
 @endsection
