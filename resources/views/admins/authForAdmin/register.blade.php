@@ -49,16 +49,16 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <div class="form-group col-lg-12">
-                            <select name="city" class="form-control custom-select custom-select-lg mb-3">
+                            <select name="id_city" class="form-control custom-select custom-select-lg mb-3">
                                 <!-- Cities -->
                             </select>
                             <br>
-                            <select name="district" class="form-control custom-select custom-select-lg mb-3">
+                            <select name="id_district" class="form-control custom-select custom-select-lg mb-3">
                                 <option value="-1" selected>Chọn quận/huyện</option>
                                 <!-- Districts -->
                             </select>
                             <br>
-                            <select name="ward" class="form-control custom-select custom-select-lg mb-3">
+                            <select name="id_ward" class="form-control custom-select custom-select-lg mb-3">
                                 <option value="-1" selected>Chọn phường/xã</option>
                                 <!-- Districts -->
                             </select>

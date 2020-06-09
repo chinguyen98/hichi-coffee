@@ -44,7 +44,13 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        //
+        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id;
+        $client = new Client();
+
+        $response = $client->request('GET', $url);
+        $city = json_decode($response->getBody(), true);
+
+        return response()->json($city);
     }
 
     /**
@@ -68,5 +74,15 @@ class CityController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getDistrictsByCityId($id){
+        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id . '/district';
+        $client = new Client();
+
+        $response = $client->request('GET', $url);
+        $districts = json_decode($response->getBody(), true);
+
+        return response()->json($districts);
     }
 }

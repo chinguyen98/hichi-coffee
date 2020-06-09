@@ -37,13 +37,13 @@ class DistrictController extends Controller
      */
     public function show($id)
     {
-        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id . '/district';
+        $url = 'https://thongtindoanhnghiep.co/api/district/' . $id;
         $client = new Client();
 
         $response = $client->request('GET', $url);
-        $districts = json_decode($response->getBody(), true);
+        $city = json_decode($response->getBody(), true);
 
-        return response()->json($districts);
+        return response()->json($city);
     }
 
     /**
@@ -67,5 +67,16 @@ class DistrictController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getWardsByDistrictsId($id)
+    {
+        $url = 'https://thongtindoanhnghiep.co/api/district/' . $id . '/ward';
+        $client = new Client();
+
+        $response = $client->request('GET', $url);
+        $districts = json_decode($response->getBody(), true);
+
+        return response()->json($districts);
     }
 }

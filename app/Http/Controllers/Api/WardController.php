@@ -37,13 +37,13 @@ class WardController extends Controller
      */
     public function show($id)
     {
-        $url = 'https://thongtindoanhnghiep.co/api/district/' . $id . '/ward';
+        $url = 'https://thongtindoanhnghiep.co/api/ward/' . $id;
         $client = new Client();
 
         $response = $client->request('GET', $url);
-        $districts = json_decode($response->getBody(), true);
+        $city = json_decode($response->getBody(), true);
 
-        return response()->json($districts);
+        return response()->json($city);
     }
 
     /**

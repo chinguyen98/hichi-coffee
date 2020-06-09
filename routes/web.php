@@ -33,6 +33,9 @@ Route::group(['prefix' => 'admins'], function () {
     Route::post('login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
 
     Route::group(['prefix' => 'manage'], function () {
+        Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->name('admins.renderAdminManagementPage');
+        Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->name('admins.renderAdminDetailPage');
+
         Route::group(['prefix' => 'coffees'], function () {
             Route::get('/', 'Admin\CoffeeManagementController@index')->name('admins.manage.coffee.index');
             Route::get('/create', 'Admin\CoffeeManagementController@create')->name('admins.manage.coffee.create');
@@ -49,6 +52,10 @@ Route::group(['prefix' => 'admins'], function () {
         });
     });
 });
+
+/* Api */
+Route::get('/api/cities/{id}/districts', 'Api\CityController@getDistrictsByCityId');
+Route::get('/api/districts/{id}/wards', 'Api\DistrictController@getWardsByDistrictsId');
 
 /* User Routes */
 Route::get('login/facebook', 'Auth\SocialAuthController@loginToFacebook');

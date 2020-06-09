@@ -1,6 +1,6 @@
-const citySelection = document.querySelector('select[name="city"]');
-const districtSelection = document.querySelector('select[name="district"]');
-const wardSelection = document.querySelector('select[name="ward"]');
+const citySelection = document.querySelector('select[name="id_city"]');
+const districtSelection = document.querySelector('select[name="id_district"]');
+const wardSelection = document.querySelector('select[name="id_ward"]');
 
 const exportListOption = (lists) => {
     return lists.map(item => {
@@ -18,14 +18,14 @@ const loadCities = async () => {
 }
 
 const loadDistricts = async (id) => {
-    const data = await fetch(`http://127.0.0.1:8000/api/districts/${id}`).then(res => res.json());
+    const data = await fetch(`http://127.0.0.1:8000/api/cities/${id}/districts`).then(res => res.json());
     let exportHtml = '<option value="" disabled selected>Chọn quận/huyện</option>';
     exportHtml += exportListOption(data);
     districtSelection.innerHTML = exportHtml;
 }
 
 const loadWards = async (id) => {
-    const data = await fetch(`http://127.0.0.1:8000/api/wards/${id}`).then(res => res.json());
+    const data = await fetch(`http://127.0.0.1:8000/api/districts/${id}/wards`).then(res => res.json());
     let exportHtml = '<option value="" disabled selected>Chọn phường/xã</option>';
     exportHtml += exportListOption(data);
     wardSelection.innerHTML = exportHtml;

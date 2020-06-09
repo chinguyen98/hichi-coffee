@@ -22,7 +22,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id_role', 'city', 'district', 'ward', 'address', 'phone_number'
+        'name', 'email', 'password', 'id_role', 'id_city', 'id_district', 'id_ward', 'address', 'phone_number'
     ];
 
     /**
@@ -46,5 +46,10 @@ class Admin extends Authenticatable
     public function isSuperAdmin()
     {
         return $this->id_role === self::SUPER_ADMIN;
+    }
+
+    public function admin_role()
+    {
+        return $this->belongsTo(AdminRole::class, 'id_role');
     }
 }
