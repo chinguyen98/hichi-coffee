@@ -49,6 +49,16 @@
                             <li><a title="Thêm mới" href="{{route('admins.manage.warehouse.create')}}"><span class="mini-sub-pro">Nhập kho</span></a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="has-arrow" href="index.html">
+                            <i class="fa fa-coffee icon-wrap"></i>
+                            <span class="mini-click-non">Khuyễn mãi</span>
+                        </a>
+                        <ul class="submenu-angle" aria-expanded="true">
+                            <li><a title="Xem toàn bộ" href="{{route('admins.manage.promotion.index')}}"><span class="mini-sub-pro">Quản lý</span></a></li>
+                            <li><a title="Thêm mới" href="{{route('admins.manage.promotion.create')}}"><span class="mini-sub-pro">Thêm khuyến mãi</span></a></li>
+                        </ul>
+                    </li>
                     @if(Auth::user()->id_role==1)
 
                     <li>

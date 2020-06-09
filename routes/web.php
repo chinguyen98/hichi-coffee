@@ -32,8 +32,6 @@ Route::group(['prefix' => 'admins'], function () {
     Route::post('login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
 
     Route::group(['prefix' => 'manage'], function () {
-        Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
-        Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
 
         Route::group(['prefix' => 'coffees'], function () {
             Route::get('/', 'Admin\CoffeeManagementController@index')->name('admins.manage.coffee.index');
@@ -49,6 +47,14 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/{id}', 'Admin\WareHouseManagementController@renderInputDetailPage')->name('admins.manage.warehouse.renderInputDetailPage');
             Route::post('/', 'Admin\WareHouseManagementController@store')->name('admins.manage.warehouse.store');
         });
+
+        Route::group(['prefix' => 'promotion'], function () {
+            Route::get('/', 'Admin\PromotionManagementController@index')->name('admins.manage.promotion.index');
+            Route::get('/create', 'Admin\PromotionManagementController@create')->name('admins.manage.promotion.create');
+        });
+
+        Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
+        Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
     });
 });
 
