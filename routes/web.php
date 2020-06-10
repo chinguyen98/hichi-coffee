@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('customers.home');
 Route::get('/intro', 'HomeController@renderIntroPage')->name('customers.intro');
+Route::get('/coffees', 'CoffeeController@index')->name('customers.coffees.index');
 
 Auth::routes(['verify' => true]);
 
