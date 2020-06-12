@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('layouts/app')
+
+@section('content')
 
 <section class="home-slider owl-carousel">
     <div class="slider-item" style="background-image: url(customers/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
@@ -19,8 +21,6 @@
 
 <br>
 
-
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -14,3 +14,515 @@
 .customerForm .card-header{
   font-size: 1.5rem;
 }
+
+/*Owner*/
+
+@font-face{
+  font-family: UTMBeautifulCaps;
+  src: url('/fonts/owner/UTMBeautifulCaps.ttf');
+}
+
+@font-face{
+  font-family: UTMAquarelle;
+  src: url('/fonts/owner/UTMAquarelle.ttf');
+}
+
+.slogan{
+  font-family: UTM Beautiful Caps;
+  font-size: 40px !important;
+}
+
+.aquarelleFont{
+  font-family: UTM Aquarelle !important;
+  font-size: 40px !important;
+}
+
+.sloganknst p{
+  font-size: 30px !important;
+}
+
+.dmsp-container{
+  background-color: rgb(29, 28, 28);
+}
+
+.dmsp-container__btn{
+  width:100%;
+}
+
+.dmsp-container__btn img{
+  width: 12em;
+  height:8em;
+}
+
+#accordion *{
+  transition:0.5s all;
+}
+
+.lstdmsp{
+  background-color: rgb(105, 104, 104);
+}
+
+.lstdmsp .list-group a{
+  color:#FFF;
+  background-color: rgb(71, 69, 69);
+}
+
+.lstdmsp .list-group a:hover{
+  background-color: rgb(105, 104, 104);
+}
+
+.dmsp-main-container {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.dmsp-main-container h5{
+  color:white;
+  font-weight: 50;
+}
+
+.dmsp-main-container__name{
+  width:fit-content + 1em;
+  height:fit-content +1em;
+  background-color: rgba(0, 0, 0,0.3) !important;
+  padding:0.5em;
+  transition: 0.5s all;
+}
+
+.dmsp-main-container__name span{
+  transition: 0.5s all;
+  text-transform: uppercase;
+  font-size: 2em;
+}
+
+.dmsp-main-container__name:hover *{
+  color: red;
+}
+
+.dmsp-main-container__name:hover{
+  background-color: rgba(0, 0, 0) !important;
+}
+
+.dmsp-main-container__item img{
+  width: 12em;
+  height: 12em;
+}
+
+.dmsp-main-container__item span{
+  font-size:1.5em;
+  color:red;
+}
+
+.dmsp-main-container__item .coffeeName{
+  font-size: 1.2rem;
+  width: 17rem;
+}
+
+.dmsp-main-container__item:hover .coffeeName{
+  color: #d4b78d;
+}
+
+.main_coffee_detail > div{
+  /*background-color: rgba(255, 255, 255, 0.4);*/
+  border:0.5em inset gray;
+}
+
+.main_coffee_detail h5{
+  display:inline;
+}
+
+.main_coffee_detail input[type="text"]{
+  width:4em;
+  text-align:center;
+}
+
+.quantity-updown{
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-top:0.5em;
+  margin: 0 1em;
+  border-radius: 50%;
+  border:0.1em solid;
+  width:3em;
+  height:3em;
+  user-select: none;
+}
+
+.quantity-updown:hover{
+  background-color: rgba(0, 0, 0, 1);
+  cursor:pointer;
+}
+
+.main_coffee_detail:first-child img{
+  width: 100%;
+  height: 75%;
+}
+
+.main_coffee_detail .price-container .price-container__label{
+  color:red;
+  font-size:2em;
+}
+
+.main_coffee_detail .price-container .price-container__price{
+  color:red;
+  font-size:3em;
+}
+
+.relatedCoffee-container__item img{
+  width:6em !important;
+  height:6em !important;
+}
+
+.relatedCoffee-container__item p{
+  color:red;
+}
+
+.main_coffee_info p{
+  font-size:1.5em;
+  text-align: justify;
+}
+
+#btn-find{
+	transition: all 0.5s;
+}
+
+#btn-find:hover{
+	cursor: pointer;
+	color: #c49b63;
+}
+
+.find-modal-container{
+  width:100%;
+  height:100%;
+  background-color:black;
+  opacity:0;
+  position: fixed;;
+  top:12%;
+	left:0;
+	transform: translateY(30rem);
+  transition: all 0.5s;
+	z-index: -99999999;
+}
+
+.active-modal{
+	opacity: 0.95;
+  transform: none;
+  z-index: 99999999;
+}
+
+.find-model__close{
+	display: inline-block;
+	background-color: black;
+	font-size: 2em;
+	transition: 0.5s all;
+	border: 1px solid red;
+}
+
+.find-model__button{
+  display: inline-block;
+  font-size: 2em;
+  transition: 0.5s all;
+}
+
+.find-model__close:hover{
+	background-color: red;
+	cursor: pointer;
+}
+
+#txt-find-modal{
+	width: 100%;
+	font-size: 2em;
+  text-align: center;
+  background-color: black;
+  border: none;
+  color:whitesmoke;
+  outline: none;
+}
+
+.find-modal-container hr{
+  background-color: whitesmoke;
+  height: 0.05em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.matchCoffees{
+  width: 100%;
+  height: 70%;
+  overflow: auto;
+}
+
+.matchCoffees img{
+  width: 10em;
+  height: 10em;
+}
+
+.matchCoffees p{
+  color:red;
+}
+
+.menu_account_container .dropdown-menu{
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.menu_account_container .dropdown-menu a{
+  font-size: 1rem !important;
+}
+
+/*Register Form*/
+.register-form{
+  color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 1.2em;
+}
+
+/*Page gioi thieu*/
+
+.slogan{
+  font-family: UTM Beautiful Caps;
+  font-size: 40px !important;
+}
+.slogan-info{
+  font-family: UTM Beautiful Caps;
+  font-size: 35px !important;
+  color: wheat;
+}
+#contact {
+  padding-left: 16.8rem;
+}
+
+/*Page tin tuc*/
+.newsimage {
+  width: 20rem !important;
+  padding-left: 3em;
+  padding-bottom: 3em;
+}
+
+.img-news{
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.new-ct p{
+  color:burlywood;
+  text-align: justify;
+  font-size: 0.7em;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+.new-ct h1{
+  color: wheat;
+  padding-left: 2em;
+}
+.new-ct i{
+  font-size: 0.6em;
+}
+
+.review-news {
+  color:wheat;
+  font-size: 1.3em;
+  font-family: 'Times New Roman', Times, serif;
+}
+.new-ft {
+  padding-left: 25em;
+}
+
+/*Popup flash Message*/
+
+.popup-flash-mess{
+  width: 30rem;
+  height: 5rem;
+  background-color: rgb(47, 233, 47);
+  position: fixed;
+  z-index: 9999;
+  margin-left: 35%;
+  transform: translateY(-8em);
+  opacity: 0;
+  animation-name: showPopUpFlashMessage;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+  animation-duration: 2s;
+}
+
+.popup-flash-approval-order{
+  width: 30rem;
+  height: 8rem;
+  background-color: rgb(255, 0, 13);
+  position: fixed;
+  z-index: 9999;
+  margin-left: 35%;
+  transform: translateX(-30em);
+  opacity: 0;
+  animation-name: showPopUpFlashMessage;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+  animation-duration: 2s;
+}
+
+@keyframes showPopUpFlashMessage{
+  0%  {
+    transform: translateX(-30em);
+    opacity: 0;
+  }
+  50%{
+    transform: translateX(-4em);
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(-4.5em);
+  }
+}
+
+/*Coffee Management*/
+
+.coffee-manage-image-container img{
+  width: 10rem !important;
+  height: 10rem !important;
+}
+
+#txt_info{
+  height: 15rem;
+}
+
+.cartNotify{
+  text-align: center;
+  width: 20em;
+  height: 8em;
+  background-color: whitesmoke;
+  position: absolute;
+  right:5em;
+  top: 5em;
+  opacity: 0;
+  transform: translateX(20em);
+  transition: all 1s;
+}
+
+.cartNotify span{
+  color:black;
+}
+
+.cartNotify__close{
+  position: absolute;
+  right: 1em;
+  top:0;
+  font-size: 1.5em;
+}
+
+.cartNotify__close:hover{
+  cursor: pointer;
+}
+
+.cartNotify__close:hover *{
+  color:black;
+}
+
+.cartNotify-show{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/*Cart*/
+
+.cart-image-container{
+  width:8em;
+  height:8em; 
+}
+
+.cart-image{
+  width:8em;
+  height:8em; 
+}
+
+.btnDatHang{
+  font-size: 3.5em;
+}
+
+.cart-close{
+  visibility: hidden;
+}
+
+/*Notify*/
+.notify{
+  width:30em;
+  min-height: 5em;
+  background-color: black;
+  color: white;
+  position: fixed;
+  top: 0;
+  right: 35%;
+  transform: translateY(-5em);
+  transition: all 1s;
+  opacity: 0;
+}
+
+.notify--show{
+  transform: translateY(0);
+  z-index: 9999;
+  background-color: red;
+  opacity: 1;
+}
+
+.none-checkOrder-title{
+  color: black;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.none-checkOrder-content{
+  font-size: 1.2em;
+}
+
+.confirmDeleteAlert{
+  width: 30%;
+  height: 16em;
+  background-color: red;
+  opacity: 0;
+  position: fixed;
+  left: 35%;
+  top: 35%;
+  transform: scale(1,1);
+  transition: all 1s;
+  z-index: -999;
+}
+
+.confirmDeleteAlert--show{
+  transform: scale(1.2,1.2);
+  background-color: red;
+  z-index: 999;
+  opacity: 1;
+}
+
+.userNotify{
+  width: 30em;
+  height: 7em;
+  background-image: url('/images/bg_4.jpg');
+  background-blend-mode: multiply;
+  position: fixed;
+  top: 0;
+  left: 36%;
+  opacity: 0;
+  z-index: 999;
+  transform: translateY(-3em);
+  animation-name: showUserNotify;
+  animation-duration: 3s;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+@keyframes showUserNotify{
+  0% {
+    opacity: 0;
+    transform: translateY(-3em);
+  }
+  
+  100%{
+    opacity: 1;
+    transform: translateY(0.5em);
+  }
+}
+
