@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Coffee;
+use App\Helpers\CoffeeSlug;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +38,8 @@ class CoffeeManagementController extends Controller
 
     public function store(Request $request)
     {
+        $coffeeSlug = new CoffeeSlug();
+
         $request->validate([
             'name' => 'required|max:255',
             'price' => 'required|integer',
@@ -67,6 +70,7 @@ class CoffeeManagementController extends Controller
                 'quantity' => 0,
                 'image' => $file->getClientOriginalName(),
                 'status' => $coffee_update["status"],
+                'slug' => $coffeeSlug->createSlug($coffee_update["name"]),
                 'id_brand' => $coffee_update["id_brand"],
                 'id_coffee_type' => $coffee_update["id_coffee_type"],
                 'id_unit' => $coffee_update["id_unit"],
@@ -75,6 +79,7 @@ class CoffeeManagementController extends Controller
             ]);
             $file->move(public_path() . '/apps/images/coffees', $file->getClientOriginalName());
         }
+
 
         //$request->session()->flash('flash_message', 'Thêm sản phẩm thành công!');
         return redirect()->route('admins.manage.coffee.create');
