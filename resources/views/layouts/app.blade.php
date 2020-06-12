@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/customers/css/flaticon.css">
     <link rel="stylesheet" href="/customers/css/icomoon.css">
     <link rel="stylesheet" href="/customers/css/style.css">
+    <link rel="stylesheet" href="/customers/css/owner.css">
 </head>
 
 <body>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,16 +13,20 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('customers.home')->with([
+        $brands = Brand::with('coffees')->get();
+
+        return view('customers.index')->with([
             'title' => 'Hichi Coffee',
-            'homeActive' => 'active'
+            'homeActive' => 'active',
+            'brands' => $brands,
         ]);
     }
 
-    public function renderIntroPage(){
+    public function renderIntroPage()
+    {
         return view('customers.intro')->with([
-            'title'=>'Giới thiệu',
-            'introActive'=>'active'
+            'title' => 'Giới thiệu',
+            'introActive' => 'active'
         ]);
     }
 }

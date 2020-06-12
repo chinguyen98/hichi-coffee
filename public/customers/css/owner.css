@@ -1,0 +1,16 @@
+.customerForm{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.customerForm select{
+  margin: 0 auto;
+  font-size: inherit;
+}
+
+.customerForm select option{
+  color: gray;
+}
+
+.customerForm .card-header{
+  font-size: 1.5rem;
+}

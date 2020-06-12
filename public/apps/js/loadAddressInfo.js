@@ -12,21 +12,21 @@ const exportListOption = (lists) => {
 
 const loadCities = async () => {
     const data = await fetch('/api/cities').then(res => res.json());
-    let exportHtml = '<option value="" disabled selected>Chọn thành phố</option>';
+    let exportHtml = '<option value="-1" disabled selected>Chọn thành phố</option>';
     exportHtml += exportListOption(data);
     citySelection.innerHTML = exportHtml;
 }
 
 const loadDistricts = async (id) => {
     const data = await fetch(`http://127.0.0.1:8000/api/cities/${id}/districts`).then(res => res.json());
-    let exportHtml = '<option value="" disabled selected>Chọn quận/huyện</option>';
+    let exportHtml = '<option value="-1" disabled selected>Chọn quận/huyện</option>';
     exportHtml += exportListOption(data);
     districtSelection.innerHTML = exportHtml;
 }
 
 const loadWards = async (id) => {
     const data = await fetch(`http://127.0.0.1:8000/api/districts/${id}/wards`).then(res => res.json());
-    let exportHtml = '<option value="" disabled selected>Chọn phường/xã</option>';
+    let exportHtml = '<option value="-1" disabled selected>Chọn phường/xã</option>';
     exportHtml += exportListOption(data);
     wardSelection.innerHTML = exportHtml;
 }

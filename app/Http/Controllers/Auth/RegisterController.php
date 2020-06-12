@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Customer;
+use App\CustomerAddress;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,6 +55,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string'],
+            'id_city' => ['gt:0'],
+            'id_district' => ['gt:0'],
+            'id_ward' => ['gt:0'],
+            'phone_number' => ['required', 'string'],
         ]);
     }
 
@@ -64,10 +71,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Customer::create([
+        $customer = Customer::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone_number' => $data['phone_number'],
+            'status' => 1
         ]);
+
+        $id_customer = DB::table('customers')->where('email', $data['email'])->first(['id'])->id;
+        $customer_address = CustomerAddress::create([
+            'id_city' => $data['id_city'],
+            'id_district' => $data['id_district'],
+            'id_ward' => $data['id_ward'],
+            'address' => $data['address'],
+            'is_current' => 1,
+            'id_customer' => $id_customer,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return $customer;
     }
 }
