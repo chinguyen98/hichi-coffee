@@ -44,7 +44,7 @@
 
                                         @foreach($coffee_types[$brand->id] as $coffee_type)
 
-                                        <a href="/brandandtype?brand={{$brand->id}}&type={{$coffee_type->id}}" class="list-group-item list-group-item-action">
+                                        <a href="{{route('customers.coffees.index', ['brand'=>$brand->slug, 'type'=>$coffee_type->slug])}}" class="list-group-item list-group-item-action">
                                             <p>{{$coffee_type->name}}</p>
                                         </a>
 
@@ -78,7 +78,7 @@
 
         @foreach($menu_types as $type)
         <div class="dmsp-main-container mt-3">
-            <a href="/coffeesbytype?type={{$type->id}}">
+            <a href="{{route('customers.coffees.index', ['type'=>$coffee_type->slug])}}">
                 <div class="dmsp-main-container__name text-center">
                     <span>{{$type->name}}</span>
                 </div>

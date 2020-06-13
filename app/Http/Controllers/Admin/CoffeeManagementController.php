@@ -103,6 +103,8 @@ class CoffeeManagementController extends Controller
 
     public function update(Request $request, $id)
     {
+        $coffeeSlug = new CoffeeSlug();
+
         $request->validate([
             'name' => 'required|max:255',
             'price' => 'required|integer',
@@ -129,6 +131,7 @@ class CoffeeManagementController extends Controller
             'id_brand' => $coffee_update["id_brand"],
             'id_coffee_type' => $coffee_update["id_coffee_type"],
             'id_unit' => $coffee_update["id_unit"],
+            'slug' => $coffeeSlug->createSlug($coffee_update["name"]),
             'updated_at' => now()
         ]);
 

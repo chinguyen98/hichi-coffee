@@ -54,11 +54,11 @@
 
                                     <div class="col-md-4 text-center">
                                         <div class="menu-wrap">
-                                            <a href="/coffees/{{$coffee->id}}" class="menu-img img mb-4" style="background-image: url(apps/images/coffees/{{$coffee->image}});"></a>
+                                            <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="menu-img img mb-4" style="background-image: url(apps/images/coffees/{{$coffee->image}});"></a>
                                             <div class="text">
-                                                <h3><a href="/coffees/{{$coffee->id}}">{{$coffee->name}}</a></h3>
+                                                <h3><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">{{$coffee->name}}</a></h3>
                                                 <p class="price"><span>{{number_format($coffee->price)}} VND</span></p>
-                                                <p><a href="/coffees/{{$coffee->id}}" class="btn btn-primary btn-outline-primary">THÊM VÀO GIỎ</a></p>
+                                                <p><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -85,11 +85,11 @@
 
                                     <div class="col-md-4 text-center">
                                         <div class="menu-wrap">
-                                            <a href="/coffees/{{$coffee->id}}" class="menu-img img mb-4" style="background-image: url(apps/images/coffees/{{$coffee->image}});"></a>
+                                            <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="menu-img img mb-4" style="background-image: url(apps/images/coffees/{{$coffee->image}});"></a>
                                             <div class="text">
-                                                <h3><a href="/coffees/{{$coffee->id}}">{{$coffee->name}}</a></h3>
+                                                <h3><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">{{$coffee->name}}</a></h3>
                                                 <p class="price"><span>{{number_format($coffee->price)}} VND</span></p>
-                                                <p><a href="/coffees/{{$coffee->id}}" class="btn btn-primary btn-outline-primary">THÊM VÀO GIỎ</a></p>
+                                                <p><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
                                             </div>
                                         </div>
                                     </div>
