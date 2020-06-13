@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\Coffee;
 use App\CoffeeType;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,17 @@ class CoffeeController extends Controller
             'brands' => $brands,
             'menu_types' => $menu_types,
             'coffee_types' => $coffee_types
+        ]);
+    }
+
+    public function show($slug)
+    {
+        $coffee = Coffee::where('slug', $slug)->first();
+
+        return view('customers.coffees.detail')->with([
+            'title' => $coffee->name,
+            'coffeeActive' => 'active',
+            'coffee' => $coffee,
         ]);
     }
 }

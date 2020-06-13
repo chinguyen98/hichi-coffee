@@ -93,8 +93,8 @@
                 @else
 
                 <div class="dmsp-main-container__item col-sm-12 col col-md-3 pt-3 text-center  d-sm-flex d-lg-flex flex-column justify-content-center align-items-center">
-                    <a href="/coffees/{{$coffee->id}}"><img src="apps/images/coffees/{{$coffee->image}}" alt=""></a>
-                    <a href="/coffees/{{$coffee->id}}">
+                    <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}"><img src="apps/images/coffees/{{$coffee->image}}" alt=""></a>
+                    <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">
                         <div class="row">
                             <div title="{{$coffee->name}}" class="coffeeName mt-3 col-md-12 text-center text-truncate">
                                 {{$coffee->name}}
@@ -102,7 +102,7 @@
                         </div>
                     </a>
                     <span>{{number_format($coffee->price)}} VND</span>
-                    <p><a href="/coffees/{{$coffee->id}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
+                    <p><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
                 </div>
 
                 @endif
