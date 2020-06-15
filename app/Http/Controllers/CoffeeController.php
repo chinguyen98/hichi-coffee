@@ -44,7 +44,7 @@ class CoffeeController extends Controller
     public function show($slug)
     {
         $coffee = Coffee::where('slug', $slug)->first();
-        $relatedCoffees = DB::table('coffees')->where('id', '<>', $coffee->id)->where('id_brand', $coffee->id_brand)->where('id_coffee_type', $coffee->id_coffee_type)->get(['image', 'name', 'slug', 'price']);
+        $relatedCoffees = DB::table('coffees')->where('id', '<>', $coffee->id)->where('id_coffee_type', $coffee->id_coffee_type)->get(['image', 'name', 'slug', 'price']);
 
         return view('customers.coffees.detail')->with([
             'title' => $coffee->name,

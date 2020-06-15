@@ -45,7 +45,7 @@
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
 
-
+    <script src="/apps/js/renderCartQuantity.js"></script>
     <script src="/customers/js/jquery.min.js"></script>
     <script src="/customers/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/customers/js/popper.min.js"></script>

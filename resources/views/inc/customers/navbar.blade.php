@@ -17,7 +17,12 @@
                         <a class="dropdown-item" href="/register">Tạo tài khoản</a>
                     </div>
                 </li>
-                <li class="nav-item cart"><a href="/carts" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+                <li class="nav-item cart"><a href="/carts" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small class="cartQuantity"></small></span></a></li>
+                <div class="cartNotify p-2">
+                    <span>THÔNG BÁO:</span> <span title="Đóng" class="cartNotify__close text-danger">X</span></<span>
+                    <p><span class="cartNotify__coffee">Thêm vào giỏ hàng thành công</span></p>
+                    <a href="/carts" class="btn btn-danger">Xem giỏ hàng và thanh toán</a>
+                </div>
             </ul>
         </div>
     </div>
