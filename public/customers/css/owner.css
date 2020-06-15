@@ -15,6 +15,28 @@
   font-size: 1.5rem;
 }
 
+/* Owl Carosel*/
+.owl-prev, .owl-next{
+  border: 1px solid #c49b63 !important;
+  width: 3rem;
+  height: 3rem;
+}
+
+.owl-dots{
+  text-align: center;
+}
+
+.owl-dot{
+  border: 1px solid #c49b63 !important;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.5rem;
+}
+
+.owl-dot.active{
+  background-color: #c49b63 !important;
+}
+
 /*Owner*/
 
 @font-face{

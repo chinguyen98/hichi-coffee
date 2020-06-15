@@ -62,6 +62,15 @@
     <script src="/customers/js/scrollax.min.js"></script>
     <script src="/customers/js/main.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                nav: true,
+            });
+        });
+    </script>
+
 </body>
 
 </html>
