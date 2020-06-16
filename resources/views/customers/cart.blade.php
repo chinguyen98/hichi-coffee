@@ -26,6 +26,7 @@
             <div id="cart-component" class="col col-md-10 d-flex flex-column border">
 
             </div>
+            <div class="hidValuationArea"></div>
         </div>
         <div class=" total-sum-container col col-md-4 text-center d-flex flex-column justify-content-center align-items-center">
             <h2>Thành tiền: </h2>

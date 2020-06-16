@@ -7,8 +7,10 @@ function handingCartQuantity() {
     const carts = JSON.parse(localStorage.getItem('carts'));
     if (carts?.length === 0 || carts === null) {
         cartQuantity.innerHTML = 0;
+    }else{
+        cartQuantity.innerHTML = carts.length;
     }
-    cartQuantity.innerHTML = carts.length;
+    
 }
 
 function closeCartNotify(e) {

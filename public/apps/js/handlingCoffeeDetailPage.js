@@ -24,10 +24,6 @@ function getValuation(quantity) {
     return valuation;
 }
 
-function renderCartQuantity() {
-
-}
-
 function addToCart() {
     cartNotify.classList.remove('cartNotify-show');
     let quantity = quantityInput.value;

@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $cart = Coffee::whereIn('id', explode(',', $listCoffeeId))->get(['id', 'name', 'slug', 'image', 'price']);
         foreach ($cart as $item) {
-            $item['valuation'] = DB::table('valuations')
+            $item['valuations'] = DB::table('valuations')
                 ->where('id_coffee', $item->id)
                 ->where('expired', '>=', Carbon::now()->toDateString())
                 ->get(['id', 'quantity', 'price']);
