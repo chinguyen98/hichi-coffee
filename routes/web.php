@@ -24,6 +24,8 @@ Route::group(['prefix' => 'coffees'], function () {
     Route::get('/{slug}', 'CoffeeController@show')->name('customer.coffees.show');
 });
 
+Route::get('/carts', 'CartController@renderCartPage')->name('customer.cart');
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'CustomerController@index')->middleware('verified')->name('home');
@@ -64,8 +66,11 @@ Route::group(['prefix' => 'admins'], function () {
 });
 
 /* Api */
-Route::get('/api/cities/{id}/districts', 'Api\CityController@getDistrictsByCityId');
-Route::get('/api/districts/{id}/wards', 'Api\DistrictController@getWardsByDistrictsId');
+Route::group(['prefix' => 'api'], function () {
+    Route::get('/cities/{id}/districts', 'Api\CityController@getDistrictsByCityId');
+    Route::get('/districts/{id}/wards', 'Api\DistrictController@getWardsByDistrictsId');
+    Route::get('/carts/{listCoffeeId}', 'Api\CartController@getCart');
+});
 
 /* User Routes */
 Route::get('login/facebook', 'Auth\SocialAuthController@loginToFacebook');
