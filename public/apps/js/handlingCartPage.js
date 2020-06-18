@@ -39,14 +39,14 @@ function renderCart(cartList, cartStorage) {
     const html = cartList.map(item => {
         let hidValInput = [];
         if (item.valuations.length !== 0) {
-            hidValInput = item.valuations.map(val => `<input name="hidValuation" type="text" value=${val.id} data-quantity=${val.quantity} data-price="${val.price}">`);
+            hidValInput = item.valuations.map(val => `<input name="hidValuation" type="hidden" value=${val.id} data-quantity=${val.quantity} data-price="${val.price}">`);
             let wrapper = document.createElement('div');
             wrapper.setAttribute('data-valuation-container', item.id);
             wrapper.innerHTML = hidValInput.join('');
             hidValuationArea.appendChild(wrapper);
         }
 
-        const finalPrice = item.valuations.length === 0 ? item.price : item.valuations.find(val => val.id === cartStorage.find(el => el.id === item.id).valuation)?.price;
+        const finalprice = item.valuations.length === 0 ? item.price : item.valuations.find(val => val.id === cartStorage.find(el => el.id === item.id).valuation)?.price;
 
         const exportData = `
         <div class="col-md-12 my-4 d-flex flex-row justify-content-between">
@@ -64,7 +64,7 @@ function renderCart(cartList, cartStorage) {
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <div>
-                    <h5 data-oldPrice${item.id}="${item.price}" data-finalPrice${item.id}="${finalPrice === undefined ? item.price : finalPrice}">Giá: ${formatPrice(finalPrice === undefined ? item.price : finalPrice)}</h5>
+                    <h5 data-oldPrice${item.id}="${item.price}" data-finalprice${item.id}="${finalprice === undefined ? item.price : finalprice}">Giá: ${formatPrice(finalprice === undefined ? item.price : finalprice)}</h5>
                 </div>
                 <div class="d-flex flex-row align-items-center">
                     <span data-des="${item.id}" onclick="desCartQuantity(${item.id})" class="quantity-updown text-center">-</span>
@@ -81,7 +81,7 @@ function renderCart(cartList, cartStorage) {
 
 function renderPriceSum(cartList, cartStorage) {
     let sum = cartList.reduce((total, item) => {
-        const price = { ...document.querySelector(`[data-finalPrice${item.id}]`).dataset }[`finalprice${item.id}`]
+        const price = { ...document.querySelector(`[data-finalprice${item.id}]`).dataset }[`finalprice${item.id}`]
         return total + parseInt(cartStorage.find(el => el.id === item.id).qty) * price;
     }, 0);
     let price = String(sum).replace(/(.)(?=(\d{3})+$)/g, '$1,') + " VND";
@@ -90,7 +90,8 @@ function renderPriceSum(cartList, cartStorage) {
 
 function changeToTalPrice(id) {
     let sum = Array.from(document.querySelectorAll('input[data-val]')).reduce((total, item) => {
-        return total + parseInt(item.value) * parseInt(item.dataset.price);
+        const price = { ...document.querySelector(`[data-oldprice${item.dataset.val}]`).dataset }[`finalprice${item.dataset.val}`];
+        return total + parseInt(item.value) * parseInt(price);
     }, 0);
     let price = String(sum).replace(/(.)(?=(\d{3})+$)/g, '$1,') + " VND";
     totalPrice.innerHTML = price;
@@ -122,13 +123,51 @@ function desCartQuantity(id) {
         for (let i = arrValuaion.length - 1; i >= -1; i--) {
             if (i === -1) {
                 const price = { ...document.querySelector(`[data-oldprice${id}]`).dataset }[`oldprice${id}`]
-                document.querySelector(`[data-finalPrice${id}]`).innerHTML = `Giá: ${formatPrice(price)}`;
+                document.querySelector(`[data-finalprice${id}]`).innerHTML = `Giá: ${formatPrice(price)}`;
+                document.querySelector(`[data-finalprice${id}]`).dataset[`finalprice${id}`] = price;
                 delete cartStorage[index].valuation;
                 break;
             }
 
             if (arrValuaion[i].dataset.quantity <= getQuantity) {
-                document.querySelector(`[data-finalPrice${id}]`).innerHTML = `Giá: ${formatPrice(arrValuaion[i].dataset.price)}`;
+                document.querySelector(`[data-finalprice${id}]`).innerHTML = `Giá: ${formatPrice(arrValuaion[i].dataset.price)}`;
+                document.querySelector(`[data-finalprice${id}]`).dataset[`finalprice${id}`] = arrValuaion[i].dataset.price;
+                cartStorage[index].valuation = +arrValuaion[i].value;
+                break;
+            }
+        }
+    }
+
+    localStorage.setItem('carts', JSON.stringify(cartStorage));
+
+    changeToTalPrice(id);
+}
+
+function incCartQuantity(id) {
+    const cartStorage = JSON.parse(localStorage.getItem('carts'));
+    let getQuantity = cartStorage.find(el => el.id === id).qty;
+    let valueInput = document.querySelector(`input[data-val="${id}"]`);
+    const index = cartStorage.findIndex(item => +item.id === +id);
+
+    getQuantity = getQuantity + 1;
+    if (getQuantity <= 0)
+        getQuantity = 1;
+    cartStorage[index].qty = getQuantity;
+    valueInput.value = getQuantity;
+
+    const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
+    if (arrValuaion.length !== 0) {
+        for (let i = arrValuaion.length - 1; i >= -1; i--) {
+            if (i === -1) {
+                const price = { ...document.querySelector(`[data-oldprice${id}]`).dataset }[`oldprice${id}`]
+                document.querySelector(`[data-finalprice${id}]`).innerHTML = `Giá: ${formatPrice(price)}`;
+                delete cartStorage[index].valuation;
+                break;
+            }
+
+            if (arrValuaion[i].dataset.quantity <= getQuantity) {
+                document.querySelector(`[data-finalprice${id}]`).innerHTML = `Giá: ${formatPrice(arrValuaion[i].dataset.price)}`;
+                document.querySelector(`[data-finalprice${id}]`).dataset[`finalprice${id}`] = arrValuaion[i].dataset.price;
                 cartStorage[index].valuation = +arrValuaion[i].value;
                 break;
             }
