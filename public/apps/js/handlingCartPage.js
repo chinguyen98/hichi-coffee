@@ -179,4 +179,43 @@ function incCartQuantity(id) {
     changeToTalPrice(id);
 }
 
+function valCartQuantity(id) {
+    const cartStorage = JSON.parse(localStorage.getItem('carts'));
+    let getQuantity = cartStorage.find(el => el.id === id).qty;
+    let valueInput = document.querySelector(`input[data-val="${id}"]`);
+    const index = cartStorage.findIndex(item => +item.id === +id);
+
+    if (isNaN(valueInput.value)) {
+        valueInput.value = 1;
+    }
+    if (valueInput.value <= 0)
+        valueInput.value = 1;
+    
+    cartStorage[index].qty = +valueInput.value;
+
+    const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
+    if (arrValuaion.length !== 0) {
+        for (let i = arrValuaion.length - 1; i >= -1; i--) {
+            if (i === -1) {
+                const price = { ...document.querySelector(`[data-oldprice${id}]`).dataset }[`oldprice${id}`]
+                document.querySelector(`[data-finalprice${id}]`).innerHTML = `Giá: ${formatPrice(price)}`;
+                document.querySelector(`[data-finalprice${id}]`).dataset[`finalprice${id}`] = price;
+                delete cartStorage[index].valuation;
+                break;
+            }
+
+            if (arrValuaion[i].dataset.quantity <= +valueInput.value) {
+                document.querySelector(`[data-finalprice${id}]`).innerHTML = `Giá: ${formatPrice(arrValuaion[i].dataset.price)}`;
+                document.querySelector(`[data-finalprice${id}]`).dataset[`finalprice${id}`] = arrValuaion[i].dataset.price;
+                cartStorage[index].valuation = +arrValuaion[i].value;
+                break;
+            }
+        }
+    }
+
+    localStorage.setItem('carts', JSON.stringify(cartStorage));
+
+    changeToTalPrice(id);
+}
+
 window.addEventListener('load', getCartData);
