@@ -99,6 +99,10 @@
                                 <p>Phí vận chuyển:</p>
                                 <p data-price="0" class="checkout-shipping"></p>
                             </div>
+                            <div class="d-flex flex-row justify-content-between">
+                                <p>Phí vận chuyển đến <span class="checkout-district-label"></span>:</p>
+                                <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} VNĐ</p>
+                            </div>
                             <div class="border"></div>
                             <div class="d-flex flex-row justify-content-between mt-3">
                                 <h3>Thành tiền: </h3>
@@ -112,6 +116,7 @@
                         <input type="hidden" name="id_district" value="{{$customer_addresses->id_district}}">
                         <input type="hidden" name="id_ward" value="{{$customer_addresses->id_ward}}">
                         <input type="hidden" name="address" value="{{$customer_addresses->address}}">
+                        <input type="hidden" name="id_shipping_address" value="{{$shipping_address->id_address}}">
                     </div>
                 </div>
             </div>

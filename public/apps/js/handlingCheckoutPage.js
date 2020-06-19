@@ -4,13 +4,17 @@ const checkoutPriceArea = document.querySelector('.checkout-price');
 const shippingInfoRadioBtn = document.querySelectorAll('input[type="radio"][name="shipping_infos"]');
 const checkoutFinalTotalPriceArea = document.querySelector('.checkout-total-price');
 const oldPriceArea = document.querySelector('.oldPrice');
+const checkoutDistrictArea = document.querySelector('.checkout-district');
+const checkoutDistrictLabelArea = document.querySelector('.checkout-district-label');
+const hiddenShippingAddressArea = document.querySelector('input[name="id_shipping_address"]');
+
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
 }
 
 function renderFinalTotalPrice() {
-    return parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutPriceArea.dataset.price);
+    return parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutPriceArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
 }
 
 function renderOldPrice() {
@@ -29,6 +33,9 @@ async function renderCart() {
     const cartIdList = cartStorage.map(item => item.id).join(',');
 
     const data = await fetch(`/api/carts/${cartIdList}`).then(res => res.json());
+    const district = await fetch(`/api/districts/${hiddenShippingAddressArea.value}`).then(res => res.json());
+    checkoutDistrictLabelArea.innerHTML = district.Title;
+    console.log(district)
     console.log(data);
 
     const exportCartHtml = data.map((cart) => {
@@ -59,7 +66,7 @@ async function renderCart() {
     checkoutPriceArea.dataset.price = totalPrice;
 
     checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} VNĐ`;
-    const oldPrice = renderOldPrice() + parseInt(document.querySelector('[name="shipping_infos"]').value);
+    const oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
     oldPriceArea.innerHTML = formatPrice(oldPrice);
 }
 
@@ -67,7 +74,8 @@ function renderShippingAndTotalPrice(e) {
     checkoutShippingArea.innerHTML = `${formatPrice(this.value)} VNĐ`;
     checkoutShippingArea.dataset.price = this.value;
     checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} VNĐ`;
-    const oldPrice = renderOldPrice() + parseInt(document.querySelector('[name="shipping_infos"]').value);
+
+    const oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
     oldPriceArea.innerHTML = formatPrice(oldPrice);
 }
 
