@@ -31,7 +31,7 @@
         <div class=" total-sum-container col col-md-4 text-center d-flex flex-column justify-content-center align-items-center">
             <h2>Thành tiền: </h2>
             <h1 class="total-price text-danger border p-3">0 VND</h1>
-            <a class="btn btn-danger" href="/checkout"><span class="btnDatHang">Tiến hành đặt hàng</span></a>
+            <a class="btn btn-danger" href="{{route('customers.checkout.show')}}"><span class="btnDatHang">Tiến hành đặt hàng</span></a>
         </div>
     </div>
 </div>

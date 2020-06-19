@@ -62,6 +62,17 @@
     <script src="/customers/js/scrollax.min.js"></script>
     <script src="/customers/js/main.js"></script>
 
+    <!-- Start Embed JS -->
+
+    @if(Request::is('checkout'))
+
+    <script src="/apps/js/renderAddress.js"></script>
+    <script src="/apps/js/handlingCheckoutPage.js"></script>
+
+    @endif
+
+    <!-- End Embed JS -->
+
     <script>
         $(document).ready(function() {
             $(".owl-carousel").owlCarousel({

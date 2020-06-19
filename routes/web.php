@@ -25,6 +25,7 @@ Route::group(['prefix' => 'coffees'], function () {
 });
 
 Route::get('/carts', 'CartController@renderCartPage')->name('customer.cart');
+Route::get('/checkout', 'CheckoutController@renderCheckoutPage')->name('customers.checkout.show');
 
 Auth::routes(['verify' => true]);
 
