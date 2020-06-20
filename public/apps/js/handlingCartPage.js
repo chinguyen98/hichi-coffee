@@ -4,9 +4,28 @@ const showNoCart = document.querySelector('.showNoCart');
 const cartContainer = document.querySelector('.cart-container');
 const totalSumContainer = document.querySelector('.total-sum-container');
 const hidValuationArea = document.querySelector('.hidValuationArea');
+let cartFromApi = null;
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
+}
+
+function checkRemainQuantity(id, quantity) {
+    const remainQuantity = parseInt(cartFromApi.find(item => +item.id === +id).quantity);
+    if (parseInt(quantity) > remainQuantity) {
+        document.querySelector(`input[data-val="${id}"]`).value = remainQuantity;
+
+        document.querySelector('.notify').classList.remove('notify--show')
+        document.querySelector('.notity__error').innerHTML = `Sản phẩm này số lượng còn ${remainQuantity}!`;
+        document.querySelector('.notify').classList.add('notify--show');
+        setTimeout(() => {
+            document.querySelector('.notify').classList.remove('notify--show')
+        }, 1500);
+
+        return remainQuantity;
+    }
+
+    return quantity;
 }
 
 async function getCartData() {
@@ -30,6 +49,7 @@ async function getCartData() {
         .then(res => {
             return res.json();
         }).then(cartAsJson => {
+            cartFromApi = cartAsJson;
             renderCart(cartAsJson, cartStorage);
             renderPriceSum(cartAsJson, cartStorage);
         })
@@ -55,6 +75,7 @@ function renderCart(cartList, cartStorage) {
                 <div>
                     <a href="/coffees/${item.slug}"><h5>${item.name}</h5></a>
                     <button class="btn btn-danger btn-delete-cart-item" onclick="deleteItem(${item.id})">Xoá</button>
+                    <h5 class="mt-2">Số lượng còn lại: ${item.quantity}</h5>
                     <div class="mt-2">
                     ${
             item.valuations.map(val => `<span> * Giá chỉ còn <span class="text-danger">${formatPrice(val.price)} VNĐ</span> khi mua trên ${val.quantity} sản phẩm</span><br />`).join('')
@@ -115,8 +136,9 @@ function desCartQuantity(id) {
     getQuantity = getQuantity - 1;
     if (getQuantity <= 0)
         getQuantity = 1;
-    cartStorage[index].qty = getQuantity;
-    valueInput.value = getQuantity;
+
+    cartStorage[index].qty = +checkRemainQuantity(id, getQuantity);
+    valueInput.value = cartStorage[index].qty;
 
     const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
     if (arrValuaion.length !== 0) {
@@ -152,8 +174,9 @@ function incCartQuantity(id) {
     getQuantity = getQuantity + 1;
     if (getQuantity <= 0)
         getQuantity = 1;
-    cartStorage[index].qty = getQuantity;
-    valueInput.value = getQuantity;
+
+    cartStorage[index].qty = +checkRemainQuantity(id, getQuantity);
+    valueInput.value = cartStorage[index].qty;
 
     const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
     if (arrValuaion.length !== 0) {
@@ -190,8 +213,10 @@ function valCartQuantity(id) {
     }
     if (valueInput.value <= 0)
         valueInput.value = 1;
-    
-    cartStorage[index].qty = +valueInput.value;
+
+
+
+    cartStorage[index].qty = +checkRemainQuantity(id, valueInput.value);
 
     const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
     if (arrValuaion.length !== 0) {

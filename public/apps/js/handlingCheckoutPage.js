@@ -7,13 +7,19 @@ const oldPriceArea = document.querySelector('.oldPrice');
 const checkoutDistrictArea = document.querySelector('.checkout-district');
 const checkoutDistrictLabelArea = document.querySelector('.checkout-district-label');
 const hiddenShippingAddressArea = document.querySelector('input[name="id_shipping_address"]');
-
+const checkoutInfoAddressNotifyArea = document.querySelector('.checkout-info__address-notify');
+const idDistrictSelect = document.querySelector('select[name="id_district"]');
+const idWardSelect = document.querySelector('select[name="id_ward"]');
+const addressArea = document.querySelector('input[name="address"]');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
 }
 
 function renderFinalTotalPrice() {
+    if (hiddenShippingAddressArea === null) {
+        return parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutPriceArea.dataset.price) + 0;
+    }
     return parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutPriceArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
 }
 
@@ -28,15 +34,46 @@ function renderOldPrice() {
     return price;
 }
 
+async function renderDistrictsSelectInfo() {
+    const districts = await fetch(`/api/cities/4/districts`).then(res => res.json());
+    let exportDistrictsHtml = '<option value="-1" disabled selected>Chọn quận/huyện</option>';
+    exportDistrictsHtml += districts.map(district => {
+        return `
+            <option value="${district.ID}">${district.Title}</option>
+        `;
+    }).join('');
+    idDistrictSelect.innerHTML = exportDistrictsHtml;
+}
+
+async function renderWardsSelectInfo(id_district) {
+    const wards = await fetch(`/api/districts/${id_district}/wards`).then(res => res.json());
+    let exportWardsHtml = '<option value="-1" disabled selected>Chọn xã/phường</option>';
+    exportWardsHtml = wards.map(ward => {
+        return `
+            <option value="${ward.ID}">${ward.Title}</option>
+        `;
+    }).join('');
+    idWardSelect.innerHTML = exportWardsHtml;
+}
+
 async function renderCart() {
     const cartStorage = JSON.parse(localStorage.getItem('carts'));
     const cartIdList = cartStorage.map(item => item.id).join(',');
 
     const data = await fetch(`/api/carts/${cartIdList}`).then(res => res.json());
-    const district = await fetch(`/api/districts/${hiddenShippingAddressArea.value}`).then(res => res.json());
-    checkoutDistrictLabelArea.innerHTML = district.Title;
+    let district = null;
+
+    if (hiddenShippingAddressArea === null) {
+        checkoutInfoAddressNotifyArea.innerHTML = 'Sản phẩm chi giao trong khu vực TPHCM!';
+    } else {
+        district = await fetch(`/api/districts/${hiddenShippingAddressArea.value}`).then(res => res.json());
+        checkoutDistrictLabelArea.innerHTML = district.Title;
+    }
+
     console.log(district)
     console.log(data);
+
+    renderDistrictsSelectInfo();
 
     const exportCartHtml = data.map((cart) => {
         return `
@@ -66,7 +103,14 @@ async function renderCart() {
     checkoutPriceArea.dataset.price = totalPrice;
 
     checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} VNĐ`;
-    const oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
+    let oldPrice = 0;
+
+    if (hiddenShippingAddressArea === null) {
+        oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + 0;
+    } else {
+        oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
+    }
+
     oldPriceArea.innerHTML = formatPrice(oldPrice);
 }
 
@@ -84,3 +128,4 @@ shippingInfoRadioBtn.forEach(item => {
 });
 
 window.addEventListener('load', renderCart)
+idDistrictSelect.addEventListener('change', (e) => { renderWardsSelectInfo(e.target.value) });

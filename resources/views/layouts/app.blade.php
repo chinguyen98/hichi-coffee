@@ -36,6 +36,11 @@
 <body>
     @include('inc.customers.navbar')
 
+    <div class="notify text-center">
+        <h2>Thông báo:</h2>
+        <h4 class="notity__error text-danger"></h4>
+    </div>
+
     @yield('content')
 
     @include('inc.customers.footer')

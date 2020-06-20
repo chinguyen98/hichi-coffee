@@ -12,7 +12,7 @@ class CartController extends Controller
 {
     public function getCart($listCoffeeId)
     {
-        $cart = Coffee::whereIn('id', explode(',', $listCoffeeId))->get(['id', 'name', 'slug', 'image', 'price']);
+        $cart = Coffee::whereIn('id', explode(',', $listCoffeeId))->get(['id', 'name', 'slug', 'image', 'price', 'quantity']);
         foreach ($cart as $item) {
             $item['valuations'] = DB::table('valuations')
                 ->where('id_coffee', $item->id)

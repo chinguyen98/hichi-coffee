@@ -1,7 +1,7 @@
 const cityHiddenInput = document.querySelector('input[name="id_city"]');
 const districtHiddenInput = document.querySelector('input[name="id_district"]');
 const wardHiddenInput = document.querySelector('input[name="id_ward"]');
-const addressHiddenInput = document.querySelector('input[name="address"]');
+const addressHiddenInput = document.querySelector('input[name="address"][type="hidden"]');
 const combinedAddressArea = document.querySelector('.combinedAddress');
 
 const renderCombinedAddress = async () => {

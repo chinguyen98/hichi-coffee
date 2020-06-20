@@ -37,6 +37,11 @@
   background-color: #c49b63 !important;
 }
 
+.cartSelect option{
+  color: black !important;
+  background-color: rgb(133, 133, 133);
+}
+
 /*Owner*/
 
 @font-face{
@@ -473,19 +478,20 @@
   width:30em;
   min-height: 5em;
   background-color: black;
-  color: white;
+  color: red;
   position: fixed;
-  top: 0;
-  right: 35%;
-  transform: translateY(-5em);
-  transition: all 1s;
+  top: 5em;
+  left: 0;
+  transform: translateX(-5em);
+  transition: all 0.5s;
   opacity: 0;
+  z-index: 99999999;
 }
 
 .notify--show{
-  transform: translateY(0);
-  z-index: 9999;
-  background-color: red;
+  transform: translateX(40em);
+  z-index: 99999999;
+  background-color: rgba(0,0,0, 0.9);
   opacity: 1;
 }
 

@@ -31,6 +31,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'CustomerController@index')->middleware('verified')->name('home');
 
+Route::post('/addresses', 'AddressController@store')->name('customers.addresses.store');
+
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {
     Route::get('/home', 'Admin\HomeController@index')->name('admins.home');

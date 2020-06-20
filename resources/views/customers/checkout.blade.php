@@ -40,12 +40,24 @@
                             <h3 class="checkout-info__name text-info">{{Auth::user()->name}}</h3>
                             <h5 class="checkout-info__phone text-left ml-2 ">Số điện thoại: {{Auth::user()->phone_number}}</h5>
                             <h5 class="checkout-info__address text-left ml-2 combinedAddress"></h5>
+                            <h5 class="checkout-info__address-notify text-danger"></h5>
                             <h5 class="checkout-info__email text-left ml-2 ">Địa chỉ email: {{Auth::user()->email}}</h5>
                         </div>
 
                         <!-- <button class="btn btn-secondary mt-3 showEditForm">
                             <h3 class="d-inline">Sửa thông tin</h3>
                         </button> -->
+
+                        <div class="border text-left mt-3 ">
+                            <h4 class="ml-2">Tạo địa chỉ mới:</h4>
+                            <form class="cartSelect ml-5" action="{{route('customers.addresses.store')}}" method="post">
+                                @csrf
+                                Quận: <select class="form-control col-md-8" name="id_district" required></select>
+                                Huyện: <select class="form-control col-md-8" name="id_ward" required></select>
+                                Địa chỉ: <input class="form-control col-md-8" type="text" name="address" required />
+                                <input class="my-3 btn btn-primary" type="submit" value="Tạo địa chỉ mới">
+                            </form>
+                        </div>
 
                         <div class="border text-left mt-3">
                             <h4 class="ml-2">Hình thức thanh toán:</h4>
@@ -100,8 +112,14 @@
                                 <p data-price="0" class="checkout-shipping"></p>
                             </div>
                             <div class="d-flex flex-row justify-content-between">
+                                @if($shipping_address != '')
+
                                 <p>Phí vận chuyển đến <span class="checkout-district-label"></span>:</p>
                                 <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} VNĐ</p>
+
+                                @else
+
+                                @endif
                             </div>
                             <div class="border"></div>
                             <div class="d-flex flex-row justify-content-between mt-3">
@@ -116,7 +134,17 @@
                         <input type="hidden" name="id_district" value="{{$customer_addresses->id_district}}">
                         <input type="hidden" name="id_ward" value="{{$customer_addresses->id_ward}}">
                         <input type="hidden" name="address" value="{{$customer_addresses->address}}">
-                        <input type="hidden" name="id_shipping_address" value="{{$shipping_address->id_address}}">
+
+
+                        @if($shipping_address!='')
+
+                        <input type="hidden" name="id_shipping_address" value="{{$shipping_address->id_address}}">p>
+
+
+                        @else
+
+                        @endif
+
                     </div>
                 </div>
             </div>
