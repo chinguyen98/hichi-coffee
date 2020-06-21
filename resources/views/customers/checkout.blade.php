@@ -44,14 +44,14 @@
                             <h5 class="checkout-info__email text-left ml-2 ">Địa chỉ email: {{Auth::user()->email}}</h5>
                         </div>
 
-                        <button class="btn btn-primary mt-3">
+                        <button class="btn btn-primary mt-3 showChangeAddressForm">
                             <h5 class="d-inline">Thay đổi địa chỉ giao hàng</h5>
                         </button>
                         <button class="btn btn-success mt-3 showCreateAddressFormBtn">
                             <h5 class="d-inline">Tạo địa chỉ giao hàng mới</h5>
                         </button>
 
-                        <div class="changeAddressForm border text-left mt-3">
+                        <div class="createAddressform border text-left mt-3">
                             <div class="d-flex flex-row justify-content-between align-items-center">
                                 <h4 class="ml-2 text-center mt-2 my-4">Tạo địa chỉ giao hàng mới:</h4>
                                 <button class="closeCreateAddressFormBtn mr-2">X</button>
@@ -62,6 +62,25 @@
                                 Phường / xã: <select class="form-control col-md-10" name="id_ward" required></select>
                                 Địa chỉ: <input class="form-control col-md-10" type="text" name="address" required />
                                 <input class="my-3 btn btn-primary" type="submit" value="Tạo địa chỉ mới">
+                            </form>
+                        </div>
+
+                        <div class="changeAddressForm border text-left mt-3 p-5">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <h4 class="ml-2 text-center mt-2 my-4">Đổi địa chỉ giao hàng:</h4>
+                                <button class="closeChangeAddressFormBtn mr-2">X</button>
+                            </div>
+                            <form class="changeAddressFormS" action="" method="post">
+                                @foreach($customer_addresses as $address)
+
+                                <div data-address="{{$address->id}}" class="changeAddressFormDetail">
+                                    <input type="text" name="id_city" value="{{$address->id_city}}">
+                                    <input type="text" name="id_district" value="{{$address->id_district}}">
+                                    <input type="text" name="id_ward" value="{{$address->id_ward}}">
+                                    <input type="text" name="address" value="{{$address->address}}">
+                                </div>
+
+                                @endforeach
                             </form>
                         </div>
 
@@ -136,10 +155,10 @@
                         </div>
                     </div>
                     <div>
-                        <input type="hidden" name="id_city" value="{{$customer_addresses->id_city}}">
-                        <input type="hidden" name="id_district" value="{{$customer_addresses->id_district}}">
-                        <input type="hidden" name="id_ward" value="{{$customer_addresses->id_ward}}">
-                        <input type="hidden" name="address" value="{{$customer_addresses->address}}">
+                        <input type="hidden" name="id_city" value="{{$customer_address->id_city}}">
+                        <input type="hidden" name="id_district" value="{{$customer_address->id_district}}">
+                        <input type="hidden" name="id_ward" value="{{$customer_address->id_ward}}">
+                        <input type="hidden" name="address" value="{{$customer_address->address}}">
 
 
                         @if($shipping_address!='')

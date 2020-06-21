@@ -42,7 +42,7 @@
   background-color: rgb(133, 133, 133);
 }
 
-.changeAddressForm{
+.createAddressform{
   position: fixed;
   z-index: 9999999;
   background-color: black;
@@ -52,11 +52,11 @@
   transition: all 0.5s ease-in-out;
 }
 
-.changeAddressForm--show{
+.createAddressform--show{
   transform: translateY(0);
 }
 
-.closeCreateAddressFormBtn{
+.closeCreateAddressFormBtn, .closeChangeAddressFormBtn{
   background-color: black;
   border: 1px solid red;
   color: red;
@@ -64,10 +64,21 @@
   height: 20%;
 }
 
-.closeCreateAddressFormBtn:hover{
+.closeCreateAddressFormBtn:hover, .closeChangeAddressFormBtn:hover{
   cursor: pointer;
   background-color: red;
   color: white;
+}
+
+.changeAddressForm{
+  position: fixed;
+  z-index: 9999999;
+  background-color: black;
+  top: 0;
+  left: 40%;
+  transform: translateY(0rem);
+  transition: all 0.5s ease-in-out;
+  width: fit-content;
 }
 
 /*Owner*/

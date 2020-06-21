@@ -12,11 +12,34 @@ const idDistrictSelect = document.querySelector('select[name="id_district"]');
 const idWardSelect = document.querySelector('select[name="id_ward"]');
 const addressArea = document.querySelector('input[name="address"]');
 const showCreateAddressFormBtn = document.querySelector('.showCreateAddressFormBtn');
-const changeAddressForm = document.querySelector('.changeAddressForm');
+const createAddressform = document.querySelector('.createAddressform');
 const closeCreateAddressFormBtn = document.querySelector('.closeCreateAddressFormBtn');
+const changeAddressFormDetail = [...document.querySelectorAll('.changeAddressFormDetail')];
+const changeAddressForm = document.querySelector('.changeAddressForm form');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
+}
+
+async function renderChangeAddressForm() {
+    let getData = await Promise.all(changeAddressFormDetail.map(async item => {
+        const id_city = document.querySelector(`[data-address="${item.dataset.address}"] [name="id_city"]`).value;
+        const id_district = document.querySelector(`[data-address="${item.dataset.address}"] [name="id_district"]`).value;
+        const id_ward = document.querySelector(`[data-address="${item.dataset.address}"] [name="id_ward"]`).value;
+        const address = document.querySelector(`[data-address="${item.dataset.address}"] [name="address"]`).value;
+
+        const city = await fetch(`api/cities/${id_city}`).then(res => res.json());
+        const district = await fetch(`api/districts/${id_district}`).then(res => res.json());
+        const ward = await fetch(`api/wards/${id_ward}`).then(res => res.json());
+
+        const combinedAddress = `
+            <input type="radio" name="addressOfChanging" value="${item.dataset.address}">
+            <label for="male">${address}, ${ward.Title}, ${district.Title}, ${city.Title}</label><br>
+        `;
+        return combinedAddress;
+    }));
+    console.log(getData.join(''))
+    changeAddressForm.innerHTML = getData.join('');
 }
 
 function renderFinalTotalPrice() {
@@ -73,9 +96,6 @@ async function renderCart() {
         checkoutDistrictLabelArea.innerHTML = district.Title;
     }
 
-    console.log(district)
-    console.log(data);
-
     renderDistrictsSelectInfo();
 
     const exportCartHtml = data.map((cart) => {
@@ -115,6 +135,7 @@ async function renderCart() {
     }
 
     oldPriceArea.innerHTML = formatPrice(oldPrice);
+    renderChangeAddressForm();
 }
 
 function renderShippingAndTotalPrice(e) {
@@ -132,5 +153,5 @@ shippingInfoRadioBtn.forEach(item => {
 
 window.addEventListener('load', renderCart)
 idDistrictSelect.addEventListener('change', (e) => { renderWardsSelectInfo(e.target.value) });
-showCreateAddressFormBtn.addEventListener('click', () => { changeAddressForm.classList.add('changeAddressForm--show') });
-closeCreateAddressFormBtn.addEventListener('click', () => { changeAddressForm.classList.remove('changeAddressForm--show') });
+showCreateAddressFormBtn.addEventListener('click', () => { createAddressform.classList.add('createAddressform--show') });
+closeCreateAddressFormBtn.addEventListener('click', () => { createAddressform.classList.remove('createAddressform--show') });
