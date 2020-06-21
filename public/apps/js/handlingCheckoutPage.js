@@ -11,6 +11,9 @@ const checkoutInfoAddressNotifyArea = document.querySelector('.checkout-info__ad
 const idDistrictSelect = document.querySelector('select[name="id_district"]');
 const idWardSelect = document.querySelector('select[name="id_ward"]');
 const addressArea = document.querySelector('input[name="address"]');
+const showCreateAddressFormBtn = document.querySelector('.showCreateAddressFormBtn');
+const changeAddressForm = document.querySelector('.changeAddressForm');
+const closeCreateAddressFormBtn = document.querySelector('.closeCreateAddressFormBtn');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
@@ -129,3 +132,5 @@ shippingInfoRadioBtn.forEach(item => {
 
 window.addEventListener('load', renderCart)
 idDistrictSelect.addEventListener('change', (e) => { renderWardsSelectInfo(e.target.value) });
+showCreateAddressFormBtn.addEventListener('click', () => { changeAddressForm.classList.add('changeAddressForm--show') });
+closeCreateAddressFormBtn.addEventListener('click', () => { changeAddressForm.classList.remove('changeAddressForm--show') });

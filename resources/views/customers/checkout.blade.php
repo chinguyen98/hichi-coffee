@@ -27,10 +27,10 @@
                         <div class="checkout-cart border">
 
                         </div>
-                        <a class="btn btn-primary mt-2" href="/coffees">
+                        <a class="btn btn-info mt-2" href="/coffees">
                             <h2 class="d-inline">Tiếp tục mua sản phẩm</h2>
                         </a>
-                        <a class="btn btn-info mt-2" href="/carts">
+                        <a class="btn btn-primary mt-2" href="/carts">
                             <h2 class="d-inline">Xem lại chi tiết giỏ hàng</h2>
                         </a>
                     </div>
@@ -44,17 +44,23 @@
                             <h5 class="checkout-info__email text-left ml-2 ">Địa chỉ email: {{Auth::user()->email}}</h5>
                         </div>
 
-                        <!-- <button class="btn btn-secondary mt-3 showEditForm">
-                            <h3 class="d-inline">Sửa thông tin</h3>
-                        </button> -->
+                        <button class="btn btn-primary mt-3">
+                            <h5 class="d-inline">Thay đổi địa chỉ giao hàng</h5>
+                        </button>
+                        <button class="btn btn-success mt-3 showCreateAddressFormBtn">
+                            <h5 class="d-inline">Tạo địa chỉ giao hàng mới</h5>
+                        </button>
 
-                        <div class="border text-left mt-3 ">
-                            <h4 class="ml-2">Tạo địa chỉ giao hàng mới:</h4>
+                        <div class="changeAddressForm border text-left mt-3">
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <h4 class="ml-2 text-center mt-2 my-4">Tạo địa chỉ giao hàng mới:</h4>
+                                <button class="closeCreateAddressFormBtn mr-2">X</button>
+                            </div>
                             <form class="cartSelect ml-5" action="{{route('customers.addresses.store')}}" method="post">
                                 @csrf
-                                Quận / huyện: <select class="form-control col-md-8" name="id_district" required></select>
-                                Phường / xã: <select class="form-control col-md-8" name="id_ward" required></select>
-                                Địa chỉ: <input class="form-control col-md-8" type="text" name="address" required />
+                                Quận / huyện: <select class="form-control col-md-10" name="id_district" required></select>
+                                Phường / xã: <select class="form-control col-md-10" name="id_ward" required></select>
+                                Địa chỉ: <input class="form-control col-md-10" type="text" name="address" required />
                                 <input class="my-3 btn btn-primary" type="submit" value="Tạo địa chỉ mới">
                             </form>
                         </div>
@@ -138,7 +144,7 @@
 
                         @if($shipping_address!='')
 
-                        <input type="hidden" name="id_shipping_address" value="{{$shipping_address->id_address}}">p>
+                        <input type="hidden" name="id_shipping_address" value="{{$shipping_address->id_address}}" />
 
 
                         @else

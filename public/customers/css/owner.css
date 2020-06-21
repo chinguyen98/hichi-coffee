@@ -42,6 +42,34 @@
   background-color: rgb(133, 133, 133);
 }
 
+.changeAddressForm{
+  position: fixed;
+  z-index: 9999999;
+  background-color: black;
+  top: 0;
+  left: 40%;
+  transform: translateY(-30rem);
+  transition: all 0.5s ease-in-out;
+}
+
+.changeAddressForm--show{
+  transform: translateY(0);
+}
+
+.closeCreateAddressFormBtn{
+  background-color: black;
+  border: 1px solid red;
+  color: red;
+  width: 20%;
+  height: 20%;
+}
+
+.closeCreateAddressFormBtn:hover{
+  cursor: pointer;
+  background-color: red;
+  color: white;
+}
+
 /*Owner*/
 
 @font-face{
