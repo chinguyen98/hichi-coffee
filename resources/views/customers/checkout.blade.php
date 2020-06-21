@@ -49,11 +49,11 @@
                         </button> -->
 
                         <div class="border text-left mt-3 ">
-                            <h4 class="ml-2">Tạo địa chỉ mới:</h4>
+                            <h4 class="ml-2">Tạo địa chỉ giao hàng mới:</h4>
                             <form class="cartSelect ml-5" action="{{route('customers.addresses.store')}}" method="post">
                                 @csrf
-                                Quận: <select class="form-control col-md-8" name="id_district" required></select>
-                                Huyện: <select class="form-control col-md-8" name="id_ward" required></select>
+                                Quận / huyện: <select class="form-control col-md-8" name="id_district" required></select>
+                                Phường / xã: <select class="form-control col-md-8" name="id_ward" required></select>
                                 Địa chỉ: <input class="form-control col-md-8" type="text" name="address" required />
                                 <input class="my-3 btn btn-primary" type="submit" value="Tạo địa chỉ mới">
                             </form>
