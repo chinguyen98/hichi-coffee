@@ -17,7 +17,7 @@ class CheckoutController extends Controller
     {
         $shipping_infos = DB::table('shipping_types')->get();
         $customer_address = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->where('is_current', 1)->first(['id_city', 'id_district', 'id_ward', 'address']);
-        $customer_addresses = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->get(['id', 'id_city', 'id_district', 'id_ward', 'address', 'is_current', 'is_current']);
+        $customer_addresses = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->where('id_city', 4)->get(['id', 'id_city', 'id_district', 'id_ward', 'address', 'is_current', 'is_current']);
         $shipping_address = DB::table('shipping_addresses')->where('id_address', $customer_address->id_district)->first();
         if ($shipping_address === null) {
             $shipping_address = '';

@@ -32,6 +32,7 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'CustomerController@index')->middleware('verified')->name('home');
 
 Route::post('/addresses', 'AddressController@store')->name('customers.addresses.store');
+Route::put('/address/changing', 'AddressController@changeDefaultAddress')->name('customers.addresses.changing');
 
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {

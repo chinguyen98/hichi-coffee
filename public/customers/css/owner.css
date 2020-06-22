@@ -76,9 +76,13 @@
   background-color: black;
   top: 0;
   left: 40%;
-  transform: translateY(0rem);
+  transform: translateY(-30rem);
   transition: all 0.5s ease-in-out;
   width: fit-content;
+}
+
+.changeAddressForm--show{
+  transform: translateY(0);
 }
 
 /*Owner*/

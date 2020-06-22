@@ -15,14 +15,17 @@ const showCreateAddressFormBtn = document.querySelector('.showCreateAddressFormB
 const createAddressform = document.querySelector('.createAddressform');
 const closeCreateAddressFormBtn = document.querySelector('.closeCreateAddressFormBtn');
 const changeAddressFormDetail = [...document.querySelectorAll('.changeAddressFormDetail')];
-const changeAddressForm = document.querySelector('.changeAddressForm form');
+const changeAddressFormSubmmit = document.querySelector('#changeAddressFormSubmmit');
+const changeAddressFormArea = document.querySelector('.changeAddressForm');
+const showChangeAddressFormBtn = document.querySelector('.showChangeAddressForm');
+const closeChangeAddressFormBtn = document.querySelector('.closeChangeAddressFormBtn');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
 }
 
 async function renderChangeAddressForm() {
-    let getData = await Promise.all(changeAddressFormDetail.map(async item => {
+    let getData = await Promise.all(changeAddressFormDetail.map(async (item, index) => {
         const id_city = document.querySelector(`[data-address="${item.dataset.address}"] [name="id_city"]`).value;
         const id_district = document.querySelector(`[data-address="${item.dataset.address}"] [name="id_district"]`).value;
         const id_ward = document.querySelector(`[data-address="${item.dataset.address}"] [name="id_ward"]`).value;
@@ -33,13 +36,12 @@ async function renderChangeAddressForm() {
         const ward = await fetch(`api/wards/${id_ward}`).then(res => res.json());
 
         const combinedAddress = `
-            <input type="radio" name="addressOfChanging" value="${item.dataset.address}">
+            <input type="radio" name="addressOfChanging" value="${item.dataset.address}" ${index === 0 ? 'checked' : ''}>
             <label for="male">${address}, ${ward.Title}, ${district.Title}, ${city.Title}</label><br>
         `;
         return combinedAddress;
     }));
-    console.log(getData.join(''))
-    changeAddressForm.innerHTML = getData.join('');
+    changeAddressFormSubmmit.innerHTML = getData.join('');
 }
 
 function renderFinalTotalPrice() {
@@ -96,8 +98,6 @@ async function renderCart() {
         checkoutDistrictLabelArea.innerHTML = district.Title;
     }
 
-    renderDistrictsSelectInfo();
-
     const exportCartHtml = data.map((cart) => {
         return `
             <div class="d-flex flex-row p-2">
@@ -135,6 +135,8 @@ async function renderCart() {
     }
 
     oldPriceArea.innerHTML = formatPrice(oldPrice);
+
+    renderDistrictsSelectInfo();
     renderChangeAddressForm();
 }
 
@@ -153,5 +155,15 @@ shippingInfoRadioBtn.forEach(item => {
 
 window.addEventListener('load', renderCart)
 idDistrictSelect.addEventListener('change', (e) => { renderWardsSelectInfo(e.target.value) });
-showCreateAddressFormBtn.addEventListener('click', () => { createAddressform.classList.add('createAddressform--show') });
+
+showCreateAddressFormBtn.addEventListener('click', () => {
+    changeAddressFormArea.classList.remove('changeAddressForm--show')
+    createAddressform.classList.add('createAddressform--show');
+});
 closeCreateAddressFormBtn.addEventListener('click', () => { createAddressform.classList.remove('createAddressform--show') });
+
+showChangeAddressFormBtn.addEventListener('click', () => {
+    createAddressform.classList.remove('createAddressform--show');
+    changeAddressFormArea.classList.add('changeAddressForm--show')
+});
+closeChangeAddressFormBtn.addEventListener('click', () => { changeAddressFormArea.classList.remove('changeAddressForm--show') });
