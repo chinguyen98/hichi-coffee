@@ -36,6 +36,4 @@
     </div>
 </div>
 
-<script src="/apps/js/handlingCartPage.js"></script>
-
 @endsection

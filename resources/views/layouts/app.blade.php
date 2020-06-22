@@ -75,6 +75,12 @@
 
     @endif
 
+    @if(Request::is('carts'))
+
+    <script src="/apps/js/handlingCartPage.js"></script>
+
+    @endif
+
     <!-- End Embed JS -->
 
     <script>

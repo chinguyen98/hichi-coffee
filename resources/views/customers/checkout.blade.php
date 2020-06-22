@@ -44,9 +44,14 @@
                             <h5 class="checkout-info__email text-left ml-2 ">Địa chỉ email: {{Auth::user()->email}}</h5>
                         </div>
 
+                        @if($have_hcmc_address)
+                        
                         <button class="btn btn-primary mt-3 showChangeAddressForm">
                             <h5 class="d-inline">Thay đổi địa chỉ giao hàng</h5>
                         </button>
+
+                        @endif
+
                         <button class="btn btn-success mt-3 showCreateAddressFormBtn">
                             <h5 class="d-inline">Tạo địa chỉ giao hàng mới</h5>
                         </button>
@@ -64,6 +69,8 @@
                                 <input class="my-3 btn btn-primary" type="submit" value="Tạo địa chỉ mới">
                             </form>
                         </div>
+
+                        @if($have_hcmc_address)
 
                         <div class="changeAddressForm border text-left mt-2 p-5">
                             <div class="d-flex flex-row justify-content-between align-items-center">
@@ -88,6 +95,8 @@
                             </div>
                             <input class="btn btn-primary mt-3" form="submitChange" type="submit" value="Thay đổi địa chỉ">
                         </div>
+
+                        @endif
 
                         <div class="border text-left mt-3">
                             <h4 class="ml-2">Hình thức thanh toán:</h4>

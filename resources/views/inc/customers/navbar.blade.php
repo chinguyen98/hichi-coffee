@@ -10,12 +10,25 @@
                 <li class="nav-item {{$introActive ?? ''}}"><a href="/intro" class="nav-link">Giới thiệu</a></li>
                 <li class="nav-item {{$coffeeActive ?? ''}}"><a href="/coffees" class="nav-link">Sản phẩm</a></li>
                 <li class="nav-item {{$newsActive ?? ''}}"><a href="/news" class="nav-link">Tin tức</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
+                <li class="menu_account_container nav-item dropdown">
+                    @guest
+                    <a class="nav-link dropdown-toggle" href="/login" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="/login">Đăng nhập</a>
+                        @if (Route::has('register'))
                         <a class="dropdown-item" href="/register">Tạo tài khoản</a>
+                        @endif
                     </div>
+                    @else
+                    <a class="nav-link dropdown-toggle" href="/home" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="/home">{{ Auth::user()->name }}</a>
+                        <a class="dropdown-item" href="/register" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                    @endguest
                 </li>
                 <li class="nav-item cart"><a href="/carts" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small class="cartQuantity"></small></span></a></li>
                 <div class="cartNotify p-2">

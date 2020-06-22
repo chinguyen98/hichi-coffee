@@ -100,7 +100,7 @@ async function renderCart() {
     let district = null;
 
     if (hiddenShippingAddressArea === null) {
-        checkoutInfoAddressNotifyArea.innerHTML = 'Sản phẩm chi giao trong khu vực TPHCM!';
+        checkoutInfoAddressNotifyArea.innerHTML = 'Sản phẩm chi giao trong khu vực TPHCM! <br /> Vui lòng nhập địa chỉ khác.';
     } else {
         district = await fetch(`/api/districts/${hiddenShippingAddressArea.value}`).then(res => res.json());
         checkoutDistrictLabelArea.innerHTML = district.Title;
@@ -145,7 +145,9 @@ async function renderCart() {
     oldPriceArea.innerHTML = formatPrice(oldPrice);
 
     renderDistrictsSelectInfo();
-    renderChangeAddressForm();
+    if (showChangeAddressFormBtn !== null) {
+        renderChangeAddressForm();
+    }
 }
 
 function renderShippingAndTotalPrice(e) {
@@ -164,14 +166,16 @@ shippingInfoRadioBtn.forEach(item => {
 window.addEventListener('load', renderCart)
 idDistrictSelect.addEventListener('change', (e) => { renderWardsSelectInfo(e.target.value) });
 
+if (showChangeAddressFormBtn !== null) {
+    showChangeAddressFormBtn.addEventListener('click', () => {
+        createAddressform.classList.remove('createAddressform--show');
+        changeAddressFormArea.classList.add('changeAddressForm--show')
+    });
+    closeChangeAddressFormBtn.addEventListener('click', () => { changeAddressFormArea.classList.remove('changeAddressForm--show') });
+}
+
 showCreateAddressFormBtn.addEventListener('click', () => {
-    changeAddressFormArea.classList.remove('changeAddressForm--show')
+    showChangeAddressFormBtn !== null && changeAddressFormArea.classList.remove('changeAddressForm--show')
     createAddressform.classList.add('createAddressform--show');
 });
 closeCreateAddressFormBtn.addEventListener('click', () => { createAddressform.classList.remove('createAddressform--show') });
-
-showChangeAddressFormBtn.addEventListener('click', () => {
-    createAddressform.classList.remove('createAddressform--show');
-    changeAddressFormArea.classList.add('changeAddressForm--show')
-});
-closeChangeAddressFormBtn.addEventListener('click', () => { changeAddressFormArea.classList.remove('changeAddressForm--show') });
