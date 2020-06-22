@@ -19,6 +19,8 @@ const changeAddressFormSubmmit = document.querySelector('#changeAddressFormSubmm
 const changeAddressFormArea = document.querySelector('.changeAddressForm');
 const showChangeAddressFormBtn = document.querySelector('.showChangeAddressForm');
 const closeChangeAddressFormBtn = document.querySelector('.closeChangeAddressFormBtn');
+const currentIdHiddenInput = document.querySelector('input[type="hidden"][name="id"]');
+const combinedAddressArea = document.querySelector('.combinedAddress');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
@@ -35,11 +37,17 @@ async function renderChangeAddressForm() {
         const district = await fetch(`api/districts/${id_district}`).then(res => res.json());
         const ward = await fetch(`api/wards/${id_ward}`).then(res => res.json());
 
-        const combinedAddress = `
-            <input type="radio" name="addressOfChanging" value="${item.dataset.address}" ${index === 0 ? 'checked' : ''}>
-            <label for="male">${address}, ${ward.Title}, ${district.Title}, ${city.Title}</label><br>
+        const combinedAddress = `${address}, ${ward.Title}, ${district.Title}, ${city.Title}`;
+
+        if (+item.dataset.address === +currentIdHiddenInput.value) {
+            combinedAddressArea.innerHTML = `Địa chỉ: ${combinedAddress}.`;
+        }
+
+        const exportHtml = `
+            <input id="${item.dataset.address}" form="submitChange" type="radio" name="addressOfChanging" value="${item.dataset.address}" ${+item.dataset.address === +currentIdHiddenInput.value ? 'checked' : ''}>
+            <label for="${item.dataset.address}">${combinedAddress}</label><br>
         `;
-        return combinedAddress;
+        return exportHtml;
     }));
     changeAddressFormSubmmit.innerHTML = getData.join('');
 }

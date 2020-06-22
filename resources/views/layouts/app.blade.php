@@ -71,7 +71,6 @@
 
     @if(Request::is('checkout'))
 
-    <script src="/apps/js/renderAddress.js"></script>
     <script src="/apps/js/handlingCheckoutPage.js"></script>
 
     @endif

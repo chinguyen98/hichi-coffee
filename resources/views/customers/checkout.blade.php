@@ -70,10 +70,11 @@
                                 <h4 class="text-center my-4">Đổi địa chỉ giao hàng:</h4>
                                 <button class="closeChangeAddressFormBtn mr-2">X</button>
                             </div>
-                            <form id="changeAddressFormSubmmit" action="{{route('customers.addresses.changing')}}" method="post">
+                            <form id="submitChange" action="{{route('customers.addresses.changing')}}" method="post">
                                 @csrf
                                 @method('PUT')
-
+                            </form>
+                            <div id="changeAddressFormSubmmit">
                                 @foreach($customer_addresses as $address)
 
                                 <div data-address="{{$address->id}}" class="changeAddressFormDetail">
@@ -84,10 +85,8 @@
                                 </div>
 
                                 @endforeach
-
-                                
-                            </form>
-                            <input class="btn btn-primary mt-3" form="changeAddressFormSubmmit" type="submit" value="Thay đổi địa chỉ">
+                            </div>
+                            <input class="btn btn-primary mt-3" form="submitChange" type="submit" value="Thay đổi địa chỉ">
                         </div>
 
                         <div class="border text-left mt-3">
@@ -165,6 +164,7 @@
                         <input type="hidden" name="id_district" value="{{$customer_address->id_district}}">
                         <input type="hidden" name="id_ward" value="{{$customer_address->id_ward}}">
                         <input type="hidden" name="address" value="{{$customer_address->address}}">
+                        <input type="hidden" name="id" value="{{$customer_address->id}}">
 
 
                         @if($shipping_address!='')

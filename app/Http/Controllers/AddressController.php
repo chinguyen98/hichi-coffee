@@ -36,4 +36,17 @@ class AddressController extends Controller
 
         return redirect(url()->previous());
     }
+
+    public function changeDefaultAddress(Request $request)
+    {
+        $customerIdAddress = $request->input('addressOfChanging');
+        DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->update([
+            'is_current' => 0
+        ]);
+        DB::table('customer_addresses')->where('id', $customerIdAddress)->update([
+            'is_current' => 1
+        ]);
+
+        return redirect(url()->previous());
+    }
 }
