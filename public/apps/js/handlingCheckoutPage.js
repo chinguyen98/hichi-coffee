@@ -21,6 +21,9 @@ const showChangeAddressFormBtn = document.querySelector('.showChangeAddressForm'
 const closeChangeAddressFormBtn = document.querySelector('.closeChangeAddressFormBtn');
 const currentIdHiddenInput = document.querySelector('input[type="hidden"][name="id"]');
 const combinedAddressArea = document.querySelector('.combinedAddress');
+const cartHiddenInput = document.querySelector('input[name="cart"]');
+const totalPriceHiddenInput = document.querySelector('input[name="totalPrice"]');
+const shippingHiddenInput = document.querySelector('input[name="shippingType"]');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
@@ -134,6 +137,7 @@ async function renderCart() {
     checkoutPriceArea.dataset.price = totalPrice;
 
     checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} VNĐ`;
+    checkoutFinalTotalPriceArea.dataset.totalPrice = renderFinalTotalPrice();
     let oldPrice = 0;
 
     if (hiddenShippingAddressArea === null) {
@@ -157,6 +161,14 @@ function renderShippingAndTotalPrice(e) {
 
     const oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
     oldPriceArea.innerHTML = formatPrice(oldPrice);
+}
+
+function handingCheckout() {
+    cartHiddenInput.value = localStorage.getItem('carts');
+    totalPriceHiddenInput.value = checkoutFinalTotalPriceArea.dataset.totalPrice;
+    shippingHiddenInput.value = document.querySelector('input[name="shipping_infos"]:checked').id;
+
+    return true;
 }
 
 shippingInfoRadioBtn.forEach(item => {

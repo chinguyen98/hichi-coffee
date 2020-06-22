@@ -45,7 +45,7 @@
                         </div>
 
                         @if($have_hcmc_address)
-                        
+
                         <button class="btn btn-primary mt-3 showChangeAddressForm">
                             <h5 class="d-inline">Thay đổi địa chỉ giao hàng</h5>
                         </button>
@@ -163,10 +163,11 @@
                             <div class="border"></div>
                             <div class="d-flex flex-row justify-content-between mt-3">
                                 <h3>Thành tiền: </h3>
-                                <h2 class="checkout-total-price text-danger"></h2>
+                                <h2 data-totalprice="" class="checkout-total-price text-danger"></h2>
                             </div>
                             <h4 class="text-right"><del class="oldPrice"></del> VNĐ</h4>
                         </div>
+
                     </div>
                     <div>
                         <input type="hidden" name="id_city" value="{{$customer_address->id_city}}">
@@ -188,6 +189,17 @@
                     </div>
                 </div>
             </div>
+            @if($have_hcmc_address)
+
+            <form action="{{route('customers.orders.store')}}" onclick="return handingCheckout()" method="POST">
+                @csrf
+                <input type="hidden" name="cart" value="">
+                <input type="hidden" name="totalPrice" value="">
+                <input type="hidden" name="shippingType" value="">
+                <input style="width:10em;height:2em;font-size:3em" class="btn btn-danger my-5" type="submit" value="MUA HÀNG">
+            </form>
+
+            @endif
         </div>
     </div>
 </div>
