@@ -196,7 +196,7 @@
                 <input type="hidden" name="cart" value="">
                 <input type="hidden" name="totalPrice" value="">
                 <input type="hidden" name="shippingType" value="">
-                <input style="width:10em;height:2em;font-size:3em" class="btn btn-danger my-5" type="submit" value="MUA HÀNG">
+                <input style="width:10em;height:2em;font-size:3em" class="btn btn-danger my-5" type="submit" value="MUA HÀNG NGAY">
             </form>
 
             @endif
