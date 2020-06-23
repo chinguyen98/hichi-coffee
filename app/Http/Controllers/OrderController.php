@@ -13,7 +13,7 @@ class OrderController extends Controller
         $carts = json_decode($request->input('cart'));
         $idShippingType = $request->input('shippingType');
         $totalPrice = $request->input('totalPrice');
-        $idShipingAddress = DB::table('customer_addresses')->where('is_current', 1)->first(['id'])->id;
+        $idShipingAddress = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->where('is_current', 1)->first(['id'])->id;
 
         $id_order = DB::table('orders')->insertGetId([
             'total_price' => $totalPrice,

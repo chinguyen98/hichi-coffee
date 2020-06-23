@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\NotifyOrderMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,3 +85,16 @@ Route::group(['prefix' => 'api'], function () {
 /* User Routes */
 Route::get('login/facebook', 'Auth\SocialAuthController@loginToFacebook');
 Route::get('login/facebook/callback', 'Auth\SocialAuthController@callbackFacebook');
+
+/* Testing */
+
+Route::get('sendMail', function () {
+    $details = [
+        'title' => 'Mail from Hichi Coffee',
+        'body' => 'This is testing mail'
+    ];
+
+    Mail::to('dacchi14101998@gmail.com')->send(new NotifyOrderMail($details));
+
+    echo "SEND!";
+});

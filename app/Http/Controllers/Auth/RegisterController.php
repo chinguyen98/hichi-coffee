@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Customer;
 use App\CustomerAddress;
+use App\Helpers\RenderAddress;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -71,6 +72,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $renderAddressHelper = new RenderAddress();
+        $city = $renderAddressHelper->getCityDetailFromApi($data['id_city'])['Title'];
+        $district = $renderAddressHelper->getDistrictDetailFromApi($data['id_district'])['Title'];
+        $ward = $renderAddressHelper->getWardDetailFromApi($data['id_ward'])['Title'];
+        $address = $data['address'];
+
+        $fullAddress = $address . ', ' . $ward . ', ' . $district . ', ' . $city;
+
         $customer = Customer::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -84,7 +93,11 @@ class RegisterController extends Controller
             'id_city' => $data['id_city'],
             'id_district' => $data['id_district'],
             'id_ward' => $data['id_ward'],
-            'address' => $data['address'],
+            'address' => $address,
+            'city' => $city,
+            'district' => $district,
+            'ward' => $ward,
+            'full_address' => $fullAddress,
             'is_current' => 1,
             'id_customer' => $id_customer,
             'created_at' => now(),
