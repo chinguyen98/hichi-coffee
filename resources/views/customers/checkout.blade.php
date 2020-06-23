@@ -177,14 +177,7 @@
                         <input type="hidden" name="id" value="{{$customer_address->id}}">
 
 
-                        @if($shipping_address!='')
 
-                        <input type="hidden" name="id_shipping_address" value="{{$shipping_address->id_address}}" />
-
-
-                        @else
-
-                        @endif
 
                     </div>
                 </div>
@@ -196,6 +189,13 @@
                 <input type="hidden" name="cart" value="">
                 <input type="hidden" name="totalPrice" value="">
                 <input type="hidden" name="shippingType" value="">
+
+                @if($shipping_address!='')
+
+                <input type="hidden" name="id_shipping_address" value="{{$shipping_address->id_address}}" />
+
+                @endif
+
                 <input style="width:10em;height:2em;font-size:3em" class="btn btn-danger my-5" type="submit" value="MUA HÀNG NGAY">
             </form>
 
