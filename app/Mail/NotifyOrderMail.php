@@ -30,6 +30,6 @@ class NotifyOrderMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail form Hichi Coffee')->view('emails.notifyOrderMail');
+        return $this->subject('Đơn hàng của bạn đang được duyệt')->view('emails.notifyOrderMail');
     }
 }

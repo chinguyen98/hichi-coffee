@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifyOrderMail;
 use stdClass;
 
 class OrderController extends Controller
@@ -15,8 +17,9 @@ class OrderController extends Controller
         $shippingType = DB::table('shipping_types')->where('id', $request->input('shippingType'))->first(['id', 'name', 'price']);
         $totalPrice = $request->input('totalPrice');
         $customerAddress = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->where('is_current', 1)->first(['id', 'full_address']);
-        $shippingAddress = DB::table('shipping_addresses')->where('id', $request->input('id_shipping_address'))->first(['id', 'price']);
+        $shippingAddress = DB::table('shipping_addresses')->where('id_address', $request->input('id_shipping_address'))->first(['id', 'price']);
         $beforeDiscountPrice = 0;
+        $totalDiscountPrice = 0;
 
         $id_order = DB::table('orders')->insertGetId([
             'total_price' => $totalPrice,
@@ -46,6 +49,7 @@ class OrderController extends Controller
 
                 $cartForMailItem->discountPrice = $valuation->discount;
                 $cartForMailItem->newPrice = $valuation->price;
+                $totalDiscountPrice += $valuation->discount;
             } else {
                 $totalSubPrice = $coffee->price * $quantity;
 
@@ -78,13 +82,16 @@ class OrderController extends Controller
             'idOrder' => $id_order,
             'date_created' => now()->toDateTimeString(),
             'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
             'address' => $customerAddress->full_address,
             'totalPrice' => $totalPrice,
-            'shippingType' => $shippingType,
-            'shippingAddress' => $shippingAddress,
+            'shippingPrice' => $shippingType->price + $shippingAddress->price,
             'cartForMail' => $cartForMail,
             'beforeDiscountPrice' => $beforeDiscountPrice,
+            'totalDiscountPrice' => $totalDiscountPrice,
         ];
+
+        Mail::to(Auth::user()->email)->send(new NotifyOrderMail($details));
 
         dd($details);
     }
