@@ -85,6 +85,41 @@
   transform: translateY(0);
 }
 
+.successMessage{
+  position: fixed;
+  top: 6rem;
+  left: 3rem;
+  opacity: 0;
+  z-index: 9999999999999999999;
+  background-color: black;
+  border-left: 1rem solid green;
+  animation-name: showSuccessMessage;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-timing-function: ease;
+  animation-iteration-count: 2;
+  transform: translateX(-20rem);
+}
+
+@keyframes showSuccessMessage{
+  0%{
+    transform: translateX(-20rem);
+    opacity: 0;
+  }
+  50%{
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+  75%{
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+  100%{
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+}
+
 /*Owner*/
 
 @font-face{

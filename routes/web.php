@@ -31,6 +31,7 @@ Route::get('/checkout', 'CheckoutController@renderCheckoutPage')->name('customer
 
 Route::group(['prefix' => 'orders'], function () {
     Route::post('/', 'OrderController@store')->name('customers.orders.store');
+    Route::get('/{id}', 'OrderController@show')->name('customers.orders.show');
 });
 
 Auth::routes(['verify' => true]);

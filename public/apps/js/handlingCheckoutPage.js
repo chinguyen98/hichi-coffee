@@ -158,6 +158,7 @@ function renderShippingAndTotalPrice(e) {
     checkoutShippingArea.innerHTML = `${formatPrice(this.value)} VNĐ`;
     checkoutShippingArea.dataset.price = this.value;
     checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} VNĐ`;
+    checkoutFinalTotalPriceArea.dataset.totalPrice = renderFinalTotalPrice();
 
     const oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
     oldPriceArea.innerHTML = formatPrice(oldPrice);
@@ -167,6 +168,8 @@ function handingCheckout() {
     cartHiddenInput.value = localStorage.getItem('carts');
     totalPriceHiddenInput.value = checkoutFinalTotalPriceArea.dataset.totalPrice;
     shippingHiddenInput.value = document.querySelector('input[name="shipping_infos"]:checked').id;
+
+    localStorage.removeItem('carts');
 
     return true;
 }

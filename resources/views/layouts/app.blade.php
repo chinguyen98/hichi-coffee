@@ -34,6 +34,13 @@
 </head>
 
 <body>
+
+    @if ( Session::has('success_message') )
+
+    @include('inc.customers.successMessageNofity')
+
+    @endif
+
     @include('inc.customers.navbar')
 
     <div class="notify text-center">

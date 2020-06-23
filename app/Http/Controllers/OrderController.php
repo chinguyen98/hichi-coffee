@@ -11,6 +11,11 @@ use stdClass;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
         $carts = json_decode($request->input('cart'));
@@ -39,7 +44,7 @@ class OrderController extends Controller
 
             $id_valuation = null;
             $id_coffee = $cart->id;
-            $coffee = DB::table('coffees')->where('id', $id_coffee)->first(['price', 'name']);
+            $coffee = DB::table('coffees')->where('id', $id_coffee)->first(['price', 'name', 'quantity']);
             $quantity = $cart->qty;
             $totalSubPrice = 0;
             if (property_exists($cart, 'valuation')) {
@@ -76,6 +81,8 @@ class OrderController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+
+            DB::table('coffees')->where('id', $id_coffee)->update(['quantity' => $coffee->quantity - $quantity]);
         }
 
         $details = [
@@ -93,6 +100,16 @@ class OrderController extends Controller
 
         Mail::to(Auth::user()->email)->send(new NotifyOrderMail($details));
 
-        dd($details);
+        $request->session()->flash('success_message', 'Đặt hàng thành công! Nhân viên đang kiểm tra đơn hàng của bạn!');
+        return redirect()->route('customers.orders.show', ['id' => $id_order]);
+    }
+
+    public function show($id)
+    {
+
+
+        return view('customers.orders.detail')->with([
+            'title' => 'Chi tiết đơn hàng',
+        ]);
     }
 }
