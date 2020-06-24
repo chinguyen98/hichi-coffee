@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifyOrderMail;
+use App\Order;
 use stdClass;
 
 class OrderController extends Controller
@@ -25,6 +26,8 @@ class OrderController extends Controller
         $shippingAddress = DB::table('shipping_addresses')->where('id_address', $request->input('id_shipping_address'))->first(['id', 'price']);
         $beforeDiscountPrice = 0;
         $totalDiscountPrice = 0;
+        $created_at = now();
+        $updated_at = now();
 
         $id_order = DB::table('orders')->insertGetId([
             'total_price' => $totalPrice,
@@ -33,8 +36,8 @@ class OrderController extends Controller
             'id_customer_address' => $customerAddress->id,
             'id_shipping_address' => $shippingAddress->id,
             'before_discount_price' => $beforeDiscountPrice,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $created_at,
+            'updated_at' => $updated_at,
         ]);
 
         $cartForMail = [];
@@ -78,8 +81,8 @@ class OrderController extends Controller
                 'id_coffee' => $id_coffee,
                 'id_order' => $id_order,
                 'id_valuation' => $id_valuation,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => $created_at,
+                'updated_at' => $updated_at,
             ]);
 
             DB::table('coffees')->where('id', $id_coffee)->update(['quantity' => $coffee->quantity - $quantity]);
@@ -98,6 +101,15 @@ class OrderController extends Controller
             'totalDiscountPrice' => $totalDiscountPrice,
         ];
 
+        DB::table('statuses')->insert([
+            'name' => 'Đang duyệt đơn hàng',
+            'note' => 'Nhân viên của chúng tôi đang duyệt đơn hàng của bạn.',
+            'id_order' => $id_order,
+            'is_current' => 1,
+            'created_at' => $created_at,
+            'updated_at' => $updated_at,
+        ]);
+
         Mail::to(Auth::user()->email)->send(new NotifyOrderMail($details));
 
         $request->session()->flash('success_message', 'Đặt hàng thành công! Nhân viên đang kiểm tra đơn hàng của bạn!');
@@ -106,10 +118,15 @@ class OrderController extends Controller
 
     public function show($id)
     {
+        $order = Order::where('id', $id)->first();
 
+        if ($order == null || $order->id_customer != Auth::user()->id) {
+            return redirect()->route('home');
+        }
 
         return view('customers.orders.detail')->with([
             'title' => 'Chi tiết đơn hàng',
+            'order' => $order,
         ]);
     }
 }

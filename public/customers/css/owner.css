@@ -120,7 +120,24 @@
   }
 }
 
-/*Owner*/
+.orderDetail_subItem{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.orderDetail_table, th, td{
+  border: 1px solid white;
+}
+
+.orderDetail_table th{
+  padding: 0.5rem;
+}
+
+.orderDetail_img{
+  width: 7vw;
+  width: 7vw;
+}
+
+/*Old Owner*/
 
 @font-face{
   font-family: UTMBeautifulCaps;
