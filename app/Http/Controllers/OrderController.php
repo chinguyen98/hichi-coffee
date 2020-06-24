@@ -17,6 +17,16 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $orders = Order::where('id_customer', Auth::user()->id)->orderByDesc('created_at')->get();
+
+        return view('customers.orders.index')->with([
+            'title' => 'Đơn hàng của tôi',
+            'orders' => $orders,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $carts = json_decode($request->input('cart'));

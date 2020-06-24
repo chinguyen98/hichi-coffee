@@ -77,7 +77,9 @@
                             <div class="p-3 d-flex flex-row">
                                 <img class="orderDetail_img" src="/apps/images/coffees/{{$order_detail->coffee->image}}" alt="">
                                 <div class="ml-4">
-                                    <h5>{{$order_detail->coffee->name}}</h5>
+                                    <a class="my-2" href="{{route('customer.coffees.show', ['slug'=> $order_detail->coffee->slug])}}">
+                                        <p class="text-primary">{{$order_detail->coffee->name}}</p>
+                                    </a>
                                     <p><b>Hãng:</b> {{$order_detail->coffee->brand->name}}</p>
                                     <p><b>Loại:</b> {{$order_detail->coffee->coffee_type->name}}</p>
                                 </div>

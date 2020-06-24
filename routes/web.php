@@ -30,13 +30,14 @@ Route::get('/carts', 'CartController@renderCartPage')->name('customer.cart');
 Route::get('/checkout', 'CheckoutController@renderCheckoutPage')->name('customers.checkout.show');
 
 Route::group(['prefix' => 'orders'], function () {
+    Route::get('/', 'OrderController@index')->name('customers.orders.index');
     Route::post('/', 'OrderController@store')->name('customers.orders.store');
     Route::get('/{id}', 'OrderController@show')->name('customers.orders.show');
 });
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'CustomerController@index')->middleware('verified')->name('home');
+//Route::get('/home', 'CustomerController@index')->middleware('verified')->name('home');
 
 Route::post('/addresses', 'AddressController@store')->name('customers.addresses.store');
 Route::put('/addresses/changing', 'AddressController@changeDefaultAddress')->name('customers.addresses.changing');

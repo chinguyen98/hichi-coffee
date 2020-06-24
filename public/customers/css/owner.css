@@ -389,6 +389,7 @@
   right: 0;
   bottom: 0;
   margin: auto;
+  width: fit-content;
 }
 
 .menu_account_container .dropdown-menu a{
