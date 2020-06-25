@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -114,7 +115,7 @@ class OrderController extends Controller
         DB::table('order_statuses')->insert([
             'note' => 'Nhân viên của chúng tôi đang duyệt đơn hàng của bạn.',
             'id_order' => $id_order,
-            'id_status' => 1,
+            'id_status' => Status::OrderChecking,
             'is_current' => 1,
             'created_at' => $created_at,
             'updated_at' => $updated_at,

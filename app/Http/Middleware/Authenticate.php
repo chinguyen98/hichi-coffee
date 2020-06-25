@@ -18,6 +18,11 @@ class Authenticate extends Middleware
             if ($request->is('admins/*')) {
                 return route('admins.login.show');
             }
+            if (str_replace(url('/'), '', url()->previous()) === '/carts') {
+                $request->session()->flash('fail_message', 'Vui lòng đăng nhập để mua sản phẩm!');
+            } else {
+                $request->session()->flash('fail_message', 'Vui lòng đăng nhập để tiếp tục!');
+            }
             return route('login');
         }
     }

@@ -85,15 +85,14 @@
   transform: translateY(0);
 }
 
-.successMessage{
+.successMessage, .failMessage{
   position: fixed;
   top: 6rem;
   left: 3rem;
   opacity: 0;
   z-index: 9999999999999999999;
   background-color: black;
-  border-left: 1rem solid green;
-  animation-name: showSuccessMessage;
+  animation-name: showNotifyMessage;
   animation-duration: 2s;
   animation-direction: alternate;
   animation-timing-function: ease;
@@ -101,7 +100,7 @@
   transform: translateX(-20rem);
 }
 
-@keyframes showSuccessMessage{
+@keyframes showNotifyMessage{
   0%{
     transform: translateX(-20rem);
     opacity: 0;
@@ -118,6 +117,14 @@
     transform: translateX(0rem);
     opacity: 1;
   }
+}
+
+.successMessage{
+  border-left: 1rem solid green;
+}
+
+.failMessage{
+  border-left: 1rem solid red;
 }
 
 .orderDetail_subItem{

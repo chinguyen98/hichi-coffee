@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\AdminRole;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -12,9 +13,6 @@ class Admin extends Authenticatable
     protected $table = 'admins';
 
     protected $guard = 'admin';
-
-    const SUPER_ADMIN = 1;
-    const NORMAL_ADMIN = 2;
 
     /**
      * The attributes that are mass assignable.
@@ -45,7 +43,7 @@ class Admin extends Authenticatable
 
     public function isSuperAdmin()
     {
-        return $this->id_role === self::SUPER_ADMIN;
+        return $this->id_role === AdminRole::SuperAdmin;
     }
 
     public function admin_role()

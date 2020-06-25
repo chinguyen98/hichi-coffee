@@ -41,6 +41,12 @@
 
     @endif
 
+    @if ( Session::has('fail_message') )
+
+    @include('inc.customers.failMessageNotify')
+
+    @endif
+
     @include('inc.customers.navbar')
 
     <div class="notify text-center">

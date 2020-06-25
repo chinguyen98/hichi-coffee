@@ -25,7 +25,6 @@ class RedirectIfAuthenticated
                 return redirect()->route('customers.home');
             }
         }
-
         return $next($request);
     }
 }
