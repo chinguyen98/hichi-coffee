@@ -23,6 +23,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customers.home');
+        return view('customers.account');
+    }
+
+    public function update(){
+        dd('ok');
     }
 }

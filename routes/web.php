@@ -29,18 +29,23 @@ Route::group(['prefix' => 'coffees'], function () {
 Route::get('/carts', 'CartController@renderCartPage')->name('customer.cart');
 Route::get('/checkout', 'CheckoutController@renderCheckoutPage')->name('customers.checkout.show');
 
-Route::group(['prefix' => 'orders'], function () {
+Auth::routes(['verify' => true]);
+
+Route::group(['prefix' => 'orders', 'middleware' => ['verified']], function () {
     Route::get('/', 'OrderController@index')->name('customers.orders.index');
     Route::post('/', 'OrderController@store')->name('customers.orders.store');
     Route::get('/{id}', 'OrderController@show')->name('customers.orders.show');
 });
 
-Auth::routes(['verify' => true]);
+Route::group(['prefix' => 'accounts'], function () {
+    Route::get('/', 'CustomerController@index')->middleware('verified')->name('customers.accounts.index');
+    Route::put('/', 'CustomerController@update')->middleware('verified')->name('customers.accounts.update');
+});
 
-//Route::get('/home', 'CustomerController@index')->middleware('verified')->name('home');
-
-Route::post('/addresses', 'AddressController@store')->name('customers.addresses.store');
-Route::put('/addresses/changing', 'AddressController@changeDefaultAddress')->name('customers.addresses.changing');
+Route::group(['prefix' => 'addresses'], function () {
+    Route::post('/', 'AddressController@store')->name('customers.addresses.store');
+    Route::put('/changing', 'AddressController@changeDefaultAddress')->name('customers.addresses.changing');
+});
 
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {

@@ -94,6 +94,12 @@
 
     @endif
 
+    @if(Request::is('accounts'))
+
+    <script src="/apps/js/handlingAccountIndexPage.js"></script>
+
+    @endif
+
     <!-- End Embed JS -->
 
     <script>
