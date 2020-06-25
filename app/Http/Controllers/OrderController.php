@@ -111,10 +111,10 @@ class OrderController extends Controller
             'totalDiscountPrice' => $totalDiscountPrice,
         ];
 
-        DB::table('statuses')->insert([
-            'name' => 'Đang duyệt đơn hàng',
+        DB::table('order_statuses')->insert([
             'note' => 'Nhân viên của chúng tôi đang duyệt đơn hàng của bạn.',
             'id_order' => $id_order,
+            'id_status' => 1,
             'is_current' => 1,
             'created_at' => $created_at,
             'updated_at' => $updated_at,
@@ -131,7 +131,7 @@ class OrderController extends Controller
         $order = Order::where('id', $id)->first();
 
         if ($order == null || $order->id_customer != Auth::user()->id) {
-            return redirect()->route('home');
+            return redirect()->route('customers.orders.index');
         }
 
         return view('customers.orders.detail')->with([

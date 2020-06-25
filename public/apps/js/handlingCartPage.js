@@ -75,7 +75,6 @@ function renderCart(cartList, cartStorage) {
                 <div>
                     <a href="/coffees/${item.slug}"><h5>${item.name}</h5></a>
                     <button class="btn btn-danger btn-delete-cart-item" onclick="deleteItem(${item.id})">Xoá</button>
-                    <h5 class="mt-2">Số lượng còn lại: ${item.quantity}</h5>
                     <div class="mt-2">
                     ${
             item.valuations.map(val => `<span> * Giá chỉ còn <span class="text-danger">${formatPrice(val.price)} VNĐ</span> khi mua trên ${val.quantity} sản phẩm</span><br />`).join('')

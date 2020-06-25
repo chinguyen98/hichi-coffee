@@ -19,7 +19,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col col-md-12">
-            <h1>Chi tiết đơn hàng #{{$order->id}} - <b>{{$order->current_status->name}}</b></h1>
+            <h1>Chi tiết đơn hàng #{{$order->id}} - <b>{{$order->current_status->status->name}}</b></h1>
             <h5 class="text-right">Ngày đặt hàng: {{$order->created_at}}</h5>
 
             <div class="border px-3 pt-2 my-3">
@@ -55,13 +55,14 @@
                 <div class="col col-md-4 d-flex flex-column">
                     <h5>Phí vận chuyển hàng: </h5>
                     <div class="orderDetail_subItem px-2 pt-3">
+                        <p>Đến {{$order->shipping_address->address}}</p>
                         <p>Giá: {{$order->shipping_address->price}}</p>
                     </div>
                 </div>
             </div>
 
             <div class="table-responsive">
-                <table class="orderDetail_table">
+                <table class="orderDetail_table col col-md-12">
                     <tr class="thead-dark">
                         <th>Sản phẩm</th>
                         <th>Giá</th>
@@ -85,8 +86,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="p-3">
-                            <p>{{number_format($order_detail->coffee->price)}} đ</p>
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p>{{number_format($order_detail->coffee->price)}} đ</p>
+                            </div>
                         </td>
                         <td class="p-3 text-center">
                             <p>{{$order_detail->quantity}}</p>
@@ -102,16 +105,18 @@
 
                             @endif
                         </td>
-                        <td class="p-2 text-center">
-                            @if($order_detail->valuation)
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                @if($order_detail->valuation)
 
-                            <p>{{number_format($order_detail->valuation->price)}} đ</p>
+                                <p>{{number_format($order_detail->valuation->price)}} đ</p>
 
-                            @else
+                                @else
 
-                            <p>{{number_format($order_detail->coffee->price)}} đ</p>
+                                <p>{{number_format($order_detail->coffee->price)}} đ</p>
 
-                            @endif
+                                @endif
+                            </div>
                         </td>
                     </tr>
 

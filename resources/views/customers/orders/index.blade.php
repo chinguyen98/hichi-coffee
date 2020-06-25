@@ -18,8 +18,17 @@
 
 <div class="container my-5">
     <div class="row">
+        @if(count($orders)== 0)
+
+        <div class="col col-md-12 text-center">
+            <h1>Bạn chưa có đơn hàng nào!</h1>
+            <a class="btn btn-primary" href="{{route('customers.coffees.index')}}">Xem hàng ngay</a>
+        </div>
+
+        @else
+
         <div class="table-responsive">
-            <table class="orderDetail_table">
+            <table class="orderDetail_table col col-md-12">
                 <tr>
                     <th>Mã đơn hàng</th>
                     <th>Ngày mua</th>
@@ -41,13 +50,13 @@
                             <a class="my-2" href="{{route('customer.coffees.show', ['slug'=> $order_detail->coffee->slug])}}">
                                 <span class="text-primary">{{$order_detail->coffee->name}}</span>
                             </a>
-                            <span class="ml-5 text-success">x{{$order_detail->quantity}}</span>
+                            <span class="ml-3 text-success">x{{$order_detail->quantity}}</span>
                         </div>
 
                         @endforeach
                     </td>
                     <td class="text-center p-3"><b>{{number_format($order->total_price)}} đ</b></td>
-                    <td class="text-center p-3"><b>{{$order->current_status->name}}</b></td>
+                    <td class="text-center p-3"><b>{{$order->current_status->status->name}}</b></td>
                     <td class="p-2"><a class="btn btn-primary" href="{{route('customers.orders.show', ['id'=>$order->id])}}">Xem đơn hàng #{{$order->id}}</a></td>
                 </tr>
 
@@ -55,6 +64,8 @@
 
             </table>
         </div>
+
+        @endif
     </div>
 </div>
 

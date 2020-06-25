@@ -8,7 +8,7 @@ class Order extends Model
 {
     public function current_status()
     {
-        return $this->hasOne(Status::class, 'id_order', 'id')->where('is_current', 1);
+        return $this->hasOne(OrderStatus::class, 'id_order', 'id')->where('is_current', 1);
     }
 
     public function customer_address()
@@ -18,7 +18,7 @@ class Order extends Model
 
     public function statuses()
     {
-        return $this->hasMany(Status::class, 'id_order', 'id');
+        return $this->hasMany(OrderStatus::class, 'id_order', 'id');
     }
 
     public function shipping_type()

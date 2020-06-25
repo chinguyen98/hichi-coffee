@@ -7,7 +7,6 @@ const oldPriceSpan = document.querySelector('.oldPrice');
 const newPriceSpan = document.querySelector('.newPrice');
 const addToCartBtn = document.querySelector('#btnAddToCart');
 const idHidInput = document.querySelector('input[name="hidId"]');
-const coffeeQuantityArea = document.querySelector('.coffeeQuantity');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
@@ -63,11 +62,6 @@ function handingValuation(quantity) {
     if (quantity <= 0 || isNaN(quantity))
         quantityInput.value = 1;
 
-    if (quantity > +coffeeQuantityArea.dataset.quantity) {
-        quantityInput.value = +coffeeQuantityArea.dataset.quantity;
-    }
-    coffeeQuantityArea.innerHTML = +coffeeQuantityArea.dataset.quantity - quantityInput.value;
-
     if (hidValuationList.length === 0) return;
 
     const valuation = getValuation(quantity);
@@ -88,20 +82,12 @@ function handingValuation(quantity) {
 function increaseQuantity(e) {
     e.preventDefault();
     quantityInput.value++;
-    if (quantityInput.value > +coffeeQuantityArea.dataset.quantity) {
-        quantityInput.value = +coffeeQuantityArea.dataset.quantity;
-    }
-    coffeeQuantityArea.innerHTML = +coffeeQuantityArea.dataset.quantity - quantityInput.value;
     handingValuation(quantityInput.value);
 }
 
 function descreaseQuantity(e) {
     e.preventDefault();
     quantityInput.value--;
-    if (quantityInput.value > +coffeeQuantityArea.dataset.quantity) {
-        quantityInput.value = +coffeeQuantityArea.dataset.quantity;
-    }
-    coffeeQuantityArea.innerHTML = +coffeeQuantityArea.dataset.quantity - quantityInput.value;
     handingValuation(quantityInput.value);
 }
 

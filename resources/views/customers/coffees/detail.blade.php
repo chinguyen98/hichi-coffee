@@ -59,7 +59,6 @@
                     <span id="btn-quantity-desc" class="quantity-updown text-center">-</span>
                     <input style="width: 4rem;" type="text" name="quantity" class="quantity" value="1" min="1" />
                     <span id="btn-quantity-insc" class="quantity-updown text-center">+</span>
-                    <span>Số lượng còn lại: <span data-quantity="{{$coffee->quantity}}" class="coffeeQuantity">{{$coffee->quantity - 1}}</span></span>
                 </div>
                 <p><a id="btnAddToCart" class="btn btn-lg btn-primary btn-outline-primary mt-4">THÊM VÀO GIỎ</a></p>
             </div>
