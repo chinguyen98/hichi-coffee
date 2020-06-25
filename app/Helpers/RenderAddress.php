@@ -35,4 +35,14 @@ class RenderAddress
 
         return $ward;
     }
+
+    public function getDistrictsFromApi($id_city){
+        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id_city . '/district';
+        $client = new Client();
+
+        $response = $client->request('GET', $url);
+        $city = json_decode($response->getBody(), true);
+
+        return $city;
+    }
 }

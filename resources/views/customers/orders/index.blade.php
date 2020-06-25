@@ -26,6 +26,7 @@
                     <th>Sản phẩm</th>
                     <th>Tổng tiền</th>
                     <th>Trạng thái đơn hàng</th>
+                    <th>Tùy chọn</th>
                 </tr>
 
                 @foreach($orders as $order)

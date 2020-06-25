@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
             if ($guard == "admin") {
                 return redirect()->route('admins.home');
             } else {
-                return redirect()->route('home');
+                return redirect()->route('customers.home');
             }
         }
 
