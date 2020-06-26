@@ -16,7 +16,53 @@
             </div>
         </div>
     </div>
-
 </section>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col col-md-2"></div>
+        <div class="col col-md-10 text-center">
+            <form action="{{route('customers.search.index')}}" method="get">
+                <div class="d-flex justify-content-center align-items-center">
+                    <input type="search" name="ca-phe" id="coffeeName" value="{{$coffeeName ?? ''}}">
+                    <input type="submit" class="btn btn-primary ml-1" value="Tìm kiếm" >
+                </div>
+            </form>
+            <div class="row mt-5 searchResult">
+                @if(isset($searchResult) && count($searchResult)>0)
+
+                @foreach($searchResult as $coffee)
+
+                <div class="col col-md-3 my-2">
+                    <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">
+                        <img src="/apps/images/coffees/{{$coffee->image}}" alt="{{$coffee->name}}">
+                    </a>
+                    <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">
+                        <div class="row">
+                            <div title="{{$coffee->name}}" class="coffeeName col-md-12 text-center text-truncate">
+                                {{$coffee->name}}
+                            </div>
+                        </div>
+                    </a>
+                    <p>{{number_format($coffee->price)}} VNĐ</p>
+                </div>
+
+                @endforeach
+
+                @elseif(isset($searchResult) && count($searchResult)==0)
+
+                <div class="text-center col col-md-12">
+                    <h1>Không tìm thấy sản phẩm phù hợp!</h1>
+                </div>
+
+                @else
+
+                <h1 class="mt-5">Nhập để tìm kiếm</h1>
+
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

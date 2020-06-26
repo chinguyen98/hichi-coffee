@@ -119,6 +119,11 @@
   }
 }
 
+.searchResult img{
+  width: 8rem;
+  height: 8rem;
+}
+
 .successMessage{
   border-left: 1rem solid green;
 }
