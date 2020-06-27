@@ -593,7 +593,7 @@
   transform: translateX(-5em);
   transition: all 0.5s;
   opacity: 0;
-  z-index: 99999999;
+  z-index: -99999999;
 }
 
 .notify--show{

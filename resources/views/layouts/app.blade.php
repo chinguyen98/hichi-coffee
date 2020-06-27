@@ -100,6 +100,12 @@
 
     @endif
 
+    @if(Request::is('search'))
+
+    <script src="/apps/js/handlingSearchCoffeePage.js"></script>
+
+    @endif
+
     <!-- End Embed JS -->
 
     <script>
