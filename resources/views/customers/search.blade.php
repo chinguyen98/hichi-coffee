@@ -68,9 +68,9 @@
                 <h3>Giá</h3>
                 <p>Chọn khoảng giá</p>
                 <div class="d-flex justify-content-around">
-                    <input style="width: 90%;" type="text" name="from">
+                    <input data-price="" style="width: 90%;" type="text" name="from">
                     <span class="mx-1"> - </span>
-                    <input style="width: 90%;" type="text" name="to">
+                    <input data-price="" style="width: 90%;" type="text" name="to">
                 </div>
                 <input class="btn btn-success mt-2" form="searchForm" type="submit" value="OK">
             </div>
