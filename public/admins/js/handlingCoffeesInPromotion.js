@@ -3,8 +3,7 @@ const searchCoffeeInput = document.querySelector('input[name="searchCoffee"]');
 const oldPriceInput = document.querySelector('input[name="oldPrice"]');
 const priceInput = document.querySelector('input[name="price"]');
 const discountInput = document.querySelector('input[name="discount"]');
-const minInput = document.querySelector('input[name="min"]');
-const maxInput = document.querySelector('input[name="max"]');
+const quantityInput = document.querySelector('input[name="quantity"]');
 
 const renderListCoffee = (coffees) => {
     return coffees.map(coffee => {
@@ -39,24 +38,27 @@ const handlingChangeCoffeeInput = () => {
     if (index === -1) return;
 
     const oldPrice = listCoffeeSelect[index].dataset.price;
-    minInput.max = listCoffeeSelect[index].dataset.quantity;
-    maxInput.max = listCoffeeSelect[index].dataset.quantity;
+    quantityInput.max = listCoffeeSelect[index].dataset.quantity;
     oldPriceInput.value = oldPrice;
 }
 
 const renderDiscountPrice = (e) => {
     const percent = e.target.value;
-    if (percent <= 0 || percent > 100 || isNaN(percent)) {
-        alert('Vui lòng nhập lại % khuyến mãi!');
+    if (percent <= 0 || isNaN(percent)) {
+        alert('Vui lòng nhập lại giá khuyến mãi!');
         e.target.value = '';
         return;
+    }
+    if (percent >= +oldPriceInput.value) {
+        discountInput.value = oldPriceInput.value;
+
     }
     if (oldPriceInput.value === '') {
         alert('Vui lòng chọn sản phẩm được khuyến mãi!');
         return;
     }
-    const discpuntPrice = oldPriceInput.value * ((100 - percent) / 100);
-    priceInput.value = discpuntPrice;
+    const discountPrice = oldPriceInput.value - discountInput.value;
+    priceInput.value = discountPrice;
 }
 
 searchCoffeeInput.addEventListener('input', debouce(e => {

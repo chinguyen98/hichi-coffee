@@ -19,7 +19,7 @@ class WareHouseManagementController extends Controller
     {
         $inputs = Input::all();
         return view('admins.warehouseManagement.index')->with([
-            'title' => 'Quản lý kho',
+            'title' => 'QUẢN LÝ KHO',
             'inputs' => $inputs
         ]);
     }
@@ -29,7 +29,7 @@ class WareHouseManagementController extends Controller
         $suppliers = DB::table('suppliers')->get(['id', 'name']);
 
         return view('admins.warehouseManagement.create')->with([
-            'title' => 'Nhập kho',
+            'title' => 'NHẬP KHO',
             'suppliers' => $suppliers,
         ]);
     }
@@ -68,7 +68,7 @@ class WareHouseManagementController extends Controller
         $input = Input::where('id', $id)->first();
 
         return view('admins.warehouseManagement.detail')->with([
-            'title' => 'Chi tiết phiếu nhập',
+            'title' => 'CHI TIẾT PHIẾU NHẬP',
             'input' => $input
         ]);
     }

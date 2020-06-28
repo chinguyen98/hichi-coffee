@@ -61,10 +61,10 @@ Route::group(['prefix' => 'admins'], function () {
 
         Route::group(['prefix' => 'coffees'], function () {
             Route::get('/', 'Admin\CoffeeManagementController@index')->name('admins.manage.coffee.index');
-            Route::get('/create', 'Admin\CoffeeManagementController@create')->name('admins.manage.coffee.create');
-            Route::get('/{id}', 'Admin\CoffeeManagementController@renderUpdateCoffeePage')->name('admins.manage.coffee.renderUpdateCoffeePage');
+            Route::get('/create', 'Admin\CoffeeManagementController@create')->middleware('isSuperAdmin')->name('admins.manage.coffee.create');
+            Route::get('/{id}', 'Admin\CoffeeManagementController@renderUpdateCoffeePage')->middleware('isSuperAdmin')->name('admins.manage.coffee.renderUpdateCoffeePage');
             Route::post('/', 'Admin\CoffeeManagementController@store')->name('admins.manage.coffee.store');
-            Route::put('/{id}', 'Admin\CoffeeManagementController@update')->name('admins.manage.coffee.update');
+            Route::put('/{id}', 'Admin\CoffeeManagementController@update')->middleware('isSuperAdmin')->name('admins.manage.coffee.update');
         });
 
         Route::group(['prefix' => 'warehouse'], function () {
@@ -77,6 +77,15 @@ Route::group(['prefix' => 'admins'], function () {
         Route::group(['prefix' => 'promotion'], function () {
             Route::get('/', 'Admin\PromotionManagementController@index')->name('admins.manage.promotion.index');
             Route::get('/create', 'Admin\PromotionManagementController@create')->name('admins.manage.promotion.create');
+            Route::get('/{id}', 'Admin\PromotionManagementController@detail')->name('admins.manage.promotion.detail');
+            Route::post('/', 'Admin\PromotionManagementController@store')->name('admins.manage.promotion.store');
+        });
+        Route::group(['prefix' => 'checkorder'], function () {
+            Route::get('/', 'Admin\CheckordermangentController@index')->name('admins.manage.checkorder.index');
+        });
+        Route::group(['prefix' => 'order'], function () {
+            Route::get('/', 'Admin\OrdermangentController@index')->name('admins.manage.order.index');
+            Route::get('/{id}', 'Admin\OrdermangentController@detail')->name('admins.manage.order.detail');
         });
 
         Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');

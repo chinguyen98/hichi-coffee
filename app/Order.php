@@ -35,4 +35,12 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class, 'id_order', 'id');
     }
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'id_admin');
+    }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'id_customer');
+    }
 }

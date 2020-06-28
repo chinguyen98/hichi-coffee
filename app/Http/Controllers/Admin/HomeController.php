@@ -15,14 +15,14 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('admins/home')->with(['title' => 'Trang chủ']);
+        return view('admins/home')->with(['title' => 'TRANG CHỦ']);
     }
 
     public function renderAdminManagementPage()
     {
         $admins = Admin::all();
         return view('admins.adminManagement.index')->with([
-            'title' => 'Quản lý quản trị',
+            'title' => 'QUẢN LÝ QUẢN TRỊ',
             'admins' => $admins
         ]);
     }
@@ -32,7 +32,7 @@ class HomeController extends Controller
         $admin = Admin::where('id', $id)->first();
 
         return view('admins.adminManagement.detail')->with([
-            'title' => 'Quản lý quản trị',
+            'title' => 'QUẢN LÝ QUẢN TRỊ',
             'admin' => $admin
         ]);
     }

@@ -1,31 +1,29 @@
 @extends('layouts.adminManage')
 
 @section('content')
-
 <div class="product-status mg-b-30">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h4>DANH SÁCH QUẢN TRỊ</h4>
-                    <div class="add-product">
-                        <a href="{{route('admins.register.show')}}">Đăng Kí</a>
-                    </div>
+                    <h4>DANH SÁCH ĐƠN HÀNG</h4>
                     <table>
                         <tr>
                             <th>MÃ</th>
-                            <th>TÊN QUẢN TRỊ</th>
-                            <th>CHỨC VỤ</th>
-                            <th>NGÀY THAM GIA</th>
+                            <th>TÊN KHÁCH HÀNG</th>
+                            <th>TỔNG TIỀN</th>
+                            <th>NGÀY TẠO</th>
+
                         </tr>
-                        @foreach($admins as $admin)
+                        @foreach($orders as $order)
 
                         <tr>
-                            <td>{{$admin->id}}</td>
-                            <td>{{$admin->name}}</td>
-                            <td>{{$admin->admin_role->name}}</td>
-                            <td>{{$admin->created_at}}</td>
-                            <td><a href="{{route('admins.renderAdminDetailPage', ['id'=>$admin->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden=" true"></i></a></td>
+                            <td>{{$order->id}}</td>
+                            <td>{{$order->customer->name}}</td>
+                            <td><span class="text-danger"><b>{{number_format($order->total_price)}}</b></span></td>
+                            <td>{{date("d/m/Y", strtotime($order->created_at))}}</td>
+                            <td><a href="{{route('admins.manage.order.detail', ['id'=>$order->id])}}" data-toggle="tooltip" title="Xem chi tiết" 
+                            class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden="true"></i></a></td>
                         </tr>
 
                         @endforeach
@@ -44,5 +42,4 @@
         </div>
     </div>
 </div>
-
 @endsection

@@ -2,3 +2,52 @@
   width: 20vw;
   height: 100%;
 }
+
+.popup-flash-mess{
+  width: 30rem;
+  height: 5rem;
+  background-color: rgb(47, 233, 47);
+  position: fixed;
+  z-index: 9999;
+  margin-left: 30%;
+  transform: translateY(-8em);
+  opacity: 0;
+  animation-name: showPopUpFlashMessage;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+  animation-duration: 1.8s;
+}
+
+@keyframes showPopUpFlashMessage{
+  0%  {
+    transform: translateX(-30em);
+    opacity: 0;
+  }
+  50%{
+    transform: translateX(-4em);
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(-4em);
+  }
+}
+
+.spanaa {
+  margin-right: 15px;
+}
+
+.home {
+  width: 15px;
+}
+.order{
+  color: white;
+  margin-left: 15px;
+}
+
+.total{
+  margin-right: 4.5em;
+}
+.center{
+  justify-content: center;
+}

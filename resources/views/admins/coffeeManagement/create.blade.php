@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+
 <div class="single-product-tab-area mg-b-30">
     <!-- Single pro tab review Start-->
     <div class="single-pro-review-area">
@@ -18,7 +20,7 @@
                                             <div class="review-content-section">
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                    <input name="name" type="text" class="form-control" placeholder="Tên sản phẩm" value="{{ old('name') }}">
+                                                    <input name="name" type="text" class="form-control" placeholder="Tên Sản Phẩm" value="{{ old('name') }}">
                                                 </div>
                                                 @error('name')
                                                 @include('inc.admins.errorNotification')
@@ -26,7 +28,7 @@
 
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="fa fa-hourglass-end" aria-hidden="true"></i></span>
-                                                    <input name="expired" type="text" class="form-control" placeholder="Hạn dùng" value="{{ old('expired') }}">
+                                                    <input name="expired" type="text" class="form-control" placeholder="Hạn Sử Dụng" value="{{ old('expired') }}">
                                                 </div>
                                                 @error('expired')
                                                 @include('inc.admins.errorNotification')
@@ -68,8 +70,8 @@
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <select name="status" class="form-control pro-edt-select form-control-primary">
-                                                        <option value="1">Cho phép hiển thị</option>
-                                                        <option value="0">Không cho phép hiển thị</option>
+                                                        <option value="1">Hiện Sản Phẩm</option>
+                                                        <option value="0">Ẩn Sản Phẩm</option>
                                                     </select>
                                                 </div>
                                                 <div class="input-group mg-b-pro-edt">
@@ -108,9 +110,9 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="text-center custom-pro-edt-ds">
-                                                <input type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10 mr-5" value="Tạo sản phẩm">
+                                                <input type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10 mr-5 " style="background: green" value="TẠO SẢN PHẨM">
                                                 </input>
-                                                <input type="reset" class="btn btn-ctl-bt waves-effect waves-light" value="Reset">
+                                                <input type="reset" class="btn btn-ctl-bt waves-effect waves-light" style="background: blue" value="ĐẶT LẠI">
                                                 </input>
                                             </div>
                                         </div>

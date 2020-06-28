@@ -10,8 +10,8 @@
                                     <i class="icon nalika-home"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2>Xin chào {{Auth::user()->name}}</h2>
-                                    <p>Đây là trang {{$title}}</p>
+                                    <h2>Xin Chào {{Auth::user()->name}}</h2>
+                                    <p>Đây Là Trang {{$title}}</p>
                                 </div>
                             </div>
                         </div>

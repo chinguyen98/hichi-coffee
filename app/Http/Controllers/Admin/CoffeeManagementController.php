@@ -19,17 +19,18 @@ class CoffeeManagementController extends Controller
     public function index()
     {
         $coffees = Coffee::all();
-        return view('admins/coffeeManagement/index')->with(['title' => 'Sản phẩm', 'coffees' => $coffees]);;
+        return view('admins/coffeeManagement/index')->with(['title' => 'QUẢN LÝ SẢN PHẨM', 'coffees' => $coffees]);;
     }
 
     public function create()
     {
+        
         $brands = DB::table('brands')->get(['id', 'name']);
         $coffee_types = DB::table('coffee_types')->get(['id', 'name']);
         $units = DB::table('units')->get(['id', 'name', 'dram']);
-
+        
         return view('admins/coffeeManagement/create')->with([
-            'title' => 'Thêm sản phẩm',
+            'title' => 'THÊM SẢN PHẨM',
             'brands' => $brands,
             'coffee_types' => $coffee_types,
             'units' => $units
@@ -81,7 +82,7 @@ class CoffeeManagementController extends Controller
         }
 
 
-        //$request->session()->flash('flash_message', 'Thêm sản phẩm thành công!');
+        $request->session()->flash('flash_message', 'Thêm sản phẩm thành công!');
         return redirect()->route('admins.manage.coffee.create');
     }
 
@@ -93,7 +94,7 @@ class CoffeeManagementController extends Controller
         $units = DB::table('units')->get(['id', 'name', 'dram']);
 
         return view('admins/coffeeManagement/update')->with([
-            'title' => 'Sửa sản phẩm',
+            'title' => 'CẬP NHẬT SẢN PHẨM',
             'coffee' => $coffee,
             'brands' => $brands,
             'coffee_types' => $coffee_types,
@@ -145,8 +146,8 @@ class CoffeeManagementController extends Controller
             $file->move(public_path() . '/apps/images/coffees', $file->getClientOriginalName());
         }
 
-        //$request->session()->flash('flash_message', 'Cập nhật sản phẩm thành công!');
+        $request->session()->flash('flash_message', 'Cập Nhật Sản Phẩm Thành Công!');
 
-        return redirect()->route('admins.manage.coffee.renderUpdateCoffeePage', ['id' => $id]);
+        return redirect()->route('admins.manage.coffee.index', ['id' => $id]);
     }
 }

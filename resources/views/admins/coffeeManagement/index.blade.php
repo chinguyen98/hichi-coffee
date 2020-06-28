@@ -2,25 +2,31 @@
 
 @section('content')
 
+@if ( Session::has('flash_message') )
+
+@include('inc.admins.messageNotification')
+
+@endif
+
 <div class="product-status mg-b-30">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h4>Danh sách sản phẩm</h4>
-                    <div class="add-product">
-                        <a href="{{route('admins.manage.coffee.create')}}">Thêm sản phẩm</a>
+                    <h4 style="color: yellowgreen;">DANH SÁCH SẢN PHẨM</h4>
+                    <div class="add-product" >
+                        <a href="{{route('admins.manage.coffee.create')}}"><b style="color: yellowgreen;">THÊM SẢN PHẨM</b></a>
                     </div>
                     <table>
                         <tr>
-                            <th>Hình ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Trạng thái</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Nhãn hiệu</th>
-                            <th>Loại</th>
-                            <th>Tùy chọn</th>
+                            <th>ẢNH</th>
+                            <th>TÊN SẢN PHẨM</th>
+                            <th>TRẠNG THÁI</th>
+                            <th>GIÁ</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>NHÃN HIỆU</th>
+                            <th>LOẠI</th>
+                            <th>TÙY CHỌN</th>
                         </tr>
                         @foreach($coffees as $coffee)
 
@@ -29,9 +35,9 @@
                             <td>{{$coffee->name}}</td>
                             <td>
                                 @if($coffee->status==1)
-                                <button class="ps-setting">Hiển thị</button>
+                                <button class="ps-setting"><b>Hiển Thị</b></button>
                                 @else
-                                <button class="ds-setting">Ẩn</button>
+                                <button class="ds-setting"><b>Ẩn</b></button>
                                 @endif
                             </td>
                             <td>{{$coffee->price}} VNĐ</td>
@@ -39,8 +45,8 @@
                             <td>{{$coffee->brand->name}}</td>
                             <td>{{$coffee->coffee_type->name}}</td>
                             <td>
-                                <a href="{{route('admins.manage.coffee.renderUpdateCoffeePage', ['id'=>$coffee->id])}}" data-toggle="tooltip" title="Sửa" class="btn pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                <a data-toggle="tooltip" title="Xóa" class="btn pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="{{route('admins.manage.coffee.renderUpdateCoffeePage', ['id'=>$coffee->id])}}" data-toggle="tooltip" title="Cập Nhật" class="btn pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                
                             </td>
                         </tr>
 

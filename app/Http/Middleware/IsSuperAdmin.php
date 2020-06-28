@@ -20,7 +20,12 @@ class IsSuperAdmin
             if ($request->user('admin')->isSuperAdmin()) {
                 return $next($request);
             }
+            else{
+                $request->session()->flash('flash_message', 'Chức Năng Chỉ Dành Cho Supper_Admin !!');
+                return redirect('admins/home');
+            }
         }
+        
         return redirect('admins/login');
     }
 }

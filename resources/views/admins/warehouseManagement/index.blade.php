@@ -7,25 +7,25 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h4>Danh sách phiếu nhập</h4>
+                    <h4 style="color: darkturquoise;">DANH SÁCH PHIẾU NHẬP</h4>
                     <div class="add-product">
-                        <a href="{{route('admins.manage.warehouse.create')}}">Nhập kho</a>
+                        <a href="{{route('admins.manage.warehouse.create')}}"><b style="color: darkturquoise;">NHẬP KHO</b></a>
                     </div>
                     <table>
                         <tr>
-                            <th>Mã hóa đơn</th>
-                            <th>Nhà cung cấp</th>
-                            <th>Nguời duyệt</th>
-                            <th>Ngày nhập kho</th>
+                            <th style="color: lightsalmon;">MÃ HÓA ĐƠN</th>
+                            <th style="color: lightsalmon;">NHÀ CUNG CẤP</th>
+                            <th style="color: lightsalmon;">QUẢN TRỊ DUYỆT</th>
+                            <th style="color: lightsalmon;">NGÀY NHẬP KHO</th>
                         </tr>
                         @foreach($inputs as $input)
 
                         <tr>
                             <td>{{$input->id}}</td>
-                            <td>{{$input->supplier->name}}</td>
+                            <td><a href="{{route('admins.manage.warehouse.renderInputDetailPage', ['id'=>$input->id])}}" title="Xem Chi Tiết">{{$input->supplier->name}}</td></a>
                             <td>{{$input->admin->name}}</td>
-                            <td>{{$input->created_at}}</td>
-                            <td><a href="{{route('admins.manage.warehouse.renderInputDetailPage', ['id'=>$input->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden="true"></i></a></td>
+                            <td>{{date("d/m/Y", strtotime($input->created_at))}}</td>
+                            <td><a href="{{route('admins.manage.warehouse.renderInputDetailPage', ['id'=>$input->id])}}" data-toggle="tooltip" title="Xem Chi Tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden="true"></i></a></td>
                         </tr>
 
                         @endforeach

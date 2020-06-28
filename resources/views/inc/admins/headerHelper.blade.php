@@ -137,7 +137,13 @@
                     </li>
                     <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
                     </li>
-                    <li><a href="login.html"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admins/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            ĐĂNG XUẤT
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </li>
