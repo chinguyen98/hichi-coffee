@@ -20,7 +20,7 @@
 
 <div class="container my-5">
     <div class="row">
-        <div class="col col-md-10 text-center">
+        <div class="col col-md-9 text-center">
             <form id="searchForm" action="{{route('customers.search.index')}}" method="get" onsubmit="return handlingQueryParams()">
                 <div class="d-flex justify-content-center align-items-center">
                     <input type="search" name="ca-phe" id="coffeeName" value="{{$coffeeName ?? ''}}">
@@ -63,7 +63,7 @@
                 @endif
             </div>
         </div>
-        <div class="col col-md-2">
+        <div class="col col-md-3">
             <div class="d-flex flex-column align-items-start">
                 <h3>Giá</h3>
                 <p>Chọn khoảng giá</p>
@@ -71,6 +71,36 @@
                     <input data-price="" style="width: 90%;" type="text" name="from">
                     <span class="mx-1"> - </span>
                     <input data-price="" style="width: 90%;" type="text" name="to">
+                </div>
+                <input class="btn btn-success mt-2" form="searchForm" type="submit" value="OK">
+            </div>
+            <div class="mt-5">
+                <h3>Thương hiệu</h3>
+                <div>
+                    @foreach($brands as $brand)
+
+                    <div>
+                        <input form="searchForm" name="thuong-hieu" id="{{$brand->name}}" type="radio" value="{{$brand->name}}">
+                        <label class="ml-3" for="{{$brand->name}}">{{$brand->name}}</label>
+                    </div>
+
+                    @endforeach
+                </div>
+                <input class="btn btn-success mt-2" form="searchForm" type="submit" value="OK">
+            </div>
+            <div class="mt-5">
+                <h3>Loại</h3>
+                <div>
+                    <!-- <input form="searchForm" name="loai-ca-phe" id="Tatcaloai" type="radio" value="">
+                    <label class="ml-3" for="Tatcaloai">Tất cả</label> -->
+                    @foreach($coffee_types as $coffee_type)
+
+                    <div>
+                        <input form="searchForm" name="loai-ca-phe" id="{{$coffee_type->name}}" type="radio" value="{{$coffee_type->name}}">
+                        <label class="ml-3" for="{{$coffee_type->name}}">{{$coffee_type->name}}</label>
+                    </div>
+
+                    @endforeach
                 </div>
                 <input class="btn btn-success mt-2" form="searchForm" type="submit" value="OK">
             </div>
