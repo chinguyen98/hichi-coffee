@@ -10,4 +10,9 @@ class OrderStatus extends Model
     {
         return $this->belongsTo(Status::class, 'id_status');
     }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'id_order');
+    }
 }

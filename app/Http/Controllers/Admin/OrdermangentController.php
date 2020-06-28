@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 
 class OrdermangentController extends Controller
@@ -13,22 +15,27 @@ class OrdermangentController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index()
+    public function showAllCheckingOrder()
     {
-        $order = Order::all();
-        return view('admins.orderManagement.index')->with([
-            'title' => 'QUẢN LÝ ĐƠN HÀNG',
-            'orders' => $order
-        ]);
-    }
-    public function detail($id)
-    {
-        $order = Order::where('id',$id)->first();
-        
-        return view('admins.orderManagement.detail')->with([
-            'title' =>'CHI TIẾT ĐƠN HÀNG',
-            'order' => $order
+        $orderStatuses = OrderStatus::where('id_status', Status::OrderChecking)->where('is_current', 1)->get();
+
+        return view('admins.orderManagement.allCheckOrder')->with([
+            'title' => 'KIỂM TRA ĐƠN HÀNG',
+            'orderStatuses' => $orderStatuses,
         ]);
     }
 
+    public function showDetailCheckingOrder($id)
+    {
+        $orderStatus = OrderStatus::where('id', $id)->first();
+
+        return view('admins.orderManagement.detailCheckOrder')->with([
+            'title' => 'CHI TIẾT ĐƠN HÀNG',
+            'orderStatus' => $orderStatus,
+        ]);
+    }
+
+    public function updateToReceivedOrder($id){
+        dd($id);
+    }
 }

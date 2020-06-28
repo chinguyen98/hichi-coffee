@@ -69,23 +69,13 @@
                     <li>
                         <a class="has-arrow" href="index.html">
                         <img class="spanaa"  src="/apps/images/icons/order.png" alt="">
-                            <span class="mini-click-non">ĐƠN ĐẶT HÀNG</span>
-                        </a>
-                        <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Xem toàn bộ" href="{{route('admins.manage.checkorder.index')}}"><span class="mini-sub-pro"><i>Xem Đơn Đặt Hàng</i></span></a></li>
-    
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="index.html">
-                        <img class="spanaa"  src="/apps/images/icons/product.png" alt="">
                             <span class="mini-click-non">ĐƠN HÀNG</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Xem toàn bộ" href="{{route('admins.manage.order.index')}}"><span class="mini-sub-pro"><i>Xem Đơn Hàng</i></span></a></li>
-    
+                            <li><a title="Xem toàn bộ" href="{{route('admins.manage.order.check.index')}}"><span class="mini-sub-pro"><i>Kiểm Tra Đặt Hàng</i></span></a></li>
                         </ul>
                     </li>
+                    
                     @if(Auth::user()->id_role==1)
 
                     <li>

@@ -80,12 +80,10 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/{id}', 'Admin\PromotionManagementController@detail')->name('admins.manage.promotion.detail');
             Route::post('/', 'Admin\PromotionManagementController@store')->name('admins.manage.promotion.store');
         });
-        Route::group(['prefix' => 'checkorder'], function () {
-            Route::get('/', 'Admin\CheckordermangentController@index')->name('admins.manage.checkorder.index');
-        });
         Route::group(['prefix' => 'order'], function () {
-            Route::get('/', 'Admin\OrdermangentController@index')->name('admins.manage.order.index');
-            Route::get('/{id}', 'Admin\OrdermangentController@detail')->name('admins.manage.order.detail');
+            Route::get('/check', 'Admin\OrdermangentController@showAllCheckingOrder')->name('admins.manage.order.check.index');
+            Route::get('/check/{id}', 'Admin\OrdermangentController@showDetailCheckingOrder')->name('admins.manage.order.check.show');
+            Route::post('/check/{id}', 'Admin\OrdermangentController@updateToReceivedOrder')->name('admins.manage.order.receive.update');
         });
 
         Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
