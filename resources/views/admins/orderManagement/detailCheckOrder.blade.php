@@ -14,6 +14,7 @@
                     <a class="btn btn-primary" href="{{route('admins.manage.order.check.index')}}">Quay Lại</a>
                     <form action="{{route('admins.manage.order.receive.update',['id'=>$orderStatus->order->id])}}" method="post">
                         @csrf
+                        <label for="note">Ghi chú</label><input type="text" name="note" id="note">
                         <input type="submit" class="btn btn-success text-right" value="Hoàn tất kiểm tra" />
                     </form>
                 </div>

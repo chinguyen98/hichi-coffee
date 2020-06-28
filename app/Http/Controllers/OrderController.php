@@ -58,7 +58,7 @@ class OrderController extends Controller
 
             $id_valuation = null;
             $id_coffee = $cart->id;
-            $coffee = DB::table('coffees')->where('id', $id_coffee)->first(['price', 'name', 'quantity']);
+            $coffee = DB::table('coffees')->where('id', $id_coffee)->first(['price', 'name', 'quantity', 'expected_quantity']);
             $quantity = $cart->qty;
             $totalSubPrice = 0;
             if (property_exists($cart, 'valuation')) {
@@ -96,7 +96,9 @@ class OrderController extends Controller
                 'updated_at' => $updated_at,
             ]);
 
-            DB::table('coffees')->where('id', $id_coffee)->update(['quantity' => $coffee->quantity - $quantity]);
+            DB::table('coffees')->where('id', $id_coffee)->update([
+                'expected_quantity' => $coffee->expected_quantity + $quantity,
+            ]);
         }
 
         $details = [

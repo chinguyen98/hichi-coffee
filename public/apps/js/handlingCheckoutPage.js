@@ -169,7 +169,7 @@ function handingCheckout() {
     totalPriceHiddenInput.value = checkoutFinalTotalPriceArea.dataset.totalPrice;
     shippingHiddenInput.value = document.querySelector('input[name="shipping_infos"]:checked').id;
 
-    localStorage.removeItem('carts');
+    //localStorage.removeItem('carts');
 
     return true;
 }

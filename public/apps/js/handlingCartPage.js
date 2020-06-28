@@ -10,23 +10,23 @@ function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
 }
 
-function checkRemainQuantity(id, quantity) {
-    const remainQuantity = parseInt(cartFromApi.find(item => +item.id === +id).quantity);
-    if (parseInt(quantity) > remainQuantity) {
-        document.querySelector(`input[data-val="${id}"]`).value = remainQuantity;
+// function checkRemainQuantity(id, quantity) {
+//     const remainQuantity = parseInt(cartFromApi.find(item => +item.id === +id).quantity);
+//     if (parseInt(quantity) > remainQuantity) {
+//         document.querySelector(`input[data-val="${id}"]`).value = remainQuantity;
 
-        document.querySelector('.notify').classList.remove('notify--show')
-        document.querySelector('.notity__error').innerHTML = `Sản phẩm này số lượng còn ${remainQuantity}!`;
-        document.querySelector('.notify').classList.add('notify--show');
-        setTimeout(() => {
-            document.querySelector('.notify').classList.remove('notify--show')
-        }, 1500);
+//         document.querySelector('.notify').classList.remove('notify--show')
+//         document.querySelector('.notity__error').innerHTML = `Sản phẩm này số lượng còn ${remainQuantity}!`;
+//         document.querySelector('.notify').classList.add('notify--show');
+//         setTimeout(() => {
+//             document.querySelector('.notify').classList.remove('notify--show')
+//         }, 1500);
 
-        return remainQuantity;
-    }
+//         return remainQuantity;
+//     }
 
-    return quantity;
-}
+//     return quantity;
+// }
 
 async function getCartData() {
     const cartStorage = JSON.parse(localStorage.getItem('carts'));
@@ -136,7 +136,7 @@ function desCartQuantity(id) {
     if (getQuantity <= 0)
         getQuantity = 1;
 
-    cartStorage[index].qty = +checkRemainQuantity(id, getQuantity);
+    cartStorage[index].qty = +getQuantity;
     valueInput.value = cartStorage[index].qty;
 
     const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
@@ -174,7 +174,7 @@ function incCartQuantity(id) {
     if (getQuantity <= 0)
         getQuantity = 1;
 
-    cartStorage[index].qty = +checkRemainQuantity(id, getQuantity);
+    cartStorage[index].qty = +getQuantity;
     valueInput.value = cartStorage[index].qty;
 
     const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
@@ -213,9 +213,7 @@ function valCartQuantity(id) {
     if (valueInput.value <= 0)
         valueInput.value = 1;
 
-
-
-    cartStorage[index].qty = +checkRemainQuantity(id, valueInput.value);
+    cartStorage[index].qty = +valueInput.value;
 
     const arrValuaion = [...document.querySelectorAll(`[data-valuation-container="${id}"] input[name="hidValuation"]`)];
     if (arrValuaion.length !== 0) {

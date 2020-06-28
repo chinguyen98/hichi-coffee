@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/check', 'Admin\OrdermangentController@showAllCheckingOrder')->name('admins.manage.order.check.index');
             Route::get('/check/{id}', 'Admin\OrdermangentController@showDetailCheckingOrder')->name('admins.manage.order.check.show');
             Route::post('/check/{id}', 'Admin\OrdermangentController@updateToReceivedOrder')->name('admins.manage.order.receive.update');
+            Route::get('/ship/{id}', 'Admin\OrdermangentController@showDetailShippingOrder')->name('admins.manage.order.ship.show');
         });
 
         Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
