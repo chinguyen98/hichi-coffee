@@ -35,6 +35,11 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{Auth::user()->name}}" required autocomplete="name">
                             </div>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row">
@@ -46,17 +51,22 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone_number" class="col-md-4 col-form-label text-md-right"> Tên khách hàng </label>
+                            <label for="phone_number" class="col-md-4 col-form-label text-md-right"> Số điện thoại</label>
 
                             <div class="col-md-6">
-                                <input id="phone_number" type="text" class="form-control @error('name') is-invalid @enderror" name="phone_number" value="{{Auth::user()->phone_number}}" disabled>
+                                <input id="phone_number" type="text" class="form-control @error('name') is-invalid @enderror" name="phone_number" value="{{Auth::user()->phone_number}}" {{$haveOrderInProcessing ?  'readonly':''}}>
                             </div>
+                            @error('phone_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="showChangePasswordForm" id="showChangePasswordForm">
+                                    <input class="form-check-input" type="checkbox" name="showChangePasswordForm" id="showChangePasswordForm" checked>
 
                                     <label class="form-check-label" for="showChangePasswordForm">
                                         Thay đổi mật khẩu
@@ -71,6 +81,11 @@
 
                                 <div class="col-md-6">
                                     <input id="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror" name="oldPassword">
+                                    @error('oldPassword')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -79,14 +94,24 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                    @error('password')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="confirmPassword" class="col-md-4 col-form-label text-md-right"> Nhập lại mật khẩu</label>
+                                <label for="password_confirmation" class="col-md-4 col-form-label text-md-right"> Nhập lại mật khẩu</label>
 
                                 <div class="col-md-6">
-                                    <input id="confirmPassword" type="password" class="form-control @error('confirmPassword') is-invalid @enderror" name="confirmPassword">
+                                    <input id="password_confirmation" type="password" class="form-control @error('confirmPassword') is-invalid @enderror" name="password_confirmation">
+                                    @error('password_confirmation')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
