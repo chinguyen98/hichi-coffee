@@ -27,6 +27,11 @@
             <div class="customerForm card">
                 <div class="card-header text-center">
                     <h4>Vui lòng điền đầy đủ thông tin bên dưới:</h4>
+                    <div class="col-md-12 text-center">
+                        <a class="btn btn-link text-success" href="{{route('login')}}">
+                            Đăng nhập bằng tài khoản đã có
+                        </a>
+                    </div>
                 </div>
 
                 <div class="card-body">

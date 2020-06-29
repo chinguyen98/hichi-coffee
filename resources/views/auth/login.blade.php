@@ -78,12 +78,19 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                <!--
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Quên mật khẩu?
-                                    </a>
--->
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Quên mật khẩu?
+                                </a>
+
                                 @endif
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0 mt-3">
+                            <div class="col-md-12 text-center">
+                                <a class="btn btn-link text-success" href="{{route('register')}}">
+                                    Chưa có tài khoản? Đăng ký ngay!
+                                </a>
                             </div>
                         </div>
                     </form>
