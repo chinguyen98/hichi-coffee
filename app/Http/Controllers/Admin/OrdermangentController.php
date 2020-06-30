@@ -59,7 +59,7 @@ class OrdermangentController extends Controller
         ]);
     }
 
-    
+
 
     public function updateToReceivedOrder(Request $request, $id)
     {
@@ -141,6 +141,12 @@ class OrdermangentController extends Controller
             'created_at' => $time,
             'updated_at' => $time,
         ]);
+
+        $order_details = DB::table('order_details')->where('id_order', $id)->get(['quantity', 'id_coffee']);
+        foreach ($order_details as $order_detail) {
+            DB::table('coffees')->where('id', $order_detail->id_coffee)->decrement('quantity', $order_detail->quantity);
+            DB::table('coffees')->where('id', $order_detail->id_coffee)->decrement('expected_quantity', $order_detail->quantity);
+        }
 
         return redirect()->route('admins.manage.order.finish.index');
     }
