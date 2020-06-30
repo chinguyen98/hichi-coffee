@@ -82,20 +82,20 @@ Route::group(['prefix' => 'admins'], function () {
         });
         Route::group(['prefix' => 'order'], function () {
             Route::get('/check', 'Admin\OrdermangentController@showAllCheckingOrder')->name('admins.manage.order.check.index');
-            Route::get('/check/{id}', 'Admin\OrdermangentController@showDetailCheckingOrder')->name('admins.manage.order.check.show');
+            Route::get('/check/{id}', 'Admin\OrdermangentController@showDetailCheckingOrder')->name('admins.manage.order.check.show')->middleware('checkOrderStatus:1');
             Route::post('/check/{id}', 'Admin\OrdermangentController@updateToReceivedOrder')->name('admins.manage.order.receive.update');
 
             Route::get('/received', 'Admin\OrdermangentController@showAllReceivedOrder')->name('admins.manage.order.receive.index');
-            Route::get('/received/{id}', 'Admin\OrdermangentController@showDetailReceiveOrder')->name('admins.manage.order.receive.show');
+            Route::get('/received/{id}', 'Admin\OrdermangentController@showDetailReceiveOrder')->name('admins.manage.order.receive.show')->middleware('checkOrderStatus:2');
             Route::post('/received', 'Admin\OrdermangentController@addCoffeeForOrder')->name('admins.manage.order.receive.addCoffee');
             Route::post('/receive/{id}', 'Admin\OrdermangentController@updateToShipOrder')->name('admins.manage.order.ship.update');
-            
+
             Route::get('/ship', 'Admin\OrdermangentController@showAllShipOrder')->name('admins.manage.order.ship.index');
-            Route::get('/ship/{id}', 'Admin\OrdermangentController@showDetailShippingOrder')->name('admins.manage.order.ship.show');
+            Route::get('/ship/{id}', 'Admin\OrdermangentController@showDetailShippingOrder')->name('admins.manage.order.ship.show')->middleware('checkOrderStatus:3');
             Route::post('/ship/{id}', 'Admin\OrdermangentController@updateToFinishOrder')->name('admins.manage.order.finish.update');
 
             Route::get('/finish', 'Admin\OrdermangentController@showAllFinishOrder')->name('admins.manage.order.finish.index');
-            Route::get('/finish/{id}', 'Admin\OrdermangentController@showDetailFinishOrder')->name('admins.manage.order.finish.show');
+            Route::get('/finish/{id}', 'Admin\OrdermangentController@showDetailFinishOrder')->name('admins.manage.order.finish.show')->middleware('checkOrderStatus:4');
         });
 
         Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
