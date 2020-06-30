@@ -92,7 +92,7 @@ class OrdermangentController extends Controller
                 'updated_at' => $time,
             ]);
 
-            return redirect()->route('admins.manage.order.ship.show', ['id' => $idShipOrder]);
+            return redirect()->route('admins.manage.order.ship.show', ['id' => $id]);
         } else {
             /* Can nhap kho */
             DB::table('order_statuses')->where('id_order', $id)->update(['is_current' => 0]);
@@ -105,7 +105,7 @@ class OrdermangentController extends Controller
                 'updated_at' => $time,
             ]);
 
-            return redirect()->route('admins.manage.order.receive.show', ['id' => $idReceiveOrder]);
+            return redirect()->route('admins.manage.order.receive.show', ['id' => $id]);
         }
     }
 
@@ -124,7 +124,7 @@ class OrdermangentController extends Controller
             'updated_at' => $time,
         ]);
 
-        return redirect()->route('admins.manage.order.ship.show', ['id' => $idShipOrder]);
+        return redirect()->route('admins.manage.order.ship.show', ['id' => $id]);
     }
 
     public function updateToFinishOrder(Request $request, $id)
@@ -153,7 +153,7 @@ class OrdermangentController extends Controller
 
     public function showDetailCheckingOrder($id)
     {
-        $orderStatus = OrderStatus::where('id', $id)->first();
+        $orderStatus = OrderStatus::where('id_order', $id)->where('is_current', 1)->first();
 
         return view('admins.orderManagement.detailCheckOrder')->with([
             'title' => 'CHI TIẾT ĐƠN HÀNG',
@@ -163,7 +163,7 @@ class OrdermangentController extends Controller
 
     public function showDetailReceiveOrder($id)
     {
-        $orderStatus = OrderStatus::where('id', $id)->first();
+        $orderStatus = OrderStatus::where('id_order', $id)->where('is_current', 1)->first();
         $suppliers = Supplier::all();
         $needMoreCoffee = [];
 
@@ -195,7 +195,7 @@ class OrdermangentController extends Controller
 
     public function showDetailShippingOrder($id)
     {
-        $orderStatus = OrderStatus::where('id', $id)->first();
+        $orderStatus = OrderStatus::where('id_order', $id)->where('is_current', 1)->first();
 
         return view('admins.orderManagement.detailShipOrder')->with([
             'title' => 'CHI TIẾT GIAO HÀNG',
@@ -205,7 +205,7 @@ class OrdermangentController extends Controller
 
     public function showDetailFinishOrder($id)
     {
-        $orderStatus = OrderStatus::where('id', $id)->first();
+        $orderStatus = OrderStatus::where('id_order', $id)->where('is_current', 1)->first();
 
         return view('admins.orderManagement.detailFinishOrder')->with([
             'title' => 'CHI TIẾT HOÀN THÀNH',

@@ -22,7 +22,7 @@
                             <td><a href="">{{$orderStatus->order->customer->name}}</a></td>
                             <td>{{$orderStatus->order->customer_address->full_address}}</td>
                             <td>{{$orderStatus->order->customer->phone_number}}</td>
-                            <td><a href="{{route('admins.manage.order.check.show', ['id'=>$orderStatus->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden=" true"></i></a></td>
+                            <td><a href="{{route('admins.manage.order.check.show', ['id'=>$orderStatus->order->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden=" true"></i></a></td>
                         </tr>
 
                         @endforeach

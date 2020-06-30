@@ -49,11 +49,15 @@
 
             @endif
 
+            @if(count($needMoreCoffee)==0)
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
                     <h1>Đơn hàng đã sẵn sàng để giao</h1>   
                 </div>
             </div>
+
+            @endif
 
             @include('inc.admins.orderStatusDetail')
 
