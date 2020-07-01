@@ -30,6 +30,10 @@
             <div class="row mt-5 searchResult">
                 @if(isset($searchResult) && count($searchResult)>0)
 
+                <div class="text-center col col-md-12">
+                    <h1 class="text-primary">Đã tìm thấy {{count($searchResult)}} sản phẩm</h1>
+                </div>
+
                 @foreach($searchResult as $coffee)
 
                 <div class="col col-md-3 my-2">
@@ -65,6 +69,20 @@
         </div>
         <div class="col col-md-3">
             <div class="d-flex flex-column align-items-start">
+                <div class="d-flex">
+                    <label class="text-white mr-4" for="sort">
+                        <h4>Lọc: </h4>
+                    </label>
+                    <select class="mb-3" form="searchForm" name="sortTitle" id="sort">
+                        <option value="name">Tên sản phẩm</option>
+                        <option value="price">Giá</option>
+                    </select>
+                    <select class="mb-3 ml-3" form="searchForm" name="sortValue" id="sort">
+                        <option value="asc">Tăng dần</option>
+                        <option value="desc">Giảm dần</option>
+                    </select>
+                </div>
+                <input class="btn btn-success mb-4" form="searchForm" type="submit" value="OK">
                 <h3>Giá</h3>
                 <p>Chọn khoảng giá</p>
                 <div class="d-flex justify-content-around">

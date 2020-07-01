@@ -16,6 +16,8 @@ class SearchController extends Controller
         $coffeeTypeName = $request->query('loai-ca-phe');
         $from = $request->query('from') == null ? 0 : implode(explode(',', $request->query('from')));
         $to =  $request->query('to') == null ? 0 : implode(explode(',', $request->query('to')));
+        $sortTitle = $request->query('sortTitle');
+        $sortValue = $request->query('sortValue');
 
         $brands = DB::table('brands')->get(['name']);
         $coffeeTypes = DB::table('coffee_types')->get(['name']);
@@ -62,6 +64,14 @@ class SearchController extends Controller
             $str = $fulltextsearch->fullTextWildcards($coffeeName);
             $query = $query->whereRaw('MATCH (coffees.name) AGAINST (?)', array($str))
                 ->orWhere('coffees.name', 'like', '%' . $coffeeName . '%');
+        }
+
+        try {
+            if ($sortValue != null && $sortTitle != null) {
+                $query = $query->orderBy($sortTitle, $sortValue);
+            }
+        } catch (\Exception $e) {
+            $query = $query->orderBy('price', 'asc');
         }
 
         $searchResult = $query->get(['coffees.name', 'coffees.price', 'coffees.image', 'coffees.slug']);
