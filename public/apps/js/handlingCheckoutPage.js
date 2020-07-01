@@ -102,12 +102,12 @@ async function renderCart() {
     const data = await fetch(`/api/carts/${cartIdList}`).then(res => res.json());
     let district = null;
 
-    if (hiddenShippingAddressArea === null) {
-        checkoutInfoAddressNotifyArea.innerHTML = 'Sản phẩm chi giao trong khu vực TPHCM! <br /> Vui lòng nhập địa chỉ khác.';
-    } else {
-        district = await fetch(`/api/districts/${hiddenShippingAddressArea.value}`).then(res => res.json());
-        checkoutDistrictLabelArea.innerHTML = district.Title;
-    }
+    // if (hiddenShippingAddressArea === null) {
+    //     checkoutInfoAddressNotifyArea.innerHTML = 'Sản phẩm chi giao trong khu vực TPHCM! <br /> Vui lòng nhập địa chỉ khác.';
+    // } else {
+    //     district = await fetch(`/api/districts/${hiddenShippingAddressArea.value}`).then(res => res.json());
+    //     checkoutDistrictLabelArea.innerHTML = district.Title;
+    // }
 
     const exportCartHtml = data.map((cart) => {
         return `
@@ -149,9 +149,9 @@ async function renderCart() {
     oldPriceArea.innerHTML = formatPrice(oldPrice);
 
     renderDistrictsSelectInfo();
-    if (showChangeAddressFormBtn !== null) {
-        renderChangeAddressForm();
-    }
+    // if (showChangeAddressFormBtn !== null) {
+    //     renderChangeAddressForm();
+    // }
 }
 
 function renderShippingAndTotalPrice(e) {

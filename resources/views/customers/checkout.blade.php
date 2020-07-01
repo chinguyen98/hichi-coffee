@@ -39,7 +39,17 @@
                         <div class="checkout-info border">
                             <h3 class="checkout-info__name text-info">{{Auth::user()->name}}</h3>
                             <h5 class="checkout-info__phone text-left ml-2 ">Số điện thoại: {{Auth::user()->phone_number}}</h5>
-                            <h5 class="checkout-info__address text-left ml-2 combinedAddress"></h5>
+                            
+                            @if($customer_address->id_city == 14)
+
+                            <h5 class="checkout-info__address text-left ml-2 combinedAddress">Địa chỉ: {{$customer_address->full_address}}</h5>
+
+                            @else
+
+                            <h5 class="text-danger">Sản phẩm chi giao trong khu vực TPHCM! <br /> Vui lòng nhập địa chỉ khác.</h5>
+
+                            @endif
+
                             <h5 class="checkout-info__address-notify text-danger"></h5>
                             <h5 class="checkout-info__email text-left ml-2 ">Địa chỉ email: {{Auth::user()->email}}</h5>
                         </div>
@@ -84,12 +94,15 @@
                             <div id="changeAddressFormSubmmit">
                                 @foreach($customer_addresses as $address)
 
-                                <div data-address="{{$address->id}}" class="changeAddressFormDetail">
+                                <input type="radio" form="submitChange" name="addressOfChanging" value="{{$address->id}}" id="address-{{$address->id}}" {{$address->is_current == 1 ? 'checked' : ''}}>
+                                <label for="address-{{$address->id}}">{{$address->full_address}}</label><br>
+
+                                <!-- <div data-address="{{$address->id}}" class="changeAddressFormDetail">
                                     <input type="hidden" name="id_city" value="{{$address->id_city}}">
                                     <input type="hidden" name="id_district" value="{{$address->id_district}}">
                                     <input type="hidden" name="id_ward" value="{{$address->id_ward}}">
                                     <input type="hidden" name="address" value="{{$address->address}}">
-                                </div>
+                                </div> -->
 
                                 @endforeach
                             </div>
@@ -153,8 +166,11 @@
                             <div class="d-flex flex-row justify-content-between">
                                 @if($shipping_address != '')
 
-                                <p>Phí vận chuyển đến <span class="checkout-district-label"></span>:</p>
+                                <p>Phí vận chuyển đến {{$shipping_address->address}}:</p>
                                 <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} VNĐ</p>
+
+                                <!-- <p>Phí vận chuyển đến <span class="checkout-district-label"></span>:</p>
+                                <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} VNĐ</p> -->
 
                                 @else
 

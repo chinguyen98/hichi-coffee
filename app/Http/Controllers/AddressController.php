@@ -59,6 +59,7 @@ class AddressController extends Controller
             'is_current' => 1
         ]);
 
+        $request->session()->flash('success_message', 'Thay đổi địa chỉ giao hàng thành công!');
         return redirect(url()->previous());
     }
 }
