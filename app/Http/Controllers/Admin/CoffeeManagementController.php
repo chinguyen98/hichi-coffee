@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Coffee;
-use App\Helpers\CoffeeSlug;
+use App\Helpers\Slug;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +39,7 @@ class CoffeeManagementController extends Controller
 
     public function store(Request $request)
     {
-        $coffeeSlug = new CoffeeSlug();
+        $coffeeSlug = new Slug();
 
         $request->validate([
             'name' => 'required|max:255',
@@ -104,7 +104,7 @@ class CoffeeManagementController extends Controller
 
     public function update(Request $request, $id)
     {
-        $coffeeSlug = new CoffeeSlug();
+        $coffeeSlug = new Slug();
 
         $request->validate([
             'name' => 'required|max:255',

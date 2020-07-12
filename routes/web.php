@@ -99,9 +99,10 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/finish/{id}', 'Admin\OrdermangentController@showDetailFinishOrder')->name('admins.manage.order.finish.show')->middleware('checkOrderStatus:4');
         });
 
-        Route::group(['prefix'=>'news'], function(){
+        Route::group(['prefix' => 'news'], function () {
             Route::get('/', 'Admin\NewsManagementController@index')->name('admins.manage.news.index');
             Route::get('/create', 'Admin\NewsManagementController@create')->name('admins.manage.news.create');
+            Route::post('/create', 'Admin\NewsManagementController@store')->name('admins.manage.news.store');
         });
 
         Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
