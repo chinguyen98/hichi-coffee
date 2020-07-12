@@ -31,6 +31,11 @@ Route::get('/checkout', 'CheckoutController@renderCheckoutPage')->name('customer
 
 Route::get('/search', 'SearchController@index')->name('customers.search.index');
 
+Route::group(['prefix' => 'news'], function () {
+    Route::get('/', 'NewsController@index')->name('customers.news.index');
+    Route::get('/{slug}', 'NewsController@show')->name('customers.news.show');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'orders', 'middleware' => ['verified']], function () {

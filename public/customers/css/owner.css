@@ -15,6 +15,10 @@
   font-size: 1.5rem;
 }
 
+/* News */
+
+
+
 /* Owl Carosel*/
 .owl-prev, .owl-next{
   border: 1px solid #c49b63 !important;
@@ -432,7 +436,8 @@
 
 /*Page tin tuc*/
 .newsimage {
-  width: 20rem !important;
+  width: 12rem !important;
+  height: 12rem !important;
   padding-left: 3em;
   padding-bottom: 3em;
 }
