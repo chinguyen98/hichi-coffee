@@ -62,8 +62,9 @@ class SearchController extends Controller
         if ($coffeeName != null) {
             $fulltextsearch = new FulltextSearch();
             $str = $fulltextsearch->fullTextWildcards($coffeeName);
-            $query = $query->whereRaw('MATCH (coffees.name) AGAINST (?)', array($str))
-                ->orWhere('coffees.name', 'like', '%' . $coffeeName . '%');
+            $query = $query
+                ->where('coffees.name', 'like', '%' . $coffeeName . '%')
+                ->orWhereRaw('MATCH (coffees.name) AGAINST (?)', array($str));
         }
 
         try {

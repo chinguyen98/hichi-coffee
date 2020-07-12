@@ -1,5 +1,7 @@
 const fromInput = document.querySelector('input[name="from"]');
 const toInput = document.querySelector('input[name="to"]');
+const moreFilterArea = document.querySelector('.moreFilter');
+const moreFilterBtn = document.querySelector('.moreFilterBtn');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
@@ -28,3 +30,7 @@ fromInput.addEventListener('input', (e) => {
 toInput.addEventListener('input', (e) => {
     toInput.value = formatPrice(e.target.value.split(',').join(''));
 });
+moreFilterBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    moreFilterArea.classList.contains('d-none') ? moreFilterArea.classList.remove('d-none') : moreFilterArea.classList.add('d-none');
+})
