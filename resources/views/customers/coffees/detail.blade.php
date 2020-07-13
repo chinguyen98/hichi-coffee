@@ -137,11 +137,11 @@
                         </div>
                     </div>
                     <div><p class="text-danger ml-3 rating-err"></p></div>
-                    <div class="col col-md-12 my-4">
+                    <div class="col col-md-12 mb-4">
                         <div>2. Tiêu đề của nhận xét:</div>
                         <input style="width: 100%;" class="mt-3" type="text" name="commentTitle" placeholder="Nhập tiêu đề nhận xét (Không bắt buộc)">
                     </div>
-                    <div class="col col-md-12 my-4">
+                    <div class="col col-md-12 mb-4">
                         <div>3. Viết nhận xét của bạn vào bên dưới:</div>
                         <textarea class="mt-3" name="commentContent" style="width: 100%;" rows="5" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
                         <div><p class="text-danger commentContent-err"></p></div>
@@ -150,11 +150,12 @@
                         <div>4. Thêm hình sản phẩm nếu có (Tối đa 5 hình)</div>
                         <input type="file" name="commentImage" id="commentImage" multiple class="commentImage">
                         <label for="commentImage">Chọn hình</label>
+                        <div><p class="text-danger mt-2 commentImage-err"></p></div>
                     </div>
                     <div class="col col-md-12 previewImageArea">
-                        
+
                     </div>
-                    <div class="col col-md-12 commentImageArea mt-5">
+                    <div class="col col-md-12 commentImageArea mt-3">
                         <button style="font-size: 1.2rem;" class="addCommentBtn btn btn-primary">Gửi nhận xét</button>
                     </div>
                 </div>
