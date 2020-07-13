@@ -25,7 +25,7 @@ function validateForm(rating, content) {
     return flag;
 }
 
-function handlingAddNewComment() {
+async function handlingAddNewComment() {
     const rating = document.querySelector('#rating input[type="radio"]:checked')?.value;
     const title = commentTitleInput.value;
     const content = commentContentInput.value;
@@ -45,6 +45,17 @@ function handlingAddNewComment() {
     for (let i of formData) {
         console.log(i)
     }
+
+    const data = await fetch('/api/comments', {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: formData,
+        headers:{
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        }
+    }).then(res => res.json()).then(dataJson => dataJson);
+
+    console.log(data);
 }
 
 function handlingPreviewImage() {

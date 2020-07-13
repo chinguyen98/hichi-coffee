@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    //
+    public function storeCoffeeRatingComment()
+    {
+        return response()->json('OK');
+    }
 }
