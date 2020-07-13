@@ -106,6 +106,13 @@
 
     @endif
 
+    @if(Request::route()->getName()==='customer.coffees.show')
+
+    <script src="/apps/js/handlingCoffeeDetailPage.js"></script>
+    <script src="/apps/js/handlingCustomerComment.js"></script>
+
+    @endif
+
     <!-- End Embed JS -->
 
     <script>

@@ -93,8 +93,85 @@
         </div>
         <input type="hidden" name="hidId" value="{{$coffee->id}}">
     </div>
-</div>
 
-<script src="/apps/js/handlingCoffeeDetailPage.js"></script>
+    <div class="mt-5">
+        <h1>Khách hàng nhận xét: </h1>
+        <div class="row">
+            <div class="col col-md-4">
+                <p>Đánh giả trung bình</p>
+            </div>
+            <div class="col col-md-4">
+
+            </div>
+            <div class="col col-md-4 text-center">
+                <p>Chia sẻ nhận xét về sản phẩm</p>
+                <button class="btn btn-primary writeCommentBtn">Viết nhận xét của bạn</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 writeCommentArea">
+        <h3 class="text-primary">Gửi nhận xét của bạn:</h3>
+        <div class="row">
+            <div class="col col-md-6">
+                <div class="row">
+                    <div class="col col-md-12 d-flex flex-row align-items-center">
+                        <div>1. Đánh giá sản phẩm này:</div>
+                        <div class="ml-4">
+                            <div id="rating">
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
+
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label class="full" for="star4" title="Tốt - 4 sao"></label>
+
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label class="full" for="star3" title="Tạm tạm - 3 sao"></label>
+
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label class="full" for="star2" title="Tệ - 2 sao"></label>
+
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label class="full" for="star1" title="Không còn gì để nói - 1 sao"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div><p class="text-danger ml-3 rating-err"></p></div>
+                    <div class="col col-md-12 my-4">
+                        <div>2. Tiêu đề của nhận xét:</div>
+                        <input style="width: 100%;" class="mt-3" type="text" name="commentTitle" placeholder="Nhập tiêu đề nhận xét (Không bắt buộc)">
+                    </div>
+                    <div class="col col-md-12 my-4">
+                        <div>3. Viết nhận xét của bạn vào bên dưới:</div>
+                        <textarea class="mt-3" name="commentContent" style="width: 100%;" rows="5" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
+                        <div><p class="text-danger commentContent-err"></p></div>
+                    </div>
+                    <div class="col col-md-12 commentImageArea">
+                        <div>4. Thêm hình sản phẩm nếu có (Tối đa 5 hình)</div>
+                        <input type="file" name="commentImage" id="commentImage" multiple class="commentImage">
+                        <label for="commentImage">Chọn hình</label>
+                    </div>
+                    <div class="col col-md-12 previewImageArea">
+                        
+                    </div>
+                    <div class="col col-md-12 commentImageArea mt-5">
+                        <button style="font-size: 1.2rem;" class="addCommentBtn btn btn-primary">Gửi nhận xét</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-6">
+                <div class="row">
+                    <div class="col col-md-4">
+                        <img width="100%" src="/apps/images/coffees/{{$coffee->image}}" alt="">
+                    </div>
+                    <div class="col col-md-8">
+                        <h4 class="text-primary">{{$coffee->name}}</h4>
+                        <h5>Nhãn hiệu: {{$coffee->brand->name}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

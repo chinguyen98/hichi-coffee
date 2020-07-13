@@ -120,6 +120,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/cities/{id}/districts', 'Api\CityController@getDistrictsByCityId');
     Route::get('/districts/{id}/wards', 'Api\DistrictController@getWardsByDistrictsId');
     Route::get('/carts/{listCoffeeId}', 'Api\CartController@getCart');
+    
 });
 
 /* User Routes */
