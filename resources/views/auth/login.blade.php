@@ -73,7 +73,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" onclick="return setPreviousUrl()" class="btn btn-primary">
                                     Đăng nhập
                                 </button>
 
@@ -86,6 +86,9 @@
                                 @endif
                             </div>
                         </div>
+
+                        <input type="hidden" name="previousUrl" value="">
+
                         <div class="form-group row mb-0 mt-3">
                             <div class="col-md-12 text-center">
                                 <a class="btn btn-link text-success" href="{{route('register')}}">
@@ -99,6 +102,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    function setPreviousUrl() {
+        const url = localStorage.getItem('previousUrl');
+        console.log(url)
+        document.querySelector('input[name="previousUrl"]').value = url;
+        return true;
+    }
+</script>
 
 <br>
 @endsection

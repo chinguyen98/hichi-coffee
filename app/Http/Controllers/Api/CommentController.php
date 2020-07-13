@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function storeCoffeeRatingComment()
+
+    public function storeCoffeeRatingComment(Request $request)
     {
-        return response()->json('OK');
+        $title = $request->title;
+        $content = $request->content;
+        $rating = $request->rating;
+
+        return response()->json('123');
     }
 }

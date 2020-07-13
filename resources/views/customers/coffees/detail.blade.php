@@ -105,10 +105,24 @@
             </div>
             <div class="col col-md-4 text-center">
                 <p>Chia sẻ nhận xét về sản phẩm</p>
+
+                @guest
+
+                <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary">Vui lòng đăng nhập để viết đánh giá</a>
+
+                @else
+
                 <button class="btn btn-primary writeCommentBtn">Viết nhận xét của bạn</button>
+
+                @endguest
+
             </div>
         </div>
     </div>
+
+    @guest
+
+    @else
 
     <div class="mt-5 writeCommentArea">
         <h3 class="text-primary">Gửi nhận xét của bạn:</h3>
@@ -136,7 +150,9 @@
                             </div>
                         </div>
                     </div>
-                    <div><p class="text-danger ml-3 rating-err"></p></div>
+                    <div>
+                        <p class="text-danger ml-3 rating-err"></p>
+                    </div>
                     <div class="col col-md-12 mb-4">
                         <div>2. Tiêu đề của nhận xét:</div>
                         <input style="width: 100%;" class="mt-3" type="text" name="commentTitle" placeholder="Nhập tiêu đề nhận xét (Không bắt buộc)">
@@ -144,13 +160,17 @@
                     <div class="col col-md-12 mb-4">
                         <div>3. Viết nhận xét của bạn vào bên dưới:</div>
                         <textarea class="mt-3" name="commentContent" style="width: 100%;" rows="5" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
-                        <div><p class="text-danger commentContent-err"></p></div>
+                        <div>
+                            <p class="text-danger commentContent-err"></p>
+                        </div>
                     </div>
                     <div class="col col-md-12 commentImageArea">
                         <div>4. Thêm hình sản phẩm nếu có (Tối đa 5 hình)</div>
                         <input type="file" name="commentImage" id="commentImage" multiple class="commentImage">
                         <label for="commentImage">Chọn hình</label>
-                        <div><p class="text-danger mt-2 commentImage-err"></p></div>
+                        <div>
+                            <p class="text-danger mt-2 commentImage-err"></p>
+                        </div>
                     </div>
                     <div class="col col-md-12 previewImageArea">
 
@@ -171,8 +191,13 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <input type="hidden" name="commentCoffeeId" value="{{$coffee->id}}">
+            </div>
         </div>
     </div>
+
+    @endguest
 </div>
 
 @endsection

@@ -108,7 +108,12 @@ function handlingPreviewImage() {
     }
 }
 
-writeCommentBtn.addEventListener('click', () => {
+function setPreviousUrl(){
+    localStorage.setItem('previousUrl', window.location.pathname);
+    return true;
+}
+
+writeCommentBtn !== null && writeCommentBtn.addEventListener('click', () => {
     writeCommentArea.classList.contains('d-none') ? writeCommentArea.classList.remove('d-none') : writeCommentArea.classList.add('d-none');
 });
 
@@ -116,5 +121,5 @@ writeCommentBtn.addEventListener('click', () => {
 //     ratingStarItem.addEventListener('click', (e) => { alert(e.target.value) });
 // });
 
-addCommentBtn.addEventListener('click', handlingAddNewComment);
-commentImageInput.addEventListener('change', handlingPreviewImage);
+addCommentBtn !== null && addCommentBtn.addEventListener('click', handlingAddNewComment);
+commentImageInput !== null && commentImageInput.addEventListener('change', handlingPreviewImage);
