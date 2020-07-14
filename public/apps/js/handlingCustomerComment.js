@@ -47,9 +47,9 @@ async function handlingAddNewComment() {
         formData.append('image[]', image);
     });
 
-    for (let i of formData) {
-        console.log(i)
-    }
+    // for (let i of formData) {
+    //     console.log(i)
+    // }
 
     const data = await fetch('/api/comments', {
         method: 'POST',
@@ -63,6 +63,7 @@ async function handlingAddNewComment() {
     writeCommentArea.innerHTML = '';
     document.querySelector('.writeYourComment').innerHTML = '<h1 class="text-center text-danger">Cảm ơn bạn đã đánh giá sản phẩm!</h1>';
     document.querySelector('#flag').scrollIntoView(true);
+    //console.log(data);
 }
 
 function handlingPreviewImage() {

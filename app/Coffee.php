@@ -24,7 +24,7 @@ class Coffee extends Model
 
     public function coffee_comments()
     {
-        return $this->hasMany(CoffeeComment::class, 'id_coffee', 'id')->orderByDesc('created_at');
+        return $this->hasMany(CoffeeComment::class, 'id_coffee', 'id')->orderByDesc('updated_at');
     }
 
     public function avgRating()

@@ -192,7 +192,8 @@
             <div class="col col-md-4 text-center">
                 @guest
 
-                <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary">Vui lòng đăng nhập để viết đánh giá</a>
+                <h3 class="text-danger">Bạn cần đăng nhập để đánh giá sản phẩm này</h3>
+                <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary mt-2">Đăng nhập ngay!</a>
 
                 @else
 
@@ -205,8 +206,10 @@
                 </div>
 
                 @else
-
-                <h1 class="text-danger">Bạn đã đánh giá sản phẩm này</h1>
+                <div class="writeYourComment">
+                    <h1 class="text-danger">Bạn đã đánh giá sản phẩm này</h1>
+                    <button class="btn btn-primary writeCommentBtn">Đánh giá lại</button>
+                </div>
 
                 @endif
 
@@ -219,7 +222,6 @@
 
     @else
 
-    @if(!$coffee->haveComment(Auth::user()->id))
     <div class="mt-5 writeCommentArea d-none">
         <h3 class="text-primary">Gửi nhận xét của bạn:</h3>
         <div class="row">
@@ -293,8 +295,6 @@
         </div>
     </div>
 
-    @endif
-
     @endguest
 
     <div class="mt-5">
@@ -336,7 +336,7 @@
 
                 @foreach($coffee_comment->images as $image)
 
-                <img src="/apps/images/comments/{{$image->name}}" alt="">
+                <img class="mr-3" src="/apps/images/comments/{{$image->name}}" alt="">
 
                 @endforeach
 

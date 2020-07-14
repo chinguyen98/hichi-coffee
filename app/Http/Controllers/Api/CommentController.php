@@ -27,16 +27,56 @@ class CommentController extends Controller
         $images = $request->image;
         $now = now();
 
-        $id_coffee_comments = DB::table('coffee_comments')->insertGetId([
-            'title' => $title,
-            'content' => $content,
-            'rating' => $rating,
-            'status' => 1,
-            'id_coffee' => $id_coffee,
-            'id_customer' => $id_customer,
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
+        $comments = CoffeeComment::where('id_customer', $id_customer)->get();
+
+        if (count($comments) == 0) {
+            $id_coffee_comments = DB::table('coffee_comments')->insertGetId([
+                'title' => $title,
+                'content' => $content,
+                'rating' => $rating,
+                'status' => 1,
+                'id_coffee' => $id_coffee,
+                'id_customer' => $id_customer,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ]);
+
+            if ($images != null) {
+                $listImagesToDb = [];
+                foreach ($images as $image) {
+                    $imageName = 'commentImg_' . Uuid::generate() . '.jpeg';
+                    Storage::disk('comment_image')->put($imageName, file_get_contents($image));
+
+                    $listImagesToDb[] = [
+                        'name' => $imageName,
+                        'id_comment' => $id_coffee_comments,
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ];
+                }
+                DB::table('coffee_comment_images')->insert($listImagesToDb);
+            }
+            return response()->json('OK');
+        }
+
+        /* Update Comment */
+
+        $coffee_comment = CoffeeComment::where('id_customer', $id_customer)->first();
+        $coffee_comment->title = $title;
+        $coffee_comment->content = $content;
+        $coffee_comment->rating = $rating;
+        $coffee_comment->status = 1;
+        $coffee_comment->updated_at = $now;
+        $coffee_comment->save();
+
+
+        $listOldImage = DB::table('coffee_comment_images')->where('id_comment', $coffee_comment->id)->get();
+        if (count($listOldImage) > 0) {
+            foreach ($listOldImage as $image) {
+                Storage::disk('comment_image')->delete($image->name);
+            }
+        }
+        DB::table('coffee_comment_images')->where('id_comment', $coffee_comment->id)->delete();
 
         if ($images != null) {
             $listImagesToDb = [];
@@ -46,7 +86,7 @@ class CommentController extends Controller
 
                 $listImagesToDb[] = [
                     'name' => $imageName,
-                    'id_comment' => $id_coffee_comments,
+                    'id_comment' => $coffee_comment->id,
                     'created_at' => $now,
                     'updated_at' => $now,
                 ];
@@ -54,6 +94,6 @@ class CommentController extends Controller
             DB::table('coffee_comment_images')->insert($listImagesToDb);
         }
 
-        return response()->json('Bình luận thành công!');
+        return response()->json('OK');
     }
 }
