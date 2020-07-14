@@ -59,7 +59,9 @@ async function handlingAddNewComment() {
         }
     }).then(res => res.json()).then(dataJson => dataJson);
 
-    console.log(data);
+    writeCommentArea.innerHTML = '';
+    document.querySelector('.writeYourComment').innerHTML = '<h1 class="text-center text-danger">Cảm ơn bạn đã đánh giá sản phẩm!</h1>';
+    document.querySelector('#flag').scrollIntoView(true);
 }
 
 function handlingPreviewImage() {

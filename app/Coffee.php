@@ -46,4 +46,9 @@ class Coffee extends Model
         $percent = ($count * 100) / $total_count;
         return number_format($percent);
     }
+
+    public function haveComment($id_customer)
+    {
+        return $this->coffee_comments()->where('id_customer', $id_customer)->exists();
+    }
 }

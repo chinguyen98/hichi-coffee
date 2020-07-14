@@ -92,6 +92,7 @@
             {!!$coffee->info!!}
         </div>
         <input type="hidden" name="hidId" value="{{$coffee->id}}">
+        <div id="flag" class="mb-5"></div>
     </div>
 
     <div class="mt-5">
@@ -134,6 +135,9 @@
                         <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
                             <div class="progress-bar bg-success" role="progressbar" style="width: {{$coffee->starPercent(5)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        <div class="ml-2">
+                            {{$coffee->starPercent(5)}}%
+                        </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
                         <span>4</span>
@@ -143,14 +147,20 @@
                         <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
                             <div class="progress-bar bg-info " role="progressbar" style="width: {{$coffee->starPercent(4)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        <div class="ml-2">
+                            {{$coffee->starPercent(4)}}%
+                        </div>
                     </div>
-                    <div class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row align-items-center justify-content-around">
                         <span>3</span>
                         <div class="customRating mr-2">
                             <label class="customRating-checked"></label>
                         </div>
                         <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
                             <div class="progress-bar " role="progressbar" style="width: {{$coffee->starPercent(3)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="ml-2">
+                            {{$coffee->starPercent(3)}}%
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
@@ -159,7 +169,10 @@
                             <label class="customRating-checked"></label>
                         </div>
                         <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
-                            <div class="progress-bar bg-warning" role="progressbar" style="{{$coffee->starPercent(2)}}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{$coffee->starPercent(2)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="ml-2">
+                            {{$coffee->starPercent(2)}}%
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
@@ -170,22 +183,34 @@
                         <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
                             <div class="progress-bar bg-danger " role="progressbar" style="width: {{$coffee->starPercent(1)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        <div class="ml-2">
+                            {{$coffee->starPercent(1)}}%
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col col-md-4 text-center">
-                <p>Chia sẻ nhận xét về sản phẩm</p>
-
                 @guest
 
                 <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary">Vui lòng đăng nhập để viết đánh giá</a>
 
                 @else
 
-                <button class="btn btn-primary writeCommentBtn">Viết nhận xét của bạn</button>
+                @if(!$coffee->haveComment(Auth::user()->id))
+
+                <div class="writeYourComment">
+                    <p>Chia sẻ nhận xét về sản phẩm</p>
+
+                    <button class="btn btn-primary writeCommentBtn">Viết nhận xét của bạn</button>
+                </div>
+
+                @else
+
+                <h1 class="text-danger">Bạn đã đánh giá sản phẩm này</h1>
+
+                @endif
 
                 @endguest
-
             </div>
         </div>
     </div>
@@ -194,6 +219,7 @@
 
     @else
 
+    @if(!$coffee->haveComment(Auth::user()->id))
     <div class="mt-5 writeCommentArea d-none">
         <h3 class="text-primary">Gửi nhận xét của bạn:</h3>
         <div class="row">
@@ -266,6 +292,8 @@
             </div>
         </div>
     </div>
+
+    @endif
 
     @endguest
 

@@ -38,19 +38,21 @@ class CommentController extends Controller
             'updated_at' => $now,
         ]);
 
-        $listImagesToDb = [];
-        foreach ($images as $image) {
-            $imageName = 'commentImg_' . Uuid::generate() . '.jpeg';
-            Storage::disk('comment_image')->put($imageName, file_get_contents($image));
+        if ($images != null) {
+            $listImagesToDb = [];
+            foreach ($images as $image) {
+                $imageName = 'commentImg_' . Uuid::generate() . '.jpeg';
+                Storage::disk('comment_image')->put($imageName, file_get_contents($image));
 
-            $listImagesToDb[] = [
-                'name' => $imageName,
-                'id_comment' => $id_coffee_comments,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ];
+                $listImagesToDb[] = [
+                    'name' => $imageName,
+                    'id_comment' => $id_coffee_comments,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ];
+            }
+            DB::table('coffee_comment_images')->insert($listImagesToDb);
         }
-        DB::table('coffee_comment_images')->insert($listImagesToDb);
 
         return response()->json('Bình luận thành công!');
     }
