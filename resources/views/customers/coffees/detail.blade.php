@@ -101,7 +101,7 @@
             <div class="col col-md-4 text-center d-flex flex-column justify-content-center align-items-center">
                 <h3>Đánh giá trung bình</h3>
                 <h1 class="text-danger">{{explode('.', $coffee->avgRating())[1]=='0' ? number_format($coffee->avgRating()) : $coffee->avgRating()}}/5</h1>
-                <div class="customRating" id="loadAvg">
+                <div class="customRating loadAvg">
                     <label class="full" for="sstar5"></label>
 
                     <label class="half" for="sstar4half"></label>
@@ -298,7 +298,55 @@
     @endguest
 
     <div class="mt-5">
-        
+        @if(count($coffee->coffee_comments)>0)
+
+        @foreach($coffee->coffee_comments as $coffee_comment)
+
+        <div class="mb-5">
+            <h4>{{$coffee_comment->customer->name}}</h4>
+            <div class="d-flex align-items-center">
+                <div data-id="{{$coffee_comment->id}}" data-star="{{$coffee_comment->rating}}" class="customRating customerRate">
+                    <label class="full" for="ssstar5"></label>
+
+                    <label class="half" for="ssstar4half"></label>
+
+                    <label class="full" for="ssstar4"></label>
+
+                    <label class="half" for="ssstar3half"></label>
+
+                    <label class="full" for="ssstar3"></label>
+
+                    <label class="half" for="ssstar2half"></label>
+
+                    <label class="full" for="sstar2"></label>
+
+                    <label class="half" for="sstar1half"></label>
+
+                    <label class="full" for="ssstar1"></label>
+
+                    <label class="half" for="ssstarhalf"></label>
+                </div>
+                <div class="ml-3">
+                    <h5 class="mt-1 text-secondary">{{$coffee_comment->title}}</h5>
+                </div>
+            </div>
+            <p class="text-justify">{{$coffee_comment->content}}</p>
+            <div>
+                @if(count($coffee_comment->images)>0)
+
+                @foreach($coffee_comment->images as $image)
+
+                <img src="/apps/images/comments/{{$image->name}}" alt="">
+
+                @endforeach
+
+                @endif
+            </div>
+        </div>
+
+        @endforeach
+
+        @endif
     </div>
 </div>
 

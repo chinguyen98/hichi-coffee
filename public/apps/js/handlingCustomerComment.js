@@ -11,6 +11,7 @@ const ratingErrArea = document.querySelector('.rating-err');
 const contentErrArea = document.querySelector('.commentContent-err');
 const imagesErrArea = document.querySelector('.commentImage-err');
 const previewImageArea = document.querySelector('.previewImageArea');
+const customerRateList = [...document.querySelectorAll('.customerRate')];
 let scaleImage = [];
 
 function validateForm(rating, content) {
@@ -123,10 +124,16 @@ writeCommentBtn !== null && writeCommentBtn.addEventListener('click', () => {
     writeCommentArea.classList.contains('d-none') ? writeCommentArea.classList.remove('d-none') : writeCommentArea.classList.add('d-none');
 });
 
-function calcRating(r, areaRating) {
+function calcRating(r, areaRating, id = null) {
     const f = Math.floor(r * 2);
+    let ratingStarList;
     console.log(f);
-    const ratingStarList = [...document.querySelectorAll(`#${areaRating} > label`)].reverse();
+    if (areaRating == 'loadAvg') {
+        ratingStarList = [...document.querySelectorAll(`.${areaRating} > label`)].reverse();
+    } else {
+        ratingStarList = [...document.querySelectorAll(`.${areaRating}[data-id="${id}"] > label`)].reverse();
+    }
+
     ratingStarList.every((item, index) => {
         if (index === f)
             return false;
@@ -137,4 +144,9 @@ function calcRating(r, areaRating) {
 
 addCommentBtn !== null && addCommentBtn.addEventListener('click', handlingAddNewComment);
 commentImageInput !== null && commentImageInput.addEventListener('change', handlingPreviewImage);
-window.addEventListener('load', () => { calcRating(avgRatingInput.value, 'loadAvg') });
+window.addEventListener('load', () => {
+    calcRating(avgRatingInput.value, 'loadAvg');
+    customerRateList !== null && customerRateList.forEach(item => {
+        calcRating(item.dataset.star, 'customerRate', item.dataset.id);
+    })
+});
