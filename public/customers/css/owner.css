@@ -1,15 +1,16 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* Upload Image*/
-.commentImage{
+
+.commentImage {
   width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
-.commentImage + label {
+.commentImage+label {
   font-size: 1em;
   font-weight: 700;
   color: white;
@@ -19,16 +20,16 @@
   margin-top: 0.3rem;
 }
 
-.commentImage + label {
-	cursor: pointer;
+.commentImage+label {
+  cursor: pointer;
 }
 
-.commentImage:focus + label,
-.commentImage + label:hover {
+.commentImage:focus+label, .commentImage+label:hover {
   background-color: rgb(178, 189, 251);
 }
 
 /*Rating Star*/
+
 div, label {
   margin: 0;
   padding: 0;
@@ -74,6 +75,37 @@ div, label {
 #rating>input:checked+label:hover, #rating>input:checked~label:hover, #rating>label:hover~input:checked~label, #rating>input:checked~label:hover~label {
   color: #FFED85;
 }
+
+/*customRating*/
+
+.customRating {
+  border: none;
+  float: left;
+}
+
+.customRating>label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.customRating>.half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.customRating>label {
+  color: #ddd;
+  float: right;
+}
+
+.customRating-checked::before{
+  color: #FFD700;
+}
+
+/**/
 
 .radioArea:hover * {
   cursor: pointer;

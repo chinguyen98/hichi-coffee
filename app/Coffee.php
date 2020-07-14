@@ -29,11 +29,21 @@ class Coffee extends Model
 
     public function avgRating()
     {
-        return $this->coffee_comments->avg('rating');
+        return number_format($this->coffee_comments()->avg('rating'), 1);
     }
 
     public function countRating()
     {
-        return $this->coffee_comments->count();
+        return $this->coffee_comments()->count();
+    }
+
+    public function starPercent($star)
+    {
+        $total_count = $this->countRating();
+        if ($total_count == 0)
+            return;
+        $count = $this->coffee_comments()->where('rating', $star)->count();
+        $percent = ($count * 100) / $total_count;
+        return number_format($percent);
     }
 }

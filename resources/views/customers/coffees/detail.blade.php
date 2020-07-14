@@ -97,11 +97,81 @@
     <div class="mt-5">
         <h1>Khách hàng nhận xét: </h1>
         <div class="row">
-            <div class="col col-md-4">
-                <p>Đánh giả trung bình</p>
+            <div class="col col-md-4 text-center d-flex flex-column justify-content-center align-items-center">
+                <h3>Đánh giá trung bình</h3>
+                <h1 class="text-danger">{{explode('.', $coffee->avgRating())[1]=='0' ? number_format($coffee->avgRating()) : $coffee->avgRating()}}/5</h1>
+                <div class="customRating" id="loadAvg">
+                    <label class="full" for="sstar5"></label>
+
+                    <label class="half" for="sstar4half"></label>
+
+                    <label class="full" for="sstar4"></label>
+
+                    <label class="half" for="sstar3half"></label>
+
+                    <label class="full" for="sstar3"></label>
+
+                    <label class="half" for="sstar2half"></label>
+
+                    <label class="full" for="star2"></label>
+
+                    <label class="half" for="star1half"></label>
+
+                    <label class="full" for="sstar1"></label>
+
+                    <label class="half" for="sstarhalf"></label>
+                </div>
+                <input type="hidden" name="avgRating" value="{{$coffee->avgRating()}}">
+                <p>({{$coffee->countRating()}} nhận xét)</p>
             </div>
             <div class="col col-md-4">
-
+                <div class="d-flex flex-column row">
+                    <div class="d-flex flex-row align-items-center">
+                        <span>5</span>
+                        <div class="customRating mr-2">
+                            <label class="customRating-checked"></label>
+                        </div>
+                        <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{$coffee->starPercent(5)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span>4</span>
+                        <div class="customRating mr-2">
+                            <label class="customRating-checked"></label>
+                        </div>
+                        <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
+                            <div class="progress-bar bg-info " role="progressbar" style="width: {{$coffee->starPercent(4)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span>3</span>
+                        <div class="customRating mr-2">
+                            <label class="customRating-checked"></label>
+                        </div>
+                        <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
+                            <div class="progress-bar " role="progressbar" style="width: {{$coffee->starPercent(3)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span>2</span>
+                        <div class="customRating mr-2">
+                            <label class="customRating-checked"></label>
+                        </div>
+                        <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
+                            <div class="progress-bar bg-warning" role="progressbar" style="{{$coffee->starPercent(2)}}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <span>1</span>
+                        <div class="customRating mr-2">
+                            <label class="customRating-checked"></label>
+                        </div>
+                        <div class="progress" style="width: 100%; background-color: rgba(255, 255, 255, 0.05);">
+                            <div class="progress-bar bg-danger " role="progressbar" style="width: {{$coffee->starPercent(1)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col col-md-4 text-center">
                 <p>Chia sẻ nhận xét về sản phẩm</p>
@@ -198,6 +268,10 @@
     </div>
 
     @endguest
+
+    <div class="mt-5">
+
+    </div>
 </div>
 
 @endsection

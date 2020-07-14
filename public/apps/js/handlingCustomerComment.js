@@ -6,6 +6,7 @@ const commentTitleInput = document.querySelector('input[name="commentTitle"]');
 const commentContentInput = document.querySelector('textarea[name="commentContent"]');
 const commentImageInput = document.querySelector('input[name="commentImage"]');
 const commentCoffeeIdInput = document.querySelector('input[name="commentCoffeeId"]');
+const avgRatingInput = document.querySelector('input[name="avgRating"]');
 const ratingErrArea = document.querySelector('.rating-err');
 const contentErrArea = document.querySelector('.commentContent-err');
 const imagesErrArea = document.querySelector('.commentImage-err');
@@ -120,9 +121,18 @@ writeCommentBtn !== null && writeCommentBtn.addEventListener('click', () => {
     writeCommentArea.classList.contains('d-none') ? writeCommentArea.classList.remove('d-none') : writeCommentArea.classList.add('d-none');
 });
 
-// ratingStarList.forEach(ratingStarItem => {
-//     ratingStarItem.addEventListener('click', (e) => { alert(e.target.value) });
-// });
+function calcRating(r, areaRating) {
+    const f = Math.floor(r * 2);
+    console.log(f);
+    const ratingStarList = [...document.querySelectorAll(`#${areaRating} > label`)].reverse();
+    ratingStarList.every((item, index) => {
+        if (index === f)
+            return false;
+        item.classList.add('customRating-checked');
+        return true;
+    });
+}
 
 addCommentBtn !== null && addCommentBtn.addEventListener('click', handlingAddNewComment);
 commentImageInput !== null && commentImageInput.addEventListener('change', handlingPreviewImage);
+window.addEventListener('load', () => { calcRating(avgRatingInput.value, 'loadAvg') });
