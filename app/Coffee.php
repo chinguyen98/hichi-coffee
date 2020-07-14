@@ -21,4 +21,19 @@ class Coffee extends Model
     {
         return $this->hasMany(Valuation::class, 'id_coffee', 'id')->where('expired', '>=', Carbon::now()->toDateString())->orderByDesc('quantity');
     }
+
+    public function coffee_comments()
+    {
+        return $this->hasMany(CoffeeComment::class, 'id_coffee', 'id');
+    }
+
+    public function avgRating()
+    {
+        return $this->coffee_comments->avg('rating');
+    }
+
+    public function countRating()
+    {
+        return $this->coffee_comments->count();
+    }
 }

@@ -124,7 +124,7 @@
 
     @else
 
-    <div class="mt-5 writeCommentArea">
+    <div class="mt-5 writeCommentArea d-none">
         <h3 class="text-primary">Gửi nhận xét của bạn:</h3>
         <div class="row">
             <div class="col col-md-6">
