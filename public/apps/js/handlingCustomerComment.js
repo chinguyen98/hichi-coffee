@@ -5,6 +5,7 @@ const addCommentBtn = document.querySelector('.addCommentBtn');
 const commentTitleInput = document.querySelector('input[name="commentTitle"]');
 const commentContentInput = document.querySelector('textarea[name="commentContent"]');
 const commentImageInput = document.querySelector('input[name="commentImage"]');
+const commentCoffeeIdInput = document.querySelector('input[name="commentCoffeeId"]');
 const ratingErrArea = document.querySelector('.rating-err');
 const contentErrArea = document.querySelector('.commentContent-err');
 const imagesErrArea = document.querySelector('.commentImage-err');
@@ -30,6 +31,7 @@ async function handlingAddNewComment() {
     const rating = document.querySelector('#rating input[type="radio"]:checked')?.value;
     const title = commentTitleInput.value;
     const content = commentContentInput.value;
+    const id_coffee = commentCoffeeIdInput.value;
     if (!validateForm(rating, content)) {
         return;
     }
@@ -38,6 +40,7 @@ async function handlingAddNewComment() {
     formData.append('rating', rating);
     formData.append('title', title);
     formData.append('content', content);
+    formData.append('id_coffee', id_coffee);
     scaleImage.forEach(image => {
         formData.append('image[]', image);
     });
@@ -108,7 +111,7 @@ function handlingPreviewImage() {
     }
 }
 
-function setPreviousUrl(){
+function setPreviousUrl() {
     localStorage.setItem('previousUrl', window.location.pathname);
     return true;
 }
