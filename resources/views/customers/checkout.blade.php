@@ -40,7 +40,7 @@
                             <h3 class="checkout-info__name text-info">{{Auth::user()->name}}</h3>
                             <h5 class="checkout-info__phone text-left ml-2 ">Số điện thoại: {{Auth::user()->phone_number}}</h5>
                             
-                            @if($customer_address->id_city == 14)
+                            @if($customer_address->id_city == 4)
 
                             <h5 class="checkout-info__address text-left ml-2 combinedAddress">Địa chỉ: {{$customer_address->full_address}}</h5>
 
