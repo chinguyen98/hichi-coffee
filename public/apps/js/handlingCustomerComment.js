@@ -12,7 +12,16 @@ const contentErrArea = document.querySelector('.commentContent-err');
 const imagesErrArea = document.querySelector('.commentImage-err');
 const previewImageArea = document.querySelector('.previewImageArea');
 const customerRateList = [...document.querySelectorAll('.customerRate')];
+const replyBtnList = [...document.querySelectorAll('.replyBtn')];
+const replyCloseBtnList = [...document.querySelectorAll('.replyCloseBtn')];
+const sendReplyBtnList = [...document.querySelectorAll('.sendReplyBtn')];
 let scaleImage = [];
+
+function countWord(str) {
+    return str.trim().split(' ')
+        .filter(function (n) { return n != '' })
+        .length;
+}
 
 function validateForm(rating, content) {
     let flag = true;
@@ -143,6 +152,29 @@ function calcRating(r, areaRating, id = null) {
     });
 }
 
+function openReplyArea(e) {
+    //e.preventDefault();
+    const replyArea = document.querySelector(`.replyArea-${e.target.dataset.id}`);
+    replyArea.classList.contains('d-none') ? replyArea.classList.remove('d-none')
+        : replyArea.classList.add('d-none'); document.querySelector(`.replyArea-${e.target.dataset.id} > textarea`).value = '';
+    document.querySelector(`.replyContent-err-${e.target.dataset.id}`).innerHTML = '';
+}
+
+function handlingSendReply(e) {
+    const replyContent = document.querySelector(`.replyContent-${e.target.dataset.id}`);
+    const errArea = document.querySelector(`.replyContent-err-${e.target.dataset.id}`);
+    if (replyContent.value === '') {
+        errArea.innerHTML = 'Vui lòng nhập nội dung này!';
+        return;
+    }
+    if (countWord(replyContent.value) > 1000) {
+        errArea.innerHTML = 'Nội dung không được quá 1500 từ!';
+        return;
+    }
+    alert('OK')
+}
+
+
 addCommentBtn !== null && addCommentBtn.addEventListener('click', handlingAddNewComment);
 commentImageInput !== null && commentImageInput.addEventListener('change', handlingPreviewImage);
 window.addEventListener('load', () => {
@@ -151,3 +183,12 @@ window.addEventListener('load', () => {
         calcRating(item.dataset.star, 'customerRate', item.dataset.id);
     })
 });
+replyBtnList.forEach(replyBtn => {
+    replyBtn.addEventListener('click', openReplyArea)
+})
+replyCloseBtnList.forEach(replyCloseBtn => {
+    replyCloseBtn.addEventListener('click', openReplyArea)
+})
+sendReplyBtnList.forEach(sendReplyBtn => {
+    sendReplyBtn.addEventListener('click', handlingSendReply);
+})

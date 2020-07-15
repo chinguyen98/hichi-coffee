@@ -342,6 +342,19 @@
 
                 @endif
             </div>
+            <div class="mt-3">
+                <a style="cursor: pointer;" class="replyBtn">
+                    <h5 class="text-info" data-id="{{$coffee_comment->id}}">Trả lời</h5>
+                </a>
+            </div>
+            <div class="replyArea-{{$coffee_comment->id}} d-none">
+                <textarea name="replyContent" style="width: 100%;" rows="4" placeholder="Nhập nội dung trả lời tại đây" class="replyContent-{{$coffee_comment->id}}"></textarea>
+                <p class="text-danger ml-3 replyContent-err-{{$coffee_comment->id}}"></p>
+                <div class="d-flex">
+                    <button class="btn btn-primary px-3 py-2 sendReplyBtn" data-id="{{$coffee_comment->id}}">Gửi</button>
+                    <button class="btn btn-secondary px-3 py-2 ml-2 replyCloseBtn" data-id="{{$coffee_comment->id}}">Hủy bỏ</button>
+                </div>
+            </div>
         </div>
 
         @endforeach
