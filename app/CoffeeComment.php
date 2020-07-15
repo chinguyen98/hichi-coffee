@@ -20,6 +20,6 @@ class CoffeeComment extends Model
 
     public function coffee_comment_replys()
     {
-        return $this->hasMany(CoffeeCommentReply::class, 'id_comment', 'id')->orderByDesc('created_at');
+        return $this->hasMany(CoffeeCommentReply::class, 'id_comment', 'id')->orderByDesc('created_at')->limit(3);
     }
 }

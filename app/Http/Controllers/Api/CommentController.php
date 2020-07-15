@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\CoffeeComment;
+use App\CoffeeCommentReply;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,11 +13,6 @@ use Webpatser\Uuid\Uuid;
 
 class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function storeCoffeeRatingComment(Request $request)
     {
         $title = $request->title;
@@ -113,5 +109,20 @@ class CommentController extends Controller
         ]);
 
         return response()->json('Bình luận thành công. Chúng tôi sẽ xem xét bình luận của bạn!');
+    }
+
+    public function getReplyComment(Request $request)
+    {
+        $offset = $request->query('offset');
+        $id_comment = $request->query('id_comment');
+
+        $replyComments = DB::table('coffee_comment_replys')
+            ->join('customers', 'customers.id', '=', 'coffee_comment_replys.id_customer')
+            ->where('coffee_comment_replys.id_comment', $id_comment)
+            ->skip($offset)->take(6)
+            ->orderByDesc('coffee_comment_replys.created_at')
+            ->get(['customers.name', 'coffee_comment_replys.content']);
+
+        return response()->json($replyComments);
     }
 }

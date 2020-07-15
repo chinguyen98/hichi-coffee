@@ -167,7 +167,7 @@ async function handlingSendReply(e) {
         errArea.innerHTML = '<p class="text-danger">Vui lòng nhập nội dung này!</p>';
         return;
     }
-    if (countWord(replyContent.value) > 1000) {
+    if (countWord(replyContent.value) > 1450) {
         errArea.innerHTML = '<p class="text-danger">Nội dung không được quá 1500 từ!</p>';
         return;
     }
@@ -190,6 +190,40 @@ async function handlingSendReply(e) {
     }).then(res => res.json()).then(dataJson => dataJson);
 
     errArea.innerHTML = `<p class="text-success">${data}</p>`;
+}
+
+async function viewMoreReplyComment(id) {
+    const offset = document.querySelectorAll(`.allReplyCommentArea-${id} > div`).length;
+    const allReplyCommentArea = document.querySelector(`.allReplyCommentArea-${id}`);
+    const data = await fetch(`/api/comments/reply?id_comment=${id}&offset=${offset}`, {
+        method: 'GET',
+        credentials: 'same-origin',
+    }).then(res => res.json()).then(dataJson => dataJson);
+
+    const replyBtn = document.querySelector(`.viewMoreReplyCommentBtn-${id}`);
+    replyBtn.remove();
+
+    data.forEach((item, index) => {
+        let htmlContent = '';
+        if (index === 5) {
+            htmlContent=`
+                <div>
+                    <button onclick="viewMoreReplyComment(${id})" class="btn btn-success viewMoreReplyCommentBtn-${id}">Xem thêm</button>
+                </div>
+            `;
+        }
+        else {
+            htmlContent = `
+                <div class="mb-3 text-justify d-block">
+                    <h4>${item.name}</h4>
+                    <p>${item.content}</p>
+                </div>
+            `;
+        }
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = htmlContent;
+        allReplyCommentArea.appendChild(wrapper);
+    })
 }
 
 

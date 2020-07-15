@@ -122,8 +122,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/carts/{listCoffeeId}', 'Api\CartController@getCart');
 
     Route::group(['prefix' => 'comments'], function () {
-        Route::post('/', 'Api\CommentController@storeCoffeeRatingComment');
-        Route::post('/reply', 'Api\CommentController@storeReplyComment');
+        Route::post('/', 'Api\CommentController@storeCoffeeRatingComment')->middleware('auth');
+        Route::post('/reply', 'Api\CommentController@storeReplyComment')->middleware('auth');
+        Route::get('/reply', 'Api\CommentController@getReplyComment');
     });
 });
 

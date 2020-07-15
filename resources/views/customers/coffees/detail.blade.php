@@ -351,12 +351,12 @@
             <div class="replyArea-{{$coffee_comment->id}} d-none">
                 @guest
 
-                Bạn cần đăng nhập để bình luận
+                <span class="text-danger">Bạn cần đăng nhập để bình luận</span>
                 <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary ml-3 mt-2">Đăng nhập ngay!</a>
 
                 @else
 
-                <textarea name="replyContent" style="width: 100%;" rows="4" placeholder="Nhập nội dung trả lời tại đây" class="replyContent-{{$coffee_comment->id}}"></textarea>
+                <textarea name="replyContent" style="width: 100%;" rows="4" placeholder="Nhập nội dung trả lời tại đây. Tối đa 1500 từ" class="replyContent-{{$coffee_comment->id}}"></textarea>
                 <span class="ml-3 replyContent-err-{{$coffee_comment->id}}"></span>
                 <div class="d-flex">
                     <button class="btn btn-primary px-3 py-2 sendReplyBtn" data-id="{{$coffee_comment->id}}">Gửi</button>
@@ -366,13 +366,21 @@
                 @endguest
             </div>
 
-            <div class="allReplyCommentArea pl-5 mt-3">
+            <div class="allReplyCommentArea-{{$coffee_comment->id}} pl-5 mt-3">
                 @foreach($coffee_comment->coffee_comment_replys as $index=>$coffee_comment_reply)
+
+                @if($index == 2)
+                <button onclick="viewMoreReplyComment(`{{$coffee_comment->id}}`)" class="btn btn-success viewMoreReplyCommentBtn-{{$coffee_comment->id}}">Xem thêm</button>
+                @break
+
+                @else
 
                 <div class="mb-3 text-justify">
                     <h4>{{$coffee_comment_reply->customer->name}}</h4>
                     <p>{{$coffee_comment_reply->content}}</p>
                 </div>
+
+                @endif
 
                 @endforeach
             </div>
