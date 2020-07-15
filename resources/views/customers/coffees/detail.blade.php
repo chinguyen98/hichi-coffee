@@ -351,8 +351,8 @@
             <div class="replyArea-{{$coffee_comment->id}} d-none">
                 @guest
 
-                    Bạn cần đăng nhập để bình luận
-                    <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary ml-3 mt-2">Đăng nhập ngay!</a>
+                Bạn cần đăng nhập để bình luận
+                <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary ml-3 mt-2">Đăng nhập ngay!</a>
 
                 @else
 
@@ -364,6 +364,17 @@
                 </div>
 
                 @endguest
+            </div>
+
+            <div class="allReplyCommentArea pl-5 mt-3">
+                @foreach($coffee_comment->coffee_comment_replys as $index=>$coffee_comment_reply)
+
+                <div class="mb-3 text-justify">
+                    <h4>{{$coffee_comment_reply->customer->name}}</h4>
+                    <p>{{$coffee_comment_reply->content}}</p>
+                </div>
+
+                @endforeach
             </div>
         </div>
 
