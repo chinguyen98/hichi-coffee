@@ -123,6 +123,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'comments'], function () {
         Route::post('/', 'Api\CommentController@storeCoffeeRatingComment');
+        Route::post('/reply', 'Api\CommentController@storeReplyComment');
     });
 });
 

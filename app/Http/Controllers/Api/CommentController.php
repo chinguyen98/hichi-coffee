@@ -96,4 +96,22 @@ class CommentController extends Controller
 
         return response()->json('OK');
     }
+
+    public function storeReplyComment(Request $request)
+    {
+        $content = $request->content;
+        $id_comment = $request->id_comment;
+        $id_customer = Auth::user()->id;
+        $now = now();
+
+        DB::table('coffee_comment_replys')->insert([
+            'content' => $content,
+            'id_comment' => $id_comment,
+            'id_customer' => $id_customer,
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        return response()->json('Bình luận thành công. Chúng tôi sẽ xem xét bình luận của bạn!');
+    }
 }

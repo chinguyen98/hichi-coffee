@@ -347,13 +347,23 @@
                     <h5 class="text-info" data-id="{{$coffee_comment->id}}">Trả lời</h5>
                 </a>
             </div>
+
             <div class="replyArea-{{$coffee_comment->id}} d-none">
+                @guest
+
+                    Bạn cần đăng nhập để bình luận
+                    <a href="{{route('login')}}" onclick="return setPreviousUrl()" class="btn btn-primary ml-3 mt-2">Đăng nhập ngay!</a>
+
+                @else
+
                 <textarea name="replyContent" style="width: 100%;" rows="4" placeholder="Nhập nội dung trả lời tại đây" class="replyContent-{{$coffee_comment->id}}"></textarea>
-                <p class="text-danger ml-3 replyContent-err-{{$coffee_comment->id}}"></p>
+                <span class="ml-3 replyContent-err-{{$coffee_comment->id}}"></span>
                 <div class="d-flex">
                     <button class="btn btn-primary px-3 py-2 sendReplyBtn" data-id="{{$coffee_comment->id}}">Gửi</button>
                     <button class="btn btn-secondary px-3 py-2 ml-2 replyCloseBtn" data-id="{{$coffee_comment->id}}">Hủy bỏ</button>
                 </div>
+
+                @endguest
             </div>
         </div>
 

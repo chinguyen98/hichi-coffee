@@ -160,18 +160,36 @@ function openReplyArea(e) {
     document.querySelector(`.replyContent-err-${e.target.dataset.id}`).innerHTML = '';
 }
 
-function handlingSendReply(e) {
+async function handlingSendReply(e) {
     const replyContent = document.querySelector(`.replyContent-${e.target.dataset.id}`);
     const errArea = document.querySelector(`.replyContent-err-${e.target.dataset.id}`);
     if (replyContent.value === '') {
-        errArea.innerHTML = 'Vui lòng nhập nội dung này!';
+        errArea.innerHTML = '<p class="text-danger">Vui lòng nhập nội dung này!</p>';
         return;
     }
     if (countWord(replyContent.value) > 1000) {
-        errArea.innerHTML = 'Nội dung không được quá 1500 từ!';
+        errArea.innerHTML = '<p class="text-danger">Nội dung không được quá 1500 từ!</p>';
         return;
     }
-    alert('OK')
+
+    const formData = new FormData();
+    formData.append('id_comment', e.target.dataset.id);
+    formData.append('content', replyContent.value);
+
+    for (let i of formData) {
+        console.log(i)
+    }
+
+    const data = await fetch('/api/comments/reply', {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        }
+    }).then(res => res.json()).then(dataJson => dataJson);
+
+    errArea.innerHTML = `<p class="text-success">${data}</p>`;
 }
 
 
