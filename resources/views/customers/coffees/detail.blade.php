@@ -344,9 +344,34 @@
                 @endif
             </div>
             <div class="mt-3">
-                <a style="cursor: pointer;" class="replyBtn">
-                    <h5 class="text-info" data-id="{{$coffee_comment->id}}">Trả lời</h5>
-                </a>
+                <span>
+                    <a style="cursor: pointer; display: inline; user-select: none;" class="replyBtn">
+                        <h5 style="display: inline;" class="text-info" data-id="{{$coffee_comment->id}}">Trả lời</h5>
+                    </a>
+                </span>
+
+                <span class="thankArea-{{$coffee_comment->id}}">
+                    @guest
+
+                    @else
+
+                    @if($coffee_comment->isLike(Auth::user()->id))
+
+                    <span class="pl-4 pr-1 text-success">Bạn và {{$coffee_comment->coffee_comment_likes_count($coffee_comment->id)}} người khác đã cảm ơn nhận xét này</span>
+
+                    @else
+
+                    <span onclick="addThankForComment(`{{$coffee_comment->id}}`)">
+                        <span class="pl-4 pr-1">Nhận xét này hữu ích với bạn?</span>
+                        <span>
+                            <button class="btn btn-primary">Cảm ơn</button>
+                        </span>
+                    </span>
+
+                    @endif
+
+                    @endguest
+                </span>
             </div>
 
             <div class="replyArea-{{$coffee_comment->id}} d-none">

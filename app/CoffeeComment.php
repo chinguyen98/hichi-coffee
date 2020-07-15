@@ -22,4 +22,14 @@ class CoffeeComment extends Model
     {
         return $this->hasMany(CoffeeCommentReply::class, 'id_comment', 'id')->orderByDesc('created_at')->limit(3);
     }
+
+    public function isLike($id_customer)
+    {
+        return $this->hasMany(CoffeeCommentLike::class, 'id_comment', 'id')->where('id_customer', $id_customer)->exists();
+    }
+
+    public function coffee_comment_likes_count($id_comment)
+    {
+        return $this->hasMany(CoffeeCommentLike::class, 'id_comment', 'id')->where('id_comment', $id_comment)->count();
+    }
 }

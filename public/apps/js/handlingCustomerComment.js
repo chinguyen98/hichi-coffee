@@ -206,7 +206,7 @@ async function viewMoreReplyComment(id) {
     data.forEach((item, index) => {
         let htmlContent = '';
         if (index === 5) {
-            htmlContent=`
+            htmlContent = `
                 <div>
                     <button onclick="viewMoreReplyComment(${id})" class="btn btn-success viewMoreReplyCommentBtn-${id}">Xem thêm</button>
                 </div>
@@ -224,6 +224,24 @@ async function viewMoreReplyComment(id) {
         wrapper.innerHTML = htmlContent;
         allReplyCommentArea.appendChild(wrapper);
     })
+}
+
+async function addThankForComment(id) {
+    const formData = new FormData();
+    formData.append('id_comment', id);
+
+    const data = await fetch('/api/comments/like', {
+        method: 'POST',
+        credentials: 'same-origin',
+        'body': formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+    }).then(res => res.json()).then(dataJson => dataJson);
+
+    document.querySelector(`.thankArea-${id}`).innerHTML = `
+        <span class="pl-4 pr-1 text-success">Bạn và ${data} người khác đã cảm ơn nhận xét này</span>
+    `;
 }
 
 

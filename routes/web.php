@@ -123,6 +123,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'comments'], function () {
         Route::post('/', 'Api\CommentController@storeCoffeeRatingComment')->middleware('auth');
+        Route::post('/like', 'Api\CommentController@storeCommentLike')->middleware('auth');
         Route::post('/reply', 'Api\CommentController@storeReplyComment')->middleware('auth');
         Route::get('/reply', 'Api\CommentController@getReplyComment');
     });

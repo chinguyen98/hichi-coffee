@@ -125,4 +125,22 @@ class CommentController extends Controller
 
         return response()->json($replyComments);
     }
+
+    function storeCommentLike(Request $request)
+    {
+        $id_comment = $request->id_comment;
+        $id_customer = Auth::user()->id;
+        $now = now();
+
+        DB::table('coffee_comment_likes')->insert([
+            'id_customer' => $id_customer,
+            'id_comment' => $id_comment,
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $count = DB::table('coffee_comment_likes')->where('id_comment', $id_comment)->count();
+
+        return response()->json($count);
+    }
 }
