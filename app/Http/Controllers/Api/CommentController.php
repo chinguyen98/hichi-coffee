@@ -23,7 +23,7 @@ class CommentController extends Controller
         $images = $request->image;
         $now = now();
 
-        $comments = CoffeeComment::where('id_customer', $id_customer)->get();
+        $comments = CoffeeComment::where('id_customer', $id_customer)->where('id_coffee', $id_coffee)->get();
 
         if (count($comments) == 0) {
             $id_coffee_comments = DB::table('coffee_comments')->insertGetId([

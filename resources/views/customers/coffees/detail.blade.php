@@ -136,7 +136,7 @@
                             <div class="progress-bar bg-success" role="progressbar" style="width: {{$coffee->starPercent(5)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="ml-2">
-                            {{$coffee->starPercent(5)}}%
+                            {{$coffee->starPercent(5)==''?'0':$coffee->starPercent(5)}}%
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
@@ -148,7 +148,7 @@
                             <div class="progress-bar bg-info " role="progressbar" style="width: {{$coffee->starPercent(4)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="ml-2">
-                            {{$coffee->starPercent(4)}}%
+                            {{$coffee->starPercent(4)==''?'0':$coffee->starPercent(4)}}%
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center justify-content-around">
@@ -160,7 +160,7 @@
                             <div class="progress-bar " role="progressbar" style="width: {{$coffee->starPercent(3)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="ml-2">
-                            {{$coffee->starPercent(3)}}%
+                            {{$coffee->starPercent(3)==''?'0':$coffee->starPercent(3)}}%
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
@@ -172,7 +172,7 @@
                             <div class="progress-bar bg-warning" role="progressbar" style="width: {{$coffee->starPercent(2)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="ml-2">
-                            {{$coffee->starPercent(2)}}%
+                            {{$coffee->starPercent(2)==''?'0':$coffee->starPercent(2)}}%
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center">
@@ -184,7 +184,7 @@
                             <div class="progress-bar bg-danger " role="progressbar" style="width: {{$coffee->starPercent(1)}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="ml-2">
-                            {{$coffee->starPercent(1)}}%
+                            {{$coffee->starPercent(1)==''?'0':$coffee->starPercent(1)}}%
                         </div>
                     </div>
                 </div>
@@ -302,8 +302,9 @@
 
         @foreach($coffee->coffee_comments as $coffee_comment)
 
-        <div class="mb-5">
-            <h4>{{$coffee_comment->customer->name}}</h4>
+        <div class="mb-5 px-4" style="border-left: 2px solid #c49b63;">
+            <h4 class="mt-5">{{$coffee_comment->customer->name}}</h4>
+            <h5 class="text-info">{{$coffee_comment->updated_at}}</h5>
             <div class="d-flex align-items-center">
                 <div data-id="{{$coffee_comment->id}}" data-star="{{$coffee_comment->rating}}" class="customRating customerRate">
                     <label class="full" for="ssstar5"></label>
