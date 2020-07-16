@@ -201,6 +201,45 @@ function incCartQuantity(id) {
     changeToTalPrice(id);
 }
 
+function IsValidJSONString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+async function checkCart() {
+    if (!IsValidJSONString(localStorage.getItem('carts'))) {
+        localStorage.removeItem('carts');
+        window.location.replace('/');
+    }
+
+    const cartStorage = JSON.parse(localStorage.getItem('carts'));
+
+    if (cartStorage !== null || cartStorage.length !== 0) {
+        if (!Array.isArray(cartStorage)) {
+            localStorage.removeItem('carts');
+            window.location.replace('/');
+        }
+
+        cartStorage.forEach(item => {
+            if (JSON.stringify(Object.keys(item)) !== JSON.stringify(["id", "qty"]) && JSON.stringify(Object.keys(item)) !== JSON.stringify(["id", "qty", "valuation"])) {
+                localStorage.removeItem('carts');
+                window.location.replace('/');
+            }
+
+            Object.values(item).forEach(num => {
+                if (typeof num === 'string' || !Number.isInteger(num) || num < 0) {
+                    localStorage.removeItem('carts');
+                    window.location.replace('/');
+                }
+            })
+        })
+    }
+}
+
 function valCartQuantity(id) {
     const cartStorage = JSON.parse(localStorage.getItem('carts'));
     let getQuantity = cartStorage.find(el => el.id === id).qty;
@@ -240,4 +279,10 @@ function valCartQuantity(id) {
     changeToTalPrice(id);
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+    checkCart();
+});
+window.addEventListener('storage', () => {
+    checkCart();
+});
 window.addEventListener('load', getCartData);

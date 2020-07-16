@@ -206,7 +206,7 @@ function handingCheckout() {
     totalPriceHiddenInput.value = checkoutFinalTotalPriceArea.dataset.totalPrice;
     shippingHiddenInput.value = document.querySelector('input[name="shipping_infos"]:checked').id;
 
-    //localStorage.removeItem('carts');
+    localStorage.removeItem('carts');
 
     return true;
 }
@@ -237,3 +237,7 @@ showCreateAddressFormBtn.addEventListener('click', () => {
     createAddressform.classList.add('createAddressform--show');
 });
 closeCreateAddressFormBtn.addEventListener('click', () => { createAddressform.classList.remove('createAddressform--show') });
+window.addEventListener('storage', () => {
+    localStorage.removeItem('carts');
+    window.location.replace('/');
+});
