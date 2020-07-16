@@ -95,6 +95,43 @@ async function renderWardsSelectInfo(id_district) {
     idWardSelect.innerHTML = exportWardsHtml;
 }
 
+function IsValidJSONString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+async function checkCart() {
+    if (!IsValidJSONString(localStorage.getItem('carts'))) {
+        localStorage.removeItem('carts');
+        window.location.replace('/');
+    }
+
+    const cartStorage = JSON.parse(localStorage.getItem('carts'));
+
+    if (cartStorage === null || cartStorage.length === 0 || !Array.isArray(cartStorage)) {
+        localStorage.removeItem('carts');
+        window.location.replace('/');
+    }
+
+    cartStorage.forEach(item => {
+        if (JSON.stringify(Object.keys(item)) !== JSON.stringify(["id", "qty"]) && JSON.stringify(Object.keys(item)) !== JSON.stringify(["id", "qty", "valuation"])) {
+            localStorage.removeItem('carts');
+            window.location.replace('/');
+        }
+
+        Object.values(item).forEach(num => {
+            if (typeof num === 'string' || !Number.isInteger(num) || num < 0) {
+                localStorage.removeItem('carts');
+                window.location.replace('/');
+            }
+        })
+    })
+}
+
 async function renderCart() {
     const cartStorage = JSON.parse(localStorage.getItem('carts'));
     const cartIdList = cartStorage.map(item => item.id).join(',');
@@ -178,7 +215,13 @@ shippingInfoRadioBtn.forEach(item => {
     item.addEventListener('change', renderShippingAndTotalPrice);
 });
 
-window.addEventListener('load', renderCart)
+window.addEventListener('DOMContentLoaded', () => {
+    checkCart();
+});
+
+window.addEventListener('load', () => {
+    renderCart();
+})
 idDistrictSelect.addEventListener('change', (e) => { renderWardsSelectInfo(e.target.value) });
 
 if (showChangeAddressFormBtn !== null) {
