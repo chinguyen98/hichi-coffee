@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\RenderAddress;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -13,6 +14,14 @@ class DistrictController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $renderAddress;
+
+    public function __construct()
+    {
+        $this->renderAddress = new RenderAddress();
+    }
+
     public function index()
     {
         //
@@ -37,13 +46,9 @@ class DistrictController extends Controller
      */
     public function show($id)
     {
-        $url = 'https://thongtindoanhnghiep.co/api/district/' . $id;
-        $client = new Client();
+        $district = $this->renderAddress->getDistrictDetailFromApi($id);
 
-        $response = $client->request('GET', $url);
-        $city = json_decode($response->getBody(), true);
-
-        return response()->json($city);
+        return response()->json($district);
     }
 
     /**
@@ -71,12 +76,8 @@ class DistrictController extends Controller
 
     public function getWardsByDistrictsId($id)
     {
-        $url = 'https://thongtindoanhnghiep.co/api/district/' . $id . '/ward';
-        $client = new Client();
+        $wards = $this->renderAddress->getWardsFromApi($id);
 
-        $response = $client->request('GET', $url);
-        $districts = json_decode($response->getBody(), true);
-
-        return response()->json($districts);
+        return response()->json($wards);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\RenderAddress;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -13,14 +14,17 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $renderAddress;
+
+    public function __construct()
+    {
+        $this->renderAddress = new RenderAddress();
+    }
+
     public function index()
     {
-        $url = 'https://thongtindoanhnghiep.co/api/city';
-        $client = new Client();
-
-        $response = $client->request('GET', $url);
-        $content = json_decode($response->getBody(), true);
-        $cities = $content["LtsItem"];
+        $cities = $this->renderAddress->getCitiesFromApi();
 
         return response()->json($cities);
     }
@@ -44,11 +48,7 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id;
-        $client = new Client();
-
-        $response = $client->request('GET', $url);
-        $city = json_decode($response->getBody(), true);
+        $city = $this->renderAddress->getCityDetailFromApi($id);
 
         return response()->json($city);
     }
@@ -76,12 +76,9 @@ class CityController extends Controller
         //
     }
 
-    public function getDistrictsByCityId($id){
-        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id . '/district';
-        $client = new Client();
-
-        $response = $client->request('GET', $url);
-        $districts = json_decode($response->getBody(), true);
+    public function getDistrictsByCityId($id)
+    {
+        $districts = $this->renderAddress->getDistrictsFromApi($id);
 
         return response()->json($districts);
     }

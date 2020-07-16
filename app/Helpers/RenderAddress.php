@@ -6,42 +6,59 @@ use GuzzleHttp\Client;
 
 class RenderAddress
 {
-    public function getCityDetailFromApi($id){
+    public function getCityDetailFromApi($id)
+    {
         $url = 'https://thongtindoanhnghiep.co/api/city/' . $id;
-        $client = new Client();
-
-        $response = $client->request('GET', $url);
-        $city = json_decode($response->getBody(), true);
+        $response = file_get_contents($url);
+        $city = json_decode($response, true);
 
         return $city;
     }
 
-    public function getDistrictDetailFromApi($id){
+    public function getDistrictDetailFromApi($id)
+    {
         $url = 'https://thongtindoanhnghiep.co/api/district/' . $id;
-        $client = new Client();
-
-        $response = $client->request('GET', $url);
-        $district = json_decode($response->getBody(), true);
+        $response = file_get_contents($url);
+        $district = json_decode($response, true);
 
         return $district;
     }
 
-    public function getWardDetailFromApi($id){
+    public function getWardDetailFromApi($id)
+    {
         $url = 'https://thongtindoanhnghiep.co/api/ward/' . $id;
-        $client = new Client();
-
-        $response = $client->request('GET', $url);
-        $ward = json_decode($response->getBody(), true);
+        $response = file_get_contents($url);
+        $ward = json_decode($response, true);
 
         return $ward;
     }
 
-    public function getDistrictsFromApi($id_city){
-        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id_city . '/district';
-        $client = new Client();
+    public function getCitiesFromApi()
+    {
+        $url = 'https://thongtindoanhnghiep.co/api/city';
 
-        $response = $client->request('GET', $url);
-        $city = json_decode($response->getBody(), true);
+        $response = file_get_contents($url);
+        $content = json_decode($response, true);
+
+        return $content['LtsItem'];
+    }
+
+    public function getDistrictsFromApi($id_city)
+    {
+        $url = 'https://thongtindoanhnghiep.co/api/city/' . $id_city . '/district';
+        $response = file_get_contents($url);
+
+        $districts = json_decode($response, true);
+
+        return $districts;
+    }
+
+    public function getWardsFromApi($id_district)
+    {
+        $url = 'https://thongtindoanhnghiep.co/api/district/' . $id_district . '/ward';
+        $response = file_get_contents($url);
+
+        $city = json_decode($response, true);
 
         return $city;
     }

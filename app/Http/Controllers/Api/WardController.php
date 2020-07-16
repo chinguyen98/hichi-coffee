@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\RenderAddress;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -13,6 +14,14 @@ class WardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $renderAddress;
+
+    public function __construct()
+    {
+        $this->renderAddress = new RenderAddress();
+    }
+
     public function index()
     {
         //
@@ -37,13 +46,9 @@ class WardController extends Controller
      */
     public function show($id)
     {
-        $url = 'https://thongtindoanhnghiep.co/api/ward/' . $id;
-        $client = new Client();
+        $ward = $this->renderAddress->getWardDetailFromApi($id);
 
-        $response = $client->request('GET', $url);
-        $city = json_decode($response->getBody(), true);
-
-        return response()->json($city);
+        return response()->json($ward);
     }
 
     /**
