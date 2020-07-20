@@ -11,6 +11,20 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
+        $brands = DB::table('brands')->get(['name']);
+        $coffeeTypes = DB::table('coffee_types')->get(['name']);
+
+        $dataToView = [
+            'title' => 'Tìm kiếm',
+            'searchActive' => 'active',
+            'brands' => $brands,
+            'coffee_types' => $coffeeTypes,
+        ];
+
+        if (count($request->all()) == 0) {
+            return view('customers.search')->with($dataToView);
+        }
+
         $coffeeName = $request->query('ca-phe');
         $brandName = $request->query('thuong-hieu');
         $coffeeTypeName = $request->query('loai-ca-phe');
@@ -19,33 +33,9 @@ class SearchController extends Controller
         $sortTitle = $request->query('sortTitle');
         $sortValue = $request->query('sortValue');
 
-        $brands = DB::table('brands')->get(['name']);
-        $coffeeTypes = DB::table('coffee_types')->get(['name']);
-
-        $dataToView = [
-            'title' => 'Tìm kiếm',
-            'searchActive' => 'active',
-            'coffeeName' => $coffeeName,
-            'brands' => $brands,
-            'coffee_types' => $coffeeTypes,
-        ];
-
         $query = DB::table('coffees')
             ->join('brands', 'brands.id', '=', 'coffees.id_brand')
             ->join('coffee_types', 'coffee_types.id', '=', 'coffees.id_coffee_type');
-
-        // if ($coffeeName != null) {
-        //     $fulltextsearch = new FulltextSearch();
-        //     $str = $fulltextsearch->fullTextWildcards($coffeeName);
-        //     $query = Coffee::join('brands', 'brands.id', '=', 'coffees.id_brand')
-        //         ->join('coffee_types', 'coffee_types.id', '=', 'coffees.id_coffee_type')
-        //         ->whereRaw('MATCH (coffees.name) AGAINST (?)', array($str))
-        //         ->orWhere('coffees.name', 'like', '%' . $coffeeName . '%');
-        // } else {
-        //     $query = DB::table('coffees')
-        //         ->join('brands', 'brands.id', '=', 'coffees.id_brand')
-        //         ->join('coffee_types', 'coffee_types.id', '=', 'coffees.id_coffee_type');
-        // }
 
         if ($from != 0 || $to != 0) {
             $query = $query->whereBetween('price', [$from, $to]);
@@ -63,8 +53,8 @@ class SearchController extends Controller
             $fulltextsearch = new FulltextSearch();
             $str = $fulltextsearch->fullTextWildcards($coffeeName);
             $query = $query
-                ->where('coffees.name', 'like', '%' . $coffeeName . '%')
-                ->orWhereRaw('MATCH (coffees.name) AGAINST (?)', array($str));
+                ->whereRaw('MATCH (coffees.name) AGAINST (?)', array($str));
+                
         }
 
         try {
@@ -76,8 +66,6 @@ class SearchController extends Controller
         }
 
         $searchResult = $query->get(['coffees.name', 'coffees.price', 'coffees.image', 'coffees.slug']);
-
-        //dd($searchResult);
 
         $dataToView['searchResult'] = $searchResult;
 

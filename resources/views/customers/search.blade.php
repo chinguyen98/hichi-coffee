@@ -120,8 +120,8 @@
 
                 @else
 
-                <div class="col col-md-12">
-                    <h1 class="mt-1">Nhập để tìm kiếm</h1>
+                <div class="col col-md-12 text-center">
+                    <h1 class="mt-1">Vui lòng nhập từ khóa tìm kiếm</h1>
                 </div>
 
                 @endif
