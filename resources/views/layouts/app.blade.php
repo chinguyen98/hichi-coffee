@@ -119,6 +119,12 @@
 
     @endif
 
+    @if(Request::route()->getName()==='customers.addresses.show')
+
+    <script src="/apps/js/handlingAddressDetail.js"></script>
+
+    @endif
+
     <!-- End Embed JS -->
 
     <script>

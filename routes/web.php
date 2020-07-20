@@ -55,6 +55,7 @@ Route::group(['prefix' => 'addresses'], function () {
     Route::get('/{id}', 'AddressController@show')->name('customers.addresses.show');
     Route::post('/', 'AddressController@store')->name('customers.addresses.store');
     Route::put('/changing', 'AddressController@changeDefaultAddress')->name('customers.addresses.changing');
+    Route::put('/{id}', 'AddressController@update')->name('customers.addresses.update');
 });
 
 /* Admin Routes */

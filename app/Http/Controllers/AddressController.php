@@ -30,6 +30,15 @@ class AddressController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        $customer_address = DB::table('customer_addresses')->where('id', $id)->first();
+        return view('customers.addresses.show')->with([
+            'title' => 'Địa chỉ của tôi',
+            'customer_address' => $customer_address,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $id_district = $request->input('id_district');
@@ -63,6 +72,43 @@ class AddressController extends Controller
         ]);
 
         $request->session()->flash('success_message', 'Tạo địa chỉ giao hàng thành công!');
+        return redirect(url()->previous());
+    }
+
+    public function update(Request $request, $id)
+    {
+        $id_district = $request->input('id_district');
+        $id_ward = $request->input('id_ward');
+        $address = $request->input('address');
+
+        $renderAddressHelper = new RenderAddress();
+        $city = $renderAddressHelper->getCityDetailFromApi(4)['Title'];
+        $district = $renderAddressHelper->getDistrictDetailFromApi($id_district)['Title'];
+        $ward = $renderAddressHelper->getWardDetailFromApi($id_ward)['Title'];
+
+        $fullAddress = $address . ', ' . $ward . ', ' . $district . ', ' . $city;
+
+        if ($request->input('is_current') == 'on') {
+            DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->update([
+                'is_current' => 0
+            ]);
+        }
+
+        DB::table('customer_addresses')->where('id', $id)->update([
+            'id_city' => 4,
+            'id_ward' => $id_ward,
+            'id_district' => $id_district,
+            'address' => $address,
+            'city' => $city,
+            'district' => $district,
+            'ward' => $ward,
+            'full_address' => $fullAddress,
+            'is_current' => 1,
+            'id_customer' => Auth::user()->id,
+            'updated_at' => now(),
+        ]);
+
+        $request->session()->flash('success_message', 'Cập nhật địa chỉ giao hàng thành công!');
         return redirect(url()->previous());
     }
 
