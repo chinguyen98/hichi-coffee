@@ -113,6 +113,12 @@
 
     @endif
 
+    @if(Request::route()->getName()==='customers.addresses.create')
+
+    <script src="/apps/js/handlingAddress.js"></script>
+
+    @endif
+
     <!-- End Embed JS -->
 
     <script>

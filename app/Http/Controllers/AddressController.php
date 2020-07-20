@@ -14,6 +14,22 @@ class AddressController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $customer_addresses = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->get(['id', 'full_address', 'is_current']);
+        return view('customers.addresses.index')->with([
+            'title' => 'Địa chỉ của tôi',
+            'customer_addresses' => $customer_addresses,
+        ]);
+    }
+
+    public function create()
+    {
+        return view('customers.addresses.create')->with([
+            'title' => 'Tạo địa chỉ mới',
+        ]);
+    }
+
     public function store(Request $request)
     {
         $id_district = $request->input('id_district');
@@ -46,6 +62,7 @@ class AddressController extends Controller
             'updated_at' => now(),
         ]);
 
+        $request->session()->flash('success_message', 'Tạo địa chỉ giao hàng thành công!');
         return redirect(url()->previous());
     }
 
