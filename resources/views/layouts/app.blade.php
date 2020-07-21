@@ -125,6 +125,8 @@
 
     @endif
 
+    <script src="/apps/js/handlingLogout.js"></script>
+
     <!-- End Embed JS -->
 
     <script>

@@ -26,7 +26,7 @@
                         <a class="dropdown-item" href="{{route('customers.orders.index')}}">Đơn hàng của tôi</a>
                         <a class="dropdown-item" href="{{route('customers.accounts.index')}}">Tài khoản của tôi</a>
                         <a class="dropdown-item" href="{{route('customers.addresses.index')}}">Địa chỉ của tôi</a>
-                        <a class="dropdown-item" href="/register" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
+                        <a class="dropdown-item" href="/register" onclick="logout()">Đăng xuất</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
