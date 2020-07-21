@@ -36,6 +36,8 @@ Route::group(['prefix' => 'news'], function () {
     Route::get('/{slug}', 'NewsController@show')->name('customers.news.show');
 });
 
+
+
 Auth::routes(['verify' => true]);
 
 Route::group(['prefix' => 'orders', 'middleware' => ['verified']], function () {
@@ -49,13 +51,17 @@ Route::group(['prefix' => 'accounts'], function () {
     Route::put('/', 'CustomerController@update')->middleware('verified')->name('customers.accounts.update');
 });
 
-Route::group(['prefix' => 'addresses'], function () {
+Route::group(['prefix' => 'addresses', 'middleware' => 'auth'], function () {
     Route::get('/', 'AddressController@index')->name('customers.addresses.index');
     Route::get('/create', 'AddressController@create')->name('customers.addresses.create');
     Route::get('/{id}', 'AddressController@show')->name('customers.addresses.show');
     Route::post('/', 'AddressController@store')->name('customers.addresses.store');
     Route::put('/changing', 'AddressController@changeDefaultAddress')->name('customers.addresses.changing');
     Route::put('/{id}', 'AddressController@update')->name('customers.addresses.update');
+});
+
+Route::group(['prefix' => 'rates', 'middleware' => 'auth'], function () {
+    Route::get('/', 'RateController@index')->name('customers.rates.index');
 });
 
 /* Admin Routes */
