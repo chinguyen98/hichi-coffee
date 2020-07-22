@@ -127,6 +127,7 @@
     @endif
 
     <script src="/apps/js/handlingLogout.js"></script>
+    <script src="/apps/js/checkFavorite.js"></script>
 
     <!-- End Embed JS -->
 

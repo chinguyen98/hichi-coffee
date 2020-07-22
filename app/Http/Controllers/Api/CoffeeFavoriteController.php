@@ -13,21 +13,24 @@ class CoffeeFavoriteController extends Controller
     {
         $id_coffee = $request->id_coffee;
         $id_customer = Auth::user()->id;
+        $status = $request->status;
         $now = now();
 
-        $favoriteExists = CoffeeFavorite::where('id_coffee', $id_coffee)->where('id_customer', $id_customer);
-
-        if ($favoriteExists->exists()) {
-            $favoriteExists->first()->delete();
-        } else {
-            $favorite = new CoffeeFavorite();
-            $favorite->id_coffee = $id_coffee;
-            $favorite->id_customer = $id_customer;
-            $favorite->created_at = $now;
-            $favorite->updated_at = $now;
-            $favorite->save();
+        if ($status == 1) {
+            $favorite = CoffeeFavorite::where('id_coffee', $id_coffee)->where('id_customer', $id_customer)
+                ->firstOrCreate([
+                    'id_coffee' => $id_coffee,
+                    'id_customer' => $id_customer,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ]);
+        } elseif ($status == 0) {
+            $favoriteExists = CoffeeFavorite::where('id_coffee', $id_coffee)->where('id_customer', $id_customer);
+            if ($favoriteExists->exists()) {
+                $favoriteExists->first()->delete();
+            }
         }
 
-        return response()->json($favoriteExists->exists());
+        return response()->json('OK');
     }
 }
