@@ -15,4 +15,9 @@ class CoffeeFavorite extends Model
     protected $hidden = [
         'id',
     ];
+
+    public function coffee()
+    {
+        return $this->belongsTo(Coffee::class, 'id_coffee', 'id');
+    }
 }

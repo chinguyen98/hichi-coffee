@@ -126,8 +126,16 @@
 
     @endif
 
-    <script src="/apps/js/handlingLogout.js"></script>
     <script src="/apps/js/checkFavorite.js"></script>
+
+    @if(Request::route()->getName()==='customers.favorites.index')
+
+    <script src="/apps/js/handlingFavorite.js"></script>
+
+    @endif
+
+    <script src="/apps/js/handlingLogout.js"></script>
+    
 
     <!-- End Embed JS -->
 

@@ -27,6 +27,7 @@
                         <a class="dropdown-item" href="{{route('customers.accounts.index')}}">Tài khoản của tôi</a>
                         <a class="dropdown-item" href="{{route('customers.addresses.index')}}">Địa chỉ của tôi</a>
                         <a class="dropdown-item" href="{{route('customers.rates.index')}}">Nhận xét sản phẩm đã mua</a>
+                        <a class="dropdown-item" href="{{route('customers.favorites.index')}}">Sản phẩm yêu thích</a>
                         <a class="dropdown-item" href="/register" onclick="logout()">Đăng xuất</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

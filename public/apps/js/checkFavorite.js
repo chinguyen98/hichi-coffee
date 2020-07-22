@@ -6,10 +6,12 @@ async function sendFavorite() {
 
     const info = favoriteStorage.split('-');
 
-    if (info[1] == 1) {
-        favoriteBtn.children[0].classList.add('text-danger');
-    } else {
-        favoriteBtn.children[0].classList.remove('text-danger');
+    if (document.querySelector('.favoriteBtn')) {
+        if (info[1] == 1) {
+            favoriteBtn.children[0].classList.add('text-danger');
+        } else {
+            favoriteBtn.children[0].classList.remove('text-danger');
+        }
     }
 
     const formData = new FormData();

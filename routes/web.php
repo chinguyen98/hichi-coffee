@@ -63,6 +63,9 @@ Route::group(['prefix' => 'addresses', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'rates', 'middleware' => 'auth'], function () {
     Route::get('/', 'RateController@index')->name('customers.rates.index');
 });
+Route::group(['prefix' => 'favorites', 'middleware' => 'auth'], function () {
+    Route::get('/', 'CoffeeFavoriteController@index')->name('customers.favorites.index');
+});
 
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {
