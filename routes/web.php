@@ -137,6 +137,10 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/reply', 'Api\CommentController@storeReplyComment')->middleware('auth');
         Route::get('/reply', 'Api\CommentController@getReplyComment');
     });
+
+    Route::group(['prefix' => 'favorites', 'middleware' => 'auth'], function () {
+        Route::post('/', 'Api\CoffeeFavoriteController@handlingFavorite');
+    });
 });
 
 /* User Routes */

@@ -65,7 +65,7 @@
                     @guest
                     @else
 
-                    <button class="favorite"><span class="text-danger ml-3" style="font-size: 3rem;">&hearts;</span></button>
+                    <button class="favorite"><span class="{{$coffee->haveFavorite(Auth::user()->id) ? 'text-danger' : ''}} ml-3" style="font-size: 3rem;">&hearts;</span></button>
 
                     @endguest
                 </div>

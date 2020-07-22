@@ -27,6 +27,11 @@ class Coffee extends Model
         return $this->hasMany(CoffeeComment::class, 'id_coffee', 'id')->orderByDesc('updated_at');
     }
 
+    public function coffee_favorites()
+    {
+        return $this->hasMany(CoffeeFavorite::class, 'id_coffee', 'id');
+    }
+
     public function avgRating()
     {
         return number_format($this->coffee_comments()->avg('rating'), 1);
@@ -50,5 +55,10 @@ class Coffee extends Model
     public function haveComment($id_customer)
     {
         return $this->coffee_comments()->where('id_customer', $id_customer)->exists();
+    }
+
+    public function haveFavorite($id_customer)
+    {
+        return $this->coffee_favorites()->where('id_customer', $id_customer)->exists();
     }
 }
