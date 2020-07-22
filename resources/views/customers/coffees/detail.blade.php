@@ -60,7 +60,15 @@
                     <input style="width: 4rem;" type="text" name="quantity" class="quantity" value="1" min="1" />
                     <span id="btn-quantity-insc" class="quantity-updown text-center">+</span>
                 </div>
-                <p><a id="btnAddToCart" class="btn btn-lg btn-primary btn-outline-primary mt-4">THÊM VÀO GIỎ</a></p>
+                <div class="d-flex flex-row align-items-center ">
+                    <p><a id="btnAddToCart" class="btn btn-lg btn-primary btn-outline-primary mt-4">THÊM VÀO GIỎ</a></p>
+                    @guest
+                    @else
+
+                    <button class="favorite"><span class="text-danger ml-3" style="font-size: 3rem;">&hearts;</span></button>
+
+                    @endguest
+                </div>
             </div>
         </div>
     </div>

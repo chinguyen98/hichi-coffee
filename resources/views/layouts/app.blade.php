@@ -110,6 +110,7 @@
 
     <script src="/apps/js/handlingCoffeeDetailPage.js"></script>
     <script src="/apps/js/handlingCustomerComment.js"></script>
+    <script src="/apps/js/handlingCoffeeFavorite.js"></script>
 
     @endif
 

@@ -1,6 +1,18 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* Upload Image*/
 
+.favorite{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.favorite:focus{
+  outline: none;
+}
+
 .commentImage {
   width: 0.1px;
   height: 0.1px;
@@ -101,7 +113,7 @@ div, label {
   float: right;
 }
 
-.customRating-checked::before{
+.customRating-checked::before {
   color: #FFD700;
 }
 
