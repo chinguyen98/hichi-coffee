@@ -6,7 +6,7 @@ async function sendFavorite() {
 
     const info = favoriteStorage.split('-');
 
-    if (document.querySelector('.favoriteBtn')) {
+    if (document.querySelector('.favorite')) {
         if (info[1] == 1) {
             favoriteBtn.children[0].classList.add('text-danger');
         } else {
