@@ -7,6 +7,10 @@ use Illuminate\Support\Carbon;
 
 class Coffee extends Model
 {
+    protected $appends = ['avgRating', 'brand'];
+
+    protected $hidden = ['info', 'quantity', 'expected_quantity', 'status', 'created_at', 'updated_at'];
+
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'id_brand');
@@ -60,5 +64,16 @@ class Coffee extends Model
     public function haveFavorite($id_customer)
     {
         return $this->coffee_favorites()->where('id_customer', $id_customer)->exists();
+    }
+
+    /* Serialization */
+    public function getAvgRatingAttribute()
+    {
+        return $this->avgRating();
+    }
+
+    public function getBrandAttribute()
+    {
+        return $this->brand()->first();
     }
 }

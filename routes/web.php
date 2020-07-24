@@ -142,6 +142,7 @@ Route::group(['prefix' => 'api'], function () {
     });
 
     Route::group(['prefix' => 'favorites', 'middleware' => 'auth'], function () {
+        Route::get('/', 'Api\CoffeeFavoriteController@getFavorites');
         Route::post('/', 'Api\CoffeeFavoriteController@handlingFavorite');
     });
 });

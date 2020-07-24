@@ -6,9 +6,17 @@ use App\CoffeeFavorite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CoffeeFavoriteController extends Controller
 {
+    public function getFavorites()
+    {
+        $favorites = CoffeeFavorite::with('coffee')->get();
+
+        return response()->json($favorites);
+    }
+
     public function handlingFavorite(Request $request)
     {
         $id_coffee = $request->id_coffee;

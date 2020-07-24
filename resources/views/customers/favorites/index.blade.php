@@ -18,9 +18,9 @@
 
 <section class="ftco-menu mb-5">
     <div class="container">
-        <h3>Danh sách yêu thích ({{count($favorites)}})</h3>
+        <h3>Danh sách yêu thích ()</h3>
         <div class="dmsp-main-container favoriteListArea">
-            @foreach($favorites as $favorite)
+            <!-- @foreach($favorites as $favorite)
             <div class="pt-3 row dmsp-main-container__list d-lg-flex flex-wrap my-4">
                 <div class="col col-md-2">
                     <a href="{{route('customer.coffees.show', ['slug'=>$favorite->coffee->slug])}}">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @endforeach -->
         </div>
     </div>
 </section>

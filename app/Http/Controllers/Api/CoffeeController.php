@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Coffee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,7 +46,9 @@ class CoffeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $coffees = Coffee::find($id)->append('avgRating')->toArray();
+
+        return response()->json($coffees);
     }
 
     /**
