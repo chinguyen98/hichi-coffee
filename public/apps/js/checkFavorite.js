@@ -5,11 +5,12 @@ async function sendFavorite() {
     }
 
     const info = favoriteStorage.split('-');
+    const id_coffee = document.querySelector('[name="hidId"]')?.value;
 
-    if (document.querySelector('.favorite')) {
-        if (info[1] == 1) {
+    if (document.querySelector('.favorite') && id_coffee) {
+        if (info[1] == 1 && id_coffee == info[0]) {
             favoriteBtn.children[0].classList.add('text-danger');
-        } else {
+        } else if (info[1] == 0 && id_coffee == info[0]) {
             favoriteBtn.children[0].classList.remove('text-danger');
         }
     }

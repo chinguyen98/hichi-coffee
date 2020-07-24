@@ -21,8 +21,20 @@ function calcRating(r, areaRating, id = null) {
     });
 }
 
-function deleteFavorite(id){
-    console.log(id)
+async function deleteFavorite(id) {
+    await fetch(`/api/favorites/${id}`, {
+        method: 'DELETE',
+        credentials: "same-origin",
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+    });
+
+    let count = parseInt(document.querySelector('.favoriteCount').innerHTML);
+    count = count - 1;
+
+    document.querySelector(`.favoContainer-${id}`).remove();
+    document.querySelector('.favoriteCount').innerHTML = count;
 }
 
 async function getFavorites() {
@@ -38,7 +50,7 @@ async function getFavorites() {
 
     const exportHtml = favorites.map(item => {
         return `
-                <div style="background-color: rgba(255, 255, 255, 0.05);" class="p-3 row dmsp-main-container__list d-lg-flex flex-wrap my-4">
+                <div style="background-color: rgba(255, 255, 255, 0.05);" class="p-3 row dmsp-main-container__list d-lg-flex flex-wrap my-4 favoContainer-${item.coffee.id}">
                     <div class="col col-md-2">
                         <a href="/coffees/${item.coffee.slug}">
                             <img style="width: 100%; height: auto;" src="/apps/images/coffees/${item.coffee.image}" alt="{{$favorite->coffee->image}}">

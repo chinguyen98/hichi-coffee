@@ -41,4 +41,11 @@ class CoffeeFavoriteController extends Controller
 
         return response()->json('OK');
     }
+
+    public function deleteFavorite($id)
+    {
+        CoffeeFavorite::where('id_customer', Auth::user()->id)->where('id_coffee', $id)->delete();
+
+        return response()->json();
+    }
 }
