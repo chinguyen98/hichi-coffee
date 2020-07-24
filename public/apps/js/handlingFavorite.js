@@ -1,5 +1,9 @@
 const favoriteListArea = document.querySelector('.favoriteListArea');
 
+function formatPrice(price) {
+    return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
+}
+
 function calcRating(r, areaRating, id = null) {
     const f = Math.floor(r * 2);
     let ratingStarList;
@@ -17,6 +21,10 @@ function calcRating(r, areaRating, id = null) {
     });
 }
 
+function deleteFavorite(id){
+    console.log(id)
+}
+
 async function getFavorites() {
     const favorites = await fetch('/api/favorites', {
         method: 'GET',
@@ -26,44 +34,55 @@ async function getFavorites() {
         },
     }).then(res => res.json()).then(res => res);
 
+    document.querySelector('.favoriteCount').innerHTML = favorites.length;
+
     const exportHtml = favorites.map(item => {
         return `
-                <div class="pt-3 row dmsp-main-container__list d-lg-flex flex-wrap my-4">
+                <div style="background-color: rgba(255, 255, 255, 0.05);" class="p-3 row dmsp-main-container__list d-lg-flex flex-wrap my-4">
                     <div class="col col-md-2">
-                    <a href="/coffees/${item.coffee.slug}">
-                        <img style="width: 100%; height: auto;" src="/apps/images/coffees/${item.coffee.image}" alt="{{$favorite->coffee->image}}">
-                    </a>
-                </div>  
-                <div class="col col-md-8">
-                    <a href="/coffees/${item.coffee.slug}">
-                        <p>${item.coffee.name}</p>
-                    </a>
-                    <span>${item.coffee.brand.name}</span><br>
+                        <a href="/coffees/${item.coffee.slug}">
+                            <img style="width: 100%; height: auto;" src="/apps/images/coffees/${item.coffee.image}" alt="{{$favorite->coffee->image}}">
+                        </a>
+                    </div>
+                    <div class="col col-md-9">
+                        <a href="/coffees/${item.coffee.slug}">
+                            <p>${item.coffee.name}</p>
+                        </a>
+                        <span>${item.coffee.brand.name}</span><br>
 
-                    <div data-star="${item.coffee.avgRating}" data-id="${item.coffee.id}" class="customRating customerRate">
-                        <label class="full" for="sstar5"></label>
+                        <div class="d-flex flex-row align-items-center">
+                            <div data-star="${item.coffee.avgRating}" data-id="${item.coffee.id}" class="customRating customerRate mr-3">
+                                <label class="full" for="sstar5"></label>
 
-                        <label class="half" for="sstar4half"></label>
+                                <label class="half" for="sstar4half"></label>
 
-                        <label class="full" for="sstar4"></label>
+                                <label class="full" for="sstar4"></label>
 
-                        <label class="half" for="sstar3half"></label>
+                                <label class="half" for="sstar3half"></label>
 
-                        <label class="full" for="sstar3"></label>
+                                <label class="full" for="sstar3"></label>
 
-                        <label class="half" for="sstar2half"></label>
+                                <label class="half" for="sstar2half"></label>
 
-                        <label class="full" for="star2"></label>
+                                <label class="full" for="star2"></label>
 
-                        <label class="half" for="star1half"></label>
+                                <label class="half" for="star1half"></label>
 
-                        <label class="full" for="sstar1"></label>
+                                <label class="full" for="sstar1"></label>
 
-                        <label class="half" for="sstarhalf"></label>
+                                <label class="half" for="sstarhalf"></label>
+                            </div>
+                            <div>
+                                <span>(${item.coffee.coffee_comment_count} nhận xét)</span>
+                            </div>
+                        </div>
+                        <p>${formatPrice(item.coffee.price)} đ</p>
+                    </div>
+                    <div class="col col-md-1">
+                        <button class='btn btn-danger' onclick="deleteFavorite(${item.coffee.id})">Xóa</button>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
     }).join('');
     favoriteListArea.innerHTML = exportHtml;
 

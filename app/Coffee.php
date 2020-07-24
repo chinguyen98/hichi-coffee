@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 
 class Coffee extends Model
 {
-    protected $appends = ['avgRating', 'brand'];
+    protected $appends = ['avgRating', 'brand', 'coffee_comment_count'];
 
     protected $hidden = ['info', 'quantity', 'expected_quantity', 'status', 'created_at', 'updated_at'];
 
@@ -75,5 +75,9 @@ class Coffee extends Model
     public function getBrandAttribute()
     {
         return $this->brand()->first();
+    }
+
+    public function getCoffeeCommentCountAttribute(){
+        return $this->coffee_comments()->count();
     }
 }
