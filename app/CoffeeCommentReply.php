@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CoffeeCommentReply extends Model
 {
-    protected $table = "coffee_comment_replys";
+    protected $table = "coffee_comment_replies";
 
     public function customer()
     {

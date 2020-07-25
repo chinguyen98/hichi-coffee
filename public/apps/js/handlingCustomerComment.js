@@ -190,6 +190,7 @@ async function handlingSendReply(e) {
     }).then(res => res.json()).then(dataJson => dataJson);
 
     errArea.innerHTML = `<p class="text-success">${data}</p>`;
+    document.querySelector(`.replyContent-${e.target.dataset.id}`).value = '';
 }
 
 async function viewMoreReplyComment(id) {

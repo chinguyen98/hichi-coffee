@@ -100,7 +100,7 @@ class CommentController extends Controller
         $id_customer = Auth::user()->id;
         $now = now();
 
-        DB::table('coffee_comment_replys')->insert([
+        DB::table('coffee_comment_replies')->insert([
             'content' => $content,
             'id_comment' => $id_comment,
             'id_customer' => $id_customer,
@@ -116,12 +116,12 @@ class CommentController extends Controller
         $offset = $request->query('offset');
         $id_comment = $request->query('id_comment');
 
-        $replyComments = DB::table('coffee_comment_replys')
-            ->join('customers', 'customers.id', '=', 'coffee_comment_replys.id_customer')
-            ->where('coffee_comment_replys.id_comment', $id_comment)
+        $replyComments = DB::table('coffee_comment_replies')
+            ->join('customers', 'customers.id', '=', 'coffee_comment_replies.id_customer')
+            ->where('coffee_comment_replies.id_comment', $id_comment)
             ->skip($offset)->take(6)
-            ->orderByDesc('coffee_comment_replys.created_at')
-            ->get(['customers.name', 'coffee_comment_replys.content']);
+            ->orderByDesc('coffee_comment_replies.created_at')
+            ->get(['customers.name', 'coffee_comment_replies.content']);
 
         return response()->json($replyComments);
     }
