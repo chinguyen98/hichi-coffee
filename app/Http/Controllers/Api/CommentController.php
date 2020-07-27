@@ -57,7 +57,7 @@ class CommentController extends Controller
 
         /* Update Comment */
 
-        $coffee_comment = CoffeeComment::where('id_customer', $id_customer)->first();
+        $coffee_comment = CoffeeComment::where('id_customer', $id_customer)->where('id_coffee', $id_coffee)->first();
         $coffee_comment->title = $title;
         $coffee_comment->content = $content;
         $coffee_comment->rating = $rating;
