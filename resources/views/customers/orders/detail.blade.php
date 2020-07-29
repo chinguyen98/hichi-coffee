@@ -95,9 +95,9 @@
                             <p>{{$order_detail->quantity}}</p>
                         </td>
                         <td class="p-2 text-center">
-                            @if($order_detail->valuation)
+                            @if($order_detail->valuation_detail($order_detail->id_order, $order_detail->id_coffee))
 
-                            <p>{{number_format($order_detail->valuation->discount)}} đ</p>
+                            <p>{{number_format($order_detail->valuation_detail($order_detail->id_order, $order_detail->id_coffee)->valuation->price)}} đ</p>
 
                             @else
 

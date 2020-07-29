@@ -55,16 +55,22 @@ class OrderController extends Controller
 
         foreach ($carts as $cart) {
             $cartForMailItem = new stdClass();
-
             $id_valuation = null;
             $id_coffee = $cart->id;
             $coffee = DB::table('coffees')->where('id', $id_coffee)->first(['price', 'name', 'quantity', 'expected_quantity']);
             $quantity = $cart->qty;
             $totalSubPrice = 0;
+
             if (property_exists($cart, 'valuation')) {
                 $id_valuation = $cart->valuation;
                 $valuation = DB::table('valuations')->where('id', $id_valuation)->first(['price', 'discount']);
                 $totalSubPrice = $valuation->price * $quantity;
+
+                DB::table('valuation_order_details')->insert([
+                    'id_order' => $id_order,
+                    'id_coffee' => $cart->id,
+                    'id_valuation' => $id_valuation,
+                ]);
 
                 $cartForMailItem->discountPrice = $valuation->discount;
                 $cartForMailItem->newPrice = $valuation->price;
@@ -91,7 +97,6 @@ class OrderController extends Controller
                 'total_sub_price' => $totalSubPrice,
                 'id_coffee' => $id_coffee,
                 'id_order' => $id_order,
-                'id_valuation' => $id_valuation,
                 'created_at' => $created_at,
                 'updated_at' => $updated_at,
             ]);
