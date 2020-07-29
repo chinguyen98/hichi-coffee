@@ -314,7 +314,7 @@
             <h4 class="mt-5">{{$coffee_comment->customer->name}}</h4>
             <h5 class="text-info">{{$coffee_comment->updated_at}}</h5>
             <div class="d-flex align-items-center">
-                <div data-id="{{$coffee_comment->id}}" data-star="{{$coffee_comment->rating}}" class="customRating customerRate">
+                <div data-id="{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}" data-star="{{$coffee_comment->rating}}" class="customRating customerRate">
                     <label class="full" for="ssstar5"></label>
 
                     <label class="half" for="ssstar4half"></label>
@@ -354,22 +354,22 @@
             <div class="mt-3">
                 <span>
                     <a style="cursor: pointer; display: inline; user-select: none;" class="replyBtn">
-                        <h5 style="display: inline;" class="text-info" data-id="{{$coffee_comment->id}}">Trả lời</h5>
+                        <h5 style="display: inline;" class="text-info" data-id="{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}">Trả lời</h5>
                     </a>
                 </span>
 
-                <span class="thankArea-{{$coffee_comment->id}}">
+                <span class="thankArea-{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}">
                     @guest
 
                     @else
 
                     @if($coffee_comment->isLike(Auth::user()->id))
 
-                    <span class="pl-4 pr-1 text-success">Bạn và {{$coffee_comment->coffee_comment_likes_count($coffee_comment->id)}} người khác đã cảm ơn nhận xét này</span>
+                    <span class="pl-4 pr-1 text-success">Bạn và {{$coffee_comment->coffee_comment_likes_count($coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer)}} người khác đã cảm ơn nhận xét này</span>
 
                     @else
 
-                    <span onclick="addThankForComment(`{{$coffee_comment->id}}`)">
+                    <span onclick="addThankForComment(`{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}`)">
                         <span class="pl-4 pr-1">Nhận xét này hữu ích với bạn?</span>
                         <span>
                             <button class="btn btn-primary">Cảm ơn</button>
@@ -382,7 +382,7 @@
                 </span>
             </div>
 
-            <div class="replyArea-{{$coffee_comment->id}} d-none">
+            <div class="replyArea-{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}} d-none">
                 @guest
 
                 <span class="text-danger">Bạn cần đăng nhập để bình luận</span>
@@ -390,21 +390,21 @@
 
                 @else
 
-                <textarea name="replyContent" style="width: 100%;" rows="4" placeholder="Nhập nội dung trả lời tại đây. Tối đa 1500 từ" class="replyContent-{{$coffee_comment->id}}"></textarea>
-                <span class="ml-3 replyContent-err-{{$coffee_comment->id}}"></span>
+                <textarea name="replyContent" style="width: 100%;" rows="4" placeholder="Nhập nội dung trả lời tại đây. Tối đa 1500 từ" class="replyContent-{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}"></textarea>
+                <span class="ml-3 replyContent-err-{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}"></span>
                 <div class="d-flex">
-                    <button class="btn btn-primary px-3 py-2 sendReplyBtn" data-id="{{$coffee_comment->id}}">Gửi</button>
-                    <button class="btn btn-secondary px-3 py-2 ml-2 replyCloseBtn" data-id="{{$coffee_comment->id}}">Hủy bỏ</button>
+                    <button class="btn btn-primary px-3 py-2 sendReplyBtn" data-id="{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}">Gửi</button>
+                    <button class="btn btn-secondary px-3 py-2 ml-2 replyCloseBtn" data-id="{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}">Hủy bỏ</button>
                 </div>
 
                 @endguest
             </div>
 
-            <div class="allReplyCommentArea-{{$coffee_comment->id}} pl-5 mt-3">
+            <div class="allReplyCommentArea-{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}} pl-5 mt-3">
                 @foreach($coffee_comment->coffee_comment_replys as $index=>$coffee_comment_reply)
 
                 @if($index == 2)
-                <button onclick="viewMoreReplyComment(`{{$coffee_comment->id}}`)" class="btn btn-success viewMoreReplyCommentBtn-{{$coffee_comment->id}}">Xem thêm</button>
+                <button onclick="viewMoreReplyComment(`{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}`)" class="btn btn-success viewMoreReplyCommentBtn-{{$coffee_comment->id_coffee .  '-' .  $coffee_comment->id_customer}}">Xem thêm</button>
                 @break
 
                 @else

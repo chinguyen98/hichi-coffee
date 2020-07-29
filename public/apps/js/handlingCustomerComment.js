@@ -72,7 +72,7 @@ async function handlingAddNewComment() {
     writeCommentArea.innerHTML = '';
     document.querySelector('.writeYourComment').innerHTML = '<h1 class="text-center text-danger">Cảm ơn bạn đã đánh giá sản phẩm!</h1>';
     document.querySelector('#flag').scrollIntoView(true);
-    //console.log(data);
+    console.log(data);
 }
 
 function handlingPreviewImage() {

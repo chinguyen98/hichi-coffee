@@ -2,10 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Awobaz\Compoships\Database\Eloquent\Model;
 
 class CoffeeComment extends Model
 {
+    use \Awobaz\Compoships\Compoships;
     protected $table = 'coffee_comments';
 
     public function customer()
@@ -15,7 +16,7 @@ class CoffeeComment extends Model
 
     public function images()
     {
-        return $this->hasMany(CoffeeCommentImage::class, 'id_comment', 'id');
+        return $this->hasMany(CoffeeCommentImage::class, ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer']);
     }
 
     public function coffee_comment_replys()

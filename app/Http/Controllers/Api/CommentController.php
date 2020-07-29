@@ -45,7 +45,8 @@ class CommentController extends Controller
 
                     $listImagesToDb[] = [
                         'name' => $imageName,
-                        'id_comment' => $id_coffee_comments,
+                        'id_customer' => $id_customer,
+                        'id_coffee' => $id_coffee,
                         'created_at' => $now,
                         'updated_at' => $now,
                     ];
@@ -57,22 +58,23 @@ class CommentController extends Controller
 
         /* Update Comment */
 
-        $coffee_comment = CoffeeComment::where('id_customer', $id_customer)->where('id_coffee', $id_coffee)->first();
-        $coffee_comment->title = $title;
-        $coffee_comment->content = $content;
-        $coffee_comment->rating = $rating;
-        $coffee_comment->status = 1;
-        $coffee_comment->updated_at = $now;
-        $coffee_comment->save();
+
+        CoffeeComment::where('id_customer', '=', $id_customer)->where('id_coffee', '=', $id_coffee)->update([
+            'title' => $title,
+            'content' => $content,
+            'rating' => $rating,
+            'status' => 1,
+            'updated_at' => $now,
+        ]);
 
 
-        $listOldImage = DB::table('coffee_comment_images')->where('id_comment', $coffee_comment->id)->get();
+        $listOldImage = DB::table('coffee_comment_images')->where('id_customer', '=', $id_customer)->where('id_coffee', '=', $id_coffee)->get();
         if (count($listOldImage) > 0) {
             foreach ($listOldImage as $image) {
                 Storage::disk('comment_image')->delete($image->name);
             }
         }
-        DB::table('coffee_comment_images')->where('id_comment', $coffee_comment->id)->delete();
+        DB::table('coffee_comment_images')->where('id_customer', '=', $id_customer)->where('id_coffee', '=', $id_coffee)->delete();
 
         if ($images != null) {
             $listImagesToDb = [];
@@ -82,9 +84,10 @@ class CommentController extends Controller
 
                 $listImagesToDb[] = [
                     'name' => $imageName,
-                    'id_comment' => $coffee_comment->id,
-                    'created_at' => $now,
-                    'updated_at' => $now,
+                        'id_customer' => $id_customer,
+                        'id_coffee' => $id_coffee,
+                        'created_at' => $now,
+                        'updated_at' => $now,
                 ];
             }
             DB::table('coffee_comment_images')->insert($listImagesToDb);
