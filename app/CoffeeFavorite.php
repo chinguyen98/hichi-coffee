@@ -8,7 +8,7 @@ class CoffeeFavorite extends Model
 {
     protected $table = 'coffee_favorites';
 
-    protected $hidden = ['id', 'created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
         'id_coffee', 'id_customer', 'created_at', 'updated_at',

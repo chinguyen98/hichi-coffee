@@ -29,6 +29,7 @@ async function sendFavorite() {
     }).then(res => res.json()).then(resJson => resJson);
 
     localStorage.removeItem('favo');
+    console.log(data);
 }
 
 window.addEventListener('load', sendFavorite);

@@ -33,16 +33,16 @@ class CoffeeFavoriteController extends Controller
                     'updated_at' => $now,
                 ]);
         } elseif ($status == 0) {
-            $favoriteExists = CoffeeFavorite::where('id_coffee', $id_coffee)->where('id_customer', $id_customer);
-            if ($favoriteExists->exists()) {
-                $favoriteExists->first()->delete();
-            }
+            $favoriteExists = CoffeeFavorite::where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
+            // if ($favoriteExists->exists()) {
+            //     $favoriteExists->first()->delete();
+            // }
         }
 
-        return response()->json('OK');
+        return response()->json($status);
     }
 
-    public function deleteFavorite($id)
+    public function deleteFavorite($status)
     {
         CoffeeFavorite::where('id_customer', Auth::user()->id)->where('id_coffee', $id)->delete();
 
