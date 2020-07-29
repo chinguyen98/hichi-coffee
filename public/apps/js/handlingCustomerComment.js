@@ -227,9 +227,10 @@ async function viewMoreReplyComment(id) {
     })
 }
 
-async function addThankForComment(id) {
+async function addThankForComment(id_coffee, id_customer) {
     const formData = new FormData();
-    formData.append('id_comment', id);
+    formData.append('id_coffee', id_coffee);
+    formData.append('id_customer', id_customer);
 
     const data = await fetch('/api/comments/like', {
         method: 'POST',
@@ -240,7 +241,7 @@ async function addThankForComment(id) {
         },
     }).then(res => res.json()).then(dataJson => dataJson);
 
-    document.querySelector(`.thankArea-${id}`).innerHTML = `
+    document.querySelector(`.thankArea-${id_coffee}-${id_customer}`).innerHTML = `
         <span class="pl-4 pr-1 text-success">Bạn và ${data} người khác đã cảm ơn nhận xét này</span>
     `;
 }

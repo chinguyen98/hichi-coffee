@@ -26,11 +26,11 @@ class CoffeeComment extends Model
 
     public function isLike($id_customer)
     {
-        return $this->hasMany(CoffeeCommentLike::class, 'id_comment', 'id')->where('id_customer', $id_customer)->exists();
+        return $this->hasMany(CoffeeCommentLike::class,  ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer'])->where('id_customer', $id_customer)->exists();
     }
 
-    public function coffee_comment_likes_count($id_comment)
+    public function coffee_comment_likes_count($id_coffee, $id_customer)
     {
-        return $this->hasMany(CoffeeCommentLike::class, 'id_comment', 'id')->where('id_comment', $id_comment)->count();
+        return $this->hasMany(CoffeeCommentLike::class, ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer'])->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->count();
     }
 }
