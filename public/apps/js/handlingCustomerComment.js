@@ -173,7 +173,8 @@ async function handlingSendReply(e) {
     }
 
     const formData = new FormData();
-    formData.append('id_comment', e.target.dataset.id);
+    formData.append('id_coffee', e.target.dataset.id.split('-')[0]);
+    formData.append('id_customer', e.target.dataset.id.split('-')[1]);
     formData.append('content', replyContent.value);
 
     for (let i of formData) {
@@ -194,9 +195,14 @@ async function handlingSendReply(e) {
 }
 
 async function viewMoreReplyComment(id) {
+    const id_coffee = id.split('-')[0];
+    const id_customer = id.split('-')[1];
     const offset = document.querySelectorAll(`.allReplyCommentArea-${id} > div`).length;
+
+    
+
     const allReplyCommentArea = document.querySelector(`.allReplyCommentArea-${id}`);
-    const data = await fetch(`/api/comments/reply?id_comment=${id}&offset=${offset}`, {
+    const data = await fetch(`/api/comments/reply?id_customer=${id_customer}&id_coffee=${id_coffee}&offset=${offset}`, {
         method: 'GET',
         credentials: 'same-origin',
     }).then(res => res.json()).then(dataJson => dataJson);
@@ -209,7 +215,7 @@ async function viewMoreReplyComment(id) {
         if (index === 5) {
             htmlContent = `
                 <div>
-                    <button onclick="viewMoreReplyComment(${id})" class="btn btn-success viewMoreReplyCommentBtn-${id}">Xem thêm</button>
+                    <button onclick="viewMoreReplyComment('${id}')" class="btn btn-success viewMoreReplyCommentBtn-${id}">Xem thêm</button>
                 </div>
             `;
         }

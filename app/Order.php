@@ -11,11 +11,6 @@ class Order extends Model
         return $this->hasOne(OrderStatus::class, 'id_order', 'id')->where('is_current', 1);
     }
 
-    public function customer_address()
-    {
-        return $this->belongsTo(CustomerAddress::class, 'id_customer_address');
-    }
-
     public function statuses()
     {
         return $this->hasMany(OrderStatus::class, 'id_order', 'id');

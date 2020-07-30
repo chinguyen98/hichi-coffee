@@ -44,7 +44,7 @@ class OrderController extends Controller
             'total_price' => $totalPrice,
             'id_customer' => Auth::user()->id,
             'id_shipping_type' => $shippingType->id,
-            'id_customer_address' => $customerAddress->id,
+            'customer_address' => $customerAddress->full_address,
             'id_shipping_address' => $shippingAddress->id,
             'before_discount_price' => $beforeDiscountPrice,
             'created_at' => $created_at,

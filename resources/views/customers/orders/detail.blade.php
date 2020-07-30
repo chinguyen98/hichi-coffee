@@ -41,7 +41,7 @@
                     <h5>Địa chỉ người nhận: </h5>
                     <div class="orderDetail_subItem px-2 pt-3">
                         <h4><b>{{Auth::user()->name}}</b></h4>
-                        <p>Địa chỉ: {{$order->customer_address->full_address}}</p>
+                        <p>Địa chỉ: {{$order->customer_address}}</p>
                         <p>Điện thoại: {{Auth::user()->phone_number}}</p>
                     </div>
                 </div>

@@ -33,10 +33,10 @@ class CoffeeFavoriteController extends Controller
                     'updated_at' => $now,
                 ]);
         } elseif ($status == 0) {
-            $favoriteExists = CoffeeFavorite::where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
-            // if ($favoriteExists->exists()) {
-            //     $favoriteExists->first()->delete();
-            // }
+            $favoriteExists = DB::table('coffee_favorites')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer);
+            if ($favoriteExists->exists()) {
+                $favoriteExists->delete();
+            }
         }
 
         return response()->json($status);

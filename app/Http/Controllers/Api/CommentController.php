@@ -84,10 +84,10 @@ class CommentController extends Controller
 
                 $listImagesToDb[] = [
                     'name' => $imageName,
-                        'id_customer' => $id_customer,
-                        'id_coffee' => $id_coffee,
-                        'created_at' => $now,
-                        'updated_at' => $now,
+                    'id_customer' => $id_customer,
+                    'id_coffee' => $id_coffee,
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ];
             }
             DB::table('coffee_comment_images')->insert($listImagesToDb);
@@ -99,14 +99,16 @@ class CommentController extends Controller
     public function storeReplyComment(Request $request)
     {
         $content = $request->content;
-        $id_comment = $request->id_comment;
-        $id_customer = Auth::user()->id;
+        $id_coffee = $request->id_coffee;
+        $id_customer = $request->id_customer;
+        $id_customer_reply = Auth::user()->id;
         $now = now();
 
         DB::table('coffee_comment_replies')->insert([
             'content' => $content,
-            'id_comment' => $id_comment,
             'id_customer' => $id_customer,
+            'id_customer_reply' => $id_customer_reply,
+            'id_coffee' => $id_coffee,
             'created_at' => $now,
             'updated_at' => $now,
         ]);
@@ -117,14 +119,18 @@ class CommentController extends Controller
     public function getReplyComment(Request $request)
     {
         $offset = $request->query('offset');
-        $id_comment = $request->query('id_comment');
+        $id_customer = $request->query('id_customer');
+        $id_coffee = $request->query('id_coffee');
 
         $replyComments = DB::table('coffee_comment_replies')
             ->join('customers', 'customers.id', '=', 'coffee_comment_replies.id_customer')
-            ->where('coffee_comment_replies.id_comment', $id_comment)
+            ->where('coffee_comment_replies.id_coffee', $id_coffee)
+            ->where('coffee_comment_replies.id_customer', $id_customer)
             ->skip($offset)->take(6)
             ->orderByDesc('coffee_comment_replies.created_at')
             ->get(['customers.name', 'coffee_comment_replies.content']);
+
+        //$replyComments = CoffeeCommentReply::where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->get();
 
         return response()->json($replyComments);
     }

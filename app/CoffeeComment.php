@@ -21,7 +21,7 @@ class CoffeeComment extends Model
 
     public function coffee_comment_replys()
     {
-        return $this->hasMany(CoffeeCommentReply::class, 'id_comment', 'id')->orderByDesc('created_at')->limit(3);
+        return $this->hasMany(CoffeeCommentReply::class, ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer'])->orderByDesc('created_at')->limit(3);
     }
 
     public function isLike($id_customer)
