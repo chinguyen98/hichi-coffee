@@ -72,6 +72,10 @@ class AddressController extends Controller
         ]);
 
         $request->session()->flash('success_message', 'Tạo địa chỉ giao hàng thành công!');
+
+        if (str_replace(url('/'), '', url()->previous()) == '/addresses/create') {
+            return redirect()->route('customers.addresses.index');
+        }
         return redirect(url()->previous());
     }
 
@@ -80,6 +84,8 @@ class AddressController extends Controller
         $id_district = $request->input('id_district');
         $id_ward = $request->input('id_ward');
         $address = $request->input('address');
+
+        //dd($request->input('is_current') );
 
         $renderAddressHelper = new RenderAddress();
         $city = $renderAddressHelper->getCityDetailFromApi(4)['Title'];
@@ -109,7 +115,7 @@ class AddressController extends Controller
         ]);
 
         $request->session()->flash('success_message', 'Cập nhật địa chỉ giao hàng thành công!');
-        return redirect(url()->previous());
+        return redirect()->route('customers.addresses.index');
     }
 
     public function changeDefaultAddress(Request $request)

@@ -27,7 +27,7 @@
 
         @foreach($customer_addresses as $customer_address)
 
-        <div style="background-color: rgba(255, 255, 255, 0.05);" class="col col-md-12 my-3 px-3 py-1">
+        <div style="background-color: rgba(255, 255, 255, 0.05);" class="col col-md-12 my-3 px-3 py-1 customerAddress-{{$customer_address->id}}">
             <div class="d-flex flex-row justify-content-between my-2">
                 <div>
                     <span class="mr-3">{{Auth::user()->name}}</span>
@@ -42,7 +42,7 @@
                     <a href="{{route('customers.addresses.show', ['id'=>$customer_address->id])}}" class="text-info">Chỉnh sửa</a>
                     @if($customer_address->is_current==0)
 
-                    <button class="btn btn-danger ml-4">Xóa</button>
+                    <button onclick="deleteAddress('{{$customer_address->id}}')" class="btn btn-danger ml-4">Xóa</button>
 
                     @endif
                 </div>

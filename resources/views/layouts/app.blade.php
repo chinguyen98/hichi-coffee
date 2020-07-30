@@ -120,6 +120,12 @@
 
     @endif
 
+    @if(Request::route()->getName()==='customers.addresses.index')
+
+    <script src="/apps/js/handlingAddressIndex.js"></script>
+
+    @endif
+
     @if(Request::route()->getName()==='customers.addresses.show')
 
     <script src="/apps/js/handlingAddressDetail.js"></script>
@@ -135,7 +141,7 @@
     @endif
 
     <script src="/apps/js/handlingLogout.js"></script>
-    
+
 
     <!-- End Embed JS -->
 
