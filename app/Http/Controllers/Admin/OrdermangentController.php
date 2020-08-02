@@ -91,7 +91,7 @@ class OrdermangentController extends Controller
                 'created_at' => $time,
                 'updated_at' => $time,
             ]);
-
+            $request->session()->flash('flash_message', 'Duyệt Đơn Hàng Thành Công!!!');
             return redirect()->route('admins.manage.order.ship.show', ['id' => $id]);
         } else {
             /* Can nhap kho */
@@ -123,7 +123,7 @@ class OrdermangentController extends Controller
             'created_at' => $time,
             'updated_at' => $time,
         ]);
-
+        $request->session()->flash('flash_message', 'Giao Đơn Hàng Cho Đơn Vị Vận Chuyển!!!');
         return redirect()->route('admins.manage.order.ship.show', ['id' => $id]);
     }
 
@@ -147,7 +147,7 @@ class OrdermangentController extends Controller
             DB::table('coffees')->where('id', $order_detail->id_coffee)->decrement('quantity', $order_detail->quantity);
             DB::table('coffees')->where('id', $order_detail->id_coffee)->decrement('expected_quantity', $order_detail->quantity);
         }
-
+        $request->session()->flash('flash_message', 'Hoàn Tất Đơn Hàng!!!');
         return redirect()->route('admins.manage.order.finish.index');
     }
 
@@ -159,6 +159,13 @@ class OrdermangentController extends Controller
             'title' => 'CHI TIẾT ĐƠN HÀNG',
             'orderStatus' => $orderStatus,
         ]);
+    }
+    public function cancerOrder($id)
+    {
+        DB::table('order_statuses')->where('id_order', $id)->delete();
+        DB::table('order_details')->where('id_order', $id)->delete();
+        DB::table('orders')->where('id', $id)->delete(); 
+        return redirect()->route('admins.manage.order.check.index');
     }
 
     public function showDetailReceiveOrder($id)

@@ -20,6 +20,7 @@
                             <th style="color: teal">SỐ LƯỢNG</th>
                             
                         </tr>
+                        
                         @foreach($input->input_details as $ip)
                         <tr>
                             <td>{{$ip->coffee->id}}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\News;
 use App\Helpers\Slug;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,15 +17,17 @@ class NewsManagementController extends Controller
 
     public function index()
     {
+        $news = News::all();
         return view('admins.newsManagement.index')->with([
-            'title' => 'Danh sách tin',
+            'title' => 'DANH SÁCH TIN',
+            'listnews' => $news,
         ]);
     }
 
     public function create()
     {
         return view('admins.newsManagement.create')->with([
-            'title' => 'Thêm tin mới',
+            'title' => 'THÊM TIN MỚI',
         ]);
     }
 
@@ -63,7 +66,58 @@ class NewsManagementController extends Controller
             $file->move(public_path() . '/apps/images/news', $file->getClientOriginalName());
         }
 
-        $request->session()->flash('flash_message', 'Thêm tin mới thành công!');
+        $request->session()->flash('flash_message', 'Thêm Tin Mới Thành Công!');
         return redirect()->route('admins.manage.news.create');
+    }
+    public function renderNewUpdate($id)
+    {
+        $lstNew = DB::table('news')->where('id', $id)->first();
+        return view('admins/newsManagement/update')->with([
+            'title' => 'CẬP NHẬT TIN TỨC',
+            'new' => $lstNew,
+        ]);;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $newSlug = new Slug();
+
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:10000',
+            'description' => 'required|max:255',
+    
+        ], [
+            'required' => ':attribute Không được để trống',
+            'max' => ':attribute Không được lớn hơn :max',
+        ], [
+            'title' => 'Tiêu Đề Tin',
+            'content' => 'Nội Dung Tin',
+            'description' => 'Miêu Tả',
+        ]);
+
+        $news_update = $request->all();
+        DB::table('news')->where('id', $id)->update([
+            'title' => $news_update["title"],
+            'content' => $news_update["content"],
+            'description' => $news_update["description"],
+            'status' => $news_update["status"],
+            'slug' => $newSlug->createSlug($news_update["title"]),
+            'updated_at' => now()
+        ]);
+
+        if ($request->hasFile("image")) {
+            $file = $request->image;
+            $oldFilePath = public_path() . '/apps/images/news/' . $news_update["oldImage"];
+            File::delete($oldFilePath);
+            DB::table('news')->where('id', $id)->update([
+                'image' => $file->getClientOriginalName()
+            ]);
+            $file->move(public_path() . '/apps/images/news', $file->getClientOriginalName());
+        }
+
+        $request->session()->flash('flash_message', 'Cập Nhật Tin Tức Thành Công!');
+
+        return redirect()->route('admins.manage.news.index', ['id' => $id]);
     }
 }

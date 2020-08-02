@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -15,7 +18,15 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('admins/home')->with(['title' => 'TRANG CHỦ']);
+        $count = DB::table('order_statuses')->where('id_status', 1)->where('is_current', 1)->count();
+        $comment_count = DB::table('coffee_comments')->where('status', 0)->count();
+        $comment_rep_count = DB::table('coffee_comment_replies')->where('status', 0)->count();
+        return view('admins/home')->with([
+            'title' => 'TRANG CHỦ',
+            'order_count' => $count,
+            'comment_count' => $comment_count,
+            'comment_rep_count' => $comment_rep_count,
+        ]);
     }
 
     public function renderAdminManagementPage()
@@ -35,5 +46,39 @@ class HomeController extends Controller
             'title' => 'QUẢN LÝ QUẢN TRỊ',
             'admin' => $admin
         ]);
+    }
+
+    public function reset($id)
+    {
+        $admin = Admin::where('id', $id)->get();
+
+        return view('admins.adminManagement.reset')->with([
+            'title' => 'CẤP LẠI MẬT KHẨU',
+            'admin' => $admin,
+            'id_admin' => $id,
+        ]);
+    }
+
+    public function resetPassword(Request $request, $id)
+    {
+        $request->validate(
+            [
+                'password' => 'required|confirmed'
+            ],
+            [
+                'required' => ':attribute Không được để trống',
+                'confirmed' => ':attribute không đúng',
+            ],
+            [
+                'password' => 'Mật Khẩu'
+            ]
+        );
+
+        DB::table('admins')->where('id', $id)->update([
+            'password' => Hash::make($request->password),
+            'updated_at' => now(),
+        ]);
+        $request->session()->flash('flash_message', 'Cập Nhật Mật Khẩu Thành Công');
+        return redirect()->route('admins.renderAdminManagementPage');
     }
 }

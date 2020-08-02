@@ -11,7 +11,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                 <div class="product-status-wrap">
-                    <h1 style="color: white;">Danh sách sản phẩm cần nhập kho</h1>
+                    <h1 style="color: orangered;">DANH SÁCH SẢN PHẨM CẦN NHẬP KHO</h1>
                     <span class="input-group-addon"><i><b style="color:yellowgreen;">CHỌN NHÀ CUNG CẤP</b></i></span>
                     <select form="formInput" name="id_supplier" class="form-control pro-edt-select form-control-primary">
                         @foreach($suppliers as $supplier)
@@ -31,7 +31,7 @@
                         </tr>
                         @foreach($needMoreCoffee as $item)
                         <tr>
-                            <td>{{$item->id_coffee}}</td>
+                            <td >{{$item->id_coffee}}</td>
                             <td>{{$item->coffee_name}}</td>
                             <td>{{$item->quantity}}</td>
                             <td>{{$item->expected_quantity}}</td>
@@ -43,7 +43,7 @@
                         @endforeach
                     </table>
                     <hr style="border: 1px solid red;">
-                    <input type="submit" form="formInput" class="btn btn-success text-right" value="Nhập kho" />
+                    <input style="margin-left: 40em; " type="submit" form="formInput" class="btn btn-success text-success" value="NHẬP KHO" />
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h1>Đơn hàng đã sẵn sàng để giao</h1>   
+                    <h1 style="color: orangered; text-align: center;">ĐƠN HÀNG ĐÃ SẲN SÀNG ĐƯỢC GIAO</h1>   
                 </div>
             </div>
 
@@ -65,11 +65,10 @@
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <a class="btn btn-primary" href="{{route('admins.manage.order.check.index')}}">Quay Lại</a>
                     <form action="{{route('admins.manage.order.ship.update',['id'=>$orderStatus->order->id])}}" method="post">
                         @csrf
-                        <label for="note">Ghi chú</label><input type="text" name="note" id="note">
-                        <input type="submit" class="btn btn-success text-right" value="Giao cho vận chuyển" />
+                        <label style="color: red;" for="note"><i><u>Ghi Chú</u></i></label><input style="margin-left: 5px; margin-right: 5px;" type="text" name="note" id="note">
+                        <input type="submit" class="btn btn-success text-right" value="GIAO CHO ĐƠN VỊ VẬN CHUYỂN" />
                     </form>
                 </div>
             </div>

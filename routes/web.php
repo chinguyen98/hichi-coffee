@@ -69,11 +69,16 @@ Route::group(['prefix' => 'favorites', 'middleware' => 'auth'], function () {
 
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {
+    Route::get('/admin', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
     Route::get('/home', 'Admin\HomeController@index')->name('admins.home');
     Route::get('/register', 'Admin\AuthForAdmin\RegisterController@showRegisterForm')->name('admins.register.show');
-    Route::get('login', 'Admin\AuthForAdmin\LoginController@showLoginForm')->name('admins.login.show');
+    Route::get('/login', 'Admin\AuthForAdmin\LoginController@showLoginForm')->name('admins.login.show');
     Route::post('/register', 'Admin\AuthForAdmin\RegisterController@register')->name('admins.register.submit');
-    Route::post('login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
+    Route::post('/login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
+    
+    Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
+    Route::get('/reset/{id}', 'Admin\HomeController@reset')->middleware(['isSuperAdmin'])->name('admins.reset');
+    Route::post('/resetPassword/{id}', 'Admin\HomeController@resetPassword')->middleware(['isSuperAdmin'])->name('admins.resetPassword');
 
     Route::group(['prefix' => 'manage'], function () {
 
@@ -103,6 +108,7 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/check', 'Admin\OrdermangentController@showAllCheckingOrder')->name('admins.manage.order.check.index');
             Route::get('/check/{id}', 'Admin\OrdermangentController@showDetailCheckingOrder')->name('admins.manage.order.check.show')->middleware('checkOrderStatus:1');
             Route::post('/check/{id}', 'Admin\OrdermangentController@updateToReceivedOrder')->name('admins.manage.order.receive.update');
+            Route::post('/check/cancer/{id}', 'Admin\OrdermangentController@cancerOrder')->name('admins.manage.order.check.cancer');
 
             Route::get('/received', 'Admin\OrdermangentController@showAllReceivedOrder')->name('admins.manage.order.receive.index');
             Route::get('/received/{id}', 'Admin\OrdermangentController@showDetailReceiveOrder')->name('admins.manage.order.receive.show')->middleware('checkOrderStatus:2');
@@ -116,15 +122,25 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/finish', 'Admin\OrdermangentController@showAllFinishOrder')->name('admins.manage.order.finish.index');
             Route::get('/finish/{id}', 'Admin\OrdermangentController@showDetailFinishOrder')->name('admins.manage.order.finish.show')->middleware('checkOrderStatus:4');
         });
+        Route::group(['prefix' => 'comment'], function () {
+            Route::get('/', 'Admin\CoffeeCommentManagementController@index')->name('admins.manage.coffeecomment.index');
+            Route::get('/{id}', 'Admin\CoffeeCommentManagementController@detail')->name('admins.manage.coffeecomment.detail');
+            Route::post('/browser/{id}', 'Admin\CoffeeCommentManagementController@browser')->name('admins.manage.coffeecomment.browser');
+            Route::post('/delete/{id}', 'Admin\CoffeeCommentManagementController@delete')->name('admins.manage.coffeecomment.delete');
+
+            Route::get('/reply/{id}', 'Admin\CoffeeCommentManagementController@replyDetail')->name('admins.manage.coffeecomment.replyDetail');
+            Route::post('/browserRep/{id}', 'Admin\CoffeeCommentManagementController@browser_rep')->name('admins.manage.coffeecomment.browserRep');
+            Route::post('/deleteRep/{id}', 'Admin\CoffeeCommentManagementController@delete_rep')->name('admins.manage.coffeecomment.deleteRep');
+        });
+
 
         Route::group(['prefix' => 'news'], function () {
             Route::get('/', 'Admin\NewsManagementController@index')->name('admins.manage.news.index');
             Route::get('/create', 'Admin\NewsManagementController@create')->name('admins.manage.news.create');
+            Route::get('/{id}', 'Admin\NewsManagementController@renderNewUpdate')->name('admins.manage.news.renderNewUpdate');
             Route::post('/create', 'Admin\NewsManagementController@store')->name('admins.manage.news.store');
+            Route::put('/{id}', 'Admin\NewsManagementController@update')->name('admins.manage.news.update');
         });
-
-        Route::get('/', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
-        Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
     });
 });
 

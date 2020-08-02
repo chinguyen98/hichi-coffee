@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if ( Session::has('flash_message') )
+
+@include('inc.admins.messageNotification')
+
+@endif
+
 <div class="product-status mg-b-30">
     <div class="container-fluid">
         <div class="row">
@@ -13,10 +19,10 @@
                     </div>
                     <table>
                         <tr>
-                            <th style="color: lightsalmon;">MÃ HÓA ĐƠN</th>
-                            <th style="color: lightsalmon;">NHÀ CUNG CẤP</th>
-                            <th style="color: lightsalmon;">QUẢN TRỊ DUYỆT</th>
-                            <th style="color: lightsalmon;">NGÀY NHẬP KHO</th>
+                            <th >MÃ HÓA ĐƠN</th>
+                            <th >NHÀ CUNG CẤP</th>
+                            <th >QUẢN TRỊ DUYỆT</th>
+                            <th>NGÀY NHẬP KHO</th>
                         </tr>
                         @foreach($inputs as $input)
 

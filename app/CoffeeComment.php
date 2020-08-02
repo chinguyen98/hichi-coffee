@@ -14,6 +14,11 @@ class CoffeeComment extends Model
         return $this->belongsTo(Customer::class, 'id_customer', 'id');
     }
 
+    public function coffee()
+    {
+        return $this->belongsTo(Coffee::class, 'id_coffee', 'id');
+    }
+
     public function images()
     {
         return $this->hasMany(CoffeeCommentImage::class, ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer']);

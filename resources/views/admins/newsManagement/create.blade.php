@@ -23,7 +23,7 @@
                                             <div class="review-content-section">
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                    <input name="title" type="text" class="form-control" placeholder="Tiêu đề" value="{{ old('title') }}" />
+                                                    <input name="title" type="text" class="form-control" placeholder="Nhập Tiêu Đề" value="{{ old('title') }}" />
                                                 </div>
                                                 @error('title')
                                                 @include('inc.admins.errorNotification')
@@ -31,7 +31,7 @@
 
                                                 <div class="input-group mg-b-pro-edt">
                                                     <span class="input-group-addon"><i class="fa fa-hourglass-end" aria-hidden="true"></i></span>
-                                                    <input name="description" type="text" class="form-control" placeholder="Mô tả" value="{{ old('description') }}">
+                                                    <input name="description" type="text" class="form-control" placeholder="Nhập Mô Tả" value="{{ old('description') }}">
                                                 </div>
                                                 @error('description')
                                                 @include('inc.admins.errorNotification')
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section text-center">
-                                                <img id="previewImg" src="admins/img/temp.jpg" alt="Chưa tải hình lên">
+                                                <img id="previewImg" src="admins/img/temp-new.jpg" alt="Chưa tải hình lên">
                                                 @error('image')
                                                 @include('inc.admins.errorNotification')
                                                 @enderror

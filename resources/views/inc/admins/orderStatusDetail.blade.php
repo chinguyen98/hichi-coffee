@@ -1,11 +1,11 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="product-status-wrap">
-        <h4>CHI TIẾT ĐƠN HÀNG #{{$orderStatus->order->id}} - {{$orderStatus->status->name}}</h4>
+        <h4>CHI TIẾT ĐƠN HÀNG <span style="color: orangered;">#{{$orderStatus->order->id}}</span> - {{$orderStatus->status->name}}</h4>
         <div class="order row ">
             <h5><b>ĐỊA CHỈ NGƯỜI NHẬN</b></h5>
             <i>Tên Khách Hàng:</i><span style="color: brown; margin-left: 10px;"><b>{{$orderStatus->order->customer->name}}</b></span>
             <div>
-                <i>Địa Chỉ:</i><span style="margin-left: 4.7em;">{{$orderStatus->order->customer_address->full_address}}</span>
+                <i>Địa Chỉ:</i><span style="margin-left: 4.7em;">{{$orderStatus->order->full_address}}</span>
             </div>
             <div>
                 <i>Số Điện Thoại</i><span style="margin-left: 2em;">{{$orderStatus->order->customer->phone_number}}</span>

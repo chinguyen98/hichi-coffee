@@ -10,10 +10,10 @@
                     <form action="{{route('admins.manage.order.finish.update',['id'=>$orderStatus->order->id])}}" method="post">
                         @csrf
                         <div>
-                            <label for="note">Ghi chú</label><input type="text" name="note" id="note">
+                            <label style="color: red;" for="note"><i><u>Ghi Chú</u></i></label><input style="margin-left: 5px; margin-right: 5px;" type="text" name="note" id="note"><input type="submit" class="btn btn-success" value="GIAO HÀNG THÀNH CÔNG" />
                         </div>
                         <div class="text-center">
-                            <input type="submit" class="btn btn-success text-right" value="Giao hàng thành công" />
+                            
                         </div>
                     </form>
                 </div>

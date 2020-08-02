@@ -41,7 +41,6 @@ class PromotionManagementController extends Controller
                 'discount' => $req->input('discount'),
                 'expired' => $req->input('expired'),
                 'id_coffee' => $req->input('id_coffee'),
-                'status' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

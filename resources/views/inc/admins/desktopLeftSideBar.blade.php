@@ -24,9 +24,9 @@
                 </ul>
             </div>
         </div>
-        <div class="left-custom-menu-adp-wrap comment-scrollbar">
+        <div style="height: 30em; overflow: scroll;" class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
-                <ul class="metismenu" id="menu1">
+                <ul  class="metismenu" id="menu1">
                     <li>
                         <a class="has-arrow" href="index.html">
                         <img class="spanaa home"  src="/apps/images/icons/home.png" alt="">
@@ -78,9 +78,20 @@
                             <li><a title="Hoàn thành" href="{{route('admins.manage.order.finish.index')}}"><span class="mini-sub-pro"><i>Hoàn thành</i></span></a></li>
                         </ul>
                     </li>
+
                     <li>
                         <a class="has-arrow" href="index.html">
-                        <img class="spanaa"  src="/apps/images/icons/sale.png" alt="">
+                        <img class="spanaa"  src="/apps/images/icons/speak.png" alt="">
+                            <span class="mini-click-non">BÌNH LUẬN</span>
+                        </a>
+                        <ul class="submenu-angle" aria-expanded="true">
+                            <li><a title="Xem Toàn Bộ" href="{{route('admins.manage.coffeecomment.index')}}"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="index.html">
+                        <img class="spanaa"  src="/apps/images/icons/news.png" alt="">
                             <span class="mini-click-non">TIN TỨC</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
@@ -89,7 +100,7 @@
                         </ul>
                     </li>
                     
-                    @if(Auth::user()->id_role==1)
+                    @if(Auth::user()->id_role=='SUPER_ADMIN')
 
                     <li>
                         <a class="has-arrow" href="index.html">

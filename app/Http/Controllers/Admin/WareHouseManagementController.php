@@ -59,8 +59,8 @@ class WareHouseManagementController extends Controller
             DB::table('coffees')->where('id', $item["coffeeId"])->update(['quantity' => $oldQuantity + $item["quantity"]]);
         }
 
-        //$request->session()->flash('flash_message', 'Thêm sản phẩm thành công!');
-        return redirect()->route('admins.manage.warehouse.create');
+        $request->session()->flash('flash_message', 'Hoàn Tất Nhập Kho');
+        return redirect()->route('admins.manage.warehouse.index');
     }
 
     public function renderInputDetailPage($id)

@@ -14,10 +14,12 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
                     <h4 style="color: yellowgreen;">DANH SÁCH SẢN PHẨM</h4>
-                    <div class="add-product" >
+                    <div class="add-product">
                         <a href="{{route('admins.manage.coffee.create')}}"><b style="color: yellowgreen;">THÊM SẢN PHẨM</b></a>
                     </div>
-                    <table>
+                    <br>
+                    <table id="data">
+                    <thead>
                         <tr>
                             <th>ẢNH</th>
                             <th>TÊN SẢN PHẨM</th>
@@ -28,6 +30,8 @@
                             <th>LOẠI</th>
                             <th>TÙY CHỌN</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         @foreach($coffees as $coffee)
 
                         <tr>
@@ -46,25 +50,28 @@
                             <td>{{$coffee->coffee_type->name}}</td>
                             <td>
                                 <a href="{{route('admins.manage.coffee.renderUpdateCoffeePage', ['id'=>$coffee->id])}}" data-toggle="tooltip" title="Cập Nhật" class="btn pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                
+
                             </td>
                         </tr>
 
                         @endforeach
+                    </tbody>
                     </table>
-                    <div class="custom-pagination">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </div>
+                   
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="/admins/js/jquery-3.5.1.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        $('#data').DataTable();
+   
+    });
+
+    
+</script>
 
 @endsection
