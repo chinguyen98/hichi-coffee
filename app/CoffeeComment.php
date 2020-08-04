@@ -29,9 +29,9 @@ class CoffeeComment extends Model
         return $this->hasMany(CoffeeCommentReply::class, ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer'])->orderByDesc('created_at')->limit(3);
     }
 
-    public function isLike($id_customer)
+    public function isLike($id_coffee, $id_customer)
     {
-        return $this->hasMany(CoffeeCommentLike::class,  ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer'])->where('id_customer', $id_customer)->exists();
+        return $this->hasMany(CoffeeCommentLike::class,  ['id_coffee', 'id_customer'], ['id_coffee', 'id_customer'])->where('id_customer', $id_customer)->where('id_coffee', $id_coffee)->exists();
     }
 
     public function coffee_comment_likes_count($id_coffee, $id_customer)

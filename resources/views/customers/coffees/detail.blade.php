@@ -363,7 +363,7 @@
 
                     @else
 
-                    @if($coffee_comment->isLike(Auth::user()->id))
+                    @if($coffee_comment->isLike($coffee_comment->id_coffee, $coffee_comment->id_customer))
 
                     <span class="pl-4 pr-1 text-success">Bạn và {{$coffee_comment->coffee_comment_likes_count($coffee_comment->id_coffee , $coffee_comment->id_customer)}} người khác đã cảm ơn nhận xét này</span>
 
