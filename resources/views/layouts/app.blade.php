@@ -140,6 +140,12 @@
 
     @endif
 
+    @if(Request::route()->getName()==='customers.comments.index')
+
+    <script src="/apps/js/handlingCommentPage.js"></script>
+
+    @endif
+
     <script src="/apps/js/handlingLogout.js"></script>
 
 

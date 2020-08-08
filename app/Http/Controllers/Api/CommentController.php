@@ -157,4 +157,10 @@ class CommentController extends Controller
 
         return response()->json($count);
     }
+
+    function deleteComment($id)
+    {
+        DB::table('coffee_comments')->where('id_coffee', $id)->where('id_customer', Auth::user()->id)->delete();
+        return response()->json($id);
+    }
 }

@@ -66,6 +66,9 @@ Route::group(['prefix' => 'rates', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'favorites', 'middleware' => 'auth'], function () {
     Route::get('/', 'CoffeeFavoriteController@index')->name('customers.favorites.index');
 });
+Route::group(['prefix' => 'comments', 'middleware' => 'auth'], function () {
+    Route::get('/', 'CommentController@index')->name('customers.comments.index');
+});
 
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {
@@ -75,7 +78,7 @@ Route::group(['prefix' => 'admins'], function () {
     Route::get('/login', 'Admin\AuthForAdmin\LoginController@showLoginForm')->name('admins.login.show');
     Route::post('/register', 'Admin\AuthForAdmin\RegisterController@register')->name('admins.register.submit');
     Route::post('/login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
-    
+
     Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
     Route::get('/reset/{id}', 'Admin\HomeController@reset')->middleware(['isSuperAdmin'])->name('admins.reset');
     Route::post('/resetPassword/{id}', 'Admin\HomeController@resetPassword')->middleware(['isSuperAdmin'])->name('admins.resetPassword');
@@ -152,6 +155,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'comments'], function () {
         Route::post('/', 'Api\CommentController@storeCoffeeRatingComment')->middleware('auth');
+        Route::delete('/{id}', 'Api\CommentController@deleteComment')->middleware('auth');
         Route::post('/like', 'Api\CommentController@storeCommentLike')->middleware('auth');
         Route::post('/reply', 'Api\CommentController@storeReplyComment')->middleware('auth');
         Route::get('/reply', 'Api\CommentController@getReplyComment');

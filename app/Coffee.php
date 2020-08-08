@@ -38,12 +38,12 @@ class Coffee extends Model
 
     public function avgRating()
     {
-        return number_format($this->coffee_comments()->avg('rating'), 1);
+        return number_format($this->coffee_comments()->where('status', 1)->avg('rating'), 1);
     }
 
     public function countRating()
     {
-        return $this->coffee_comments()->count();
+        return $this->coffee_comments()->where('status', 1)->count();
     }
 
     public function starPercent($star)
@@ -51,7 +51,7 @@ class Coffee extends Model
         $total_count = $this->countRating();
         if ($total_count == 0)
             return;
-        $count = $this->coffee_comments()->where('rating', $star)->count();
+        $count = $this->coffee_comments()->where('status', 1)->where('rating', $star)->count();
         $percent = ($count * 100) / $total_count;
         return number_format($percent);
     }
@@ -77,7 +77,8 @@ class Coffee extends Model
         return $this->brand()->first();
     }
 
-    public function getCoffeeCommentCountAttribute(){
+    public function getCoffeeCommentCountAttribute()
+    {
         return $this->coffee_comments()->count();
     }
 }
