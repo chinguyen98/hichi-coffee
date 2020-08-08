@@ -160,7 +160,23 @@ class CommentController extends Controller
 
     function deleteComment($id)
     {
+        
+        DB::table('coffee_comment_likes')->where('id_coffee', $id)->where('id_customer', Auth::user()->id)->delete();
+        DB::table('coffee_comment_replies')->where('id_coffee', $id)->where('id_customer', Auth::user()->id)->delete();
+        
+        
+        $listOldImage = DB::table('coffee_comment_images')->where('id_customer', '=', Auth::user()->id)->where('id_coffee', '=', $id)->get();
+        if (count($listOldImage) > 0) {
+            foreach ($listOldImage as $image) {
+                Storage::disk('comment_image')->delete($image->name);
+            }
+        }
+        DB::table('coffee_comment_images')->where('id_customer', '=', Auth::user()->id)->where('id_coffee', '=', $id)->delete();
+
         DB::table('coffee_comments')->where('id_coffee', $id)->where('id_customer', Auth::user()->id)->delete();
-        return response()->json($id);
+
+        $count=DB::table('coffee_comments')->where('id_coffee', $id)->where('id_customer', Auth::user()->id)->count();
+
+        return response()->json($count);
     }
 }

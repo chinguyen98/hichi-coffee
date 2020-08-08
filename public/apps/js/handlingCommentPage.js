@@ -30,7 +30,7 @@ async function deleteComment(id) {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         }
     }).then(res => res.json()).then(res => res);
-
+    document.querySelector('.commentCount').innerHTML = data;
     document.querySelector(`.favoContainer-${id}`).remove();
 }
 

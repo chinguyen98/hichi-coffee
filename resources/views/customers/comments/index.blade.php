@@ -18,7 +18,7 @@
 
 <section class="ftco-menu mb-5">
     <div class="container">
-        <h3>Đánh giá của tôi (<span>{{count($comments)}}</span>)</h3>
+        <h3>Đánh giá của tôi (<span class="commentCount">{{count($comments)}}</span>)</h3>
             @foreach($comments as $comment)
 
             <div style="background-color: rgba(255, 255, 255, 0.05);" class="p-3 row dmsp-main-container__list d-lg-flex flex-wrap my-4 favoContainer-{{$comment->coffee->id}}">
