@@ -310,6 +310,8 @@
 
         @foreach($coffee->coffee_comments as $coffee_comment)
 
+        @if($coffee_comment->status==1)
+
         <div class="mb-5 px-4" style="border-left: 2px solid #c49b63;">
             <h4 class="mt-5">{{$coffee_comment->customer->name}}</h4>
             <h5 class="text-info">{{$coffee_comment->updated_at}}</h5>
@@ -419,6 +421,8 @@
                 @endforeach
             </div>
         </div>
+
+        @endif
 
         @endforeach
 

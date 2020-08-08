@@ -30,7 +30,7 @@ class CommentController extends Controller
                 'title' => $title,
                 'content' => $content,
                 'rating' => $rating,
-                'status' => 1,
+                'status' => 0,
                 'id_coffee' => $id_coffee,
                 'id_customer' => $id_customer,
                 'created_at' => $now,
@@ -63,7 +63,7 @@ class CommentController extends Controller
             'title' => $title,
             'content' => $content,
             'rating' => $rating,
-            'status' => 1,
+            'status' => 0,
             'updated_at' => $now,
         ]);
 
@@ -109,6 +109,7 @@ class CommentController extends Controller
             'id_customer' => $id_customer,
             'id_customer_reply' => $id_customer_reply,
             'id_coffee' => $id_coffee,
+            'status' => 0,
             'created_at' => $now,
             'updated_at' => $now,
         ]);
