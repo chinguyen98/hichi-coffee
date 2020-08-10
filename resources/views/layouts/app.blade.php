@@ -155,7 +155,7 @@
             bubbleAvatarUrl: 'https://image.flaticon.com/icons/svg/1030/1030449.svg',
             mainColor: '#c49b63',
             bubbleBackground: '#408591',
-            introMessage: "Hi! Hichi-Coffee xin chào bạn",
+            // introMessage: "Hi! Hichi-Coffee xin chào bạn",
             placeholderText: 'Nhập gì đó đi',
             title: 'Chatbot Hichi',
         };

@@ -12,6 +12,7 @@
         "awobaz/compoships": "^2.0",
         "bensampo/laravel-enum": "^1.38",
         "botman/botman": "^2.6",
+        "botman/driver-facebook": "^1.10",
         "botman/driver-web": "^1.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
