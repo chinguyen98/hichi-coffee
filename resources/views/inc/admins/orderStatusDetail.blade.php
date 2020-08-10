@@ -37,9 +37,9 @@
                 <td>{{$item->coffee->name}}</td>
                 <td>{{$item->coffee->price}}</td>
                 <td>{{$item->quantity}}</td>
-                @if($item->valuation )
+                @if($item->valuation_detail($item->id_order, $item->id_coffee) )
 
-                <td>{{$item->valuation->discount}}</td>
+                <td>{{$item->valuation_detail($item->id_order, $item->id_coffee)->valuation->discount}}</td>
                 @else
 
                 <td>0</td>
