@@ -176,6 +176,10 @@ Route::group(['prefix' => 'api'], function () {
 Route::get('login/facebook', 'Auth\SocialAuthController@loginToFacebook');
 Route::get('login/facebook/callback', 'Auth\SocialAuthController@callbackFacebook');
 
+/* Botman */
+
+Route::match(['get', 'post'], '/botman', 'Chatbot\BotmanController@handle');
+
 /* Testing */
 
 Route::get('sendMail', function () {

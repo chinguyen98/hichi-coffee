@@ -148,6 +148,42 @@
 
     <script src="/apps/js/handlingLogout.js"></script>
 
+    <!-- Botman -->
+    <script>
+        var botmanWidget = {
+            aboutText: 'Hichi-Coffee',
+            bubbleAvatarUrl: 'https://image.flaticon.com/icons/svg/1030/1030449.svg',
+            mainColor: '#c49b63',
+            bubbleBackground: '#408591',
+            introMessage: "Hi! Hichi-Coffee xin chào bạn",
+            placeholderText: 'Nhập gì đó đi',
+            title: 'Chatbot Hichi',
+        };
+    </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
+    <script>
+        window.addEventListener("load", function(event) {
+            document.querySelector('.desktop-closed-message-avatar img').addEventListener('click', function() {
+                document.querySelector('#botmanWidgetRoot').addEventListener('DOMSubtreeModified', function() {
+                    let botframe = document.getElementById('chatBotManFrame');
+                    if (botframe === null)
+                        return;
+                    botframe.addEventListener('load', function() {
+                        let htmlFrame = this.contentWindow.document.getElementsByTagName("html")[0];
+                        let bodyFrame = this.contentWindow.document.getElementsByTagName("body")[0];
+                        let headFrame = this.contentWindow.document.getElementsByTagName("head")[0];
+
+                        let image = "/customers/images/bg_4.jpg"
+
+                        htmlFrame.style.backgroundImage = "url(" + image + ")";
+                        bodyFrame.style.backgroundImage = "url(" + image + ")";
+                    })
+                })
+            });
+        });
+    </script>
 
     <!-- End Embed JS -->
 
