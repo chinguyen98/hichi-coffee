@@ -43,8 +43,16 @@
 
                 @foreach($coffee->valuations as $valuation)
 
+                @if($valuation->quantity!=0)
+
                 <h4> * Giá chỉ còn <span class="text-danger">{{number_format($valuation->price)}} VNĐ</span> khi mua trên {{$valuation->quantity}} sản phẩm</h4>
                 <input name="hidValuation" type="hidden" value="{{$valuation}}">
+
+                @else
+
+                <h5 class="text-success">{{$valuation->bonus_content}}</h5>
+
+                @endif
 
                 @endforeach
 

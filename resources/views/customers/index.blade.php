@@ -12,7 +12,14 @@
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Website Coffee số 1 Việt Nam</h1>
                     <p class="mb-4 mb-md-5 slogan">Thêm chút đường cho cà phê ngọt <br /> Thêm chút tình mình có thuộc về nhau?</p>
-                    <p><a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">Xem sản phẩm</a> <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Đăng nhập</a></p>
+                    <p>
+                        <a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">Xem sản phẩm</a>
+                        @guest
+
+                        <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Đăng nhập</a>
+
+                        @endguest
+                    </p>
                 </div>
 
             </div>

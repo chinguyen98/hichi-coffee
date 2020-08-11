@@ -2,10 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Awobaz\Compoships\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use \Awobaz\Compoships\Compoships;
+
     public function current_status()
     {
         return $this->hasOne(OrderStatus::class, 'id_order', 'id')->where('is_current', 1);

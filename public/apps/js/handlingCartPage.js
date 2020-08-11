@@ -77,7 +77,9 @@ function renderCart(cartList, cartStorage) {
                     <button class="btn btn-danger btn-delete-cart-item" onclick="deleteItem(${item.id})">Xoá</button>
                     <div class="mt-2">
                     ${
-            item.valuations.map(val => `<span> * Giá chỉ còn <span class="text-danger">${formatPrice(val.price)} VNĐ</span> khi mua trên ${val.quantity} sản phẩm</span><br />`).join('')
+            item.valuations
+                .filter(item=>item.quantity !== null)
+                .map(val => `<span> * Giá chỉ còn <span class="text-danger">${formatPrice(val.price)} VNĐ</span> khi mua trên ${val.quantity} sản phẩm</span><br />`).join('')
             }
                 </div>
                 </div>
