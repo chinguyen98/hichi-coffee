@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifyOrderMail;
 use App\Order;
+use Illuminate\Support\Carbon;
 use stdClass;
 
 class OrderController extends Controller
@@ -60,6 +61,14 @@ class OrderController extends Controller
             $coffee = DB::table('coffees')->where('id', $id_coffee)->first(['price', 'name', 'quantity', 'expected_quantity']);
             $quantity = $cart->qty;
             $totalSubPrice = 0;
+            $bonus_content_valuation = DB::table('valuations')->where('id_coffee', $id_coffee)->where('bonus_content', '!=', 'null')->where('expired', '>=', Carbon::now()->toDateString())->first(['id']);
+            if ($bonus_content_valuation != null) {
+                DB::table('valuation_order_details')->insert([
+                    'id_valuation' => $bonus_content_valuation->id,
+                    'id_order' => $id_order,
+                    'id_coffee' => $id_coffee,
+                ]);
+            }
 
             if (property_exists($cart, 'valuation')) {
                 $id_valuation = $cart->valuation;
