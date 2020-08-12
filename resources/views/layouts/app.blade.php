@@ -58,6 +58,8 @@
 
     @include('inc.customers.footer')
 
+    @include('inc.customers.chatbox')
+
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
@@ -81,6 +83,8 @@
     <script src="/customers/js/main.js"></script>
 
     <!-- Start Embed JS -->
+
+    <script src="/apps/js/chatbox.js"></script>
 
     @if(Request::is('checkout'))
 
@@ -149,7 +153,7 @@
     <script src="/apps/js/handlingLogout.js"></script>
 
     <!-- Botman -->
-    <script>
+    <!-- <script>
         var botmanWidget = {
             aboutText: 'Hichi-Coffee',
             bubbleAvatarUrl: 'https://image.flaticon.com/icons/svg/1030/1030449.svg',
@@ -183,7 +187,7 @@
                 })
             });
         });
-    </script>
+    </script> -->
 
     <!-- End Embed JS -->
 
