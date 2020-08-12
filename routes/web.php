@@ -84,7 +84,10 @@ Route::group(['prefix' => 'admins'], function () {
     });
 
     Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
+    Route::get('info/{id}', 'Admin\HomeController@renderInfoAdmin')->name('admins.renderInfoAdmin');
     Route::get('/reset/{id}', 'Admin\HomeController@reset')->middleware(['isSuperAdmin'])->name('admins.reset');
+    Route::get('/change/{id}', 'Admin\HomeController@change')->name('admins.change');
+    Route::post('/changePassword/{id}', 'Admin\HomeController@changePassword')->name('admins.changePassword');
     Route::post('/resetPassword/{id}', 'Admin\HomeController@resetPassword')->middleware(['isSuperAdmin'])->name('admins.resetPassword');
 
     Route::group(['prefix' => 'manage'], function () {
@@ -99,14 +102,14 @@ Route::group(['prefix' => 'admins'], function () {
 
         Route::group(['prefix' => 'warehouse'], function () {
             Route::get('/', 'Admin\WareHouseManagementController@index')->name('admins.manage.warehouse.index');
-            Route::get('/create', 'Admin\WareHouseManagementController@create')->name('admins.manage.warehouse.create');
+            Route::get('/create', 'Admin\WareHouseManagementController@create')->middleware(['isSuperAdmin'])->name('admins.manage.warehouse.create');
             Route::get('/{id}', 'Admin\WareHouseManagementController@renderInputDetailPage')->name('admins.manage.warehouse.renderInputDetailPage');
             Route::post('/', 'Admin\WareHouseManagementController@store')->name('admins.manage.warehouse.store');
         });
 
         Route::group(['prefix' => 'promotion'], function () {
             Route::get('/', 'Admin\PromotionManagementController@index')->name('admins.manage.promotion.index');
-            Route::get('/create', 'Admin\PromotionManagementController@create')->name('admins.manage.promotion.create');
+            Route::get('/create', 'Admin\PromotionManagementController@create')->middleware(['isSuperAdmin'])->name('admins.manage.promotion.create');
             Route::get('/{id}', 'Admin\PromotionManagementController@detail')->name('admins.manage.promotion.detail');
             Route::post('/', 'Admin\PromotionManagementController@store')->name('admins.manage.promotion.store');
         });
@@ -128,6 +131,9 @@ Route::group(['prefix' => 'admins'], function () {
 
             Route::get('/finish', 'Admin\OrdermangentController@showAllFinishOrder')->name('admins.manage.order.finish.index');
             Route::get('/finish/{id}', 'Admin\OrdermangentController@showDetailFinishOrder')->name('admins.manage.order.finish.show')->middleware('checkOrderStatus:4');
+
+            Route::get('/search', 'Admin\OrdermangentController@searchAllOrder')->name('admins.manage.order.search.index');
+            Route::post('/searchDetail', 'Admin\OrdermangentController@searchDetail')->name('admins.manage.order.search.detail');
         });
         Route::group(['prefix' => 'comment'], function () {
             Route::get('/', 'Admin\CoffeeCommentManagementController@index')->name('admins.manage.coffeecomment.index');

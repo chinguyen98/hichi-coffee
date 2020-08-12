@@ -160,11 +160,14 @@ class OrdermangentController extends Controller
             'orderStatus' => $orderStatus,
         ]);
     }
-    public function cancerOrder($id)
+    public function cancerOrder(Request $request, $id)
     {
         DB::table('order_statuses')->where('id_order', $id)->delete();
         DB::table('order_details')->where('id_order', $id)->delete();
-        DB::table('orders')->where('id', $id)->delete(); 
+        DB::table('valuation_order_details')->where('id_order', $id)->delete();
+        DB::table('orders')->where('id', $id)->delete();
+
+        $request->session()->flash('flash_message', 'Hoàn Tất Huỷ Đơn Hàng!!!');
         return redirect()->route('admins.manage.order.check.index');
     }
 
@@ -247,5 +250,50 @@ class OrdermangentController extends Controller
 
         //$request->session()->flash('flash_message', 'Thêm sản phẩm thành công!');
         return redirect()->back();
+    }
+    public function searchAllOrder()
+    {
+        return view('admins.orderManagement.searchAllOrder')->with([
+            'title' => 'TÌM KIẾM ĐƠN ĐẶT HÀNG',
+        ]);
+    }
+
+    public function searchDetail(Request $request)
+    {
+        $request->validate(
+            [
+                'item' => 'required'
+            ],
+            [
+                'required' => ':attribute Không được để trống',
+            ],
+            [
+                'item' => 'Mã Đơn Hàng'
+            ]
+        );
+        $item = $request->item;
+
+
+        $search = DB::table('order_statuses')->where('id_order', $item)->where('is_current', 1)->first();
+        if ($search == null) {
+            $request->session()->flash('flash_message', 'Không Tìm Thấy Đơn Hàng!!!');
+            return redirect()->route('admins.manage.order.search.index');
+        }
+        if ($search->id_status == Status::OrderFinish) {
+            $request->session()->flash('flash_message', 'Đơn Hàng Đã Hoàn Tất!!!');
+            return redirect()->route('admins.manage.order.finish.show', ['id' => $item]);
+        }
+        if($search->id_status== Status::OrderChecking){
+            $request->session()->flash('flash_message', 'Đơn hàng Đang Được Kiểm Tra!!!');
+            return redirect()->route('admins.manage.order.check.show', ['id' => $item]);
+        }
+        if($search->id_status== Status::OrderReceived){
+            $request->session()->flash('flash_message', 'Đơn Hàng Đang Được Tiếp Nhận!!!');
+            return redirect()->route('admins.manage.order.receive.show', ['id' => $item]);
+        }
+        if($search->id_status== Status::OrderShip){
+            $request->session()->flash('flash_message', 'Đơn Hàng Đang Được Vận Chuyển!!!');
+            return redirect()->route('admins.manage.order.ship.show', ['id' => $item]);
+        }
     }
 }

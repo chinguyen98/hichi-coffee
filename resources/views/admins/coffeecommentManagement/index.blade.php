@@ -12,10 +12,10 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h4 style="color: darkturquoise;">DANH SÁCH BÌNH LUẬN</h4>
+                    <h4 style="color: darkturquoise;">DANH SÁCH ĐÁNH GIÁ</h4>
                     <table>
                         <tr>
-                            <th>MÃ BÌNH LUẬN</th>
+                            <th>MÃ ĐÁNH GIÁ</th>
                             <th>Mã KHÁCH HÀNG</th>
                             <th>Tiêu Đề</th>
                         </tr>
@@ -31,17 +31,17 @@
                     </table>
                     <hr>
                     <br>
-                    <h4 style="color: darkturquoise;">DANH SÁCH TRẢ LỜI BÌNH LUẬN</h4>
+                    <h4 style="color: darkturquoise;">DANH SÁCH PHẢN HỒI ĐÁNH GIÁ</h4>
                     <table>
                         <tr>
-                            <th>MÃ BÌNH LUẬN TRẢ LỜI</th>
+                            <th>CHẤT LƯỢNG</th>
                             <th>Mã KHÁCH HÀNG</th>
                             <th>NỘI DUNG TRẢ LỜI</th>
                         </tr>
                         @foreach($rep_comment as $rep)
 
                         <tr>
-                            <td>{{$rep->id}}</td>
+                            <td>{{$rep->rating}}</td>
                             <td>{{$rep->id_customer}}</td>
                             <td>{{$rep->content}}</td>
                             <td><a href="{{route('admins.manage.coffeecomment.replyDetail', ['id'=>$rep->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden=" true"></i></a></td>

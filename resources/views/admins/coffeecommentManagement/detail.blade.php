@@ -37,26 +37,36 @@
                                 </tr>
 
                             </table>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="text-center custom-pro-edt-ds">
-                                <input type="submit" class="btn btn-success" value="DUYỆT BÌNH LUẬN">
-                                </input>
+                            <br>
+                            <br>
+                            <hr style="border: 1px solid springgreen;">
+                            <div style="display: flex; justify-content: start;">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="text-center custom-pro-edt-ds">
+                                        <input style="margin-left: 60em;" type="submit" class="btn btn-success" value="DUYỆT BÌNH LUẬN">
+                                        </input>
+                                    </div>
+                                </div>
+
+                                <span style="color: springgreen;">|</span>
+                                <span style="color: springgreen;">|</span>
+
+
+                                <form action="{{route('admins.manage.coffeecomment.delete', ['id'=>$comment->id_coffee . 'a' . $comment->id_customer])}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('POST')
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="text-center custom-pro-edt-ds">
+                                            <input style=" margin-right: 3em;" type="submit" class="btn btn-danger" value="XÓA BÌNH LUẬN">
+                                            </input>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </div>
 
-                </form>
-                <form action="{{route('admins.manage.coffeecomment.delete', ['id'=>$comment->id_coffee . 'a' . $comment->id_customer])}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('POST')
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="text-center custom-pro-edt-ds">
-                            <input type="submit" class="btn btn-danger" value="XÓA BÌNH LUẬN">
-                            </input>
                         </div>
-                    </div>
-
                 </form>
+
             </div>
         </div>
     </div>

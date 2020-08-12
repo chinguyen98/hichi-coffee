@@ -27,17 +27,14 @@
             <img src="/apps/images/coffees/{{$coffee->image}}" class="img-fluid" alt="Responsive image">
         </div>
         <div class="col col-md-8">
-            <div>
+            <div class="mb-3">
                 <h2>{{$coffee->name}}</h2>
             </div>
-            <div>
+
+            <div class="mb-3">
                 @if(count($coffee->valuations)==0)
 
-                <h4 class="text-danger">{{number_format($coffee->price)}} VNĐ</h4>
-
                 @else
-
-                <h4 class="text-danger">{{number_format($coffee->price)}} VNĐ</h4>
 
                 <h3>Khuyến mãi đặc biệt: </h3>
 
@@ -50,7 +47,7 @@
 
                 @else
 
-                <h5 class="text-success">{{$valuation->bonus_content}}</h5>
+                <h5 class="text-success"><i>{{$valuation->bonus_content}}</i></h5>
 
                 @endif
 
@@ -59,8 +56,13 @@
                 @endif
             </div>
 
+            <div class="mt-2">
+                <h4>Nhãn hiệu: {{$coffee->brand->name}}</h4>
+                <h4>Loại cà phê: {{$coffee->coffee_type->name}}</h4>
+            </div>
+
             <div class="my-5">
-                <h4>Giá hiện tại: <span class="text-danger oldPrice ml-4">{{number_format($coffee->price)}} </span> <span class="newPrice"></span> <span class="text-danger">VNĐ</span></h4>
+                <h2>Giá hiện tại: <span class="text-danger text-bold oldPrice ml-4">{{number_format($coffee->price)}} </span> <span class="newPrice"></span> <span class="text-danger">VNĐ</span></h2>
 
                 <div class="d-flex flex-row align-items-center">
                     <h5 class="pr-3 pt-2">Số lượng đặt mua: </h5>
@@ -105,7 +107,7 @@
     <div class="row mt-5">
         <h1>Thông tin sản phẩm:</h1>
         <div class="text-justify">
-            {!!$coffee->info!!}
+            <h4 class="text-primary"><i>{!!$coffee->info!!}</i></h4>
         </div>
         <input type="hidden" name="hidId" value="{{$coffee->id}}">
         <div id="flag" class="mb-5"></div>

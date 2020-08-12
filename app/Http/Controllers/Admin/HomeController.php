@@ -81,4 +81,46 @@ class HomeController extends Controller
         $request->session()->flash('flash_message', 'Cập Nhật Mật Khẩu Thành Công');
         return redirect()->route('admins.renderAdminManagementPage');
     }
+    public function renderInfoAdmin($id)
+    {
+        $admin = Admin::where('id', $id)->first();
+
+        return view('admins.adminManagement.infoAdmin')->with([
+            'title' => 'THÔNG TIN CÁ NHÂN',
+            'admin' => $admin
+        ]);
+    }
+    public function change($id)
+    {
+        $admin = Admin::where('id', $id)->get();
+
+        return view('admins.adminManagement.changePassword')->with([
+            'title' => 'THAY ĐỔI MẬT KHẨU',
+            'admin' => $admin,
+            'id_admin' => $id,
+        ]);
+    }
+    public function changePassword(Request $request, $id)
+    {
+        $request->validate(
+            [
+                'password' => 'required|confirmed'
+            ],
+            [
+                'required' => ':attribute Không được để trống',
+                'confirmed' => ':attribute không đúng',
+            ],
+            [
+                'password' => 'Mật Khẩu'
+            ]
+        );
+
+        DB::table('admins')->where('id', $id)->update([
+            'password' => Hash::make($request->password),
+            'updated_at' => now(),
+        ]);
+        $request->session()->flash('flash_message', 'Thay Đổi Mật Khẩu Thành Công');
+        return redirect()->route('admins.renderAdminManagementPage');
+    }
+
 }

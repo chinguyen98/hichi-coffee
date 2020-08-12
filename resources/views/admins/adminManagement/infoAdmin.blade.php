@@ -8,7 +8,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
                     <div class="add-product">
-                        <a href="{{route('admins.reset', ['id'=>$admin->id])}}"><b style="color: darkturquoise;">CẤP LẠI MẬT KHẨU</b></a>
+                        <a href="{{route('admins.change', ['id'=>$admin->id])}}"><b style="color: darkturquoise;">ĐỔI MẬT KHẨU</b></a>
 
                     </div>
                     <h3 style="color:turquoise; margin-left: 1em;">THÔNG TIN CHI TIẾT QUẢN TRỊ</h3>

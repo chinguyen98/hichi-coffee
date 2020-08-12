@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{$admin->id}}</td>
                             <td>{{$admin->name}}</td>
-                            <td>{{$admin->admin_role->name}}</td>
+                            <td>{{$admin->id_role}}</td>
                             <td>{{$admin->created_at}}</td>
                             <td><a href="{{route('admins.renderAdminDetailPage', ['id'=>$admin->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden=" true"></i></a></td>
                         </tr>
