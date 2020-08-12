@@ -4,7 +4,7 @@
 .chatbox-dialog{
   width: 20rem;
   height: 20rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 1);
   position: fixed;
   z-index: 0;
   right: 1rem;
@@ -13,7 +13,7 @@
 }
 
 .chatbox-dialog input[type="text"]{
-  color: red;
+  color: black;
   width: 80%;
   border: none;
   user-select: none;
@@ -26,7 +26,7 @@
 
 .chatbox-diaglog__conversation{
   width: 100%;
-  height: 90%;
+  height: 80%;
   background-color: black;
 }
 
@@ -75,6 +75,7 @@
   height: 5rem;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.3);
+  z-index: 99;
   position: fixed;
   right: 0.6rem;
   bottom: 4.5rem;

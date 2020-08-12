@@ -8,4 +8,10 @@ function openChatboxDialog() {
     chatboxWave.classList.add('d-none');
 }
 
+function closeChatboxDialogConversation(){
+    chatboxDialog.classList.add('d-none')
+    chatboxIcon.classList.remove('d-none');
+    chatboxWave.classList.remove('d-none');
+}
+
 chatboxIcon.addEventListener('click', openChatboxDialog);
