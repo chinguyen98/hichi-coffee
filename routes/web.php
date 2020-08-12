@@ -79,6 +79,10 @@ Route::group(['prefix' => 'admins'], function () {
     Route::post('/register', 'Admin\AuthForAdmin\RegisterController@register')->name('admins.register.submit');
     Route::post('/login', 'Admin\AuthForAdmin\LoginController@login')->name('admins.login.submit');
 
+    Route::group(['prefix' => 'chat'], function () {
+        Route::get('/', 'Chat\AdminChatController@index')->name('admins.chat.index');
+    });
+
     Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
     Route::get('/reset/{id}', 'Admin\HomeController@reset')->middleware(['isSuperAdmin'])->name('admins.reset');
     Route::post('/resetPassword/{id}', 'Admin\HomeController@resetPassword')->middleware(['isSuperAdmin'])->name('admins.resetPassword');

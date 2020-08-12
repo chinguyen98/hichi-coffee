@@ -3,6 +3,24 @@
   height: 100%;
 }
 
+.chatbox {
+  height: 31rem;
+  position: relative;
+  box-shadow: 0 2px 2.7px rgba(0, 0, 0, 0.096), 0 5px 6.9px rgba(0, 0, 0, 0.122), 0 10.3px 14.2px rgba(0, 0, 0, 0.14), 0 21.2px 29.2px rgba(0, 0, 0, 0.161), 0 58px 80px rgba(0, 0, 0, 0.22);
+}
+
+.chatbox__interactive {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.chatbox input[type="text"] {
+  color: red;
+  width: 95%;
+}
+
 .popup-flash-mess {
   margin: 5em;
   width: 30rem;
@@ -478,7 +496,7 @@ table.dataTable, table.dataTable th, table.dataTable td {
 }
 
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
-  color:teal;
+  color: teal;
 }
 
 .dataTables_wrapper .dataTables_scroll {

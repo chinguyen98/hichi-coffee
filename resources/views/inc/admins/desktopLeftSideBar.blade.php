@@ -99,6 +99,15 @@
                             <li><a title="Thêm mới" href="{{route('admins.manage.news.create')}}"><span class="mini-sub-pro"><i>Thêm Tin Tức</i></span></a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a class="has-arrow" href="index.html">
+                        <img class="spanaa"  src="/apps/images/icons/news.png" alt="">
+                            <span class="mini-click-non">CHAT</span>
+                        </a>
+                        <ul class="submenu-angle" aria-expanded="true">
+                            <li><a title="Xem toàn bộ" href="{{route('admins.chat.index')}}"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
+                        </ul>
+                    </li>
                     
                     @if(Auth::user()->id_role=='SUPER_ADMIN')
 
