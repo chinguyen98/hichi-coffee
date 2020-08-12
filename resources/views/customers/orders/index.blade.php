@@ -18,6 +18,9 @@
 
 <div class="container my-5">
     <div class="row">
+
+        <h1>Đơn hàng của bạn</h1>
+
         @if(count($orders)== 0)
 
         <div class="col col-md-12 text-center">
