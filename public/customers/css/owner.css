@@ -1,6 +1,12 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* Upload Image*/
 
+.bannerCoffee{
+  height: 16rem;
+  width: 100%;
+  background-image: url('https://images.pexels.com/photos/2074130/pexels-photo-2074130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+}
+
 .chatbox-dialog{
   width: 20rem;
   height: 20rem;

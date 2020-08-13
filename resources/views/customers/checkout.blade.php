@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="home-slider owl-carousel">
+<!-- <section class="home-slider owl-carousel">
     <div class="slider-item" style="background-image: url(customers/images/bg_1.jpg);" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -14,7 +14,19 @@
             </div>
         </div>
     </div>
+</section> -->
+
+<section class="bannerCoffee mt-5">
+    <div class="container">
+        <div class="row slider-text justify-content-center align-items-center">
+            <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
+                <h1 class="mb-3 mt-5 bread">Thanh toán</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ</a></span>&nbsp; / &nbsp; <span>Thanh toán</span></p>
+            </div>
+        </div>
+    </div>
 </section>
+</br>
 
 <div class="container my-5 text-center">
     <div class="editForm">
@@ -39,7 +51,7 @@
                         <div class="checkout-info border">
                             <h3 class="checkout-info__name text-info">{{Auth::user()->name}}</h3>
                             <h5 class="checkout-info__phone text-left ml-2 ">Số điện thoại: {{Auth::user()->phone_number}}</h5>
-                            
+
                             @if($customer_address->id_city == 4)
 
                             <h5 class="checkout-info__address text-left ml-2 combinedAddress">Địa chỉ: {{$customer_address->full_address}}</h5>
