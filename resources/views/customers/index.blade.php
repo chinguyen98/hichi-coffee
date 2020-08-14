@@ -236,8 +236,6 @@
     </div>
 </section>
 
-@include('inc.customers.bestSeller')
-
 <section class="ftco-gallery">
     <div class="container-wrap">
         <div class="row no-gutters">

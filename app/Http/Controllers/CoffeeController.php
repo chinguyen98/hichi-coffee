@@ -6,6 +6,7 @@ use App\Brand;
 use App\Coffee;
 use App\CoffeeType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class CoffeeController extends Controller
@@ -32,11 +33,24 @@ class CoffeeController extends Controller
             $coffee_types[$brand->id] = $type;
         }
 
+        $bestCoffeeSellers = DB::select('SELECT coffees.name, coffees.price, coffees.image, coffees.slug, COUNT(coffees.name) as qty from order_details
+            JOIN coffees ON order_details.id_coffee=coffees.id GROUP by coffees.name, coffees.price, coffees.image, coffees.slug ORDER by COUNT(coffees.name) DESC LIMIT 4');
+
+        $promotionCoffees = DB::table('coffees')
+            ->select(['coffees.name', 'coffees.slug', 'coffees.price','coffees.image'])
+            ->join('valuations', 'coffees.id', '=', 'valuations.id_coffee')
+            ->where('valuations.expired', '>=', Carbon::now()->toDateString())
+            ->groupBy('coffees.name', 'coffees.slug', 'coffees.price', 'coffees.image')
+            ->get();
+
+        //dd($promotionCoffees);
         return view('customers.coffees.index')->with([
             'title' => 'Sản phẩm',
             'coffeeActive' => 'active',
             'brands' => $brands,
             'menu_types' => $menu_types,
+            'bestCoffeeSellers' => $bestCoffeeSellers,
+            'promotionCoffees' => $promotionCoffees,
             'coffee_types' => $coffee_types
         ]);
     }

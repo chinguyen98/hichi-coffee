@@ -76,6 +76,10 @@
     </div>
 </section>
 
+@include('inc.customers.promotionCoffees')
+
+@include('inc.customers.bestSeller')
+
 <section class="ftco-menu">
     <div class="container">
         <div class="row justify-content-center">
