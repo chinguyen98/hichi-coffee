@@ -490,6 +490,10 @@ div, label {
   background-color: rgba(0, 0, 0) !important;
 }
 
+.dmsp-main-container__item{
+  position: relative;
+}
+
 .dmsp-main-container__item img {
   width: 12em;
   height: 12em;
@@ -507,6 +511,23 @@ div, label {
 
 .dmsp-main-container__item:hover .coffeeName {
   color: #d4b78d;
+}
+
+.dmsp-main-container__item .promotion{
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 8rem;
+  height: 2rem;
+  background-color: white;
+  color: red;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 3px solid red;
 }
 
 .main_coffee_detail>div {

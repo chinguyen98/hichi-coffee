@@ -73,7 +73,7 @@ class CoffeeController extends Controller
         $brand = DB::table('brands')->where('slug', $brand_slug)->first();
         $coffee_type = DB::table('coffee_types')->where('slug', $type_slug)->first();
 
-        $coffees = DB::table('coffees')->where('id_brand', $brand->id)->where('id_coffee_type', $coffee_type->id)->get();
+        $coffees = Coffee::where('id_brand', $brand->id)->where('id_coffee_type', $coffee_type->id)->get();
 
         return view('customers.coffees.coffeesByBrandAndType')->with([
             'title' => $coffee_type->name . ' ' . $brand->name,
@@ -87,7 +87,7 @@ class CoffeeController extends Controller
     public function getCoffeesByType($type_slug)
     {
         $type = DB::table('coffee_types')->where('slug', $type_slug)->first();
-        $coffees = DB::table('coffees')->where('id_coffee_type', $type->id)->get();
+        $coffees =  Coffee::where('id_coffee_type', $type->id)->get();
 
         return view('customers.coffees.coffeesByType')->with([
             'title' => $type->name,
