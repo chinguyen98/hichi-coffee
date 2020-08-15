@@ -108,7 +108,7 @@
 
                 @foreach($searchResult as $coffee)
 
-                <div class="col col-md-3 my-2 text-center">
+                <div class="dmsp-main-container__item col col-md-3 my-2 text-center">
                     <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">
                         <img src="/apps/images/coffees/{{$coffee->image}}" alt="{{$coffee->name}}">
                     </a>
@@ -116,10 +116,16 @@
                         <div class="row">
                             <div title="{{$coffee->name}}" class="coffeeName col-md-12 text-center text-truncate">
                                 {{$coffee->name}}
+
                             </div>
                         </div>
                     </a>
                     <p>{{number_format($coffee->price)}} VNĐ</p>
+                    @if($coffee->haveValuation!=0)
+
+                    <span style="left: 1rem; top: -1rem;" class="promotion">Khuyến mãi</span>
+
+                    @endif
                 </div>
 
                 @endforeach

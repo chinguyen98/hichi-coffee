@@ -34,6 +34,7 @@ class SearchController extends Controller
         $sortValue = $request->query('sortValue');
 
         $query = DB::table('coffees')
+            ->selectRaw('coffees.id as coffeeId, coffees.name, coffees.price, coffees.image, coffees.slug, IF(EXISTS(SELECT * FROM coffees JOIN valuations on coffees.id=valuations.id_coffee WHERE valuations.id_coffee=coffeeId),1,0) as haveValuation')
             ->join('brands', 'brands.id', '=', 'coffees.id_brand')
             ->join('coffee_types', 'coffee_types.id', '=', 'coffees.id_coffee_type');
 
@@ -54,7 +55,6 @@ class SearchController extends Controller
             $str = $fulltextsearch->fullTextWildcards($coffeeName);
             $query = $query
                 ->whereRaw('MATCH (coffees.name) AGAINST (?)', array($str));
-                
         }
 
         try {
@@ -65,7 +65,9 @@ class SearchController extends Controller
             $query = $query->orderBy('price', 'asc');
         }
 
-        $searchResult = $query->get(['coffees.name', 'coffees.price', 'coffees.image', 'coffees.slug']);
+        $searchResult = $query->get();
+
+        //dd($searchResult);
 
         $dataToView['searchResult'] = $searchResult;
 

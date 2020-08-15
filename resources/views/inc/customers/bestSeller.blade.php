@@ -10,7 +10,7 @@
         <div class="row">
             @foreach($bestCoffeeSellers as $coffee)
 
-            <div class="col-md-3">
+            <div class="dmsp-main-container__item col-md-3">
                 <div class="menu-entry">
                     <a href="{{route('customer.coffees.show', ['slug'=> $coffee->slug])}}" class="img" style="background-image: url(/apps/images/coffees/{{$coffee->image}});"></a>
                     <div class="text text-center pt-4">
@@ -19,6 +19,11 @@
                         <p><a href="{{route('customer.coffees.show', ['slug'=> $coffee->slug])}}" class="btn btn-primary btn-outline-primary">Xem chi tiết</a></p>
                     </div>
                 </div>
+                @if($coffee->haveValuation!=0)
+
+                <span style="left: 0rem; top: -1rem;" class="promotion">Khuyến mãi</span>
+
+                @endif
             </div>
 
             @endforeach
