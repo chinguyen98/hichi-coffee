@@ -123,7 +123,9 @@
                     <p>{{number_format($coffee->price)}} VNĐ</p>
                     @if($coffee->haveValuation!=0)
 
-                    <span style="left: 1rem; top: -1rem;" class="promotion">Khuyến mãi</span>
+                    <div style="top: -5rem; left: -2.5rem;" class="sale">
+                        <img src="/apps/images/sale.png" alt="">
+                    </div>
 
                     @endif
                 </div>

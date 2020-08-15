@@ -34,7 +34,9 @@
         <div class="dmsp-main-container__item col-sm-12 col col-md-3 pt-3 text-center  d-sm-flex d-lg-flex flex-column justify-content-center align-items-center">
             @if(count($coffee->valuations)!=0)
 
-            <span style="left: 2.5rem;" class="promotion">Khuyến mãi</span>
+            <div style="top: -5rem; left: 0.5rem;" class="sale">
+                <img src="/apps/images/sale.png" alt="">
+            </div>
 
             @endif
             <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}"><img src="apps/images/coffees/{{$coffee->image}}" alt=""></a>

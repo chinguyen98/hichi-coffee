@@ -70,9 +70,20 @@
 
                         @endforeach
                     </td>
-                    <td class="text-center p-3"><b>{{number_format($order->total_price)}} đ</b></td>
+                    <td class="text-center p-1"><b>{{number_format($order->total_price)}} đ</b></td>
                     <td class="text-center p-3"><b>{{$order->current_status->status->name}}</b></td>
-                    <td class="p-2"><a class="btn btn-primary" href="{{route('customers.orders.show', ['id'=>$order->id])}}">Xem đơn hàng #{{$order->id}}</a></td>
+                    <td class="p-2 text-center">
+                        <a class="btn btn-primary" href="{{route('customers.orders.show', ['id'=>$order->id])}}">Xem đơn hàng #{{$order->id}}</a>
+                        @if($order->current_status->status->id==1)
+
+                        <form action="{{route('customers.orders.delete', ['id'=>$order->id])}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input class="btn btn-danger mt-3" type="submit" value="Huỷ đơn hàng #{{$order->id}}">
+                        </form>
+
+                        @endif
+                    </td>
                 </tr>
 
                 @endforeach

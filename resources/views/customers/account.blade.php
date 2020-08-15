@@ -76,11 +76,25 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="showChangePasswordForm" id="showChangePasswordForm" checked>
+                                    <input class="form-check-input" type="checkbox" name="showChangePasswordForm" id="showChangePasswordForm">
 
                                     <label class="form-check-label" for="showChangePasswordForm">
                                         Thay đổi mật khẩu
                                     </label>
+                                    <div>
+                                        @error('oldPassword')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        @error('password')
+                                        <span class="text-danger" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,11 +105,7 @@
 
                                 <div class="col-md-6">
                                     <input id="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror" name="oldPassword">
-                                    @error('oldPassword')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+
                                 </div>
                             </div>
 
@@ -104,11 +114,6 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
-                                    @error('password')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
                                 </div>
                             </div>
 

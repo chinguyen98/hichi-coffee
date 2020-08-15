@@ -156,4 +156,15 @@ class OrderController extends Controller
             'order' => $order,
         ]);
     }
+
+    public function delete(Request $request, $id)
+    {
+        DB::table('valuation_order_details')->where('id_order', $id)->delete();
+        DB::table('order_details')->where('id_order', $id)->delete();
+        DB::table('order_statuses')->where('id_order', $id)->delete();
+        DB::table('orders')->delete($id);
+
+        $request->session()->flash('success_message', 'Huỷ đơn hàng thành công!');
+        return redirect()->route('customers.orders.index');
+    }
 }

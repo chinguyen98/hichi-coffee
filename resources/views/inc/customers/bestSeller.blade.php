@@ -21,7 +21,9 @@
                 </div>
                 @if($coffee->haveValuation!=0)
 
-                <span style="left: 0rem; top: -1rem;" class="promotion">Khuyến mãi</span>
+                <div style="top: -5rem; left: -4.5rem;" class="sale">
+                    <img src="/apps/images/sale.png" alt="">
+                </div>
 
                 @endif
             </div>

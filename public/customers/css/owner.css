@@ -1,13 +1,26 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* Upload Image*/
 
-.bannerCoffee{
+p{
+  color: white !important;
+}
+
+.sale {
+  position: absolute;
+  z-index: 999;
+}
+
+.sale img {
+  transform: scale(0.5,0.5);
+}
+
+.bannerCoffee {
   height: 16rem;
   width: 100%;
   background-image: url('https://images.pexels.com/photos/2074130/pexels-photo-2074130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
 }
 
-.chatbox-dialog{
+.chatbox-dialog {
   width: 20rem;
   height: 20rem;
   background-color: rgba(0, 0, 0, 1);
@@ -18,7 +31,7 @@
   padding: 0.5rem;
 }
 
-.chatbox-dialog input[type="text"]{
+.chatbox-dialog input[type="text"] {
   color: black;
   width: 80%;
   border: none;
@@ -26,11 +39,11 @@
   outline: none;
 }
 
-.chatbox-dialog button{
+.chatbox-dialog button {
   width: 20%;
 }
 
-.chatbox-diaglog__conversation{
+.chatbox-diaglog__conversation {
   width: 100%;
   height: 80%;
   background-color: black;
@@ -49,7 +62,7 @@
   background-image: url('https://image.flaticon.com/icons/svg/468/468919.svg');
 }
 
-.chatbox-icon:hover:after{
+.chatbox-icon:hover:after {
   content: 'Nhấn để liên hệ với nhân viên chúng tôi';
   display: flex;
   align-items: center;
@@ -65,7 +78,7 @@
   bottom: 10rem;
 }
 
-.chatbox-icon:hover:after:after{
+.chatbox-icon:hover:after:after {
   content: '';
   background-color: red;
   position: absolute;
@@ -107,7 +120,7 @@
     bottom: 4.3rem;
     background-color: rgba(255, 255, 255, 0.3);
   }
-  100%{
+  100% {
     width: 6rem;
     height: 6rem;
     right: 0rem;
@@ -490,7 +503,7 @@ div, label {
   background-color: rgba(0, 0, 0) !important;
 }
 
-.dmsp-main-container__item{
+.dmsp-main-container__item {
   position: relative;
 }
 
@@ -513,7 +526,7 @@ div, label {
   color: #d4b78d;
 }
 
-.dmsp-main-container__item .promotion{
+.dmsp-main-container__item .promotion {
   top: 0;
   left: 0;
   position: absolute;

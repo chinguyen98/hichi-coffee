@@ -31,7 +31,18 @@
 <div class="container my-5">
     <div class="row">
         <div class="col col-md-12">
-            <h1>Chi tiết đơn hàng #{{$order->id}} - <b>{{$order->current_status->status->name}}</b></h1>
+            <div class="d-flex justify-content-around align-items-start">
+                <h1>Chi tiết đơn hàng #{{$order->id}} - <b>{{$order->current_status->status->name}}</b></h1>
+                @if($order->current_status->status->id==1)
+
+                <form action="{{route('customers.orders.delete', ['id'=>$order->id])}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input class="btn btn-danger mt-3" type="submit" value="Huỷ đơn hàng #{{$order->id}}">
+                </form>
+
+                @endif
+            </div>
             <h5 class="text-right">Ngày đặt hàng: {{$order->created_at}}</h5>
 
             <div class="border px-3 pt-2 my-3">

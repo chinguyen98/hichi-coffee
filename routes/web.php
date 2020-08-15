@@ -44,6 +44,7 @@ Route::group(['prefix' => 'orders', 'middleware' => ['verified']], function () {
     Route::get('/', 'OrderController@index')->name('customers.orders.index');
     Route::post('/', 'OrderController@store')->name('customers.orders.store');
     Route::get('/{id}', 'OrderController@show')->name('customers.orders.show');
+    Route::delete('/{id}', 'OrderController@delete')->name('customers.orders.delete');
 });
 
 Route::group(['prefix' => 'accounts'], function () {
