@@ -12,7 +12,7 @@ class CoffeeFavoriteController extends Controller
 {
     public function getFavorites()
     {
-        $favorites = CoffeeFavorite::with('coffee')->get();
+        $favorites = CoffeeFavorite::with('coffee')->where('id_customer', Auth::user()->id)->get();
 
         return response()->json($favorites);
     }

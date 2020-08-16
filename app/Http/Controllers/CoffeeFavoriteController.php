@@ -11,13 +11,12 @@ class CoffeeFavoriteController extends Controller
 {
     public function index()
     {
-        $favorites = CoffeeFavorite::where('id_customer', Auth::user()->id)->get();
+        //$favorites = CoffeeFavorite::where('id_customer', Auth::user()->id)->get();
 
         //dd($favorites);
 
         return view('customers.favorites.index')->with([
             'title' => 'Sản phẩm yêu thích',
-            'favorites' => $favorites,
         ]);
     }
 }
