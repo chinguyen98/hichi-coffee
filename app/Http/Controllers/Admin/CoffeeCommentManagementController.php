@@ -10,7 +10,9 @@ use App\Helpers\Slug;
 use App\Http\Controllers\Controller;
 use App\Reply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 use function GuzzleHttp\Promise\all;
 
@@ -72,9 +74,20 @@ class CoffeeCommentManagementController extends Controller
 
     public function delete(Request $request, $id)
     {
-        DB::table('coffee_comment_images')->where('id_comment', $id)->delete();
-        DB::table('coffee_comment_likes')->where('id_comment', $id)->delete();
-        DB::table('coffee_comments')->where('id', $id)->delete();
+        $id_coffee = explode('a', $id)[0];
+        $id_customer = explode('a', $id)[1];
+
+        $listOldImage = DB::table('coffee_comment_images')->where('id_customer', '=', $id_customer)->where('id_coffee', '=', $id_coffee)->get();
+
+        if (count($listOldImage) > 0) {
+            foreach ($listOldImage as $image) {
+                Storage::disk('comment_image')->delete($image->name);
+            }
+        }
+
+        DB::table('coffee_comment_images')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
+        DB::table('coffee_comment_likes')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
+        DB::table('coffee_comments')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
         $request->session()->flash('flash_message', 'Xóa Bình Luận Thành Công!');
         return redirect()->route('admins.manage.coffeecomment.index');
     }

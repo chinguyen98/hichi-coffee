@@ -38,6 +38,19 @@
                     </li>
                     <li>
                         <a class="has-arrow" href="index.html">
+                            <img class="spanaa" src="/apps/images/icons/order.png" alt="">
+                            <span class="mini-click-non">ĐƠN HÀNG</span>
+                        </a>
+                        <ul class="submenu-angle" aria-expanded="true">
+                            <li><a title="Tìm Đơn Hàng" href="{{route('admins.manage.order.search.index')}}"><span class="mini-sub-pro"><i>Tìm Đơn Hàng</i></span></a></li>
+                            <li><a title="Kiểm Tra Đặt Hàng" href="{{route('admins.manage.order.check.index')}}"><span class="mini-sub-pro"><i>Kiểm Tra Đặt Hàng</i></span></a></li>
+                            <li><a title="Tiếp nhận đơn hàng" href="{{route('admins.manage.order.receive.index')}}"><span class="mini-sub-pro"><i>Tiếp nhận đơn hàng</i></span></a></li>
+                            <li><a title="Giao hàng" href="{{route('admins.manage.order.ship.index')}}"><span class="mini-sub-pro"><i>Giao hàng</i></span></a></li>
+                            <li><a title="Hoàn thành" href="{{route('admins.manage.order.finish.index')}}"><span class="mini-sub-pro"><i>Hoàn thành</i></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="index.html">
                             <img class="spanaa" src="/apps/images/icons/cafeproduct.png" alt="">
                             <span class="mini-click-non">SẢN PHẨM</span>
                         </a>
@@ -46,6 +59,7 @@
                             <li><a title="Thêm mới" href="/admins/manage/coffees/create"><span class="mini-sub-pro"><i>Thêm Sản Phẩm</i></span></a></li>
                         </ul>
                     </li>
+                    
                     <li>
                         <a class="has-arrow" href="index.html">
                             <img class="spanaa" src="/apps/images/icons/cafe.png" alt="">
@@ -66,19 +80,7 @@
                             <li><a title="Thêm mới" href="{{route('admins.manage.promotion.create')}}"><span class="mini-sub-pro"><i>Thêm Khuyến Mãi</i></span></a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="has-arrow" href="index.html">
-                            <img class="spanaa" src="/apps/images/icons/order.png" alt="">
-                            <span class="mini-click-non">ĐƠN HÀNG</span>
-                        </a>
-                        <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Tìm Đơn Hàng" href="{{route('admins.manage.order.search.index')}}"><span class="mini-sub-pro"><i>Tìm Đơn Hàng</i></span></a></li>
-                            <li><a title="Kiểm Tra Đặt Hàng" href="{{route('admins.manage.order.check.index')}}"><span class="mini-sub-pro"><i>Kiểm Tra Đặt Hàng</i></span></a></li>
-                            <li><a title="Tiếp nhận đơn hàng" href="{{route('admins.manage.order.receive.index')}}"><span class="mini-sub-pro"><i>Tiếp nhận đơn hàng</i></span></a></li>
-                            <li><a title="Giao hàng" href="{{route('admins.manage.order.ship.index')}}"><span class="mini-sub-pro"><i>Giao hàng</i></span></a></li>
-                            <li><a title="Hoàn thành" href="{{route('admins.manage.order.finish.index')}}"><span class="mini-sub-pro"><i>Hoàn thành</i></span></a></li>
-                        </ul>
-                    </li>
+                   
                     <li>
                         <a class="has-arrow" href="index.html">
                             <img class="spanaa" src="/apps/images/icons/speak.png" alt="">

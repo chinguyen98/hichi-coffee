@@ -9,10 +9,10 @@
                     <h4 style="color: mediumspringgreen;">CHI TIẾT TRẢ LỜI BÌNH LUẬN</h4>
 
 
-                    <h5 style="color: wheat;">MÃ BÌNH LUẬN:<i style="margin-left: 50px;">#{{$repcomment->id_customer_reply}}</i></h5>
+                    <h5 style="color: wheat;">TRẠNG THÁI:<i style="margin-left: 4.5em;">{{$repcomment->status}}</i></h5>
                     <h5 style="color: wheat;">TÊN KHÁCH HÀNG:<i style="margin-left: 22px;">{{$repcomment->customer->name}}</i></h5>
+              
                     <h5 style="color: wheat;">NGÀY ĐÁNH GIÁ:<i style="margin-left: 2.5em;">{{$repcomment->created_at}}</i></h5>
-
                     <h5 style="color: wheat;">NỘI DUNG: <i style="margin-left: 5em;"><span style="color: red;">{{$repcomment->content}}</span></i></h5>
                     <hr style="border: 1px solid springgreen;">
                     <div style="display: flex; justify-content: start;">

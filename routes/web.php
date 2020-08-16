@@ -140,7 +140,7 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/', 'Admin\CoffeeCommentManagementController@index')->name('admins.manage.coffeecomment.index');
             Route::get('/{id}', 'Admin\CoffeeCommentManagementController@detail')->name('admins.manage.coffeecomment.detail');
             Route::post('/browser/{id}', 'Admin\CoffeeCommentManagementController@browser')->name('admins.manage.coffeecomment.browser');
-            Route::post('/delete/{id}', 'Admin\CoffeeCommentManagementController@delete')->name('admins.manage.coffeecomment.delete');
+            Route::delete('/delete/{id}', 'Admin\CoffeeCommentManagementController@delete')->name('admins.manage.coffeecomment.delete');
 
             Route::get('/reply/{id}', 'Admin\CoffeeCommentManagementController@replyDetail')->name('admins.manage.coffeecomment.replyDetail');
             Route::post('/browserRep/{id}', 'Admin\CoffeeCommentManagementController@browser_rep')->name('admins.manage.coffeecomment.browserRep');

@@ -21,7 +21,7 @@
                         <div style="margin-top: 2rem;" class="product-status-wrap">
                             <table>
                                 <tr>
-                                    <th style="color: mediumspringgreen;">TÊN SẢN PHẨM</th>
+                                    <th style="color: mediumspringgreen;">HÌNH ẢNH</th>
                                     <th style="color: mediumspringgreen;">TIÊU ĐỀ</th>
                                     <th style="color: mediumspringgreen;">NỘI DUNG</th>
                                     <th style="color: mediumspringgreen;">BÌNH CHỌN</th>
@@ -29,7 +29,12 @@
                                 </tr>
 
                                 <tr>
-                                    <td>{{$comment->coffee->name}}</td>
+                                    <td style="display: flex;">
+                                        @foreach($comment->images as $item)
+                                        <img src="/apps/images/comments/{{$item->name}}" alt="" />
+
+                                        @endforeach
+                                    </td>
                                     <td>{{$comment->title}}</td>
                                     <td>{{$comment->content}}</td>
                                     <td>{{$comment->rating}}</td>
@@ -50,21 +55,21 @@
 
                                 <span style="color: springgreen;">|</span>
                                 <span style="color: springgreen;">|</span>
-
-
-                                <form action="{{route('admins.manage.coffeecomment.delete', ['id'=>$comment->id_coffee . 'a' . $comment->id_customer])}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('POST')
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="text-center custom-pro-edt-ds">
-                                            <input style=" margin-right: 3em;" type="submit" class="btn btn-danger" value="XÓA BÌNH LUẬN">
-                                            </input>
-                                        </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="text-center custom-pro-edt-ds">
+                                        <input form="formXoa" style=" margin-right: 3em;" type="submit" class="btn btn-danger" value="XÓA BÌNH LUẬN">
+                                        </input>
                                     </div>
-                                </form>
+                                </div>
                             </div>
 
                         </div>
+                </form>
+
+                <form id="formXoa" action="{{route('admins.manage.coffeecomment.delete', ['id'=>$comment->id_coffee . 'a' . $comment->id_customer])}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
+
                 </form>
 
             </div>
