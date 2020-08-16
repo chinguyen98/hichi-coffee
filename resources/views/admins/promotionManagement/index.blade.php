@@ -26,13 +26,18 @@
                             <th>TRẠNG THÁI</th>
                         </tr>
                         @foreach($valuation as $val)
-    
+
                         <tr>
                             <td>{{$val->id}}</td>
                             <td><a href="{{route('admins.manage.promotion.detail', ['id'=>$val->id])}}">{{$val->coffee->name}}</a></td>
+                            <td>
+                                @if($val->expired < now())
+                                    <b>Hết hạn</b>
+                                @endif
+                            </td>
+
                             <td>{{$val->status}}</td>
-                            <td><a href="{{route('admins.manage.promotion.detail', ['id'=>$val->id])}}" data-toggle="tooltip" title="Xem chi tiết" 
-                            class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden="true"></i></a></td>
+                            <td><a href="{{route('admins.manage.promotion.detail', ['id'=>$val->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden=" true"></i></a></td>
                         </tr>
 
                         @endforeach

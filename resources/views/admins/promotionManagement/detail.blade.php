@@ -10,7 +10,12 @@
 
                     <h5 style="color: wheat;">MÃ KHUYẾN MÃI:<i style="margin-left: 20px;">#{{$valuation->id}}</i></h5>
                     <h5 style="color: wheat;">GIÁ GỐC: <i style="margin-left: 5em;">{{$valuation->coffee->price}}</i> </h5>
-                    <h5 style="color: wheat;">NGÀY TẠO: <i style="margin-left: 4em;">{{date("d/m/Y", strtotime($valuation->created_at))}}</i></h5>
+                    @if($valuation->bonus_content== null)
+                    <h5 style="color: wheat;">QUÀ TẶNG:<i style="margin-left: 4em;">Không</i></h5>
+                    @else
+                    <h5 style="color: wheat;">QUÀ TẶNG:<i style="margin-left: 4em;">{{$valuation->bonus_content}}</i></h5>
+                    @endif
+                    <h5 style="color: wheat;">NGÀY TẠO: <i style="margin-left: 3.5em;">{{date("d/m/Y", strtotime($valuation->created_at))}}</i></h5>
                 </div>
 
 
@@ -27,8 +32,20 @@
                         <tr>
                             <td>{{$valuation->coffee->id}}</td>
                             <td>{{$valuation->coffee->name}}</td>
-                            <td>{{$valuation->quantity}}</td>
-                            <td>{{$valuation->price}}</td>
+                            <td>
+                                @if($valuation->bonus_content!=null)
+                                <i>KHÔNG</i>
+                                @else
+                                {{$valuation->quantity}}
+                                @endif
+                            </td>
+                            <td>
+                                @if($valuation->bonus_content!=null)
+                                <i>{{$valuation->coffee->price}}</i>
+                                @else
+                                {{$valuation->price}}
+                                @endif
+                            </td>
                             <td>{{date("d/m/Y", strtotime($valuation->expired))}}</td>
                         </tr>
 

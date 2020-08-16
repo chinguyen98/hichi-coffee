@@ -59,7 +59,7 @@
                             <li><a title="Thêm mới" href="/admins/manage/coffees/create"><span class="mini-sub-pro"><i>Thêm Sản Phẩm</i></span></a></li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <a class="has-arrow" href="index.html">
                             <img class="spanaa" src="/apps/images/icons/cafe.png" alt="">
@@ -78,9 +78,10 @@
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="Xem toàn bộ" href="{{route('admins.manage.promotion.index')}}"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
                             <li><a title="Thêm mới" href="{{route('admins.manage.promotion.create')}}"><span class="mini-sub-pro"><i>Thêm Khuyến Mãi</i></span></a></li>
+                            <li><a title="Thêm mới" href="{{route('admins.manage.bonus_content.create')}}"><span class="mini-sub-pro"><i>Thêm Tặng Kèm</i></span></a></li>
                         </ul>
                     </li>
-                   
+
                     <li>
                         <a class="has-arrow" href="index.html">
                             <img class="spanaa" src="/apps/images/icons/speak.png" alt="">
@@ -104,7 +105,7 @@
 
                     <li>
                         <a class="has-arrow" href="index.html">
-                        <img class="spanaa"  src="/apps/images/icons/news.png" alt="">
+                            <img class="spanaa" src="/apps/images/icons/news.png" alt="">
                             <span class="mini-click-non">CHAT</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
