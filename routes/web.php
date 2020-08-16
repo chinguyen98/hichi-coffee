@@ -114,7 +114,7 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/bonus_content', 'Admin\PromotionManagementController@create_bonus_content')->middleware(['isSuperAdmin'])->name('admins.manage.bonus_content.create');
             Route::get('/{id}', 'Admin\PromotionManagementController@detail')->name('admins.manage.promotion.detail');
             Route::post('/', 'Admin\PromotionManagementController@store')->name('admins.manage.promotion.store');
-            Route::post('/', 'Admin\PromotionManagementController@store_bonus_content')->name('admins.manage.bonus_content.store');
+            Route::post('/bonus_content', 'Admin\PromotionManagementController@store_bonus_content')->name('admins.manage.bonus_content.store');
         });
 
         Route::group(['prefix' => 'order'], function () {

@@ -92,7 +92,7 @@ class PromotionManagementController extends Controller
                 'updated_at' => now(),
             ]);
             $request->session()->flash('flash_message', 'Thêm khuyến mãi thành công!');
-            return redirect()->route('admins.manage.bonus_content.index');
+            return redirect()->route('admins.manage.promotion.index');
         }
     }
 }

@@ -105,6 +105,13 @@
             @foreach($relatedCoffees as $relatedCoffee)
 
             <div class="dmsp-main-container__item col-sm-12 col col-md-7 pt-3 text-center  d-sm-flex d-lg-flex flex-column justify-content-center align-items-center">
+                @if(count($relatedCoffee->valuations)!=0)
+
+                <div style="top: -3rem; left: -7.5rem;" class="sale">
+                    <img src="/apps/images/sale.png" alt="">
+                </div>
+
+                @endif
                 <a href="{{route('customer.coffees.show', ['slug'=>$relatedCoffee->slug])}}"><img src="/apps/images/coffees/{{$relatedCoffee->image}}" alt=""></a>
                 <a href="{{route('customer.coffees.show', ['slug'=>$relatedCoffee->slug])}}">
                     <div class="row">
