@@ -65,6 +65,8 @@ class SearchController extends Controller
             $query = $query->orderBy('price', 'asc');
         }
 
+        $query=$query->where('coffees.status', 1);
+
         $searchResult = $query->get();
 
         //dd($searchResult);

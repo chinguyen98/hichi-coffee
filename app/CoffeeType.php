@@ -8,6 +8,6 @@ class CoffeeType extends Model
 {
     public function coffees()
     {
-        return $this->hasMany(Coffee::class, 'id_coffee_type', 'id');
+        return $this->hasMany(Coffee::class, 'id_coffee_type', 'id')->where('status', 1);
     }
 }

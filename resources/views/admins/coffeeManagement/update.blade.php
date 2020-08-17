@@ -24,7 +24,7 @@
                                                 </div>
                                                 @error('name')
                                                 @include('inc.admins.errorNotification')
-                                            
+
                                                 @enderror
 
                                                 <div class="input-group mg-b-pro-edt">
@@ -33,7 +33,7 @@
                                                 </div>
                                                 @error('expired')
                                                 @include('inc.admins.errorNotification')
-                                           
+
                                                 @enderror
 
                                                 <div class="input-group mg-b-pro-edt">
@@ -83,7 +83,7 @@
                                                 </div>
                                                 @error('price')
                                                 @include('inc.admins.errorNotification')
-                                            
+
                                                 @enderror
 
                                                 <div class="input-group mg-b-pro-edt">
@@ -133,16 +133,16 @@
                                             </div>
                                             @error('info')
                                             @include('inc.admins.errorNotification')
-                                    
+
                                             @enderror
-    
+
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section text-center">
                                                 <img id="previewImg" src="apps/images/coffees/{{$coffee->image}}" alt="Chưa tải hình lên">
                                                 @error('image')
                                                 @include('inc.admins.errorNotification')
-                                           
+
                                                 @enderror
                                                 <input name="image" type="file" class="custom-file-input" id="inputGroupFile01" accept=".gif,.jpg,.jpeg,.png">
                                                 <input name="oldImage" type="hidden" value="{{$coffee->image}}">
@@ -150,7 +150,7 @@
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="text-center custom-pro-edt-ds">
-                                                <input type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10 mr-5" value="CẬP NHẬT SẢM PHÂM">
+                                                <input type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10 mr-5" value="CẬP NHẬT SẢN PHÂM">
                                                 </input>
                                                 <input type="reset" class="btn btn-ctl-bt waves-effect waves-light" value="ĐẶT LẠI">
                                                 </input>

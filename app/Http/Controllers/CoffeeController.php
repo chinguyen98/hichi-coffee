@@ -36,12 +36,13 @@ class CoffeeController extends Controller
         $bestCoffeeSellers = DB::select('SELECT coffees.id as coffeeId, coffees.name, coffees.price, coffees.image, coffees.slug,
             IF(EXISTS(SELECT * FROM coffees JOIN valuations on coffees.id=valuations.id_coffee WHERE valuations.id_coffee=coffeeId),1,0) as haveValuation,
             COUNT(coffees.name) as qty from order_details
-            JOIN coffees ON order_details.id_coffee=coffees.id GROUP by coffees.id, coffees.name, coffees.price, coffees.image, coffees.slug ORDER by COUNT(coffees.name) DESC LIMIT 4');
+            JOIN coffees ON order_details.id_coffee=coffees.id where coffees.status=1 GROUP by coffees.id, coffees.name, coffees.price, coffees.image, coffees.slug ORDER by COUNT(coffees.name) DESC LIMIT 4');
 
         $promotionCoffees = DB::table('coffees')
             ->select(['coffees.name', 'coffees.slug', 'coffees.price', 'coffees.image'])
             ->join('valuations', 'coffees.id', '=', 'valuations.id_coffee')
             ->where('valuations.expired', '>=', Carbon::now()->toDateString())
+            ->where('coffees.status', 1)
             ->groupBy('coffees.name', 'coffees.slug', 'coffees.price', 'coffees.image')
             ->get();
 

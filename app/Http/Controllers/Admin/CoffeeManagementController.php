@@ -24,11 +24,11 @@ class CoffeeManagementController extends Controller
 
     public function create()
     {
-        
+
         $brands = DB::table('brands')->get(['id', 'name']);
         $coffee_types = DB::table('coffee_types')->get(['id', 'name']);
         $units = DB::table('units')->get(['id', 'name', 'dram']);
-        
+
         return view('admins/coffeeManagement/create')->with([
             'title' => 'THÊM SẢN PHẨM',
             'brands' => $brands,
@@ -69,6 +69,7 @@ class CoffeeManagementController extends Controller
                 'info' => $coffee_update["info"],
                 'expired' => $coffee_update["expired"],
                 'quantity' => 0,
+                'expected_quantity' => 0,
                 'image' => $file->getClientOriginalName(),
                 'status' => $coffee_update["status"],
                 'slug' => $coffeeSlug->createSlug($coffee_update["name"]),
