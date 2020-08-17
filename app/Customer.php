@@ -41,4 +41,9 @@ class Customer extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(CustomerAddress::class, 'id_customer', 'id');
     }
+
+    public function orders($id_customer)
+    {
+        return $this->hasMany(Order::class, 'id_customer', 'id')->where('id_customer', $id_customer);
+    }
 }

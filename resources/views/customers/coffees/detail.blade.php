@@ -24,12 +24,11 @@
 <section class="bannerCoffee mt-5">
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
-            <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
+            <div class="col-md-12 mt-5 col-sm-12 text-center ftco-animate">
                 <h1 class="mb-3 mt-5 bread">{{$coffee->name}}</h1>
                 <p class="breadcrumbs">
                     <span class="mr-2"><a href="/">Trang chủ</a> </span>/
                     <span class="mr-2"><a href="/coffees">Sản phẩm</a></span>/
-                    <span>{{$coffee->name}}</span>
                 </p>
             </div>
         </div>
@@ -138,7 +137,7 @@
 
     <div class="mt-5">
         <h1>Khách hàng nhận xét: </h1>
-        <div class="row">
+        <div class="row d-flex align-items-center">
             <div class="col col-md-4 text-center d-flex flex-column justify-content-center align-items-center">
                 <h3>Đánh giá trung bình</h3>
                 <h1 class="text-danger">{{explode('.', $coffee->avgRating())[1]=='0' ? number_format($coffee->avgRating()) : $coffee->avgRating()}}/5</h1>
@@ -238,6 +237,8 @@
 
                 @else
 
+                @if($haveCoffeeInOrder >0)
+
                 @if(!$coffee->haveComment(Auth::user()->id))
 
                 <div class="writeYourComment">
@@ -250,6 +251,14 @@
                 <div class="writeYourComment">
                     <h1 class="text-danger">Bạn đã đánh giá sản phẩm này</h1>
                     <button class="btn btn-primary writeCommentBtn">Đánh giá lại</button>
+                </div>
+
+                @endif
+
+                @else
+
+                <div class="writeYourComment">
+                    <h4 class="text-info">Bạn chỉ có thể đánh giá khi đã mua sản phẩm này</h4>
                 </div>
 
                 @endif

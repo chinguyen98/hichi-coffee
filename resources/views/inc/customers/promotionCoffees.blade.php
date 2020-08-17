@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
-                <span class="subheading">Khám phá</span>
+                <span class="subheading mb-1">Khám phá</span>
                 <h2 class="mb-4">Sản phẩm đang khuyến mãi</h2>
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>

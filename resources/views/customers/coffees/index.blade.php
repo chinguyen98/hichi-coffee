@@ -84,7 +84,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">CH Coffee</span>
+                <span class="subheading mb-1">CH Coffee</span>
                 <h2 class="mb-4 mt-2">Danh mục sản phẩm</h2>
                 <div class="slogan sloganknst">
                     <p>Đàn ông rất giống cà phê <br> bởi nếu là loại ngon sẽ làm bạn mất ngủ!</p>

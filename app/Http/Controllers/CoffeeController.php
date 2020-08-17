@@ -7,6 +7,7 @@ use App\Coffee;
 use App\CoffeeType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CoffeeController extends Controller
@@ -62,12 +63,19 @@ class CoffeeController extends Controller
     {
         $coffee = Coffee::where('slug', $slug)->first();
         $relatedCoffees = Coffee::where('id', '<>', $coffee->id)->where('id_coffee_type', $coffee->id_coffee_type)->get(['id', 'image', 'name', 'slug', 'price']);
+        $haveCoffeeInOrder = DB::table('coffees')
+            ->join('order_details', 'coffees.id', '=', 'order_details.id_coffee')
+            ->join('orders', 'orders.id', '=', 'order_details.id_order')
+            ->where('orders.id_customer', Auth::user()->id)
+            ->where('order_details.id_coffee', $coffee->id)
+            ->count();
 
         return view('customers.coffees.detail')->with([
             'title' => $coffee->name,
             'coffeeActive' => 'active',
             'coffee' => $coffee,
             'relatedCoffees' => $relatedCoffees,
+            'haveCoffeeInOrder' => $haveCoffeeInOrder,
         ]);
     }
 
