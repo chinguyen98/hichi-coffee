@@ -57,7 +57,7 @@
                                 <span style="color: springgreen;">|</span>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="text-center custom-pro-edt-ds">
-                                        <input form="formXoa" style=" margin-right: 3em;" type="submit" class="btn btn-danger" value="XÓA BÌNH LUẬN">
+                                        <input form="formXoa" style=" margin-right: 6em;" type="submit" class="btn btn-danger" value="VI PHẠM">
                                         </input>
                                     </div>
                                 </div>

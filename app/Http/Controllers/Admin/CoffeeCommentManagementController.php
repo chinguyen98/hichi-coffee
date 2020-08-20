@@ -8,11 +8,13 @@ use App\CoffeeCommentReply;
 use App\CommentReply;
 use App\Helpers\Slug;
 use App\Http\Controllers\Controller;
+use App\Mail\CoffeeCommentMail;
 use App\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 use function GuzzleHttp\Promise\all;
 
@@ -77,18 +79,23 @@ class CoffeeCommentManagementController extends Controller
         $id_coffee = explode('a', $id)[0];
         $id_customer = explode('a', $id)[1];
 
-        $listOldImage = DB::table('coffee_comment_images')->where('id_customer', '=', $id_customer)->where('id_coffee', '=', $id_coffee)->get();
+        $coffee = DB::table('coffees')->where('id', $id_coffee)->first(['name', 'slug']);
+        $coffeeComment = DB::table('coffee_comments')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->first(['created_at']);
+        $customer=DB::table('customers')->where('id', $id_customer)->first(['email']);
 
-        if (count($listOldImage) > 0) {
-            foreach ($listOldImage as $image) {
-                Storage::disk('comment_image')->delete($image->name);
-            }
-        }
+        // DB::table('coffee_comments')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->update([
+        //     'status' => 2,
+        // ]);
 
-        DB::table('coffee_comment_images')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
-        DB::table('coffee_comment_likes')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
-        DB::table('coffee_comments')->where('id_coffee', $id_coffee)->where('id_customer', $id_customer)->delete();
-        $request->session()->flash('flash_message', 'Xóa Bình Luận Thành Công!');
+        $details = [
+            'coffeeName' => $coffee->name,
+            'coffeeSlug'=>$coffee->slug,
+            'created_at' => $coffeeComment->created_at,
+        ];
+
+        Mail::to($customer->email)->send(new CoffeeCommentMail($details));
+
+        $request->session()->flash('flash_message', 'Hoàn thành!');
         return redirect()->route('admins.manage.coffeecomment.index');
     }
     public function delete_rep(Request $request, $id)
