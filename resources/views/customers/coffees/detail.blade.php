@@ -57,7 +57,7 @@
 
                 @if($valuation->quantity!=0)
 
-                <h4> * Giá chỉ còn <span class="text-danger">{{number_format($valuation->price)}} VNĐ</span> khi mua trên {{$valuation->quantity}} sản phẩm</h4>
+                <h4> * Giá chỉ còn <span class="text-danger">{{number_format($valuation->price)}} đ</span> khi mua trên {{$valuation->quantity}} sản phẩm</h4>
                 <input name="hidValuation" type="hidden" value="{{$valuation}}">
 
                 @else
@@ -77,12 +77,12 @@
             </div>
 
             <div class="my-5">
-                <h2>Giá hiện tại: <span class="text-danger text-bold oldPrice ml-4">{{number_format($coffee->price)}} </span> <span class="newPrice"></span> <span class="text-danger">VNĐ</span></h2>
+                <h2>Giá hiện tại: <span class="text-danger text-bold oldPrice ml-4">{{number_format($coffee->price)}} </span> <span class="newPrice"></span> <span class="text-danger">đ</span></h2>
 
                 <div class="d-flex flex-row align-items-center">
                     <h5 class="pr-3 pt-2">Số lượng đặt mua: </h5>
                     <span id="btn-quantity-desc" class="quantity-updown text-center">-</span>
-                    <input style="width: 4rem;" type="text" name="quantity" class="quantity" value="1" min="1" />
+                    <input style="width: 4rem; text-align: center;" type="text" name="quantity" class="quantity" value="1" min="1" />
                     <span id="btn-quantity-insc" class="quantity-updown text-center">+</span>
                 </div>
                 <div class="d-flex flex-row align-items-center ">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                 </a>
-                <span>{{number_format($relatedCoffee->price)}} VND</span>
+                <span>{{number_format($relatedCoffee->price)}} đ</span>
                 <p><a href="{{route('customer.coffees.show', ['slug'=>$relatedCoffee->slug])}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
             </div>
 

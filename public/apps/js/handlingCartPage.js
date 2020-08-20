@@ -79,7 +79,7 @@ function renderCart(cartList, cartStorage) {
                     ${
             item.valuations
                 .filter(item=>item.quantity !== null)
-                .map(val => `<span> * Giá chỉ còn <span class="text-danger">${formatPrice(val.price)} VNĐ</span> khi mua trên ${val.quantity} sản phẩm</span><br />`).join('')
+                .map(val => `<span> * Giá chỉ còn <span class="text-danger">${formatPrice(val.price)} đ</span> khi mua trên ${val.quantity} sản phẩm</span><br />`).join('')
             }
                 </div>
                 </div>
@@ -106,7 +106,7 @@ function renderPriceSum(cartList, cartStorage) {
         const price = { ...document.querySelector(`[data-finalprice${item.id}]`).dataset }[`finalprice${item.id}`]
         return total + parseInt(cartStorage.find(el => el.id === item.id).qty) * price;
     }, 0);
-    let price = String(sum).replace(/(.)(?=(\d{3})+$)/g, '$1,') + " VND";
+    let price = String(sum).replace(/(.)(?=(\d{3})+$)/g, '$1,') + " đ";
     totalPrice.innerHTML = price;
 }
 
@@ -115,7 +115,7 @@ function changeToTalPrice(id) {
         const price = { ...document.querySelector(`[data-oldprice${item.dataset.val}]`).dataset }[`finalprice${item.dataset.val}`];
         return total + parseInt(item.value) * parseInt(price);
     }, 0);
-    let price = String(sum).replace(/(.)(?=(\d{3})+$)/g, '$1,') + " VND";
+    let price = String(sum).replace(/(.)(?=(\d{3})+$)/g, '$1,') + " đ";
     totalPrice.innerHTML = price;
 }
 

@@ -57,7 +57,7 @@
                                             <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="menu-img img mb-4" style="background-image: url(apps/images/coffees/{{$coffee->image}});"></a>
                                             <div class="text">
                                                 <h3><a class="text-primary" href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">{{$coffee->name}}</a></h3>
-                                                <p class="price"><span>{{number_format($coffee->price)}} VND</span></p>
+                                                <p class="price"><span>{{number_format($coffee->price)}} đ</span></p>
                                                 <p><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                             <a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="menu-img img mb-4" style="background-image: url(apps/images/coffees/{{$coffee->image}});"></a>
                                             <div class="text">
                                                 <h3><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}">{{$coffee->name}}</a></h3>
-                                                <p class="price"><span>{{number_format($coffee->price)}} VND</span></p>
+                                                <p class="price"><span>{{number_format($coffee->price)}} đ</span></p>
                                                 <p><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
                                             </div>
                                         </div>

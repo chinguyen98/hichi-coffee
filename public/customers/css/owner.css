@@ -824,7 +824,7 @@ div, label {
   background-color: whitesmoke;
   position: absolute;
   right: 5em;
-  top: 5em;
+  top: 9em;
   opacity: 0;
   transform: translateX(20em);
   transition: all 1s;

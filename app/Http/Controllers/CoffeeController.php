@@ -63,20 +63,26 @@ class CoffeeController extends Controller
     {
         $coffee = Coffee::where('slug', $slug)->first();
         $relatedCoffees = Coffee::where('id', '<>', $coffee->id)->where('id_coffee_type', $coffee->id_coffee_type)->get(['id', 'image', 'name', 'slug', 'price']);
-        $haveCoffeeInOrder = DB::table('coffees')
-            ->join('order_details', 'coffees.id', '=', 'order_details.id_coffee')
-            ->join('orders', 'orders.id', '=', 'order_details.id_order')
-            ->where('orders.id_customer', Auth::user()->id)
-            ->where('order_details.id_coffee', $coffee->id)
-            ->count();
 
-        return view('customers.coffees.detail')->with([
+        $dataToView = [
             'title' => $coffee->name,
             'coffeeActive' => 'active',
             'coffee' => $coffee,
             'relatedCoffees' => $relatedCoffees,
-            'haveCoffeeInOrder' => $haveCoffeeInOrder,
-        ]);
+        ];
+
+        if (Auth::check()) {
+            $haveCoffeeInOrder = DB::table('coffees')
+                ->join('order_details', 'coffees.id', '=', 'order_details.id_coffee')
+                ->join('orders', 'orders.id', '=', 'order_details.id_order')
+                ->where('orders.id_customer', Auth::user()->id)
+                ->where('order_details.id_coffee', $coffee->id)
+                ->count();
+
+            $dataToView['haveCoffeeInOrder'] = $haveCoffeeInOrder;
+        }
+
+        return view('customers.coffees.detail')->with($dataToView);
     }
 
     public function getCoffeesByBrandAndType($brand_slug, $type_slug)

@@ -28,10 +28,11 @@
 </section>
 </br>
 
-<h1 class="mt-5 ml-5 text-center">Giỏ hàng</h1>
-<div class="showNoCart text-center">
+
+<div class="showNoCart mt-5 text-center">
 
 </div>
+
 <div class="ml-5 my-2 d-flex flex-sm-column flex-md-row justify-content-center">
     <div class="row">
         <div class=" cart-container col col-md-8">
@@ -42,7 +43,7 @@
         </div>
         <div class=" total-sum-container col col-md-4 text-center d-flex flex-column justify-content-center align-items-center">
             <h2>Thành tiền: </h2>
-            <h1 class="total-price text-danger border p-3">0 VND</h1>
+            <h1 class="total-price text-danger border p-3">0 đ</h1>
             <a class="btn btn-danger" href="{{route('customers.checkout.show')}}"><span class="btnDatHang">Tiến hành đặt hàng</span></a>
         </div>
     </div>

@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </a>
-            <span>{{number_format($coffee->price)}} VND</span>
+            <span>{{number_format($coffee->price)}} đ</span>
             <p><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug])}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
         </div>
 

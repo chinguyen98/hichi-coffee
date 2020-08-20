@@ -72,14 +72,14 @@
                     <h5>Hình thức giao hàng: </h5>
                     <div class="orderDetail_subItem px-2 pt-3">
                         <p>{{$order->shipping_type->name}}</p>
-                        <p>Giá: {{$order->shipping_type->price}}</p>
+                        <p>Giá: {{number_format($order->shipping_type->price)}} đ</p>
                     </div>
                 </div>
                 <div class="col col-md-4 d-flex flex-column">
                     <h5>Phí vận chuyển hàng: </h5>
                     <div class="orderDetail_subItem px-2 pt-3">
                         <p>Đến {{$order->shipping_address->address}}</p>
-                        <p>Giá: {{$order->shipping_address->price}}</p>
+                        <p>Giá: {{number_format($order->shipping_address->price)}} đ</p>
                     </div>
                 </div>
             </div>

@@ -146,7 +146,7 @@
                                     <input class="form-check-input" type="radio" name="shipping_infos" id="{{$item->id}}" value="{{$item->price}}" checked>
                                     <label class="form-check-label d-flex flex-row justify-content-between" for="exampleRadios1">
                                         <h5>{{$item->name}}</h5>
-                                        <p class="text-secondary mr-2">{{number_format($item->price)}} VND</p>
+                                        <p class="text-secondary mr-2">{{number_format($item->price)}} đ</p>
                                     </label>
                                 </div>
 
@@ -156,7 +156,7 @@
                                     <input class="form-check-input" type="radio" name="shipping_infos" id="{{$item->id}}" value="{{$item->price}}">
                                     <label class="form-check-label d-flex flex-row justify-content-between" for="exampleRadios1">
                                         <h5>{{$item->name}}</h5>
-                                        <p class="text-secondary mr-2">{{number_format($item->price)}} VND</p>
+                                        <p class="text-secondary mr-2">{{number_format($item->price)}} đ</p>
                                     </label>
                                 </div>
 
@@ -179,10 +179,10 @@
                                 @if($shipping_address != '')
 
                                 <p>Phí vận chuyển đến {{$shipping_address->address}}:</p>
-                                <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} VNĐ</p>
+                                <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} đ</p>
 
                                 <!-- <p>Phí vận chuyển đến <span class="checkout-district-label"></span>:</p>
-                                <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} VNĐ</p> -->
+                                <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} đ</p> -->
 
                                 @else
 
@@ -193,7 +193,7 @@
                                 <h3>Thành tiền: </h3>
                                 <h2 data-totalprice="" class="checkout-total-price text-danger"></h2>
                             </div>
-                            <h4 class="text-right"><del class="oldPrice"></del> VNĐ</h4>
+                            <h4 class="text-right"><del class="oldPrice"></del> đ</h4>
                         </div>
 
                     </div>

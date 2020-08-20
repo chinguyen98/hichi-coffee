@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     </a>
-                    <p>{{number_format($coffee->price)}} VNĐ</p>
+                    <p>{{number_format($coffee->price)}} đ</p>
                     @if($coffee->haveValuation!=0)
 
                     <div style="top: -5rem; left: -2.5rem;" class="sale">

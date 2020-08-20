@@ -155,7 +155,7 @@ async function renderCart() {
         `;
     }).join('');
     checkoutCart.innerHTML = exportCartHtml;
-    checkoutShippingArea.innerHTML = `${formatPrice(document.querySelector('[name="shipping_infos"]').value)} VNĐ`;
+    checkoutShippingArea.innerHTML = `${formatPrice(document.querySelector('[name="shipping_infos"]').value)} đ`;
     checkoutShippingArea.dataset.price = document.querySelector('[name="shipping_infos"]').value;
 
     const totalPrice = cartStorage.reduce((total, cart) => {
@@ -170,10 +170,10 @@ async function renderCart() {
         return total + (price * quantity);
     }, 0)
 
-    checkoutPriceArea.innerHTML = `${formatPrice(totalPrice)} VNĐ`;
+    checkoutPriceArea.innerHTML = `${formatPrice(totalPrice)} đ`;
     checkoutPriceArea.dataset.price = totalPrice;
 
-    checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} VNĐ`;
+    checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} đ`;
     checkoutFinalTotalPriceArea.dataset.totalPrice = renderFinalTotalPrice();
     let oldPrice = 0;
 
@@ -192,9 +192,9 @@ async function renderCart() {
 }
 
 function renderShippingAndTotalPrice(e) {
-    checkoutShippingArea.innerHTML = `${formatPrice(this.value)} VNĐ`;
+    checkoutShippingArea.innerHTML = `${formatPrice(this.value)} đ`;
     checkoutShippingArea.dataset.price = this.value;
-    checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} VNĐ`;
+    checkoutFinalTotalPriceArea.innerHTML = `${formatPrice(renderFinalTotalPrice())} đ`;
     checkoutFinalTotalPriceArea.dataset.totalPrice = renderFinalTotalPrice();
 
     const oldPrice = renderOldPrice() + parseInt(checkoutShippingArea.dataset.price) + parseInt(checkoutDistrictArea.dataset.price);
