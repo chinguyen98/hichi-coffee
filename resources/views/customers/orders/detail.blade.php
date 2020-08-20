@@ -87,11 +87,11 @@
             <div class="table-responsive">
                 <table class="orderDetail_table col col-md-12">
                     <tr class="thead-dark">
-                        <th>Sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Giảm giá</th>
-                        <th>Tạm tính</th>
+                        <th class="pl-3">Sản phẩm</th>
+                        <th class="text-center">Giá gốc</th>
+                        <th class="text-center">Số lượng</th>
+                        <th class="text-center">Tổng giảm giá</th>
+                        <th class="text-center">Tạm tính</th>
                     </tr>
 
                     @foreach($order->order_details as $order_detail)
@@ -120,7 +120,7 @@
                         <td class="p-2 text-center">
                             @if($order_detail->valuation_detail($order_detail->id_order, $order_detail->id_coffee))
 
-                            <p>{{number_format($order_detail->valuation_detail($order_detail->id_order, $order_detail->id_coffee)->valuation->price)}} đ</p>
+                            <p>{{number_format($order_detail->valuation_detail($order_detail->id_order, $order_detail->id_coffee)->valuation->discount * $order_detail->quantity)}} đ</p>
 
                             @else
 
@@ -130,13 +130,13 @@
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                @if($order_detail->valuation)
+                                @if($order_detail->valuation_detail($order->id, $order_detail->id_coffee)->valuation->bonus_content==null)
 
-                                <p>{{number_format($order_detail->valuation->price)}} đ</p>
+                                <p>{{number_format($order_detail->valuation_detail($order->id, $order_detail->id_coffee)->valuation->price * $order_detail->quantity)}} đ</p>
 
                                 @else
 
-                                <p>{{number_format($order_detail->coffee->price)}} đ</p>
+                                <p>{{number_format($order_detail->coffee->price * $order_detail->quantity)}} đ</p>
 
                                 @endif
                             </div>
