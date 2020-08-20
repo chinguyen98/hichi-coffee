@@ -56,7 +56,12 @@
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="Xem toàn bộ" href="/admins/manage/coffees"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
+                            
+                            @if(Auth::user()->isSuperAdmin())
+
                             <li><a title="Thêm mới" href="/admins/manage/coffees/create"><span class="mini-sub-pro"><i>Thêm Sản Phẩm</i></span></a></li>
+
+                            @endif
                         </ul>
                     </li>
 
@@ -67,7 +72,9 @@
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="Xem toàn bộ" href="{{route('admins.manage.warehouse.index')}}"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
+                            @if(Auth::user()->isSuperAdmin())
                             <li><a title="Thêm mới" href="{{route('admins.manage.warehouse.create')}}"><span class="mini-sub-pro"><i>Nhập Kho</i></span></a></li>
+                            @endif
                         </ul>
                     </li>
                     <li>
@@ -77,8 +84,10 @@
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="Xem toàn bộ" href="{{route('admins.manage.promotion.index')}}"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
+                            @if(Auth::user()->isSuperAdmin())
                             <li><a title="Thêm mới" href="{{route('admins.manage.promotion.create')}}"><span class="mini-sub-pro"><i>Thêm Khuyến Mãi</i></span></a></li>
                             <li><a title="Thêm mới" href="{{route('admins.manage.bonus_content.create')}}"><span class="mini-sub-pro"><i>Thêm Tặng Kèm</i></span></a></li>
+                            @endif
                         </ul>
                     </li>
 
