@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Admin;
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -123,4 +125,21 @@ class HomeController extends Controller
         return redirect()->route('admins.renderAdminManagementPage');
     }
 
+    public function renderAnalyticPage()
+    {
+        $m = date('m');
+        //$totalPrice = Order::whereRaw("MONTH(created_at)=?", [$m])->sum('total_price');
+        $order = DB::table('orders')
+            ->select(DB::raw('SUM(orders.total_price) as totalPrice'), DB::raw('COUNT(*) as sum'))
+            ->join('order_statuses', 'orders.id', '=', 'order_statuses.id_order')
+            ->whereRaw("MONTH(orders.created_at)=?", [$m])
+            ->where('order_statuses.is_current', 1)
+            ->where('order_statuses.id_status', Status::OrderFinish)
+            ->first();
+            
+        return view('admins.analytic')->with([
+            'title' => 'Thống kê',
+            'order' => $order,
+        ]);
+    }
 }

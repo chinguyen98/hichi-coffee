@@ -34,6 +34,9 @@
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="Trang Chủ" href="/admins/home"><span class="mini-sub-pro"><i>Trang Chủ</i></span></a></li>
+                            @if(Auth::user()->isSuperAdmin())
+                            <li><a title="Thống kê" href="{{route('admins.renderAnalyticPage')}}"><span class="mini-sub-pro"><i>Thống kê</i></span></a></li>
+                            @endif
                         </ul>
                     </li>
                     <li>

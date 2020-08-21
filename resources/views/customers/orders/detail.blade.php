@@ -130,7 +130,7 @@
                         </td>
                         <td>
                             <div class="d-flex justify-content-center align-items-center">
-                                @if($order_detail->valuation_detail($order->id, $order_detail->id_coffee)->valuation->bonus_content==null)
+                                @if($order_detail->valuation_detail($order->id, $order_detail->id_coffee) != null && $order_detail->valuation_detail($order->id, $order_detail->id_coffee)->valuation->bonus_content==null)
 
                                 <p>{{number_format($order_detail->valuation_detail($order->id, $order_detail->id_coffee)->valuation->price * $order_detail->quantity)}} đ</p>
 

@@ -74,6 +74,7 @@ Route::group(['prefix' => 'comments', 'middleware' => 'auth'], function () {
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {
     Route::get('/admin', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
+    Route::get('/analytics','Admin\HomeController@renderAnalyticPage')->middleware(['isSuperAdmin'])->name('admins.renderAnalyticPage');
     Route::get('/home', 'Admin\HomeController@index')->name('admins.home');
     Route::get('/register', 'Admin\AuthForAdmin\RegisterController@showRegisterForm')->name('admins.register.show');
     Route::get('/login', 'Admin\AuthForAdmin\LoginController@showLoginForm')->name('admins.login.show');
