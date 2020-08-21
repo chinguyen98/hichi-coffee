@@ -59,7 +59,9 @@
                     @endif
                 </div>
             </div>
-            <span>Địa chỉ: </span><span class="text-primary ml-3">{{$customer_address->full_address}}</span>
+                <span>Địa chỉ: </span><span class="text-primary ml-3">{{$customer_address->full_address}}</span><br>
+                <span>Tên người nhận: </span><span class="text-primary ml-3">{{$customer_address->name}}</span><br>
+                <span>Số điện thoại: </span><span class="text-primary ml-3">{{$customer_address->phone_number}}</span>
         </div>
 
         @endforeach

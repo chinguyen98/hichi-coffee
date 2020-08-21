@@ -16,7 +16,7 @@ class AddressController extends Controller
 
     public function index()
     {
-        $customer_addresses = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->get(['id', 'full_address', 'is_current']);
+        $customer_addresses = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->get(['id', 'full_address', 'is_current', 'name', 'phone_number']);
         return view('customers.addresses.index')->with([
             'title' => 'Địa chỉ của tôi',
             'customer_addresses' => $customer_addresses,
