@@ -54,4 +54,9 @@ class LoginController extends Controller
     {
         $request->session()->flash('success_message', 'Đăng nhập thành công!');
     }
+
+    protected function credentials(Request $request)
+    {
+        return ['email' => $request->{$this->username()}, 'password' => $request->password, 'status' => 1];
+    }
 }

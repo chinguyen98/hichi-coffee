@@ -52,7 +52,7 @@
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Email hoặc mật khẩu sai</strong>
+                                    <strong>{{$message}}</strong>
                                 </span>
                                 @enderror
                             </div>

@@ -165,7 +165,7 @@ async function renderCart() {
             price = data.find(item => item.id === cart.id).price;
         } else {
             const valuations = data.find(item => item.id === cart.id).valuations;
-            price = valuations.find(item => item.id === cart.valuation).price;
+            price = valuations.find(item => item.id == cart.valuation).price;
         }
         return total + (price * quantity);
     }, 0)
