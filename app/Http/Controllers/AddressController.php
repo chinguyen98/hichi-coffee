@@ -41,9 +41,20 @@ class AddressController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'phone_number' => 'required|digits:10'
+        ], [
+            'required' => ':attribute Không được để trống',
+            'digits' => ':attribute phải có 10 số',
+        ], [
+            'phone_number' => 'Số điện thoại',
+        ]);
+
         $id_district = $request->input('id_district');
         $id_ward = $request->input('id_ward');
         $address = $request->input('address');
+        $name = $request->input('name');
+        $phone_number = $request->input('phone_number');
 
         $renderAddressHelper = new RenderAddress();
         $city = $renderAddressHelper->getCityDetailFromApi(4)['Title'];
@@ -65,6 +76,8 @@ class AddressController extends Controller
             'district' => $district,
             'ward' => $ward,
             'full_address' => $fullAddress,
+            'name' => $name,
+            'phone_number' => $phone_number,
             'is_current' => 1,
             'id_customer' => Auth::user()->id,
             'created_at' => now(),
@@ -84,6 +97,8 @@ class AddressController extends Controller
         $id_district = $request->input('id_district');
         $id_ward = $request->input('id_ward');
         $address = $request->input('address');
+        $name = $request->input('name');
+        $phone_number = $request->input('phone_number');
 
         //dd($request->input('is_current') );
 
@@ -96,7 +111,7 @@ class AddressController extends Controller
 
         if ($request->input('is_current') == 'on') {
             DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->update([
-                'is_current' => 0
+                'is_current' => 0,
             ]);
         }
 
@@ -109,6 +124,8 @@ class AddressController extends Controller
             'district' => $district,
             'ward' => $ward,
             'full_address' => $fullAddress,
+            'name' => $name,
+            'phone_number' => $phone_number,
             'is_current' => 1,
             'id_customer' => Auth::user()->id,
             'updated_at' => now(),

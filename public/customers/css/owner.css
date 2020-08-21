@@ -311,7 +311,7 @@ div, label {
   background-color: black;
   top: 0;
   left: 40%;
-  transform: translateY(-30rem);
+  transform: translateY(-40rem);
   transition: all 0.5s ease-in-out;
 }
 
@@ -338,10 +338,16 @@ div, label {
   z-index: 9999999;
   background-color: black;
   top: 0;
-  left: 40%;
+  left: 35%;
   transform: translateY(-30rem);
   transition: all 0.5s ease-in-out;
   width: fit-content;
+}
+
+.changeAddressForm .changeAddressForm__item:hover *{
+  color: aqua;
+  cursor: pointer;
+  transition: all 0.5s;
 }
 
 .changeAddressForm--show {

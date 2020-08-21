@@ -50,7 +50,7 @@
                         <h3>Thông tin hoá đơn của bạn: </h3>
                         <div class="checkout-info border">
                             <h3 class="checkout-info__name text-info">{{Auth::user()->name}}</h3>
-                            <h5 class="checkout-info__phone text-left ml-2 ">Số điện thoại: {{Auth::user()->phone_number}}</h5>
+                            <h5 class="checkout-info__phone text-left ml-2 ">Số điện thoại: {{$customer_address->phone_number}}</h5>
 
                             @if($customer_address->id_city == 4)
 
@@ -63,7 +63,8 @@
                             @endif
 
                             <h5 class="checkout-info__address-notify text-danger"></h5>
-                            <h5 class="checkout-info__email text-left ml-2 ">Địa chỉ email: {{Auth::user()->email}}</h5>
+                            <h5 class="checkout-info__email text-left ml-2 ">Tên người nhận: {{$customer_address->name}}</h5>
+                            <!-- <h5 class="checkout-info__email text-left ml-2 ">Địa chỉ email: {{Auth::user()->email}}</h5> -->
                         </div>
 
                         @if($have_hcmc_address)
@@ -88,6 +89,13 @@
                                 Quận / huyện: <select class="form-control col-md-10" name="id_district" required></select>
                                 Phường / xã: <select class="form-control col-md-10" name="id_ward" required></select>
                                 Địa chỉ: <input class="form-control col-md-10" type="text" name="address" required />
+                                Tên người nhận: <input class="form-control col-md-10" type="text" name="name" required />
+                                Số điện thoại: <input class="form-control col-md-10" type="text" name="phone_number" required />
+                                @error('phone_number')
+                                <div>
+                                    <span class="text-danger">{{$message}}</span>
+                                </div>
+                                @enderror
                                 <input class="my-3 btn btn-primary" type="submit" value="Tạo địa chỉ mới">
                             </form>
                         </div>
@@ -106,8 +114,12 @@
                             <div id="changeAddressFormSubmmit">
                                 @foreach($customer_addresses as $address)
 
-                                <input type="radio" form="submitChange" name="addressOfChanging" value="{{$address->id}}" id="address-{{$address->id}}" {{$address->is_current == 1 ? 'checked' : ''}}>
-                                <label for="address-{{$address->id}}">{{$address->full_address}}</label><br>
+                                <div class="changeAddressForm__item mb-2">
+                                    <input type="radio" form="submitChange" name="addressOfChanging" value="{{$address->id}}" id="address-{{$address->id}}" {{$address->is_current == 1 ? 'checked' : ''}}>
+                                    <label for="address-{{$address->id}}">{{$address->full_address}}</label><br>
+                                    <label for="address-{{$address->id}}">{{$address->name}}</label>,
+                                    <label for="address-{{$address->id}}">{{$address->phone_number}}</label>
+                                </div>
 
                                 <!-- <div data-address="{{$address->id}}" class="changeAddressFormDetail">
                                     <input type="hidden" name="id_city" value="{{$address->id_city}}">

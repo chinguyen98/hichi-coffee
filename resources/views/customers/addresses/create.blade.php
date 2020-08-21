@@ -36,6 +36,13 @@
             Quận / huyện: <select class="form-control col-md-12" name="id_district" required></select>
             Phường / xã: <select class="form-control col-md-12" name="id_ward" required></select>
             Địa chỉ: <input class="form-control col-md-12" type="text" name="address" required />
+            Tên người nhận: <input class="form-control col-md-12" type="text" name="name" required />
+            Số điện thoại: <input class="form-control col-md-12" type="text" name="phone_number" required />
+            @error('phone_number')
+            <div>
+                <span class="text-danger">{{$message}}</span>
+            </div>
+            @enderror
             <input class="my-3 btn btn-primary" type="submit" value="Tạo địa chỉ mới">
         </form>
     </div>

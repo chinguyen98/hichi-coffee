@@ -37,7 +37,15 @@
             Quận / huyện: <select class="form-control col-md-12" name="id_district" required></select>
             Phường / xã: <select class="form-control col-md-12" name="id_ward" required></select>
             Địa chỉ: <input class="form-control col-md-12" type="text" name="address" value="{{$customer_address->address}}" required />
+            Tên người nhận: <input class="form-control col-md-12" type="text" name="name" value="{{$customer_address->name}}" required />
+            Số điện thoại: <input class="form-control col-md-12" type="text" name="phone_number" value="{{$customer_address->phone_number}}" required/>
+            
+            @if($customer_address->is_current==0)
+
             <input class="my-3 mr-4" type="checkbox" name="is_current" id="is_current" {{$customer_address->is_current==1 ? 'checked' : ''}}><label for="is_current">Đặt làm địa chỉ mặc định</label><br>
+
+            @endif
+
             <input class="my-3 btn btn-primary" type="submit" value="Chỉnh sửa địa chỉ">
             <input class="form-control col-md-12" type="hidden" name="hid_district" value="{{$customer_address->id_district}}" required />
             <input class="form-control col-md-12" type="hidden" name="hid_ward" value="{{$customer_address->id_ward}}" required />
