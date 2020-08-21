@@ -98,6 +98,8 @@ class RegisterController extends Controller
             'district' => $district,
             'ward' => $ward,
             'full_address' => $fullAddress,
+            'name' => $data['name'],
+            'phone_number' => $data['phone_number'],
             'is_current' => 1,
             'id_customer' => $id_customer,
             'created_at' => now(),
