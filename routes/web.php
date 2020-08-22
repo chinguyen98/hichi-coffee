@@ -85,6 +85,12 @@ Route::group(['prefix' => 'admins'], function () {
         Route::get('/', 'Chat\AdminChatController@index')->name('admins.chat.index');
     });
 
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'Admin\UserManagementController@index')->name('admins.manage.user.index');
+        Route::get('/{id}', 'Admin\UserManagementController@detail')->name('admins.manage.user.detail');
+        Route::post('/lock/{id}', 'Admin\UserManagementController@lockAccount')->name('admins.manage.user.lock');
+    });
+
     Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
     Route::get('info/{id}', 'Admin\HomeController@renderInfoAdmin')->name('admins.renderInfoAdmin');
     Route::get('/reset/{id}', 'Admin\HomeController@reset')->middleware(['isSuperAdmin'])->name('admins.reset');

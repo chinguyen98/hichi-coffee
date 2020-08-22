@@ -44,7 +44,7 @@
 
         <div class="table-responsive">
             <table class="orderDetail_table col col-md-12">
-                <tr>
+                <tr class="text-center">
                     <th>Mã đơn hàng</th>
                     <th>Ngày mua</th>
                     <th>Sản phẩm</th>

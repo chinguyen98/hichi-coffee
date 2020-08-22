@@ -36,7 +36,7 @@
                         </div>
                         <div class="income-range order-cl">
                             <p>Tổng đơn hàng tháng {{date('m')}}</p>
-                            
+
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -47,16 +47,13 @@
                     <div class="income-dashone-pro">
                         <div class="income-rate-total">
                             <div class="price-nalika-rate">
-                                <h3><span class="counter">4500</span></h3>
+                                <h3><span class="counter">{{$coffees->totalCoffee}}</span></h3>
                             </div>
-                            <div class="price-graph">
-                                <span id="sparkline2"></span>
-                            </div>
+
                         </div>
                         <div class="income-range visitor-cl">
-                            <p>New Visitor</p>
-                            <span class="income-percentange bg-blue"><span class="counter">75</span>% <i class="fa fa-level-up"></i>
-                            </span>
+                            <p>Tổng sản phẩm</p>
+
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -67,16 +64,11 @@
                     <div class="income-dashone-pro">
                         <div class="income-rate-total">
                             <div class="price-nalika-rate">
-                                <h3><span class="counter">235400</span></h3>
-                            </div>
-                            <div class="price-graph">
-                                <span id="sparkline5"></span>
+                                <h3><span class="counter">{{$coffee_comment->totalComment}}</span></h3>
                             </div>
                         </div>
                         <div class="income-range low-value-cl">
-                            <p>In first month</p>
-                            <span class="income-percentange bg-purple"><span class="counter">35</span>% <i class="fa fa-level-down"></i>
-                            </span>
+                            <p>Tổng đánh giá sản phẩm</p>
                         </div>
                         <div class="clear"></div>
                     </div>

@@ -125,6 +125,16 @@
                         </ul>
                     </li>
 
+                    <li>
+                        <a class="has-arrow" href="index.html">
+                            <img class="spanaa" src="/apps/images/icons/user.png" alt="">
+                            <span class="mini-click-non">KHÁCH HÀNG</span>
+                        </a>
+                        <ul class="submenu-angle" aria-expanded="true">
+                            <li><a title="Xem toàn bộ" href="{{route('admins.manage.user.index')}}"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
+                        </ul>
+                    </li>
+
                     @if(Auth::user()->id_role=='SUPER_ADMIN')
 
                     <li>
