@@ -87,8 +87,8 @@
                         <div class="skill">
                             <div class="progress">
                                 <div class="lead-content">
-                                    <h3><span class="counter">95</span>%</h3>
-                                    <p>Server down 4:32 pm</p>
+                                    <h3><span class="counter text-danger">{{number_format($order->totalPrice)}}</span><span style="margin-left: 0.5rem;" class="text-danger">đ</span></h3>
+                                    <p>Tổng danh thu tháng {{date('m')}}</p>
                                 </div>
                                 <div class="progress-bar wow fadeInLeft" data-progress="95%" style="width: 95%;" data-wow-duration="1.5s" data-wow-delay="1.2s"> <span>95%</span>
                                 </div>

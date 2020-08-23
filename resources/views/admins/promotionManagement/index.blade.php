@@ -23,6 +23,8 @@
                         <tr>
                             <th>MÃ KHUYẾN MÃI</th>
                             <th>SẢN PHẨM</th>
+                            <th style="padding-left: 2em;">MAIL</th>
+                            <th ></th>
                             <th>TRẠNG THÁI</th>
                         </tr>
                         @foreach($valuation as $val)
@@ -30,6 +32,8 @@
                         <tr>
                             <td>{{$val->id}}</td>
                             <td><a href="{{route('admins.manage.promotion.detail', ['id'=>$val->id])}}">{{$val->coffee->name}}</a></td>
+                            <td>Chưa Gửi Mail</td>
+                            <td><a class="btn btn-success" href="{{route('admins.manage.promotion.detail', ['id'=>$val->id])}}" </a>GỬI MAIL</td>
                             <td>
                                 @if($val->expired < now())
                                     <b>Hết hạn</b>

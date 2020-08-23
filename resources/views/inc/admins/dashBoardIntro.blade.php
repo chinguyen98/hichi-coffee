@@ -10,14 +10,9 @@
                                     <i class="icon nalika-home"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2>Xin Chào {{Auth::user()->name}}</h2>
-                                    <p>Đây Là Trang {{$title}}</p>
+                                    <h2>Xin Chào<i style="color: darkorange;margin-left: 0.3em;">{{Auth::user()->name}}</i></h2>
+                                    <p><u><i>Đây Là Trang:</i></u> <b><span style="color: darksalmon; margin-left: 0.5em;">{{$title}}</b></span></p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <div class="breadcomb-report">
-                                <button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="icon nalika-download"></i></button>
                             </div>
                         </div>
                     </div>

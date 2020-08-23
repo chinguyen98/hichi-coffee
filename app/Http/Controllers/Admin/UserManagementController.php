@@ -37,5 +37,11 @@ class UserManagementController extends Controller
         $request->session()->flash('flash_message', 'KHÓA TÀI KHOẢN THÀNH CÔNG!');
         return redirect()->route('admins.manage.user.index');
     }
+    public function unlockAccount(Request $request, $id)
+    {
+        DB::table('customers')->where('id',$id)->update(['status'=> 1]);
+        $request->session()->flash('flash_message', 'MỞ KHÓA TÀI KHOẢN THÀNH CÔNG!');
+        return redirect()->route('admins.manage.user.index');
+    }
 
 }

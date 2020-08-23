@@ -14,10 +14,10 @@
                 <div class="product-status-wrap">
                     <h4 style="color: darkturquoise;">DANH SÁCH ĐÁNH GIÁ</h4>
                     <table>
-                        <tr>
-                            <th>CHẤT LƯỢNG</th>
-                            <th>Mã KHÁCH HÀNG</th>
-                            <th>Tiêu Đề</th>
+                        <tr >
+                            <th style="color: darksalmon;">CHẤT LƯỢNG</th>
+                            <th style="color: darksalmon;">Mã KHÁCH HÀNG</th>
+                            <th style="color: darksalmon;">Tiêu Đề</th>
                         </tr>
                         @foreach($comment as $item)
 
@@ -34,9 +34,9 @@
                     <h4 style="color: darkturquoise;">DANH SÁCH PHẢN HỒI ĐÁNH GIÁ</h4>
                     <table>
                         <tr>
-                            <th>MÃ ĐÁNH GIÁ</th>
-                            <th>Mã KHÁCH HÀNG TRẢ LỜI</th>
-                            <th>NỘI DUNG TRẢ LỜI</th>
+                            <th style="color: darksalmon;">MÃ ĐÁNH GIÁ</th>
+                            <th style="color: darksalmon;">Mã KHÁCH HÀNG TRẢ LỜI</th>
+                            <th style="color: darksalmon;">NỘI DUNG TRẢ LỜI</th>
                         </tr>
                         @foreach($rep_comment as $rep)
 

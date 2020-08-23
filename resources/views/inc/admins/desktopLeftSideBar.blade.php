@@ -8,19 +8,17 @@
             <div class="profile-dtl">
                 @if(Auth::user()->id_role == 'NORMAL_ADMIN')
                 <a href="{{route('admins.renderInfoAdmin',['id'=>Auth::user()->id])}}"><img src="admins/img/notification/B612.jpg" alt="" /></a>
-                <h2>{{Auth::user()->name}}</h2>
+                <h2 style="color: darkorange"><b>{{Auth::user()->name}}</b></h2>
                 @else
                 <a href="{{route('admins.renderAdminDetailPage',['id'=>Auth::user()->id])}}"><img src="admins/img/notification/chi.jpg" alt="" /></a>
-                <h2>{{Auth::user()->name}}</h2>
+                <h2 style="color: darkorange"><b>{{Auth::user()->name}}</b></h2>
                 @endif
 
 
             </div>
             <div class="profile-social-dtl">
                 <ul class="dtl-social">
-                    <li><a href="#"><i class="icon nalika-facebook"></i></a></li>
-                    <li><a href="#"><i class="icon nalika-twitter"></i></a></li>
-                    <li><a href="#"><i class="icon nalika-linkedin"></i></a></li>
+                    <li><a href="#"></a><i>HICHI-Coffee</i></li>
                 </ul>
             </div>
         </div>
@@ -127,7 +125,7 @@
 
                     <li>
                         <a class="has-arrow" href="index.html">
-                            <img class="spanaa" src="/apps/images/icons/user.png" alt="">
+                            <img class="spanaa" src="/apps/images/icons/member.png" alt="">
                             <span class="mini-click-non">KHÁCH HÀNG</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
@@ -139,7 +137,7 @@
 
                     <li>
                         <a class="has-arrow" href="index.html">
-                            <img class="spanaa" src="/apps/images/icons/member.png" alt="">
+                            <img class="spanaa" src="/apps/images/icons/admin.png" alt="">
                             <span class="mini-click-non">QUẢN TRỊ</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">

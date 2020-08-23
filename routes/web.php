@@ -89,6 +89,7 @@ Route::group(['prefix' => 'admins'], function () {
         Route::get('/', 'Admin\UserManagementController@index')->name('admins.manage.user.index');
         Route::get('/{id}', 'Admin\UserManagementController@detail')->name('admins.manage.user.detail');
         Route::post('/lock/{id}', 'Admin\UserManagementController@lockAccount')->name('admins.manage.user.lock');
+        Route::post('/unlock/{id}', 'Admin\UserManagementController@unlockAccount')->name('admins.manage.user.unlock');
     });
 
     Route::get('/{id}', 'Admin\HomeController@renderAdminDetailPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminDetailPage');
