@@ -13,6 +13,8 @@
 
             @if(count($needMoreCoffee)!=0)
 
+            @if(Auth::user()->isSuperAdmin())
+
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                 <div class="product-status-wrap">
@@ -36,7 +38,7 @@
                         </tr>
                         @foreach($needMoreCoffee as $item)
                         <tr>
-                            <td >{{$item->id_coffee}}</td>
+                            <td>{{$item->id_coffee}}</td>
                             <td>{{$item->coffee_name}}</td>
                             <td>{{$item->quantity}}</td>
                             <td>{{$item->expected_quantity}}</td>
@@ -52,13 +54,44 @@
                 </div>
             </div>
 
+            @else
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <table>
+                        <tr>
+                            <th>Mã Sản Phẩm</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Số lượng kho</th>
+                            <th>Số lượng đặt</th>
+                            <th>Số lượng cần</th>
+                        </tr>
+                        @foreach($needMoreCoffee as $item)
+                        <tr>
+                            <td>{{$item->id_coffee}}</td>
+                            <td>{{$item->coffee_name}}</td>
+                            <td>{{$item->quantity}}</td>
+                            <td>{{$item->expected_quantity}}</td>
+                            <td>{{$item->need}}</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                    <form action="{{route('admins.manage.order.sendQtyMail', ['id'=>$orderStatus->order->id])}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-success" style="margin-top: 1rem; text-transform: uppercase;">Gửi mail thông báo cho Super Admin</button>
+                    </form>
+                </div>
+            </div>
+
+            @endif
+
             @endif
 
             @if(count($needMoreCoffee)==0)
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="product-status-wrap">
-                    <h1 style="color: orangered; text-align: center;">ĐƠN HÀNG ĐÃ SẲN SÀNG ĐƯỢC GIAO</h1>   
+                    <h1 style="color: orangered; text-align: center;">ĐƠN HÀNG ĐÃ SẲN SÀNG ĐƯỢC GIAO</h1>
                 </div>
             </div>
 
@@ -80,7 +113,7 @@
 
             @endif
 
-            @if(count($needMoreCoffee)!=0)
+            @if(count($needMoreCoffee)!=0 && Auth::user()->isSuperAdmin())
 
             <form method="POST" onsubmit="return createDataSubmit()" id="formInput" action="{{route('admins.manage.order.receive.addCoffee')}}">
                 @csrf
@@ -93,7 +126,7 @@
     </div>
 </div>
 
-@if(count($needMoreCoffee)!=0)
+@if(count($needMoreCoffee)!=0 && Auth::user()->isSuperAdmin())
 
 <script>
     const listCoffeeInput = [...document.querySelectorAll('input[name="id_coffee"]')];

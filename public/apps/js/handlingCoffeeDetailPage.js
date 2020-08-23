@@ -63,13 +63,13 @@ function handingValuation(quantity) {
     if (quantity <= 0 || isNaN(quantity))
         quantityInput.value = 1;
 
-    if (hidValuationList.length === 0) return;
-
     if (+quantity > +coffeeQtyHidInput.value) {
         document.querySelector('.coffeeQty-notity').innerHTML = `Đã vượt quá số lượng kho (${coffeeQtyHidInput.value}). Chúng tôi có thể tiếp tục nhập kho sản phẩm bạn lựa chọn!`;
     } else {
         document.querySelector('.coffeeQty-notity').innerHTML = '';
     }
+
+    if (hidValuationList.length === 0) return;
 
     const valuation = getValuation(quantity);
 

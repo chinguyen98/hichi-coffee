@@ -145,6 +145,8 @@ Route::group(['prefix' => 'admins'], function () {
 
             Route::get('/search', 'Admin\OrdermangentController@searchAllOrder')->name('admins.manage.order.search.index');
             Route::post('/searchDetail', 'Admin\OrdermangentController@searchDetail')->name('admins.manage.order.search.detail');
+            
+            Route::post('/sendQtyMail/{id}', 'Admin\OrdermangentController@sendQtyMail')->name('admins.manage.order.sendQtyMail');
         });
         Route::group(['prefix' => 'comment'], function () {
             Route::get('/', 'Admin\CoffeeCommentManagementController@index')->name('admins.manage.coffeecomment.index');

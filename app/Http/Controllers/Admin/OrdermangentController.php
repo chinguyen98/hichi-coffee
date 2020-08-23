@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\AdminRole;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
+use App\Mail\SendQtyMail;
 use App\Order;
 use App\OrderStatus;
 use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use stdClass;
 
 class OrdermangentController extends Controller
@@ -21,7 +24,7 @@ class OrdermangentController extends Controller
 
     public function showAllCheckingOrder()
     {
-        $orderStatuses = OrderStatus::where('id_status', Status::OrderChecking)->where('is_current', 1)->get();
+        $orderStatuses = OrderStatus::where('id_status', Status::OrderChecking)->where('is_current', 1)->orderByDesc('created_at')->get();
 
         return view('admins.orderManagement.allCheckOrder')->with([
             'title' => 'KIỂM TRA ĐƠN HÀNG',
@@ -283,17 +286,52 @@ class OrdermangentController extends Controller
             $request->session()->flash('flash_message', 'Đơn Hàng Đã Hoàn Tất!!!');
             return redirect()->route('admins.manage.order.finish.show', ['id' => $item]);
         }
-        if($search->id_status== Status::OrderChecking){
+        if ($search->id_status == Status::OrderChecking) {
             $request->session()->flash('flash_message', 'Đơn hàng Đang Được Kiểm Tra!!!');
             return redirect()->route('admins.manage.order.check.show', ['id' => $item]);
         }
-        if($search->id_status== Status::OrderReceived){
+        if ($search->id_status == Status::OrderReceived) {
             $request->session()->flash('flash_message', 'Đơn Hàng Đang Được Tiếp Nhận!!!');
             return redirect()->route('admins.manage.order.receive.show', ['id' => $item]);
         }
-        if($search->id_status== Status::OrderShip){
+        if ($search->id_status == Status::OrderShip) {
             $request->session()->flash('flash_message', 'Đơn Hàng Đang Được Vận Chuyển!!!');
             return redirect()->route('admins.manage.order.ship.show', ['id' => $item]);
         }
+    }
+
+    public function sendQtyMail(Request $request, $id)
+    {
+        $superAdmin = DB::table('admins')->where('id_role', AdminRole::SuperAdmin)->first();
+        $orderStatus = OrderStatus::where('id_order', $id)->where('is_current', 1)->first();
+        $needMoreCoffee = [];
+
+        foreach ($orderStatus->order->order_details as $order_detail) {
+            $quantity = $order_detail->coffee->quantity;
+            $expected_quantity = $order_detail->coffee->expected_quantity;
+            $id_coffee = $order_detail->coffee->id;
+            $coffee_name = $order_detail->coffee->name;
+            $need = $expected_quantity - $quantity;
+
+            if ($expected_quantity > $quantity) {
+                $info = new stdClass();
+                $info->quantity = $quantity;
+                $info->expected_quantity = $expected_quantity;
+                $info->need = $need;
+                $info->id_coffee = $id_coffee;
+                $info->coffee_name = $coffee_name;
+                $needMoreCoffee[] = $info;
+            }
+        }
+
+        $details = [
+            'needMoreCoffee' => $needMoreCoffee,
+            'order' => $orderStatus->order,
+        ];
+
+        Mail::to($superAdmin->email)->send(new SendQtyMail($details));
+
+        $request->session()->flash('flash_message', 'Thông báo thành công!!!');
+        return redirect()->route('admins.manage.order.check.index');
     }
 }

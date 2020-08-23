@@ -203,7 +203,7 @@ function renderShippingAndTotalPrice(e) {
 }
 
 function handingCheckout() {
-    submitBtn.innerHTML = 'Đang xử lý...';
+    submitBtn.value = 'Đang xử lý...';
     submitBtn.classList.replace('btn-danger', 'btn-secondary');
     document.querySelector('[name="submitBtn"]').disabled='true';
     submitBtn.style.cursor = 'wait';

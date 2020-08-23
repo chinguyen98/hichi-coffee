@@ -19,6 +19,7 @@
                             <th>TÊN KHÁCH HÀNG</th>
                             <th>ĐỊA CHỈ</th>
                             <th>SỐ ĐIỆN THOẠI</th>
+                            <th>NGÀY TẠO ĐƠN</th>
                         </tr>
                         @foreach($orderStatuses as $orderStatus)
 
@@ -27,20 +28,12 @@
                             <td><a href="">{{$orderStatus->order->customer->name}}</a></td>
                             <td>{{$orderStatus->order->customer_address}}</td>
                             <td>{{$orderStatus->order->customer->phone_number}}</td>
+                            <td>{{date("d/m/Y h:m:s", strtotime($orderStatus->order->created_at))}}</td>
                             <td><a href="{{route('admins.manage.order.check.show', ['id'=>$orderStatus->order->id])}}" data-toggle="tooltip" title="Xem chi tiết" class="btn pd-setting-ed"><i class="fa fa-eye aria-hidden=" true"></i></a></td>
                         </tr>
 
                         @endforeach
                     </table>
-                    <div class="custom-pagination">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
