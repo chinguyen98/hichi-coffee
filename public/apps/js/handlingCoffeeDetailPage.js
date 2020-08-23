@@ -7,6 +7,7 @@ const oldPriceSpan = document.querySelector('.oldPrice');
 const newPriceSpan = document.querySelector('.newPrice');
 const addToCartBtn = document.querySelector('#btnAddToCart');
 const idHidInput = document.querySelector('input[name="hidId"]');
+const coffeeQtyHidInput = document.querySelector('input[name="coffeeQty"]');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
@@ -63,6 +64,12 @@ function handingValuation(quantity) {
         quantityInput.value = 1;
 
     if (hidValuationList.length === 0) return;
+
+    if (+quantity > +coffeeQtyHidInput.value) {
+        document.querySelector('.coffeeQty-notity').innerHTML = `Đã vượt quá số lượng kho (${coffeeQtyHidInput.value}). Chúng tôi có thể tiếp tục nhập kho sản phẩm bạn lựa chọn!`;
+    } else {
+        document.querySelector('.coffeeQty-notity').innerHTML = '';
+    }
 
     const valuation = getValuation(quantity);
 

@@ -74,11 +74,12 @@ function renderCart(cartList, cartStorage) {
                 <div class="cart-image-container mr-4"><a href="/coffees/${item.slug}"><img class="cart-image" src="/apps/images/coffees/${item.image}"></a></div>
                 <div>
                     <a href="/coffees/${item.slug}"><h5>${item.name}</h5></a>
-                    <button class="btn btn-danger btn-delete-cart-item" onclick="deleteItem(${item.id})">Xoá</button>
+                    <span class="text-danger" data-notifyQty="${item.id}"></span>
+                    <button class="btn btn-danger btn-delete-cart-item mt-2" onclick="deleteItem(${item.id})">Xoá</button>
                     <div class="mt-2">
                     ${
             item.valuations
-                .filter(item=>item.quantity !== null)
+                .filter(item => item.quantity !== null)
                 .map(val => `<span> * Giá chỉ còn <span class="text-danger">${formatPrice(val.price)} đ</span> khi mua trên ${val.quantity} sản phẩm</span><br />`).join('')
             }
                 </div>
@@ -86,7 +87,7 @@ function renderCart(cartList, cartStorage) {
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center">
                 <div>
-                    <h5 data-oldPrice${item.id}="${item.price}" data-finalprice${item.id}="${finalprice === undefined ? item.price : finalprice}">Giá: ${formatPrice(finalprice === undefined ? item.price : finalprice)}</h5>
+                    <h5 data-oldPrice${item.id}="${item.price}" data-finalprice${item.id}="${finalprice === undefined ? item.price : finalprice}">Giá: ${formatPrice(finalprice === undefined ? item.price : finalprice)} </h5>
                 </div>
                 <div class="d-flex flex-row align-items-center">
                     <span data-des="${item.id}" onclick="desCartQuantity(${item.id})" class="quantity-updown text-center">-</span>
@@ -253,6 +254,13 @@ function valCartQuantity(id) {
     }
     if (valueInput.value <= 0)
         valueInput.value = 1;
+
+    const remainQuantity = parseInt(cartFromApi.find(item => +item.id === +id).quantity);
+    if (valueInput.value > remainQuantity) {
+        document.querySelector(`span[data-notifyQty="${id}"]`).innerHTML = `Đã quá số lượng trong kho (${remainQuantity}).<br /> Chúng tôi sẽ xác nhận với bạn để nhập hàng.<br />`;
+    } else {
+        document.querySelector(`span[data-notifyQty="${id}"]`).innerHTML = '';
+    }
 
     cartStorage[index].qty = +valueInput.value;
 

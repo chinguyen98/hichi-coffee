@@ -9,7 +9,7 @@ class Coffee extends Model
 {
     protected $appends = ['avgRating', 'brand', 'coffee_comment_count'];
 
-    protected $hidden = ['info', 'quantity', 'expected_quantity', 'status', 'created_at', 'updated_at'];
+    protected $hidden = ['info', 'expected_quantity', 'status', 'created_at', 'updated_at'];
 
     public function brand()
     {

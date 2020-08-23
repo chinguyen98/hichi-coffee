@@ -79,12 +79,14 @@
             <div class="my-5">
                 <h2>Giá hiện tại: <span class="text-danger text-bold oldPrice ml-4">{{number_format($coffee->price)}} </span> <span class="newPrice"></span> <span class="text-danger">đ</span></h2>
 
-                <div class="d-flex flex-row align-items-center">
+                <div class="d-flex flex-row align-items-center mb-3">
                     <h5 class="pr-3 pt-2">Số lượng đặt mua: </h5>
                     <span id="btn-quantity-desc" class="quantity-updown text-center">-</span>
                     <input style="width: 4rem; text-align: center;" type="text" name="quantity" class="quantity" value="1" min="1" />
                     <span id="btn-quantity-insc" class="quantity-updown text-center">+</span>
                 </div>
+                <span class="text-danger coffeeQty-notity"></span>
+                <input type="hidden" name="coffeeQty" value="{{$coffee->quantity}}">
                 <div class="d-flex flex-row align-items-center ">
                     <p><a id="btnAddToCart" class="btn btn-lg btn-primary btn-outline-primary mt-4">THÊM VÀO GIỎ</a></p>
                     @guest
