@@ -24,6 +24,7 @@ const combinedAddressArea = document.querySelector('.combinedAddress');
 const cartHiddenInput = document.querySelector('input[name="cart"]');
 const totalPriceHiddenInput = document.querySelector('input[name="totalPrice"]');
 const shippingHiddenInput = document.querySelector('input[name="shippingType"]');
+const submitBtn = document.querySelector('[name="submitBtn"]');
 
 function formatPrice(price) {
     return String(price).replace(/(.)(?=(\d{3})+$)/g, '$1,');
@@ -202,6 +203,11 @@ function renderShippingAndTotalPrice(e) {
 }
 
 function handingCheckout() {
+    submitBtn.innerHTML = 'Đang xử lý...';
+    submitBtn.classList.replace('btn-danger', 'btn-secondary');
+    document.querySelector('[name="submitBtn"]').disabled='true';
+    submitBtn.style.cursor = 'wait';
+
     cartHiddenInput.value = localStorage.getItem('carts');
     totalPriceHiddenInput.value = checkoutFinalTotalPriceArea.dataset.totalPrice;
     shippingHiddenInput.value = document.querySelector('input[name="shipping_infos"]:checked').id;

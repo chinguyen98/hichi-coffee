@@ -224,7 +224,7 @@
             </div>
             @if($have_hcmc_address)
 
-            <form action="{{route('customers.orders.store')}}" onclick="return handingCheckout()" method="POST">
+            <form action="{{route('customers.orders.store')}}" onsubmit="return handingCheckout()" method="POST">
                 @csrf
                 <input type="hidden" name="cart" value="">
                 <input type="hidden" name="totalPrice" value="">
@@ -236,7 +236,7 @@
 
                 @endif
 
-                <input style="width:10em;height:2em;font-size:3em" class="btn btn-danger my-5" type="submit" value="MUA HÀNG NGAY">
+                <input name="submitBtn" style="width:10em;height:2em;font-size:3em" class="btn btn-danger my-5" type="submit" value="MUA HÀNG NGAY">
             </form>
 
             @endif
