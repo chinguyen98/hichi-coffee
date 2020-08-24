@@ -74,7 +74,7 @@ Route::group(['prefix' => 'comments', 'middleware' => 'auth'], function () {
 /* Admin Routes */
 Route::group(['prefix' => 'admins'], function () {
     Route::get('/admin', 'Admin\HomeController@renderAdminManagementPage')->middleware(['isSuperAdmin'])->name('admins.renderAdminManagementPage');
-    Route::get('/analytics','Admin\HomeController@renderAnalyticPage')->middleware(['isSuperAdmin'])->name('admins.renderAnalyticPage');
+    Route::get('/analytics', 'Admin\HomeController@renderAnalyticPage')->middleware(['isSuperAdmin'])->name('admins.renderAnalyticPage');
     Route::get('/home', 'Admin\HomeController@index')->name('admins.home');
     Route::get('/register', 'Admin\AuthForAdmin\RegisterController@showRegisterForm')->name('admins.register.show');
     Route::get('/login', 'Admin\AuthForAdmin\LoginController@showLoginForm')->name('admins.login.show');
@@ -123,6 +123,7 @@ Route::group(['prefix' => 'admins'], function () {
             Route::get('/{id}', 'Admin\PromotionManagementController@detail')->name('admins.manage.promotion.detail');
             Route::post('/', 'Admin\PromotionManagementController@store')->name('admins.manage.promotion.store');
             Route::post('/bonus_content', 'Admin\PromotionManagementController@store_bonus_content')->name('admins.manage.bonus_content.store');
+            Route::post('/sendInfo/{id}', 'Admin\PromotionManagementController@sendInfo')->name('admins.manage.promotion.sendInfo');
         });
 
         Route::group(['prefix' => 'order'], function () {
@@ -145,7 +146,7 @@ Route::group(['prefix' => 'admins'], function () {
 
             Route::get('/search', 'Admin\OrdermangentController@searchAllOrder')->name('admins.manage.order.search.index');
             Route::post('/searchDetail', 'Admin\OrdermangentController@searchDetail')->name('admins.manage.order.search.detail');
-            
+
             Route::post('/sendQtyMail/{id}', 'Admin\OrdermangentController@sendQtyMail')->name('admins.manage.order.sendQtyMail');
         });
         Route::group(['prefix' => 'comment'], function () {

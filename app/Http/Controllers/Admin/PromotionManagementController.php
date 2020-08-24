@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ValuationInfoMail;
 use App\Valuation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PromotionManagementController extends Controller
 {
@@ -94,5 +96,44 @@ class PromotionManagementController extends Controller
             $request->session()->flash('flash_message', 'Thêm khuyến mãi thành công!');
             return redirect()->route('admins.manage.promotion.index');
         }
+    }
+
+    public function sendInfo(Request $request, $id)
+    {
+        $listCustomer = DB::table('customers')
+            ->join('coffee_favorites', 'coffee_favorites.id_customer', '=', 'customers.id')
+            ->join('coffees', 'coffees.id', '=', 'coffee_favorites.id_coffee')
+            ->join('valuations', 'valuations.id_coffee', '=', 'coffees.id')
+            ->where('valuations.id', $id)
+            ->get([
+                'customers.email as customerEmail',
+                'customers.name as customerName',
+                'coffees.name as coffeeName',
+                'coffees.price as coffeePrice',
+                'coffees.slug as coffeeSlug',
+                'valuations.price as valuationPrice',
+                'valuations.discount as valuationDiscount',
+                'valuations.quantity as valuationQuantity',
+                'valuations.bonus_content as valuationBonusContent'
+            ]);
+
+        $details = [
+            'coffeeName' => $listCustomer[0]->coffeeName,
+            'coffeePrice' => $listCustomer[0]->coffeePrice,
+            'coffeeSlug' => $listCustomer[0]->coffeeSlug,
+            'valuationQuantity' => $listCustomer[0]->valuationQuantity,
+            'valuationPrice' => $listCustomer[0]->valuationPrice,
+            'valuationDiscount' => $listCustomer[0]->valuationDiscount,
+            'valuationBonusContent' => $listCustomer[0]->valuationBonusContent,
+        ];
+
+        $listSendMail = array_map(function ($value) {
+            return $value->customerEmail;
+        }, $listCustomer->toArray());
+
+        Mail::to($listSendMail)->send(new ValuationInfoMail($details));
+
+        $request->session()->flash('flash_message', 'Gửi mail khuyến mãi thành công!');
+        return redirect()->route('admins.manage.promotion.index');
     }
 }

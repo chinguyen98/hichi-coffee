@@ -23,8 +23,9 @@
                         <tr>
                             <th>MÃ KHUYẾN MÃI</th>
                             <th>SẢN PHẨM</th>
+                            @if(Auth::user()->isSuperAdmin())
                             <th style="padding-left: 2em;">MAIL</th>
-                            <th ></th>
+                            @endif
                             <th>TRẠNG THÁI</th>
                         </tr>
                         @foreach($valuation as $val)
@@ -32,12 +33,21 @@
                         <tr>
                             <td>{{$val->id}}</td>
                             <td><a href="{{route('admins.manage.promotion.detail', ['id'=>$val->id])}}">{{$val->coffee->name}}</a></td>
-                            <td>Chưa Gửi Mail</td>
-                            <td><a class="btn btn-success" href="{{route('admins.manage.promotion.detail', ['id'=>$val->id])}}" </a>GỬI MAIL</td>
+
+                            @if(Auth::user()->isSuperAdmin())
+
                             <td>
-                                @if($val->expired < now())
-                                    <b>Hết hạn</b>
-                                @endif
+                                <form action="{{route('admins.manage.promotion.sendInfo',['id'=>$val->id])}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success">GỬI MAIL</button>
+                                </form>
+                            </td>
+
+                            @endif
+
+                            <td>
+                                @if($val->expired < now()) <b>Hết hạn</b>
+                                    @endif
                             </td>
 
                             <td>{{$val->status}}</td>
