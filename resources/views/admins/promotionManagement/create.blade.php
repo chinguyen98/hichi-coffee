@@ -21,7 +21,11 @@
                                                 <select name="id_coffee" class="form-control pro-edt-select form-control-primary">
 
                                                 </select>
+
                                             </div>
+                                            @error('id_coffee')
+                                            @include('inc.admins.errorNotification')
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <div class="input-group mg-b-pro-edt">
@@ -40,18 +44,27 @@
                                                 <span class="input-group-addon"><b>Khuyến Mãi</b></span>
                                                 <input style="background-color: #152036;" name="discount" type="text" class="form-control">
                                             </div>
+                                            @error('discount')
+                                            @include('inc.admins.errorNotification')
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><b>Giá Khuyến Mãi</b></span>
                                                 <input style="background-color: #152036;" name="price" type="text" class="form-control" readonly>
                                             </div>
+                                            @error('price')
+                                            @include('inc.admins.errorNotification')
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                             <div class="input-group mg-b-pro-edt">
                                                 <span class="input-group-addon"><b>Số Lượng Khuyến Mãi</b></span>
                                                 <input type="number" class="form-control" name="quantity">
                                             </div>
+                                            @error('quantity')
+                                            @include('inc.admins.errorNotification')
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 

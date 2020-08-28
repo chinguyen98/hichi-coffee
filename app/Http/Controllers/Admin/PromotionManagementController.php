@@ -35,6 +35,21 @@ class PromotionManagementController extends Controller
     }
     public function store(Request $req)
     {
+        $req->validate([
+            'price' => 'required|integer',
+            'quantity' => 'required|integer',
+            'discount' => 'required|integer',
+            'id_coffee' => 'required|integer',
+        ], [
+            'required' => ':attribute Không được để trống',
+            'integer' => ':attribute Chỉ được nhập số',
+        ], [
+            'price' => 'Giá',
+            'quantity' => 'Số lượng',
+            'discount' => 'Giá khuyến mãi',
+            'id_coffee' => 'Sản phẩm',
+        ]);
+
         $km = DB::table('valuations')->where('id_coffee', $req->input('id_coffee'))->where('expired', '>=', Carbon::now()->toDateString())->where('quantity', $req->input('quantity'))->get();
         if (count($km) == 0) {
             DB::table('valuations')->insert([

@@ -146,11 +146,17 @@ class HomeController extends Controller
             ->where('order_statuses.id_status', Status::OrderFinish)
             ->first();
 
+        $bestCoffeeSellers = DB::select('SELECT coffees.id as coffeeId, coffees.name, coffees.price, coffees.image, coffees.slug,
+            IF(EXISTS(SELECT * FROM coffees JOIN valuations on coffees.id=valuations.id_coffee WHERE valuations.id_coffee=coffeeId),1,0) as haveValuation,
+            COUNT(coffees.name) as qty from order_details
+            JOIN coffees ON order_details.id_coffee=coffees.id where coffees.status=1 GROUP by coffees.id, coffees.name, coffees.price, coffees.image, coffees.slug ORDER by COUNT(coffees.name) DESC LIMIT 4');
+
         return view('admins.analytic')->with([
             'title' => 'Thống kê',
             'order' => $order,
             'coffees' => $coffees,
-            'coffee_comment' => $coffee_comment
+            'coffee_comment' => $coffee_comment,
+            'bestCoffeeSellers' => $bestCoffeeSellers,
         ]);
     }
 }

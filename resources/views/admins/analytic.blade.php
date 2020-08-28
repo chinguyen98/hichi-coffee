@@ -193,11 +193,12 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="analytics-rounded reso-mg-b-30">
                     <div class="analytics-rounded-content">
-                        <h5>Percentage distribution</h5>
-                        <h2><span class="counter">40</span>/20</h2>
-                        <div class="text-center">
-                            <div id="sparkline51"></div>
-                        </div>
+                        <h5>Sản phẩm bán chạy</h5>
+                        @foreach($bestCoffeeSellers as $item)
+
+                        <b>{{$item->name}}</b>
+
+                        @endforeach
                     </div>
                 </div>
             </div>
