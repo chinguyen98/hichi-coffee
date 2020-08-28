@@ -3,8 +3,8 @@
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading">Khám phá</span>
-                <h2 class="mb-4">Sản phẩm của chúng tôi</h2>
-                <p>Đàn ông rất giống cà phê <br> bởi nếu là loại ngon sẽ làm bạn mất ngủ!</p>
+                <h2 class="mb-4 mt-4">Sản phẩm của chúng tôi</h2>
+                <p style="font-size: 30px; color: peru;" class="slogan-index"><i><b>Đàn ông rất giống cà phê <br> bởi nếu là loại ngon sẽ làm bạn mất ngủ!</i></b></p>
             </div>
         </div>
         <div class="row d-md-flex">

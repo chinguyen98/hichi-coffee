@@ -20,8 +20,8 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">Sản phẩm</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ</a></span> / <span class="text-white">Sản phẩm</span></p>
+                <h1 class="mb-3 mt-5 bread">SẢN PHẨM</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/" style="font-size: 20px;"><b><u>Trang Chủ</u></b></a></span> / <span class="text-white" style="font-size: 20px;"><b><u>Sản Phẩm</u></b></span></p>
             </div>
         </div>
     </div>
@@ -86,8 +86,8 @@
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading mb-1">CH Coffee</span>
                 <h2 class="mb-4 mt-2">Danh mục sản phẩm</h2>
-                <div class="slogan sloganknst">
-                    <p>Đàn ông rất giống cà phê <br> bởi nếu là loại ngon sẽ làm bạn mất ngủ!</p>
+                <div class="slogan-index">
+                    <p style="color: peru; font-size: 25px;"><i>Đàn ông rất giống cà phê <br> bởi nếu là loại ngon sẽ làm bạn mất ngủ!</i></p>
                 </div>
             </div>
         </div>

@@ -13,10 +13,10 @@
                     <h1 class="mb-4">Website Coffee số 1 Việt Nam</h1>
                     <p class="mb-4 mb-md-5 slogan">Thêm chút đường cho cà phê ngọt <br /> Thêm chút tình mình có thuộc về nhau?</p>
                     <p>
-                        <a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">Xem sản phẩm</a>
+                        <a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">XEM SẢN PHẨM</a>
                         @guest
 
-                        <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Đăng nhập</a>
+                        <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">ĐĂNG NHẬP</a>
 
                         @endguest
                     </p>
@@ -35,7 +35,7 @@
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Cà phê của giàu có <br /> và hạnh phúc</h1>
                     <p class="mb-4 mb-md-5 slogan">Thêm chút đường cho cà phê ngọt <br /> Thêm chút tình mình có thuộc về nhau?</p>
-                    <p><a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">Xem sản phẩm</a> <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Đăng nhập</a></p>
+                    <p><a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">XEM SẢN PHẨM</a> <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">ĐĂNG NHẬP</a></p>
                 </div>
 
             </div>
@@ -51,7 +51,7 @@
                     <span class="subheading">Welcome</span>
                     <h1 class="mb-4">Niềm cảm hứng bất tận</h1>
                     <p class="mb-4 mb-md-5 slogan">Thêm chút đường cho cà phê ngọt <br /> Thêm chút tình mình có thuộc về nhau?</p>
-                    <p><a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">Xem sản phẩm</a> <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Đăng nhập</a></p>
+                    <p><a href="/coffees" class="btn btn-primary p-3 px-xl-4 py-xl-3">XEM SẢN PHẨM</a> <a href="/login" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">ĐĂNG NHẬP</a></p>
                 </div>
 
             </div>
@@ -68,21 +68,21 @@
                         <div class="icon"><span class="icon-phone"></span></div>
                         <div class="text">
                             <h3>(028) 38 503 717</h3>
-                            <p>Mọi lúc mọi nơi</p>
+                            <p style="color: peru;">Mọi lúc mọi nơi </p>
                         </div>
                     </div>
                     <div class="col-md-5 d-flex ftco-animate">
                         <div class="icon"><span class="icon-my_location"></span></div>
                         <div class="text">
                             <h3>79 Đường 204 Cao Lỗ, Phường 4, Quận 8</h3>
-                            <p>Lô B5 - Khu Công Nghiệp Trà Đa, Pleiku, Gia Lai</p>
+                            <b style="color: white;">Lô B5 - Khu Công Nghiệp Trà Đa, Pleiku, Gia Lai</b>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex ftco-animate">
                         <div class="icon"><span class="icon-clock-o"></span></div>
                         <div class="text">
                             <h3>Mở cửa: Thứ 2 - Thứ 7</h3>
-                            <p>6:00am - 19:00pm</p>
+                            <p style="color: peru;">6:00am - 19:00pm</p>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                 <h2 class="my-4">SÁNG TẠO</h2>
             </div>
             <div>
-                <p>Cà phê, không sặc sỡ để gây sự chú ý, Không ngọt ngào để "xu nịnh cảm xúc" Mà nó tồn tại để mang lại cho chúng ta một kho tàng. Cần khám phá một người dẫn lối để đi đến sự thanh tịnh.</p>
+                <p style="color: white; font-size: 18px;"><i>Cà phê, không sặc sỡ để gây sự chú ý, Không ngọt ngào để "xu nịnh cảm xúc" Mà nó tồn tại để mang lại cho chúng ta một kho tàng. Cần khám phá một người dẫn lối để đi đến sự thanh tịnh.</i></p>
             </div>
         </div>
     </div>
@@ -117,7 +117,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Dễ dàng đặt hàng</h3>
-                        <p>Thao tác đơn giản chỉ sau một click chuột</p>
+                        <b >Thao tác đơn giản chỉ sau một click chuột</b>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Giao hàng nhanh chóng</h3>
-                        <p>Cam kết giao hàng đúng thời hạn</p>
+                        <b >Cam kết giao hàng đúng thời hạn</b>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                         <span class="flaticon-coffee-bean"></span></div>
                     <div class="media-body">
                         <h3 class="heading">Chất lượng cao</h3>
-                        <p>Chất lượng không thể nào thiếu phong cách</p>
+                        <b >Chất lượng không thể nào thiếu phong cách</b>
                     </div>
                 </div>
             </div>
@@ -153,11 +153,11 @@
                 <div class="heading-section text-md-right ftco-animate">
                     <span class="subheading aquarelleFont">Thế Giới</span><br />
                     <h2>Cà phê</h2>
-                    <p class="mb-4">Trong màu đen của cà phê, tinh ý sẽ thấy được nét sóng sánh của màu nâu đỏ,
+                    <p class="mb-4" style="font-size: 18px; color: white;"><i>Trong màu đen của cà phê, tinh ý sẽ thấy được nét sóng sánh của màu nâu đỏ,
                         sau vị đắng ngắm lòng là dư vị ngọt ngọt lạ kỳ của vị hương.
                         Nhìn qua lăng kính phân kì sẽ thấy ngỡ ngàng sự hoà quyện của tập hợp bao nhiêu là màu sắc,
-                        thoang thoảng trong kí ức bao trùm cả không gian những mùi vị của yêu thương.</p>
-                    <p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">Xem sản phẩm</a></p>
+                        thoang thoảng trong kí ức bao trùm cả không gian những mùi vị của yêu thương.</i></p>
+                    <p><a href="/coffees" class="btn btn-primary btn-outline-primary px-4 py-3"><b>XEM SẢN PHẨM</b></a></p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -198,8 +198,6 @@
                         <div class="block-18 text-center">
                             <div class="text">
                                 <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="100">0</strong>
-                                <span>Coffee Branches</span>
                             </div>
                         </div>
                     </div>
@@ -207,8 +205,7 @@
                         <div class="block-18 text-center">
                             <div class="text">
                                 <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="85">0</strong>
-                                <span>Number of Awards</span>
+                               
                             </div>
                         </div>
                     </div>
@@ -216,8 +213,7 @@
                         <div class="block-18 text-center">
                             <div class="text">
                                 <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="10567">0</strong>
-                                <span>Happy Customer</span>
+                             
                             </div>
                         </div>
                     </div>
@@ -225,8 +221,7 @@
                         <div class="block-18 text-center">
                             <div class="text">
                                 <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                <strong class="number" data-number="900">0</strong>
-                                <span>Staff</span>
+                            
                             </div>
                         </div>
                     </div>

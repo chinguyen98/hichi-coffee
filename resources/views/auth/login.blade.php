@@ -23,10 +23,10 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">Đăng nhập</h1>
+                <h1 class="mb-3 mt-5 bread">ĐĂNG NHẬP</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a href="/">Trang chủ</a> /
-                        <span>Đăng nhập</span>
+                    <span class="mr-2"><a href="/" style="font-size: 20px;"><u>Trang chủ</u></a> /
+                        <span style="font-size: 20px;">Đăng Nhập</span>
                 </p>
             </div>
         </div>
@@ -38,14 +38,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card customerForm">
-                <div class="card-header text-center text-uppercase">Đăng nhập</div>
+                <div class="card-header text-center text-uppercase" style="color: peru;">Đăng nhập</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right"> Địa chỉ email </label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right" style="color: white;"> Địa chỉ email </label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Mật khẩu</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right" style="color: white;">Mật khẩu</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -77,7 +77,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <label class="form-check-label" for="remember" style="color: white;">
                                         Nhớ tài khoản
                                     </label>
                                 </div>

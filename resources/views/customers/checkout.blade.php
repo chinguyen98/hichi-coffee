@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="border text-left mt-3">
-                            <h4 class="ml-2">Hình thức vận chuyển:</h4>
+                            <h4 class="ml-2 text-white">Hình thức vận chuyển:</h4>
                             <div>
 
                                 @foreach($shipping_infos as $item)
@@ -158,7 +158,7 @@
                                     <input class="form-check-input" type="radio" name="shipping_infos" id="{{$item->id}}" value="{{$item->price}}" checked>
                                     <label class="form-check-label d-flex flex-row justify-content-between" for="exampleRadios1">
                                         <h5>{{$item->name}}</h5>
-                                        <p class="text-secondary mr-2">{{number_format($item->price)}} đ</p>
+                                        <p class="text-white mr-2">{{number_format($item->price)}} đ</p>
                                     </label>
                                 </div>
 
@@ -168,7 +168,7 @@
                                     <input class="form-check-input" type="radio" name="shipping_infos" id="{{$item->id}}" value="{{$item->price}}">
                                     <label class="form-check-label d-flex flex-row justify-content-between" for="exampleRadios1">
                                         <h5>{{$item->name}}</h5>
-                                        <p class="text-secondary mr-2">{{number_format($item->price)}} đ</p>
+                                        <p class="text-white mr-2">{{number_format($item->price)}} đ</p>
                                     </label>
                                 </div>
 
@@ -178,7 +178,7 @@
 
                             </div>
                         </div>
-                        <div class="border text-left mt-3 p-2">
+                        <div class="border text-left mt-3 p-2 text-white">
                             <div class="d-flex flex-row justify-content-between">
                                 <p>Tạm tính:</p>
                                 <p data-price="0" class="checkout-price"></p>

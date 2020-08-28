@@ -20,8 +20,8 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">Tin tức</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ</a></span>&nbsp; / &nbsp; <span>Tin tức</span></p>
+                <h1 class="mb-3 mt-5 bread">TIN TỨC</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/" style="font-size: 20px;"><b><u>Trang Chủ</u></b></a></span> / <span class="text-white" style="font-size: 20px;"><b><u>Tin Tức</u></b></span></p>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
             <div class="col col-md-8">
                 <div class="title-news">
                     <a href="{{route('customers.news.show', ['slug'=>$new->slug])}}">
-                        <h3>{{$new->title}}</h3>
+                        <h3 style="color: peru; text-transform: uppercase;">{{$new->title}}</h3>
                     </a>
                 </div>
                 <div class="review-news">

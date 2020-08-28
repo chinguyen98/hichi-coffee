@@ -19,6 +19,7 @@
                         @if (Route::has('register'))
                         <a class="dropdown-item" href="/register">Tạo tài khoản</a>
                         @endif
+                        <a class="dropdown-item" href="{{route('admins.login.show')}}">Đăng nhập Admin</a>
                     </div>
                     @else
                     <a class="nav-link dropdown-toggle" href="/home" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>

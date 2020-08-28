@@ -25,10 +25,10 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-12 mt-5 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">{{$coffee->name}}</h1>
+                <h1 class="mb-3 mt-5 bread" style="text-transform: uppercase;">{{$coffee->name}}</h1>
                 <p class="breadcrumbs">
-                    <span class="mr-2"><a href="/">Trang chủ</a> </span>/
-                    <span class="mr-2"><a href="/coffees">Sản phẩm</a></span>/
+                    <span class="mr-2"><a href="/"><u style="font-size: 20px;">TRANG CHỦ</u></a> </span>/
+                    <span class="mr-2"><a href="/coffees"><u style="font-size: 20px; color: white;">SẢN PHẨM</u></a></span>/
                 </p>
             </div>
         </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="col col-md-8">
             <div class="mb-3">
-                <h2>{{$coffee->name}}</h2>
+                <h2 style="color: peru;">{{$coffee->name}}</h2>
             </div>
 
             <div class="mb-3">
@@ -72,15 +72,15 @@
             </div>
 
             <div class="mt-2">
-                <h4>Nhãn hiệu: {{$coffee->brand->name}}</h4>
-                <h4>Loại cà phê: {{$coffee->coffee_type->name}}</h4>
+                <h2>Nhãn hiệu: {{$coffee->brand->name}}</h2>
+                <h2>Loại cà phê: {{$coffee->coffee_type->name}}</h2>
             </div>
 
             <div class="my-5">
                 <h2>Giá hiện tại: <span class="text-danger text-bold oldPrice ml-4">{{number_format($coffee->price)}} </span> <span class="newPrice"></span> <span class="text-danger">đ</span></h2>
 
                 <div class="d-flex flex-row align-items-center mb-3">
-                    <h5 class="pr-3 pt-2">Số lượng đặt mua: </h5>
+                    <h2 class="pr-3 pt-2">Số lượng: </h2>
                     <span id="btn-quantity-desc" class="quantity-updown text-center">-</span>
                     <input style="width: 4rem; text-align: center;" type="text" name="quantity" class="quantity" value="1" min="1" />
                     <span id="btn-quantity-insc" class="quantity-updown text-center">+</span>
@@ -88,7 +88,7 @@
                 <span class="text-danger coffeeQty-notity"></span>
                 <input type="hidden" name="coffeeQty" value="{{$coffee->quantity}}">
                 <div class="d-flex flex-row align-items-center ">
-                    <p><a id="btnAddToCart" class="btn btn-lg btn-primary btn-outline-primary mt-4">THÊM VÀO GIỎ</a></p>
+                    <p ><a id="btnAddToCart" class="btn btn-lg btn-primary btn-outline-primary mt-4" style="font-size: 20px;">THÊM VÀO GIỎ</a></p>
                     @guest
                     @else
 

@@ -22,8 +22,8 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">Giới thiệu</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ</a></span> / <span class="text-white">Giới thiệu</span></p>
+                <h1 class="mb-3 mt-5 bread" class="slogan-intro" >GIỚI THIỆU</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/" style="font-size: 20px;" ><b><u>Trang Chủ</u></b></a></span> / <span class="text-white" style="font-size: 20px;"><b><u>Giới Thiệu</u></b></span></p>
             </div>
         </div>
     </div>
@@ -45,21 +45,21 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <span class="subheading">CH Coffee</span>
-                <h2 class="mb-4 mt-2">Xin chào quý khách </br> Liên hệ với chúng tôi</h2>
+                <span class="subheading">Hichi-Coffee</span>
+                <h2 class="mb-4 mt-4">Xin chào quý khách </br> Liên hệ với chúng tôi</h2>
 
 
             </div>
             <div>
                 <div class="slogan-info">
-                    <p>Địa chỉ: 79 đường Nguyễn Thị Mười, Phường 4, Quận 8</p>
+                    <p>Địa chỉ: 79 đường 204 Cao Lỗ, Phường 4, Quận 8</p>
                     <p>Liên hệ mua hàng: 0978245453 - Mr.Hiếu </p>
                     <p id="contact">012345678 - Mr.Chí </p>
 
                 </div>
             </div>
             <div class="slogan sloganknst">
-                <p>Cảm ơn quý khách hàng đã ghé thăm website của chúng tôi!!!</p>
+                <p style="color: white;">Cảm ơn quý khách hàng đã ghé thăm website của chúng tôi!!!</p>
             </div>
         </div>
     </div>

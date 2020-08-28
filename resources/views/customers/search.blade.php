@@ -22,8 +22,8 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">Tìm kiếm</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ</a></span> <span>Tìm kiếm</span></p>
+                <h1 class="mb-3 mt-5 bread">TÌM KIẾM</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/" style="font-size: 20px;"><b><u>Trang Chủ</u></b></a></span> / <span class="text-white" style="font-size: 20px;"><b><u>Tìm Kiếm</u></b></span></p>
             </div>
         </div>
     </div>
