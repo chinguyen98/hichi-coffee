@@ -58,9 +58,9 @@ async function getFavorites() {
                     </div>
                     <div class="col col-md-9">
                         <a href="/coffees/${item.coffee.slug}">
-                            <p>${item.coffee.name}</p>
+                            <p style="font-size:20px"><b>${item.coffee.name}</b></p>
                         </a>
-                        <span>${item.coffee.brand.name}</span><br>
+                        <span class="text-white"><b>${item.coffee.brand.name}</b></span><br>
 
                         <div class="d-flex flex-row align-items-center">
                             <div data-star="${item.coffee.avgRating}" data-id="${item.coffee.id}" class="customRating customerRate mr-3">
@@ -85,13 +85,13 @@ async function getFavorites() {
                                 <label class="half" for="sstarhalf"></label>
                             </div>
                             <div>
-                                <span>(${item.coffee.coffee_comment_count} nhận xét)</span>
+                                <span class="text-white">(${item.coffee.coffee_comment_count} nhận xét)</span>
                             </div>
                         </div>
-                        <p>${formatPrice(item.coffee.price)} đ</p>
+                        <p class="text-danger" style="font-size:20px"><b>${formatPrice(item.coffee.price)} đ</b></p>
                     </div>
                     <div class="col col-md-1">
-                        <button class='btn btn-danger' onclick="deleteFavorite(${item.coffee.id})">Xóa</button>
+                        <button class='btn btn-danger' onclick="deleteFavorite(${item.coffee.id})">XOÁ</button>
                     </div>
                 </div>
             `;

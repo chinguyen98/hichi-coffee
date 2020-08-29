@@ -22,8 +22,8 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">Nhận xét sản phẩm đã mua</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ</a></span> <span>Nhận xét sản phẩm đã mua</span></p>
+                <h1 class="mb-3 mt-5 bread">NHẬN XÉT SẢN PHẨM ĐÃ MUA</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/" style="color: peru; font-size: 20px;"><u>Trang Chủ</u></a></span>/<span style="color: white; font-size: 20px;"><u>Nhận Xét Sản Phẩm Đã Mua</u></span></p>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
 
 <section class="ftco-menu">
     <div class="container">
-        <h3>Nhận xét sản phẩm đã mua</h3>
+        <h3 style="color: peru;">NHẬN XÉT SẢN PHẨM ĐÃ MUA</h3>
         <div class="dmsp-main-container">
             <div class="pt-3 row dmsp-main-container__list d-lg-flex flex-wrap">
                 @foreach($coffees as $coffee)
@@ -47,7 +47,7 @@
                         </div>
                     </a>
 
-                    <p><a href="{{route('customer.coffees.show', ['slug'=>$coffee->slug]) . '#flag'}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
+                    <p><a style="font-size: 18px;" href="{{route('customer.coffees.show', ['slug'=>$coffee->slug]) . '#flag'}}" class="btn btn-primary btn-outline-primary">XEM SẢN PHẨM</a></p>
                 </div>
 
                 @endforeach

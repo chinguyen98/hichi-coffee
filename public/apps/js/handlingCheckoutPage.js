@@ -150,8 +150,8 @@ async function renderCart() {
     const exportCartHtml = data.map((cart) => {
         return `
             <div class="d-flex flex-row p-2">
-                <span class="mr-3 text-primary">${cartStorage.find(el => el.id === cart.id).qty}x</span>
-                <span data-id="${cart.id}" data-price="${cart.price}">${cart.name}</span>
+                <span class="mr-3 text-success">${cartStorage.find(el => el.id === cart.id).qty}x</span>
+                <span style="color:peru; font-size:18px;" data-id="${cart.id}" data-price="${cart.price}">${cart.name}</span>
             </div>
         `;
     }).join('');

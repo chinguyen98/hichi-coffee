@@ -20,8 +20,8 @@
     <div class="container">
         <div class="row slider-text justify-content-center align-items-center">
             <div class="col-md-7 mt-5 col-sm-12 text-center ftco-animate">
-                <h1 class="mb-3 mt-5 bread">Thanh toán</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Trang chủ</a></span>&nbsp; / &nbsp; <span>Thanh toán</span></p>
+                <h1 class="mb-3 mt-5 bread">THANH TOÁN</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/" style="color: peru; font-size: 20px;"><u>Trang Chủ</u></a></span>&nbsp; / &nbsp; <span style="color: white; font-size: 20px;"><u>Thanh Toán</u></span></p>
             </div>
         </div>
     </div>
@@ -32,22 +32,22 @@
     <div class="editForm">
         <div class="row justify-content-center">
             <div class="card-body">
-                <h1>Kiểm tra đơn hàng của bạn</h1>
+                <h2 style="color: peru; text-transform: uppercase;">Kiểm tra đơn hàng của bạn</h2>
                 <div class="d-flex flex-row">
                     <div class="col col-md-6 ml-3">
-                        <h3>Giỏ hàng của bạn: </h3>
+                        <h3 style="text-transform: capitalize;">Giỏ hàng của bạn: </h3>
                         <div class="checkout-cart border">
 
                         </div>
                         <a class="btn btn-info mt-2" href="/coffees">
-                            <h2 class="d-inline">Tiếp tục mua sản phẩm</h2>
+                            <h4 class="d-inline" style="text-transform: uppercase;">Tiếp tục mua sản phẩm</h4>
                         </a>
                         <a class="btn btn-primary mt-2" href="/carts">
-                            <h2 class="d-inline">Xem lại chi tiết giỏ hàng</h2>
+                            <h4 class="d-inline" style="text-transform: uppercase;">Xem lại chi tiết giỏ hàng</h4>
                         </a>
                     </div>
                     <div class="col col-md-6 ml-3">
-                        <h3>Thông tin hoá đơn của bạn: </h3>
+                        <h3 style="text-transform: capitalize;">Thông tin hoá đơn của bạn: </h3>
                         <div class="checkout-info border">
                             <h3 class="checkout-info__name text-info">{{Auth::user()->name}}</h3>
                             <h5 class="checkout-info__phone text-left ml-2 ">Số điện thoại: {{$customer_address->phone_number}}</h5>
@@ -70,13 +70,13 @@
                         @if($have_hcmc_address)
 
                         <button class="btn btn-primary mt-3 showChangeAddressForm">
-                            <h5 class="d-inline">Thay đổi địa chỉ giao hàng</h5>
+                            <h5 class="d-inline " style="text-transform: uppercase;">Thay đổi địa chỉ giao hàng</h5>
                         </button>
 
                         @endif
 
                         <button class="btn btn-success mt-3 showCreateAddressFormBtn">
-                            <h5 class="d-inline">Tạo địa chỉ giao hàng mới</h5>
+                            <h5 class="d-inline" style="text-transform: uppercase;">Tạo địa chỉ giao hàng mới</h5>
                         </button>
 
                         <div class="createAddressform border text-left mt-3">
@@ -136,19 +136,19 @@
                         @endif
 
                         <div class="border text-left mt-3">
-                            <h4 class="ml-2">Hình thức thanh toán:</h4>
+                            <h5 class="ml-2 mt-2" style="color: peru; text-transform: uppercase;">Hình thức thanh toán:</h5>
                             <div>
                                 <div class="form-check ml-5">
                                     <input class="form-check-input" type="radio" id="exampleRadios1" value="option1" checked>
                                     <label class="form-check-label" for="exampleRadios1">
-                                        <h5>Thanh toán khi nhận hàng</h5>
+                                        <h5 class="text-success" >Thanh toán khi nhận hàng</h5>
                                     </label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="border text-left mt-3">
-                            <h4 class="ml-2 text-white">Hình thức vận chuyển:</h4>
+                            <h5 class="ml-2 mt-2" style="color: peru; text-transform: uppercase;">Hình thức vận chuyển:</h5>
                             <div>
 
                                 @foreach($shipping_infos as $item)
@@ -157,7 +157,7 @@
                                 <div class="form-check ml-5">
                                     <input class="form-check-input" type="radio" name="shipping_infos" id="{{$item->id}}" value="{{$item->price}}" checked>
                                     <label class="form-check-label d-flex flex-row justify-content-between" for="exampleRadios1">
-                                        <h5>{{$item->name}}</h5>
+                                        <h5 class="text-success" >{{$item->name}}</h5>
                                         <p class="text-white mr-2">{{number_format($item->price)}} đ</p>
                                     </label>
                                 </div>
@@ -167,7 +167,7 @@
                                 <div class="form-check ml-5">
                                     <input class="form-check-input" type="radio" name="shipping_infos" id="{{$item->id}}" value="{{$item->price}}">
                                     <label class="form-check-label d-flex flex-row justify-content-between" for="exampleRadios1">
-                                        <h5>{{$item->name}}</h5>
+                                        <h5 class="text-success" >{{$item->name}}</h5>
                                         <p class="text-white mr-2">{{number_format($item->price)}} đ</p>
                                     </label>
                                 </div>
@@ -180,17 +180,17 @@
                         </div>
                         <div class="border text-left mt-3 p-2 text-white">
                             <div class="d-flex flex-row justify-content-between">
-                                <p>Tạm tính:</p>
+                                <p class="text-white"><b>Tạm Tính:</b></p>
                                 <p data-price="0" class="checkout-price"></p>
                             </div>
                             <div class="d-flex flex-row justify-content-between">
-                                <p>Phí vận chuyển:</p>
+                                <p class="text-white"><b>Phí vận chuyển:</b></p>
                                 <p data-price="0" class="checkout-shipping"></p>
                             </div>
                             <div class="d-flex flex-row justify-content-between">
                                 @if($shipping_address != '')
 
-                                <p>Phí vận chuyển đến {{$shipping_address->address}}:</p>
+                                <p class="text-white"><b>Phí vận chuyển đến {{$shipping_address->address}}</b>:</p>
                                 <p data-price="{{$shipping_address->price}}" class="checkout-district">{{number_format($shipping_address->price) }} đ</p>
 
                                 <!-- <p>Phí vận chuyển đến <span class="checkout-district-label"></span>:</p>
@@ -202,7 +202,7 @@
                             </div>
                             <div class="border"></div>
                             <div class="d-flex flex-row justify-content-between mt-3">
-                                <h3>Thành tiền: </h3>
+                                <h3 style="color: peru;">THÀNH TIỀN: </h3>
                                 <h2 data-totalprice="" class="checkout-total-price text-danger"></h2>
                             </div>
                             <h4 class="text-right"><del class="oldPrice"></del> đ</h4>
