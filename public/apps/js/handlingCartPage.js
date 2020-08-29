@@ -100,6 +100,7 @@ function renderCart(cartList, cartStorage) {
         return exportData;
     }).join('');
     cartComponent.innerHTML = html;
+    cartComponent.classList.add('border');
 }
 
 function renderPriceSum(cartList, cartStorage) {
@@ -251,6 +252,12 @@ function valCartQuantity(id) {
 
     if (isNaN(valueInput.value)) {
         valueInput.value = 1;
+        document.querySelector('.notify').classList.remove('notify--show')
+        document.querySelector('.notity__error').innerHTML = `Số lượng bạn nhập vào không hợp lệ!`;
+        document.querySelector('.notify').classList.add('notify--show');
+        setTimeout(() => {
+            document.querySelector('.notify').classList.remove('notify--show')
+        }, 1500);
     }
     if (valueInput.value <= 0)
         valueInput.value = 1;

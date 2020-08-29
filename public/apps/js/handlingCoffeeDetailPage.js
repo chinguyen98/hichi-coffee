@@ -60,8 +60,15 @@ function addToCart() {
 }
 
 function handingValuation(quantity) {
-    if (quantity <= 0 || isNaN(quantity))
+    if (quantity <= 0 || isNaN(quantity)){
         quantityInput.value = 1;
+        document.querySelector('.notify').classList.remove('notify--show')
+        document.querySelector('.notity__error').innerHTML = `Số lượng bạn nhập vào không hợp lệ!`;
+        document.querySelector('.notify').classList.add('notify--show');
+        setTimeout(() => {
+            document.querySelector('.notify').classList.remove('notify--show')
+        }, 1500);
+    }
 
     if (+quantity > +coffeeQtyHidInput.value) {
         document.querySelector('.coffeeQty-notity').innerHTML = `Đã vượt quá số lượng kho (${coffeeQtyHidInput.value}). Chúng tôi có thể tiếp tục nhập kho sản phẩm bạn lựa chọn!`;

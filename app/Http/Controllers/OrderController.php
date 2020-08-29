@@ -175,7 +175,7 @@ class OrderController extends Controller
         if ($exists) {
             return redirect()->route('customers.orders.show', ['id' => $id_order]);
         }
-        $request->session()->flash('success_message', 'Không có đơn hàng phù hợp!');
+        $request->session()->flash('fail_message', 'Không có đơn hàng phù hợp!');
         return redirect()->route('customers.orders.index');
     }
 }

@@ -36,8 +36,7 @@
 <div class="ml-5 my-2 d-flex flex-sm-column flex-md-row justify-content-center">
     <div class="row">
         <div class=" cart-container col col-md-8">
-            <div id="cart-component" class="col col-md-10 d-flex flex-column border">
-
+            <div id="cart-component" class="col col-md-10 d-flex flex-column">
             </div>
             <div class="hidValuationArea"></div>
         </div>

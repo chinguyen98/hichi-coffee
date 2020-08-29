@@ -898,8 +898,8 @@ div, label {
 
 .notify--show {
   transform: translateX(40em);
-  z-index: 99999999;
-  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 999999999999;
+  background-color: rgba(0, 0, 0, 1);
   opacity: 1;
 }
 

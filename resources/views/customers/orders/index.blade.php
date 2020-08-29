@@ -57,7 +57,7 @@
                     <th>NGÀY MUA</th>
                     <th>SẢN PHẨM</th>
                     <th class="px-5">TỔNG TIỀN</th>
-                    <th>TRẠNG THÁI ĐƠN HÀNG</th>
+                    <th class="px-5">TRẠNG THÁI ĐƠN HÀNG</th>
                     <th>TUỲ CHỌN</th>
                 </tr>
 
