@@ -167,4 +167,15 @@ class OrderController extends Controller
         $request->session()->flash('success_message', 'Huỷ đơn hàng thành công!');
         return redirect()->route('customers.orders.index');
     }
+
+    public function find(Request $request)
+    {
+        $id_order = $request->id_order;
+        $exists = DB::table('orders')->where('id', $id_order)->exists();
+        if ($exists) {
+            return redirect()->route('customers.orders.show', ['id' => $id_order]);
+        }
+        $request->session()->flash('success_message', 'Không có đơn hàng phù hợp!');
+        return redirect()->route('customers.orders.index');
+    }
 }

@@ -43,22 +43,30 @@
         @else
 
         <div class="table-responsive">
+            <div class="d-flex flex-row justify-content-center align-items-center mb-2">
+                <span style="font-size: 1.5rem;" class="text-white mr-2">Tìm kiếm đơn hàng: </span>
+                <input form="findOrderForm" type="text" name="id_order" placeholder="Nhập mã đơn hàng">
+                <button type="submit" form="findOrderForm" class="btn btn-primary ml-2">Tìm</button>
+                <form id="findOrderForm" action="{{route('customers.order.find')}}" method="post">
+                    @csrf
+                </form>
+            </div>
             <table class="orderDetail_table col col-md-12">
-                <tr class="text-center row" style="color: white;">
-                    <th class="col col-md-1">MÃ ĐƠN HÀNG</th>
-                    <th class="col col-md-2">NGÀY MUA</th>
-                    <th class="col col-md-3">SẢN PHẨM</th>
-                    <th class="col col-md-2">TỔNG TIỀN</th>
-                    <th class="col col-md-2">TRẠNG THÁI ĐƠN HÀNG</th>
-                    <th class="col col-md-2">TUỲ CHỌN</th>
+                <tr class="text-center" style="color: white;">
+                    <th>MÃ ĐƠN HÀNG</th>
+                    <th>NGÀY MUA</th>
+                    <th>SẢN PHẨM</th>
+                    <th class="px-5">TỔNG TIỀN</th>
+                    <th>TRẠNG THÁI ĐƠN HÀNG</th>
+                    <th>TUỲ CHỌN</th>
                 </tr>
 
                 @foreach($orders as $order)
 
-                <tr class="row">
-                    <td class="text-center col col-md-1" style="color: white;"><b>{{$order->id}}</b></td>
-                    <td class="text-center p-3 text-white col col-md-2"><b>{{$order->created_at}}</b></td>
-                    <td class="col col-md-3">
+                <tr>
+                    <td class="text-center" style="color: white;"><b>{{$order->id}}</b></td>
+                    <td class="text-center p-3 text-white"><b>{{$order->created_at}}</b></td>
+                    <td>
                         @foreach($order->order_details as $order_detail)
 
                         <div class="d-flex p-1 justify-content-between align-items-center">
@@ -70,9 +78,9 @@
 
                         @endforeach
                     </td>
-                    <td class="text-center p-1 text-danger col col-md-2" style="font-size: 18px;"><b>{{number_format($order->total_price)}} đ</b></td>
-                    <td class="text-center p-3 text-success col col-md-2" style="font-size: 18px;"><b>{{$order->current_status->status->name}}</b></td>
-                    <td class="p-2 text-center col col-md-2">
+                    <td class="text-center text-danger" style="font-size: 18px;"><b>{{number_format($order->total_price)}} đ</b></td>
+                    <td class="text-center p-3 text-success" style="font-size: 18px;"><b>{{$order->current_status->status->name}}</b></td>
+                    <td class="p-2 text-center">
                         <a class="btn btn-primary" href="{{route('customers.orders.show', ['id'=>$order->id])}}">Xem Đơn Hàng #{{$order->id}}</a>
                         @if($order->current_status->status->id==1)
 
