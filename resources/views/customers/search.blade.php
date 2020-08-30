@@ -61,11 +61,11 @@
                     <div class="moreFilter d-none row mt-3">
                         <div class="col col-md-4">
                             <h3>Giá</h3>
-                            <p>Chọn khoảng giá</p>
-                            <div class="d-flex justify-content-around">
-                                <input data-price="" style="width: 90%;" type="text" name="from">
+                            <p class="text-white">Chọn khoảng giá</p>
+                            <div class="d-flex justify-content-around text-white">
+                                <input data-price="" style="width: 90%;" type="text" name="from"> đ
                                 <span class="mx-1"> - </span>
-                                <input data-price="" style="width: 90%;" type="text" name="to">
+                                <input data-price="" style="width: 90%;" type="text" name="to"> đ
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@
                             <div>
                                 @foreach($brands as $brand)
 
-                                <div class="radioArea">
+                                <div class="radioArea text-white">
                                     <input form="searchForm" name="thuong-hieu" id="{{$brand->name}}" type="radio" value="{{$brand->name}}">
                                     <label class="ml-3" for="{{$brand->name}}">{{$brand->name}}</label>
                                 </div>
@@ -88,7 +88,7 @@
                             <div>
                                 @foreach($coffee_types as $coffee_type)
 
-                                <div class="radioArea">
+                                <div class="radioArea text-white">
                                     <input form="searchForm" name="loai-ca-phe" id="{{$coffee_type->name}}" type="radio" value="{{$coffee_type->name}}">
                                     <label class="ml-3" for="{{$coffee_type->name}}">{{$coffee_type->name}}</label>
                                 </div>

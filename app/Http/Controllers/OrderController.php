@@ -34,7 +34,7 @@ class OrderController extends Controller
         $carts = json_decode($request->input('cart'));
         $shippingType = DB::table('shipping_types')->where('id', $request->input('shippingType'))->first(['id', 'name', 'price']);
         $totalPrice = $request->input('totalPrice');
-        $customerAddress = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->where('is_current', 1)->first(['id', 'full_address']);
+        $customerAddress = DB::table('customer_addresses')->where('id_customer', Auth::user()->id)->where('is_current', 1)->first(['id', 'full_address', 'name', 'phone_number']);
         $shippingAddress = DB::table('shipping_addresses')->where('id_address', $request->input('id_shipping_address'))->first(['id', 'price']);
         $beforeDiscountPrice = 0;
         $totalDiscountPrice = 0;
@@ -46,6 +46,8 @@ class OrderController extends Controller
             'id_customer' => Auth::user()->id,
             'id_shipping_type' => $shippingType->id,
             'customer_address' => $customerAddress->full_address,
+            'name' => $customerAddress->name,
+            'phone_number' => $customerAddress->phone_number,
             'id_shipping_address' => $shippingAddress->id,
             'before_discount_price' => $beforeDiscountPrice,
             'created_at' => $created_at,

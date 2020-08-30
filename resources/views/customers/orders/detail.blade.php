@@ -50,7 +50,7 @@
 
                 @foreach($order->statuses as $status)
 
-                <div class="d-flex justify-content-between {{$status->is_current==1 ? 'text-success':''}}">
+                <div class="d-flex justify-content-between {{$status->is_current==1 ? 'text-success':'text-white'}}">
                     <p style="font-size: 18px;">{{$status->created_at}}</p>
                     <p style="font-size: 18px;"><i>{{$status->note}}</i></p>
                 </div>
@@ -63,9 +63,9 @@
                 <div class="col col-md-4 d-flex flex-column">
                     <h5>Địa Chỉ Người Nhận: </h5>
                     <div class="orderDetail_subItem px-2 pt-3">
-                        <h4><b style="color: peru; text-transform: capitalize;">{{Auth::user()->name}}</b></h4>
+                        <h4><b style="color: peru; text-transform: capitalize;">{{$order->name}}</b></h4>
                         <p class="text-white">Địa Chỉ: {{$order->customer_address}}</p>
-                        <p class="text-white">Điện Thoại: {{Auth::user()->phone_number}}</p>
+                        <p class="text-white">Điện Thoại: {{$order->phone_number}}</p>
                     </div>
                 </div>
                 <div class="col col-md-4 d-flex flex-column">
