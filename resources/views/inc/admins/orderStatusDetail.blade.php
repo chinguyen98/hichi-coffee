@@ -2,13 +2,20 @@
     <div class="product-status-wrap">
         <h4>CHI TIẾT ĐƠN HÀNG <span style="color: orangered;">#{{$orderStatus->order->id}}</span> - {{$orderStatus->status->name}}</h4>
         <div class="order row ">
+            <div>
+                <i>Tên Người Đặt:</i><span style="margin-left: 4.7em;">{{$orderStatus->order->customer->name}}</span>
+            </div>
+            <div>
+                <i>SDT Người Đặt:</i><span style="margin-left: 4.7em;">{{$orderStatus->order->customer->phone_number}}</span>
+            </div>
+            <hr>
             <h5><b>ĐỊA CHỈ NGƯỜI NHẬN</b></h5>
-            <i>Tên Khách Hàng:</i><span style="color: brown; margin-left: 10px;"><b>{{$orderStatus->order->customer->name}}</b></span>
+            <i>Tên Khách Hàng:</i><span style="color: brown; margin-left: 10px;"><b>{{$orderStatus->order->name}}</b></span>
             <div>
                 <i>Địa Chỉ:</i><span style="margin-left: 4.7em;">{{$orderStatus->order->customer_address}}</span>
             </div>
             <div>
-                <i>Số Điện Thoại</i><span style="margin-left: 2em;">{{$orderStatus->order->customer->phone_number}}</span>
+                <i>Số Điện Thoại</i><span style="margin-left: 2em;">{{$orderStatus->order->phone_number}}</span>
             </div>
         </div>
         <br>
