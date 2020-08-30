@@ -71,7 +71,7 @@
 
                         <div class="d-flex p-1 justify-content-between align-items-center">
                             <a class="my-2" href="{{route('customer.coffees.show', ['slug'=> $order_detail->coffee->slug])}}">
-                                <span class="text-primary" style="font-size: 18px;"><b>{{$order_detail->coffee->name}}</b></span>
+                                <span class="text-primary text-primary-hover" style="font-size: 18px;"><b>{{$order_detail->coffee->name}}</b></span>
                             </a>
                             <span class="ml-3 text-success"><b>x{{$order_detail->quantity}}</b></span>
                         </div>

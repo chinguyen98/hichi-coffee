@@ -1,5 +1,8 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /* Upload Image*/
+.text-primary-hover:hover{
+  text-decoration: underline !important;
+}
 
 .sale {
   position: absolute;

@@ -82,7 +82,7 @@
 
     <!-- Start Embed JS -->
 
-    <script src="/apps/js/chatbox.js"></script>
+    <!-- <script src="/apps/js/chatbox.js"></script> -->
 
     @if(Request::is('checkout'))
 
