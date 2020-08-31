@@ -18,7 +18,7 @@ class CoffeeManagementController extends Controller
 
     public function index()
     {
-        $coffees = Coffee::all();
+        $coffees = Coffee::orderByDesc('created_at')->get();
         return view('admins/coffeeManagement/index')->with(['title' => 'QUẢN LÝ SẢN PHẨM', 'coffees' => $coffees]);;
     }
 

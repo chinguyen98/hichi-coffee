@@ -2,6 +2,12 @@
 
 @section('content')
 
+@if ( Session::has('flash_message') )
+
+@include('inc.admins.messageNotification')
+
+@endif
+
 <div class="single-product-tab-area mg-b-30">
     <!-- Single pro tab review Start-->
     <div class="single-pro-review-area">

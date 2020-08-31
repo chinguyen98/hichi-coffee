@@ -20,6 +20,36 @@ class HomeController extends Controller
 
     public function index()
     {
+        $m = date('m');
+        //$totalPrice = Order::whereRaw("MONTH(created_at)=?", [$m])->sum('total_price');
+
+        $coffees = DB::table('coffees')
+            ->select(DB::raw('COUNT(coffees.id) as totalCoffee'))
+            ->first();
+
+        $coffee_comment = DB::table('coffee_comments')
+            ->select(DB::raw('COUNT(*) as totalComment'))
+            ->first();
+
+        $order = DB::table('orders')
+            ->select(DB::raw('SUM(orders.total_price) as totalPrice'), DB::raw('COUNT(*) as sum'))
+            ->join('order_statuses', 'orders.id', '=', 'order_statuses.id_order')
+            ->whereRaw("MONTH(orders.created_at)=?", [$m])
+            ->where('order_statuses.is_current', 1)
+            ->where('order_statuses.id_status', Status::OrderFinish)
+            ->first();
+        $news = DB::table('news')
+            ->select(DB::raw('COUNT(*) as totalNew'))
+            ->first();
+        $customers = DB::table('customers')
+            ->select(DB::raw('COUNT(*) as totalCustomer'))
+            ->first();
+
+        $bestCoffeeSellers = DB::select('SELECT coffees.id as coffeeId, coffees.name, coffees.price, coffees.image, coffees.slug,
+            IF(EXISTS(SELECT * FROM coffees JOIN valuations on coffees.id=valuations.id_coffee WHERE valuations.id_coffee=coffeeId),1,0) as haveValuation,
+            COUNT(coffees.name) as qty from order_details
+            JOIN coffees ON order_details.id_coffee=coffees.id where coffees.status=1 GROUP by coffees.id, coffees.name, coffees.price, coffees.image, coffees.slug ORDER by COUNT(coffees.name) DESC LIMIT 4');
+
         $count = DB::table('order_statuses')->where('id_status', 1)->where('is_current', 1)->count();
         $comment_count = DB::table('coffee_comments')->where('status', 0)->count();
         $comment_rep_count = DB::table('coffee_comment_replies')->where('status', 0)->count();
@@ -28,6 +58,12 @@ class HomeController extends Controller
             'order_count' => $count,
             'comment_count' => $comment_count,
             'comment_rep_count' => $comment_rep_count,
+            'order' => $order,
+            'coffees' => $coffees,
+            'coffee_comment' => $coffee_comment,
+            'bestCoffeeSellers' => $bestCoffeeSellers,
+            'new' => $news,
+            'customers' => $customers,
         ]);
     }
 

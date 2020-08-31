@@ -17,7 +17,7 @@ class NewsManagementController extends Controller
 
     public function index()
     {
-        $news = News::all();
+        $news = News::orderByDesc('created_at')->get();
         return view('admins.newsManagement.index')->with([
             'title' => 'DANH SÁCH TIN',
             'listnews' => $news,
