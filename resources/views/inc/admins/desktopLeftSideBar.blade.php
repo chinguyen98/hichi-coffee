@@ -123,6 +123,7 @@
                         </ul>
                     </li> -->
 
+                    @if(Auth::user()->isSuperAdmin())
                     <li>
                         <a class="has-arrow" href="index.html">
                             <img class="spanaa" src="/apps/images/icons/member.png" alt="">
@@ -132,6 +133,7 @@
                             <li><a title="Xem toàn bộ" href="{{route('admins.manage.user.index')}}"><span class="mini-sub-pro"><i>Quản Lý</i></span></a></li>
                         </ul>
                     </li>
+                    @endif
 
                     @if(Auth::user()->id_role=='SUPER_ADMIN')
 

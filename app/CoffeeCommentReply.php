@@ -12,4 +12,9 @@ class CoffeeCommentReply extends Model
     {
         return $this->belongsTo(Customer::class, 'id_customer', 'id');
     }
+
+    public function customer_reply()
+    {
+        return $this->belongsTo(Customer::class, 'id_customer_reply', 'id');
+    }
 }

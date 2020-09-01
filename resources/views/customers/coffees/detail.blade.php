@@ -456,7 +456,7 @@
                 @else
 
                 <div class="mb-3 text-justify">
-                    <h4>{{$coffee_comment_reply->customer->name}}</h4>
+                    <h4>{{$coffee_comment_reply->customer_reply->name}}</h4>
                     <p>{{$coffee_comment_reply->content}}</p>
                 </div>
 

@@ -68,6 +68,7 @@
                 </div>
             </div>
             <div style="margin-top: 2em;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                @if(Auth::user()->isSuperAdmin())
                 <div class="income-order-visit-user-area">
                     <div class="container-fluid">
                         <div class="row">
@@ -184,6 +185,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

@@ -124,7 +124,7 @@ class CommentController extends Controller
         $id_coffee = $request->query('id_coffee');
 
         $replyComments = DB::table('coffee_comment_replies')
-            ->join('customers', 'customers.id', '=', 'coffee_comment_replies.id_customer')
+            ->join('customers', 'customers.id', '=', 'coffee_comment_replies.id_customer_reply')
             ->where('coffee_comment_replies.id_coffee', $id_coffee)
             ->where('coffee_comment_replies.id_customer', $id_customer)
             ->skip($offset)->take(6)
