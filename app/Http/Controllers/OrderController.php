@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Status;
+use App\Jobs\SendOrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\NotifyOrderMail;
 use App\Order;
 use Illuminate\Support\Carbon;
 use stdClass;
@@ -139,7 +138,9 @@ class OrderController extends Controller
             'updated_at' => $updated_at,
         ]);
 
-        Mail::to(Auth::user()->email)->send(new NotifyOrderMail($details));
+        //Mail::to(Auth::user()->email)->send(new NotifyOrderMail($details));
+
+        SendOrderDetail::dispatch($details);
 
         $request->session()->flash('success_message', 'Đặt hàng thành công! Nhân viên đang kiểm tra đơn hàng của bạn!');
         return redirect()->route('customers.orders.show', ['id' => $id_order]);

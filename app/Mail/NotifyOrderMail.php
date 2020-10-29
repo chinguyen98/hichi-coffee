@@ -18,7 +18,7 @@ class NotifyOrderMail extends Mailable
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct(array $details)
     {
         $this->details = $details;
     }
