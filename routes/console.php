@@ -48,8 +48,13 @@ Artisan::command('test:test5', function () {
     );
     $this->info($choice);
 });
+
+Artisan::command('test:test6 {--a|opt1=1} {--b|opt2=2}', function ($opt1, $opt2) {
+    $this->info("{$opt1} {$opt2}");
+});
+
 Artisan::command('test:table', function () {
-    $coffees = Coffee::limit(10)->get(['name','price'])->toArray();
+    $coffees = Coffee::limit(10)->get(['name', 'price'])->toArray();
     //$coffees = DB::table('coffees')->limit(10)->get(['name', 'price'])->toArray();
     $headers = ['Name', 'Price'];
     $this->table($headers, $coffees);
