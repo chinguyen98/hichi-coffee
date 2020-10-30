@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,10 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        $news = News::limit(1)->first(['title']);
+        dd($user->can('view', $news));
     }
 
     /**

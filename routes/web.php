@@ -207,6 +207,7 @@ Route::match(['get', 'post'], '/botman', 'Chatbot\BotmanController@handle');
 
 /* Testing */
 
+Route::get('/test', 'TestController@index');
 Route::get('sendMail', function () {
     $details = [
         'title' => 'Mail from Hichi Coffee',
